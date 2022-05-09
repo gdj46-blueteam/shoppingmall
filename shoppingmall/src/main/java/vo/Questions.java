@@ -1,5 +1,5 @@
 package vo;
 
-public class Question {
+public class Questions {
 
 }

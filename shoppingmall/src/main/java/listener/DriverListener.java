@@ -5,7 +5,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 @WebListener
-public class driverListener implements ServletContextListener {
+public class DriverListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce)  { 
     	System.out.println("db드라이버 로딩....");

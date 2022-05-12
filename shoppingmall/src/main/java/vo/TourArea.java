@@ -25,7 +25,7 @@ public class TourArea {
 	public void setTourAreaId(int tourAreaId) {
 		this.tourAreaId = tourAreaId;
 	}
-	public void setArea(String Area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 	public void setCity(String city) {

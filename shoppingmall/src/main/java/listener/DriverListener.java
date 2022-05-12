@@ -8,14 +8,13 @@ import javax.servlet.annotation.WebListener;
 public class DriverListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce)  { 
-    	System.out.println("db드라이버 로딩....");
-		try {
+    	System.out.println("db드라이버 로딩");
+        //톰캣이 로딩하는 동안에 드라이버 로딩이 실행된다.
+        try {
 			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
-		
-    }
+		}
     }
 	
 }

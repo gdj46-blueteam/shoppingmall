@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>login</title>
 </head>
 <body>
-
-</body>
+	<h1>로그인</h1>
+	<form action = "<%=request.getContextPath()%>/LoginController" method="post">
+ 		 <table class="table table-striped">
+			<tr>
+				<td>memberId</td>
+				<td><input type="text" name="id"></td>
+			</tr>
+			<tr>
+				<td>memberPw</td>
+			<td><input type="password" name="pw"></td>
+			</tr>
+		</table>
+		<button type="submit">로그인</button>
+	</form></body>
 </html>

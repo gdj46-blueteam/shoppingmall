@@ -22,19 +22,26 @@ public class LoginController extends HttpServlet {
 	System.out.println(sessionId);	
 	if(sessionId!= null) {
 		response.sendRedirect(request.getContextPath()+"/MainHomeController");
-
 		return;
 	}
 	request.getRequestDispatcher("/WEB-INF/view/public/login.jsp").forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("2");	
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		System.out.println(id+", "+pw +"Logincontroller");						//id,pw 디버깅
-		String returnId = loginDao.selectLogin(id, pw);
+		//System.out.println("2");	
+		
+		String id = request.getParameter("customerId");
+		String pw = request.getParameter("customerPw");
+		//객체생성
+		Customer customer = new Customer();
+		customer.setCustomerId(id);
+		customer.setCustomerPw(pw);
+		
+		System.out.println(id+", "+pw +"Logincontroller");	//id,pw 디버깅
+		
+		this.loginDao = new LoginDao();
+		String returnId = loginDao.selectLogin(customer);
 		
 		if(returnId == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginController");

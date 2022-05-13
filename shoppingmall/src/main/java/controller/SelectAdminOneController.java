@@ -7,27 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SelectAdminOneController
- */
+import dao.AdminDao;
+import vo.Admin;
+
 @WebServlet("/SelectAdminOneController")
 public class SelectAdminOneController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// 요청값 분석(c)
+		String adminId = "";
+		if(request.getParameter("adminId") != null) {
+			adminId = request.getParameter("adminId");
+		}	
+		
+		// 디버깅
+		adminId = "admin";
+		System.out.println("SelectAdminOneController adminId : " + adminId);
+		// 모델값(m)
+		Admin admin = new Admin();
+		AdminDao adminDao = new AdminDao();
+		try {
+			admin = adminDao.selectAdminOne(adminId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 뷰로 보낼준비
+		request.setAttribute("admin", admin);
+		// 뷰 포워딩(c)
+		request.getRequestDispatcher("/WEB-INF/view/admin/selectAdminOne.jsp").forward(request, response);
+		
 	}
 
 }

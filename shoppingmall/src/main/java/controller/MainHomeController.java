@@ -18,8 +18,8 @@ public class MainHomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("메인홈 불러오기");
+		request.getRequestDispatcher("/WEB-INF/view/public/tst.jsp").forward(request, response);
 	}
 
 	/**

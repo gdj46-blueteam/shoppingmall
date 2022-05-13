@@ -31,6 +31,7 @@ public class LoginDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(loginId);
 		return loginId;
 	}
 

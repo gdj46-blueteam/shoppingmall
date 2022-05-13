@@ -13,7 +13,7 @@ import dao.CustomerDao;
 import dao.LoginDao;
 import vo.Customer;
 
-@WebServlet("/Logincontroller")
+@WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private LoginDao loginDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	

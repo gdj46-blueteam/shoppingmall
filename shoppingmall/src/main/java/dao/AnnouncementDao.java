@@ -24,7 +24,9 @@ public class AnnouncementDao {
 			stmt.setString(2, announcement.getAnnouncementTitle());
 			stmt.setString(3, announcement.getAnnouncementContent());
 			stmt.setString(4, announcement.getCreateDate());
+				///
 			*/
+		
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				announcement = new Announcement();
@@ -36,12 +38,14 @@ public class AnnouncementDao {
 				System.out.println(announcement.getAnnouncementNo());
 			}
 			
+			//
 		} catch (Exception e) {
 			e.printStackTrace();	
 		}
 		return list;
 	}
 }
+
 
 	
 

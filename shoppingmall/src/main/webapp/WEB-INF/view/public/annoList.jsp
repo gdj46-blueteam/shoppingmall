@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%
 	List<Announcement> list = (List<Announcement>)request.getAttribute("announcement");
+///////
 %>
 <!DOCTYPE html>
 <html>

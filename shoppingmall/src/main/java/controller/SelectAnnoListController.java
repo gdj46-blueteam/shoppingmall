@@ -17,6 +17,7 @@ import vo.Announcement;
 public class SelectAnnoListController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//dao 값
 		List<Announcement> announcement = new ArrayList<Announcement>();
 		AnnouncementDao announcementDao = new AnnouncementDao();
 		announcement = announcementDao.SelectAnnouncementList();

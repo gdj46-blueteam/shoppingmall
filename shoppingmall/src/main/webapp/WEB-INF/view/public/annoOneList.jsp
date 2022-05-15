@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>공지사항 상세보기</h1>
+<h2>공지사항 상세보기</h2>
 			<table border="1">
 					<tr>
 						<th>No</th>

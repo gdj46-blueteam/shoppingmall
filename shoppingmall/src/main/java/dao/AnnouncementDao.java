@@ -84,5 +84,7 @@ public class AnnouncementDao {
 
 
 	}
+	public void DeleteAnno(int announcement_no) {
+		
+	}
 }
-

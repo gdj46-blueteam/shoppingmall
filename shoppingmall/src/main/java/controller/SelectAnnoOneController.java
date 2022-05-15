@@ -15,12 +15,12 @@ import vo.Announcement;
 public class SelectAnnoOneController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//dao값 받기 -announcement_no
 		int announcement_no = Integer.parseInt(request.getParameter("announcement_no"));
 		AnnouncementDao ad = new AnnouncementDao();
 		Announcement an = ad.SelectAnnouncementOne(announcement_no);
 		
-		
+		//view로 보내기
 		request.setAttribute("an", an );
 		request.getRequestDispatcher("/WEB-INF/view/public/annoOneList.jsp").forward(request, response);
 

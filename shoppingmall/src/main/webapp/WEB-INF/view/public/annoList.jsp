@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>공지사항 리스트</h1>
+	<h1>공지사항 목록</h1>
 		<form action = "<%=request.getContextPath()%>/SelectAnnoListController" method="post">
 			<table border="1">
 					<tr>

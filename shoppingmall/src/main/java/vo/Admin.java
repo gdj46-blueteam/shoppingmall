@@ -8,17 +8,17 @@ public class Admin {
 	private String adminPw;
 	private String adminPhone;
 	private String adminEmail;
-	private String adminAddressId;
+	private int adminAddressId;
 	private String addressDetail;
-	private String create_date;
-	private String auhourity;
+	private String createDate;
+	private int authority;
 	
 	// toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
 		return "Admin [adminId=" + adminId + ", adminPw=" + adminPw + ", adminPhone=" + adminPhone + ", adminEmail="
 				+ adminEmail + ", adminAddressId=" + adminAddressId + ", addressDetail=" + addressDetail
-				+ ", create_date=" + create_date + ", auhourity=" + auhourity + "]";
+				+ ", createDate=" + createDate + ", authority=" + authority + "]";
 	}
 	// getter & setter
 	public String getAdminId() {
@@ -53,11 +53,11 @@ public class Admin {
 		this.adminEmail = adminEmail;
 	}
 
-	public String getAdminAddressId() {
+	public int getAdminAddressId() {
 		return adminAddressId;
 	}
 
-	public void setAdminAddressId(String adminAddressId) {
+	public void setAdminAddressId(int adminAddressId) {
 		this.adminAddressId = adminAddressId;
 	}
 
@@ -69,20 +69,20 @@ public class Admin {
 		this.addressDetail = addressDetail;
 	}
 
-	public String getCreate_date() {
-		return create_date;
+	public String getcreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(String create_date) {
-		this.create_date = create_date;
+	public void setcreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
-	public String getAuhourity() {
-		return auhourity;
+	public int getauthority() {
+		return authority;
 	}
 
-	public void setAuhourity(String auhourity) {
-		this.auhourity = auhourity;
+	public void setauthority(int authority) {
+		this.authority = authority;
 	}
 	
 }

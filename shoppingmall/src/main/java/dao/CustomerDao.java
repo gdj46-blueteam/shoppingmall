@@ -1,5 +1,165 @@
 package dao;
 
-public class CustomerDao {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import vo.*;
+public class CustomerDao {
+	// selectCustomerList(회원목록)
+	public List<Customer> selectCustomerList() {
+		List<Customer> customer = new ArrayList<Customer>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = " SELECT customer_id customerId, customer_name customerName, customer_country customerCountry, customer_gender customerGender "
+				+ " FROM customer ";
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Customer c =  new Customer();
+				c.setCustomerId(rs.getString("customerId"));
+				c.setCustomerName(rs.getString("customerName"));
+				c.setCustomerCountry(rs.getString("customerCountry"));
+				c.setCustomerGender(rs.getString("customerGender"));
+				customer.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return customer;
+	}
+	
+	//selectCustomerOne(회원상세정보)
+		public Customer selectCustomerOne(String customerId) {
+			Customer customer = null;
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			String sql ="SELECT customer_id customerId, customer_name customerName,customer_gender customerGender, customer_age customerAge, customer_phone customerPhone, customer_email customerEmail, customer_country customerCountry, authority authority, create_date createDate, update_date updateDate "
+					+ "FROM customer "
+					+ "WHERE customer_id = ?";
+			try {
+				Class.forName("org.mariadb.jdbc.Driver");
+				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, customerId);
+				rs = stmt.executeQuery();
+				if(rs.next()) {
+					customer = new Customer();
+					customer.setCustomerId(rs.getString("customerId"));
+					customer.setCustomerName(rs.getString("customerName"));
+					customer.setCustomerGender(rs.getString("customerGender"));
+					customer.setCustomerAge(rs.getInt("customerAge"));
+					customer.setCustomerPhone(rs.getString("customerPhone"));
+					customer.setCustomerEmail(rs.getString("customerEmail"));
+					customer.setCustomerCountry(rs.getString("customerCountry"));
+					customer.setCreateDate(rs.getString("createDate"));
+					customer.setUpdateDate(rs.getString("updateDate"));
+					customer.setAuthority(rs.getInt("authority"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return customer;
+		}
+	
+	//updateCustomer(회원수정)
+	public int updateCustomer(Customer customer) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int row = 0;
+		String sql ="UPDATE customer "
+				+ "SET customer_pw = PASSWORD(?), customer_name= ?, customer_age= ?, customer_phone= ?, customer_email= ?, customer_country= ?, update_date = NOW() "
+				+ "WHERE customer_id = ?";
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customer.getCustomerPw());
+			stmt.setString(2, customer.getCustomerName());
+			stmt.setInt(3, customer.getCustomerAge());
+			stmt.setString(4, customer.getCustomerPhone());
+			stmt.setString(5, customer.getCustomerEmail());
+			stmt.setString(6, customer.getCustomerCountry());
+			stmt.setString(7, customer.getCustomerId());
+			row = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return row;
+	}
+	
+	//deleteCustomer(회원삭제)
+	public int deleteCustomer(String customerId, String customerPw) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int row = 0;
+		String sql = "DELETE FROM customer WHERE customer_id = ? AND customer_pw = ?";
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customerId);
+			stmt.setString(2, customerPw);
+			row = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return row;
+	}
+	
+	// UpdatepaymentComplete(결제완료)
+	public int UpdatepaymentComplete(int estimateNo) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int row = 0;
+		String estimateIng = "결제완료";
+		String sql = "UPDATE estimate SET estimate_ing = ? "
+				+ "WHERE estimate_no = ?";
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, estimateNo);
+			stmt.setString(2, estimateIng);
+			row = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return row;
+	}
 }

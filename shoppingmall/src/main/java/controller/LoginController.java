@@ -15,24 +15,25 @@ import vo.Customer;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
-	private LoginDao loginDao;
+	private LoginDao loginDao; //
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-	HttpSession session = request.getSession();
+	//사용자 로그인에 따라서 컨트롤러 접근허가 또는 불허
+	HttpSession session = request.getSession(); //세션 생성 
 	String sessionId = (String)session.getAttribute("sessionId");
-	System.out.println(sessionId);	
-	if(sessionId!= null) {
-		response.sendRedirect(request.getContextPath()+"/MainHomeController");
-		return;
+	System.out.println(sessionId);//
+	if(sessionId!= null) { 														//sessionId 가 널값이 아니라면
+		response.sendRedirect(request.getContextPath()+"/MainHomeController");   //MainHomeController로 이동
+		return; 
 	}
+	//
 	request.getRequestDispatcher("/WEB-INF/view/public/login.jsp").forward(request, response);		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
-		//System.out.println("2");	
-		
-		String id = request.getParameter("customerId");
-		String pw = request.getParameter("customerPw");
+		String id = request.getParameter("id");					//id,pw 파라미터 값 요청 후 id, pw 변수에 저장
+		String pw = request.getParameter("pw");
 		//객체생성
 		Customer customer = new Customer();
 		customer.setCustomerId(id);
@@ -41,7 +42,8 @@ public class LoginController extends HttpServlet {
 		System.out.println(id+", "+pw +"Logincontroller");	//id,pw 디버깅
 		
 		this.loginDao = new LoginDao();
-		String returnId = loginDao.selectLogin(customer);
+		String returnId = loginDao.selectLogin(id, pw);
+		System.out.println(returnId + "login후");
 		
 		if(returnId == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginController");
@@ -49,7 +51,6 @@ public class LoginController extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionId", returnId);
-
 		response.sendRedirect(request.getContextPath()+"/MainHomeController");
 		
 	}

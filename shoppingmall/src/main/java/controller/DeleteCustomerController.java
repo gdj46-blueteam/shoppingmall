@@ -7,35 +7,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class DeleteCustomerController
- */
+import dao.CustomerDao;
+import vo.Customer;
+
 @WebServlet("/DeleteCustomerController")
 public class DeleteCustomerController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteCustomerController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 요청값 분석(c)
+		String customerId = request.getParameter("customerId");
+		
+		// 디버깅
+		System.out.println("DeleteCustomerController custmoerId : " + customerId);
+		
+		Customer customer = new Customer();
+		customer.setCustomerId(customerId);
+		
+		// 뷰로 보낼준비
+		request.setAttribute("customer", customer);
+		
+		// 뷰
+		request.getRequestDispatcher("/WEB-INF/view/customer/deleteCustomerForm.jsp").forward(request, response);
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+		// 요청값 분석(c)
+		String customerId = request.getParameter("custmoerId");
+		String customerPw = request.getParameter("custmoerPw");
+	
+		// 디버깅
+		System.out.println("DeleteCustomerController custmoerId : " + customerId);
+		System.out.println("DeleteCustomerController custmoerPw : " + customerPw);
+			
+		CustomerDao customerDao = new CustomerDao();
+		int row = customerDao.deleteCustomer(customerId, customerPw);
+		if (row == 1) { //성공
+	        System.out.println("삭제성공");
+	     } else {// row==0이면 영향받은 행이 없으므로 오류
+	        System.out.println("삭제실패");
+	        response.sendRedirect(request.getContextPath()+"/DeleteCustomerController");
+	     }
+		// 관리자는 회원목록으로 회원은 로그아웃으로
+		/*
+		if(세션권한) {	// 관리자
+			response.sendRedirect(request.getContextPath()+"/SelectCustomerOneController");
+		} else {	// 회원
+			response.sendRedirect(request.getContextPath()+"/LogoutController");
+		}
+		*/
+	 }
 }

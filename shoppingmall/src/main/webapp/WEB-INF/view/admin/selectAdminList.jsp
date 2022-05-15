@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table>
+	<h1>관리자페이지</h1>
+	<ol>
+		<li><a href="<%=request.getContextPath()%>/SelectAdminOneController">관리자정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectCustomerListController">회원</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectEmpListController">직원</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectEmpMatchingController">매칭확인</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectTourController">관광</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectAnnoController">공지사항</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectEstimateController">견적서</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectQuestionController">문의사항</a></li>
+		<li><a href="<%=request.getContextPath()%>/SelectStaticsController">통계</a></li>
+	</ol>
+	</table>
 </body>
 </html>

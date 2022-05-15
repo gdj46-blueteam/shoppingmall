@@ -20,11 +20,13 @@ USE `shoppingmall`;
 -- 테이블 shoppingmall.address 구조 내보내기
 CREATE TABLE IF NOT EXISTS `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `zip_code` char(5) NOT NULL COMMENT '우편번호',
-  `province` varchar(30) NOT NULL COMMENT '시도',
-  `city` varchar(30) NOT NULL COMMENT '시군구',
-  `town` varchar(30) NOT NULL COMMENT '읍면',
-  `street` varchar(50) NOT NULL COMMENT '도로명',
+  `zip_code` char(5) NOT NULL DEFAULT '' COMMENT '우편번호',
+  `province` varchar(30) NOT NULL DEFAULT '' COMMENT '시도',
+  `city` varchar(30) NOT NULL DEFAULT '' COMMENT '시군구',
+  `town` varchar(30) NOT NULL DEFAULT '' COMMENT '읍면',
+  `street` varchar(50) NOT NULL DEFAULT '' COMMENT '도로명',
+  `building1` varchar(5) NOT NULL DEFAULT '' COMMENT '건물번호본번',
+  `building2` varchar(5) NOT NULL DEFAULT '' COMMENT '건물번호부번',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6337163 DEFAULT CHARSET=utf8;
 
@@ -38,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `admin_email` varchar(50) NOT NULL,
   `adminAddress_id` int(11) NOT NULL,
   `admin_addressDtail` varchar(100) NOT NULL,
-  `create_date` datetime NOT NULL,
   `authority` int(11) NOT NULL DEFAULT 3,
+  `create_date` datetime NOT NULL,
   PRIMARY KEY (`admin_id`),
   KEY `FK_admin_address` (`adminAddress_id`) USING BTREE,
   CONSTRAINT `FK_admin_address` FOREIGN KEY (`adminAddress_id`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -70,15 +72,15 @@ CREATE TABLE IF NOT EXISTS `country` (
 CREATE TABLE IF NOT EXISTS `customer` (
   `customer_id` varchar(20) NOT NULL,
   `customer_pw` varchar(500) NOT NULL,
+  `customer_name` varchar(50) NOT NULL,
   `customer_gender` varchar(10) NOT NULL,
   `customer_age` int(11) NOT NULL,
   `customer_phone` varchar(50) NOT NULL,
   `customer_email` varchar(100) NOT NULL,
   `customer_country` varchar(50) NOT NULL,
+  `authority` int(11) NOT NULL DEFAULT 1,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  `authority` int(11) NOT NULL DEFAULT 1,
-  `customer_name` varchar(50) NOT NULL,
   PRIMARY KEY (`customer_id`),
   KEY `FK_customer_country` (`customer_country`) USING BTREE,
   CONSTRAINT `FK_customer_country` FOREIGN KEY (`customer_country`) REFERENCES `country` (`country`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -97,14 +99,16 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `employee_email` varchar(50) NOT NULL,
   `employee_phone` varchar(20) NOT NULL,
   `employee_gender` varchar(45) NOT NULL,
-  `employee_image` varchar(45) NOT NULL,
+  `employee_imageNo` int(11) NOT NULL,
+  `employee_introduce` varchar(100) NOT NULL,
+  `authority` int(11) NOT NULL DEFAULT 2,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  `authority` int(11) NOT NULL DEFAULT 2,
-  `employee_Introduce` varchar(100) NOT NULL,
   PRIMARY KEY (`employee_no`),
   KEY `FK_employee_address` (`empAddress_id`) USING BTREE,
-  CONSTRAINT `FK_employee_address` FOREIGN KEY (`empAddress_id`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_employee_employee_image` (`employee_imageNo`),
+  CONSTRAINT `FK_employee_address` FOREIGN KEY (`empAddress_id`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_employee_employee_image` FOREIGN KEY (`employee_imageNo`) REFERENCES `employee_image` (`employee_imageNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
@@ -112,13 +116,10 @@ CREATE TABLE IF NOT EXISTS `employee` (
 -- 테이블 shoppingmall.employee_image 구조 내보내기
 CREATE TABLE IF NOT EXISTS `employee_image` (
   `employee_imageNo` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_no` int(11) NOT NULL,
   `employee_imageName` varchar(50) NOT NULL,
   `employee_imageType` varchar(20) NOT NULL,
   `create_date` datetime NOT NULL,
-  PRIMARY KEY (`employee_imageNo`),
-  KEY `FK_employee_image_employee` (`employee_no`),
-  CONSTRAINT `FK_employee_image_employee` FOREIGN KEY (`employee_no`) REFERENCES `employee` (`employee_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`employee_imageNo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
@@ -133,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `employee_language` (
   KEY `FK_employee_language_employee` (`employee_no`),
   CONSTRAINT `FK_employee_language_employee` FOREIGN KEY (`employee_no`) REFERENCES `employee` (`employee_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_employee_language_language` FOREIGN KEY (`language_no`) REFERENCES `language` (`language_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -208,11 +209,13 @@ CREATE TABLE IF NOT EXISTS `tour` (
   `tourarea_id` int(11) NOT NULL,
   `tour_name` varchar(50) NOT NULL,
   `tour_description` text NOT NULL,
-  `tour_image` varchar(45) NOT NULL,
+  `tourimage_no` int(11) NOT NULL,
   PRIMARY KEY (`tour_no`),
   KEY `tourarea_id` (`tourarea_id`),
-  CONSTRAINT `FK_tour_tourarea` FOREIGN KEY (`tourarea_id`) REFERENCES `tourarea` (`tourarea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  KEY `FK_tour_tourimage` (`tourimage_no`),
+  CONSTRAINT `FK_tour_tourarea` FOREIGN KEY (`tourarea_id`) REFERENCES `tourarea` (`tourarea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_tour_tourimage` FOREIGN KEY (`tourimage_no`) REFERENCES `tourimage` (`tourimage_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -244,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `tourdiy` (
   CONSTRAINT `FK_tourdiy_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_tourdiy_language` FOREIGN KEY (`language_no`) REFERENCES `language` (`language_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_tourdiy_tourarea` FOREIGN KEY (`tourarea_id`) REFERENCES `tourarea` (`tourarea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -263,14 +266,11 @@ CREATE TABLE IF NOT EXISTS `tourdiy_transportation` (
 -- 테이블 shoppingmall.tourimage 구조 내보내기
 CREATE TABLE IF NOT EXISTS `tourimage` (
   `tourimage_no` int(11) NOT NULL AUTO_INCREMENT,
-  `tour_no` int(11) NOT NULL,
   `tourimage_name` varchar(45) NOT NULL,
   `tourimage_type` varchar(45) NOT NULL,
   `create_date` datetime NOT NULL,
-  PRIMARY KEY (`tourimage_no`),
-  KEY `FK_tourimage_tour` (`tour_no`),
-  CONSTRAINT `FK_tourimage_tour` FOREIGN KEY (`tour_no`) REFERENCES `tour` (`tour_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`tourimage_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -304,6 +304,26 @@ CREATE TABLE IF NOT EXISTS `transportation` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 뷰 shoppingmall.statics_list 구조 내보내기
+-- VIEW 종속성 오류를 극복하기 위해 임시 테이블을 생성합니다.
+CREATE TABLE `statics_list` (
+	`gender` VARCHAR(10) NOT NULL COLLATE 'utf8_general_ci',
+	`age` INT(11) NOT NULL,
+	`country` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`month` INT(2) NULL,
+	`area` VARCHAR(45) NOT NULL COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+-- 뷰 shoppingmall.statics_list 구조 내보내기
+-- 임시 테이블을 제거하고 최종 VIEW 구조를 생성
+DROP TABLE IF EXISTS `statics_list`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `statics_list` AS SELECT c.customer_gender gender,c.customer_age age,c.customer_country country, MONTH(t.tourdiy_term) month,ta.area area
+FROM customer c
+LEFT JOIN tourdiy t
+ON c.customer_id = t.customer_id 
+INNER JOIN tourarea ta
+ON t.tourarea_id = ta.tourarea_id ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

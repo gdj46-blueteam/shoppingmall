@@ -17,14 +17,12 @@ import vo.Announcement;
 public class SelectAnnoListController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-			//Dao값 요청 (m)
-			List<Announcement> announcement = new ArrayList<Announcement>();
-			AnnouncementDao announcementDao = new AnnouncementDao();
-			announcement = announcementDao.selectAnnouncementList();
+		List<Announcement> announcement = new ArrayList<Announcement>();
+		AnnouncementDao announcementDao = new AnnouncementDao();
+		announcement = announcementDao.SelectAnnouncementList();
 			
 			//System.out.println(((Announcement) announcement).getAnnouncementNo());
-			
+
 			//view 요청 (v)
 			request.setAttribute("announcement", announcement);
 			request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);

@@ -7,35 +7,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SelectCustomerOneController
- */
+import dao.CustomerDao;
+import vo.Customer;
+
 @WebServlet("/SelectCustomerOneController")
 public class SelectCustomerOneController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SelectCustomerOneController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 요청값 분석(c)
+		String customerId = request.getParameter("customerId");
+		
+		// 디버깅
+		System.out.println("SelectAdminOneController customerId : " + customerId);
+		
+		// 모델값(m)
+		Customer customer = new Customer();
+		CustomerDao customerDao = new CustomerDao();
+		try {
+			customer = customerDao.selectCustomerOne(customerId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 뷰로 보낼준비
+		request.setAttribute("customer", customer);
+		// 뷰 포워딩(c)
+		request.getRequestDispatcher("/WEB-INF/view/customer/customerOneList.jsp").forward(request, response);
+		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

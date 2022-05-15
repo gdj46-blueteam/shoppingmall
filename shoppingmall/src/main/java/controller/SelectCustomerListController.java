@@ -25,7 +25,7 @@ public class SelectCustomerListController extends HttpServlet {
 	
 	// 뷰로 보낼준비
 	request.setAttribute("customer", customer);
-	// 뷰 포워딩(c)
+	// 뷰 포워딩(v)
 	request.getRequestDispatcher("/WEB-INF/view/admin/selectCustomerList.jsp").forward(request, response);
 	}
 

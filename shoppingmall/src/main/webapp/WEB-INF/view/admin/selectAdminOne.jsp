@@ -44,6 +44,7 @@
 		<td>authority</td>
 		<td><%=admin.getauthority() %></td>
 	</tr>
+	<a href = "<%=request.getContextPath()%>/SelectAdminListController">뒤로</a>
 	</table>
 </body>
 </html>

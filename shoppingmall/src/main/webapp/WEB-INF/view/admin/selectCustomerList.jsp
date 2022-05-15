@@ -22,7 +22,7 @@
 			for(Customer c : list) {
 			%>
 				<tr>
-					<td><%=c.getCustomerId() %></td>
+					<td><a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=c.getCustomerId()%>"><%=c.getCustomerId() %></a></td>
 					<td><%=c.getCustomerName() %></td>
 					<td><%=c.getCustomerCountry() %></td>
 					<td><%=c.getCustomerGender() %></td>

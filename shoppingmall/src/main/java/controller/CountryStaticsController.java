@@ -9,15 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.*;
 
-@WebServlet("/StaticsListController")
-public class SelectStaticsController extends HttpServlet {
+import dao.StaticsDao;
+
+@WebServlet("/CountryStaticsController")
+public class CountryStaticsController extends HttpServlet {
 	private StaticsDao staticsDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");//인코딩
+		String country = request.getParameter("country"); //나라 가져오기
+		
 		this.staticsDao = new StaticsDao();
-		List<Map<String, Object>> list = staticsDao.StaticsByAll();
+		List<Map<String, Object>> list = staticsDao.StaticsByCountry();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/view/admin/staticsList.jsp");
+		request.setAttribute("country", country);
+		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp");
 	}
+
 }

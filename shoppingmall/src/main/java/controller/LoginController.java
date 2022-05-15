@@ -32,8 +32,8 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
-		String id = request.getParameter("customerId");					//id,pw 파라미터 값 요청 후 id, pw 변수에 저장
-		String pw = request.getParameter("customerPw");
+		String id = request.getParameter("id");					//id,pw 파라미터 값 요청 후 id, pw 변수에 저장
+		String pw = request.getParameter("pw");
 		//객체생성
 		Customer customer = new Customer();
 		customer.setCustomerId(id);
@@ -42,7 +42,8 @@ public class LoginController extends HttpServlet {
 		System.out.println(id+", "+pw +"Logincontroller");	//id,pw 디버깅
 		
 		this.loginDao = new LoginDao();
-		String returnId = loginDao.selectLogin(customer);
+		String returnId = loginDao.selectLogin(id, pw);
+		System.out.println(returnId + "login후");
 		
 		if(returnId == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginController");

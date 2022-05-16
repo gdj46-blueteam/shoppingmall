@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class SelectAdminListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		// 뷰 포워딩(v)
 		request.getRequestDispatcher("/WEB-INF/view/admin/selectAdminList.jsp").forward(request, response);
 	}

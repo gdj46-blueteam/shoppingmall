@@ -7,27 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class FindCustomerIdController
- */
+import dao.CustomerDao;
+import vo.Customer;
+
 @WebServlet("/FindCustomerIdController")
 public class FindCustomerIdController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 1) request 분석(C)
+		String customerEmail = request.getParameter("customerEmail");
+				
+		// 디버깅
+		System.out.println("SelectCustomerIdController : " + customerEmail);
+				
+		// 2) 메서드 이용하여 모델값 구하기(M)
+		CustomerDao customerDao = new CustomerDao();
+		String customerId = customerDao.selectCustomerId(customerEmail);
+				
+		// 디버깅
+		System.out.println("SelectCustomerIdController : " + customerId);
+		
+		Customer customer = new Customer();
+		customer.setCustomerId(customerId);
+		
+		// 3)
+		request.setAttribute("customer", customer);
+		
+		// 뷰 포워딩(v)
+		request.getRequestDispatcher("/WEB-INF/view/public/findCustomerId.jsp").forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

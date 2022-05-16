@@ -14,9 +14,6 @@
 <body>
 <div class="container">
 	<h3>tag rank</h3>
-	<div>
-		<a href="<%=request.getContextPath()%>/StaticsListController" class=""> 통계 검색</a> 		
-	</div>
 	<table class="table table-bordered small">
 		<tr>
 			<th>country</th>

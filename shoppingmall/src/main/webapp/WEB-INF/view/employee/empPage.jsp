@@ -2,7 +2,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "vo.*" %>
 <%
-	List<EmployeeImageList> list =  new ArrayList<>();
+	List<EmployeeList> list =  (List<EmployeeList>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,16 +19,16 @@
 			<tr>
 				<td>employeeNo</td>
 				<td>employeeName</td>
-				<td>employeeImage</td>
+				<td>employeeImageName</td>
 			</tr>
-			<!--현재 image 불러오기 문제로 대기/ 수정필요함 !!!!! -->
+			
 			<%
-				for(EmployeeImageList e : list){
-			%>
+						for(EmployeeList e : list){
+						%>
 					<tr>
 						<td><%=e.getEmployeeNo()%></td>
 						<td><%=e.getEmployeeName()%></td>
-						<td><%=e.getEmployeeImage()%></td>
+						<td><%=e.getEmployeeImageName()%></td>
 					</tr>
 			<%
 				}

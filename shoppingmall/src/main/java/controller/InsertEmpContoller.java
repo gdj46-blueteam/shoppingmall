@@ -34,7 +34,7 @@ public class InsertEmpContoller extends HttpServlet {
 		this.employeeDao = new EmployeeDao();
 		int row = employeeDao.insertEmp(employee);
 		//디버깅
-		System.out.println(row +"직원등록");
+		System.out.println(row +"<- 직원등록");
 		response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

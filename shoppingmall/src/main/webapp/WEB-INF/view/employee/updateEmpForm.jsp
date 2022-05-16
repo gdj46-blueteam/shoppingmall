@@ -12,11 +12,11 @@
 	<div class="container">
 		<h3>updateEmpForm</h3>
 		<form method = "post" action ="<%=request.getContextPath()%>/UpdateEmpController">
-			<table class="table table-hover">
+			<table class="table">
 				<tr>
 					<td>employeeNo</td>
 					<td>
-						<input type ="text" name="employeeNo" value="" readonly = "readonly">
+						<input type ="text" name="employeeNo" value="${employeeNo}" readonly = "readonly">
 					</td>
 				</tr>
 				<tr>
@@ -35,12 +35,6 @@
 					<td>employeePhone</td>
 					<td>
 						<input type ="text" name="employeePhone">
-					</td>
-				</tr>
-				<tr>
-					<td>employeeImageNo</td>
-					<td>
-						<input type ="text" name="employeeImageNo">
 					</td>
 				</tr>
 				<tr>

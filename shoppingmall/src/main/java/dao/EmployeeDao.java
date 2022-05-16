@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.Employee;
+import vo.EmployeeList;
 
 public class EmployeeDao {
 
 //페이징
+	//issue :  사진이름대신 사진이 나오게?
 	//1.직원 목록
-	public List<Employee> selectEmpList(){
-		List<Employee> list = new ArrayList<>();
+	public List<EmployeeList> selectEmpList(){
+		List<EmployeeList> list = new ArrayList<>();
 		
 		//데이터베이스 연결
 		Connection conn = null;
@@ -26,8 +28,7 @@ public class EmployeeDao {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
 			//쿼리문
 			String sql=" SELECT employeeNo, employeeName, employeeImageName"
-					+ " FROM employee_list;"
-					+ " WHERE employee_imageNo = ?"; 
+					+ " FROM employee_list"; 
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			
 			System.out.println("직원 목록(EmployeeDao)stmt -> " + stmt); //디버깅
@@ -36,11 +37,11 @@ public class EmployeeDao {
 			System.out.println("직원 목록(EmployeeDao)rs ->" + rs); //디버깅
 			
 			while(rs.next()) { //다음 행이 있으면 true반환해서 실행
-				Employee employee = new Employee(); //Employee 객체 생성
-				employee.setEmployeeNo(rs.getInt("employeeNo")); //직원번호 가져오기
-				employee.setEmployeeName(rs.getString("employeeName")); //직원이름 가져오기
-				employee.setEmployeeImageName(rs.getString("employeeImageName")); //직원 사진 가져오기
-				list.add(employee); //list에 가져온 값 추가
+				EmployeeList employeeList = new EmployeeList(); //Employee 객체 생성
+				employeeList.setEmployeeNo(rs.getInt("employeeNo")); //직원번호 가져오기
+				employeeList.setEmployeeName(rs.getString("employeeName")); //직원이름 가져오기
+				employeeList.setEmployeeImageName(rs.getString("employeeImageName")); //직원 사진 가져오기
+				list.add(employeeList); //list에 가져온 값 추가
 			}
 			
 		} catch (SQLException e) {
@@ -112,16 +113,15 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); // DB연결
-			String sql = "UPDATE employee SET employee_pw = PASSWORD(?), employee_email = ?, employee_phone = ?, employee_imageName = ?, employee_introduce = ?, update_date = NOW()"
+			String sql = "UPDATE employee SET employee_pw = PASSWORD(?), employee_email = ?, employee_phone = ?, employee_introduce = ?, update_date = NOW()"
 					+ " WHERE employee_no =? ";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			// ? 값 대입
 			stmt.setString(1, employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeEmail());
 			stmt.setString(3, employee.getEmployeePhone());
-			stmt.setString(4, employee.getEmployeeImageName());
-			stmt.setString(5, employee.getEmployeeIntroduce());
-			stmt.setInt(6, employee.getEmployeeNo());
+			stmt.setString(4, employee.getEmployeeIntroduce());
+			stmt.setInt(5, employee.getEmployeeNo());
 			System.out.println("직원 수정 stmt -> " + stmt); //디버깅
 			
 			row = stmt.executeUpdate(); // 몇행입력했는지 리턴

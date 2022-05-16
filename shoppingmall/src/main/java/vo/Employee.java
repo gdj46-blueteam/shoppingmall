@@ -17,19 +17,23 @@ public class Employee {
 	private String employeeImage;
 	private int authority;
 	private String employeeIntroduce;
+	private int employeeImageNo;
 	private String createDate;
 	private String updateDate;
 	
-	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
 		return "Employee [employeeNo=" + employeeNo + ", employeePw=" + employeePw + ", employeeSn=" + employeeSn
 				+ ", empAddressId=" + empAddressId + ", employeeAddressDetail=" + employeeAddressDetail
 				+ ", employeeName=" + employeeName + ", employeeEmail=" + employeeEmail + ", employeePhone="
 				+ employeePhone + ", employeeGender=" + employeeGender + ", employeeImage=" + employeeImage
-				+ ", authority=" + authority + ", employeeIntroduce=" + employeeIntroduce + ", createDate=" + createDate
-				+ ", updateDate=" + updateDate + "]";
+				+ ", authority=" + authority + ", employeeIntroduce=" + employeeIntroduce + ", employeeImageNo="
+				+ employeeImageNo + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
 	}
+	
+
+	
+
 
 	//getter & setter
 	public int getEmployeeNo() {
@@ -104,12 +108,13 @@ public class Employee {
 		this.employeeGender = employeeGender;
 	}
 
-	public String getEmployeeImage() {
-		return employeeImage;
+	public int getEmployeeImageNo() {
+		return employeeImageNo;
 	}
 
-	public void setEmployeeImage(String employeeImage) {
-		this.employeeImage = employeeImage;
+
+	public void setEmployeeImageNo(int employeeImageNo) {
+		this.employeeImageNo = employeeImageNo;
 	}
 
 	public int getAuthority() {

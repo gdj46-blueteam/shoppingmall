@@ -6,7 +6,6 @@ public class EmpImage {
 
 	//필드생성
 	private int employeeImageNo;
-	private int employeeNo;
 	private String employeeImageName;
 	private String employeeImageType;
 	private String createDate;
@@ -14,7 +13,7 @@ public class EmpImage {
 	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-		return "EmpImage [employeeImageNo=" + employeeImageNo + ", employeeNo=" + employeeNo + ", employeeImageName="
+		return "EmpImage [employeeImageNo=" + employeeImageNo + ", employeeImageName="
 				+ employeeImageName + ", employeeImageType=" + employeeImageType + ", createDate=" + createDate + "]";
 	}
 
@@ -25,14 +24,6 @@ public class EmpImage {
 
 	public void setEmployeeImageNo(int employeeImageNo) {
 		this.employeeImageNo = employeeImageNo;
-	}
-
-	public int getEmployeeNo() {
-		return employeeNo;
-	}
-
-	public void setEmployeeNo(int employeeNo) {
-		this.employeeNo = employeeNo;
 	}
 
 	public String getEmployeeImageName() {

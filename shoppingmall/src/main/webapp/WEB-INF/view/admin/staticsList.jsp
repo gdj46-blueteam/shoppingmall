@@ -49,8 +49,8 @@
 				<td><%=map.get("rank") %></td>
 				<td><%=map.get("country") %></td>
 				<td><%=map.get("gender") %></td>
-				<td><%=map.get("age") %></td>
-				<td><%=map.get("month") %></td>
+				<td><%=map.get("age") %>세</td>
+				<td><%=map.get("month") %>월</td>
 				<td><%=map.get("area") %></td>
 				<td><%=map.get("cnt") %></td>
 			</tr>

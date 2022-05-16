@@ -5,7 +5,6 @@
 <%@ page import="java.util.*" %>
 <%
 	List<Announcement> list = (List<Announcement>)request.getAttribute("announcement");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,7 @@
 				%>
 					<tr>
 						<td><%=a.getAnnouncementNo()%></td>
-						<td><a href="SelectAnnoOneController?announcement_no=<%=a.getAnnouncementNo()%>"><%=a.getAnnouncementTitle()%></a></td>
+						<td><a href="SelectAnnoOneController?announcementNo=<%=a.getAnnouncementNo()%>"><%=a.getAnnouncementTitle()%></a></td>
 					</tr>
 				<%
 					}

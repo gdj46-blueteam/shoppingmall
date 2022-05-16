@@ -8,21 +8,17 @@ public class Announcement {
 	private String announcementTitle;
 	private String announcementContent;
 	private String createDate;
+	
+	// toString() : 필드값을 문자열로 출력
+		@Override
+		public String toString() {
+			return "Announcement [announcementNo=" + announcementNo + ", announcementTitle=" + announcementTitle
+					+ ", announcementContent=" + announcementContent + ", createDate=" + createDate + "]";
+		}
+		
 	public int getAnnouncementNo() {
 		return announcementNo;
 	}
-	
-	// toString() : 필드값을 문자열로 출력
-	@Override
-	public String toString() {
-		return "Announcement [announcementNo=" + announcementNo + ", announcementTitle=" + announcementTitle
-				+ ", announcementContent=" + announcementContent + ", createDate=" + createDate + "]";
-	}
-	// getter & setter
-	public void setAnnouncementNo(int announcementNo) {
-		this.announcementNo = announcementNo;
-	}
-
 	public String getAnnouncementTitle() {
 		return announcementTitle;
 	}
@@ -41,5 +37,12 @@ public class Announcement {
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
+	public void setAnnouncementNo(int announcementNo) {
+		this.announcementNo = announcementNo;
+	}
+	
+	
+	
+	
 	
 }

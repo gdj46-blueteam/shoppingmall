@@ -1,14 +1,14 @@
 package vo;
 
-public class EmployeeImageList {
+public class EmployeeList {
 	private int employeeNo;
 	private String employeeName;
-	private String employeeImage;
+	private String employeeImageName;
 	
 	@Override
 	public String toString() {
-		return "EmployeeImageList [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", employeeImage="
-				+ employeeImage + "]";
+		return "EmployeeImageList [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", employeeImageName="
+				+ employeeImageName + "]";
 	}
 	//getter & setter
 	public int getEmployeeNo() {
@@ -27,15 +27,15 @@ public class EmployeeImageList {
 		this.employeeName = employeeName;
 	}
 
-	public String getEmployeeImage() {
-		return employeeImage;
+	public String getEmployeeImageName() {
+		return employeeImageName;
 	}
 
-	public void setEmployeeImage(String employeeImage) {
-		this.employeeImage = employeeImage;
+	public void setEmployeeImageName(String employeeImageName) {
+		this.employeeImageName = employeeImageName;
 	}
 
-	public EmployeeImageList() { //기본생성자
+	public EmployeeList() { //기본생성자
 	}
 	
 	

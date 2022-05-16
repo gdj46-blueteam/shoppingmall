@@ -15,7 +15,7 @@
 <div class="container">
 	<h3>All Statics Search</h3>
 	<div>
-		<a href="<%=request.getContextPath()%>/SelectAdminListController.java" class="">관리자페이지로 돌아가기</a> 		
+		<a href="<%=request.getContextPath()%>/SelectAdminListController" class="">관리자페이지로 돌아가기</a> 		
 	</div>
 	
 	<div>
@@ -32,6 +32,32 @@
 		</table>
 		</form>
 	</div>
+	<table class="table table-bordered small">
+		<tr>
+			<th>rank</th>
+			<th>country</th>
+			<th>gender</th>
+			<th>age</th>
+			<th>month</th>
+			<th>area</th>
+			<th>count</th>
+		</tr>
+		<%
+			for(Map<String,Object> map : list){
+		%>
+			<tr>
+				<td><%=map.get("rank") %></td>
+				<td><%=map.get("country") %></td>
+				<td><%=map.get("gender") %></td>
+				<td><%=map.get("age") %></td>
+				<td><%=map.get("month") %></td>
+				<td><%=map.get("area") %></td>
+				<td><%=map.get("cnt") %></td>
+			</tr>
+		<%		
+			}
+		%>
+	</table>
 </div>
 </body>
 </html>

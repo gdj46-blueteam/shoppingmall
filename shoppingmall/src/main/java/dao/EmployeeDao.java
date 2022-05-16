@@ -25,7 +25,11 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
-			String sql="SELECT employee_no employeeNo, employee_name employeeName, employee_image employeeImage FROM employee ORDER BY employee_no LIMIT ?,?"; //쿼리문
+			String sql=" SELECT e.employee_no employeeNo, e.employee_name employeeName, ei.employee_imageName employeeImage"
+					+ " FROM employee e"
+					+ " INNER JOIN employee_image ei"
+					+ " ON e.employee_imageNo = ei.employee_imageNo"
+					+ " WHERE employee_imageNo = ?"; //쿼리문
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			stmt.setInt(1, beginRow); //이전행의 개수를 넣는다
 			stmt.setInt(2, rowPerPage); //행의 개수를 넣는다
@@ -64,7 +68,7 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender, employee_image, employee_introduce, create_date, update_date)"
+			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
 					+ " VALUES(PASSWORD('?'), ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW());";
 			stmt = conn.prepareStatement(sql); //쿼리 실행
 			stmt.setString(1, employee.getEmployeePw());
@@ -108,14 +112,14 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); // DB연결
-			String sql = "UPDATE employee SET employee_pw = PASSWORD('?'), employee_email = ?, employee_phone = ?, employee_image = ?, employee_introduce = ?, update_date = NOW()"
+			String sql = "UPDATE employee SET employee_pw = PASSWORD('?'), employee_email = ?, employee_phone = ?, employee_imageNo = ?, employee_introduce = ?, update_date = NOW()"
 					+ " WHERE employee_no =? ";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			// ? 값 대입
 			stmt.setString(1, employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeEmail());
 			stmt.setString(3, employee.getEmployeePhone());
-			//stmt.setString(4, employee.getEmployeeImage());
+			stmt.setInt(4, employee.getEmployeeImageNo());
 			stmt.setString(5, employee.getEmployeeIntroduce());
 			stmt.setInt(6, employee.getEmployeeNo());
 			System.out.println("직원 수정 stmt -> " + stmt); //디버깅
@@ -189,10 +193,13 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "SELECT employee_no employeeNo, employee_pw employeePw, employee_sn employeeSn, CONCAT(a.province,' ', a.city,' ', a.town,' ', a.street,' ', a.building1,'-', a.building2) employeeAddress, e.employee_addressDetail employeeAddressDetail, employee_name employeeName"
-					+ " , employee_email employeeEmail, employee_phone employeePhone, employee_gender employeeGender, employee_image employeeImage, employee_introduce employeeIntroduce, authority, create_date createDate, update_date updateDate"
+			String sql = "SELECT employee_no employeeNo,employee_pw employeePW,employee_sn employeeSn,CONCAT(a.province,' ', a.city,' ', a.town,' ', a.street,' ', a.building1,'-', a.building2) employeeAddress"
+					+ ", e.employee_addressDetail,employee_name employeeName,employee_email, employee_phone,employee_gender, ei.employee_imageName employeeImage"
+					+ ", employee_introduce, authority, e.create_date createDate, update_date updateDate"
 					+ " FROM employee e INNER JOIN address a"
 					+ " ON e.empAddress_id = a.id"
+					+ " INNER JOIN employee_image ei"
+					+ " ON e.employee_imageNo = ei.employee_imageNo"
 					+ " WHERE employee_no = ?";
 			stmt = conn.prepareStatement(sql); //쿼리실행
 			stmt.setInt(1, employeeNo);

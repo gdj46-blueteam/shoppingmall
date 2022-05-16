@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.AnnouncementDao;
 import vo.Announcement;
 
+
 @WebServlet("/DeleteAnnoController")
 public class DeleteAnnoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,6 +23,7 @@ public class DeleteAnnoController extends HttpServlet {
 		int row = 0;
 			row = ad.deleteAnno(announcementNo);
 		
+			
 		if (row == 1) { //성공
 	        System.out.println("삭제성공");
 	        response.sendRedirect(request.getContextPath()+"/SelectAnnoListController");

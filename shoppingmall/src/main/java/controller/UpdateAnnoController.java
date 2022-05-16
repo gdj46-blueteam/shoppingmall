@@ -35,7 +35,6 @@ public class UpdateAnnoController extends HttpServlet {
 		System.out.println(announcementTitle);
 		
 		request.getRequestDispatcher("/WEB-INF/view/admin/updateAnnoForm.jsp").forward(request, response);
-	
 	}	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//요청값

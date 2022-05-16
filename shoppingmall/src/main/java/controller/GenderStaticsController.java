@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.StaticsDao;
 
-@WebServlet("/CountryStaticsController")
-public class CountryStaticsController extends HttpServlet {
-	private StaticsDao staticsDao;
+@WebServlet("/GenderStaticsController")
+public class GenderStaticsController extends HttpServlet {
+	private StaticsDao staticsDao; //dao변수 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");//인코딩
 		
 		this.staticsDao = new StaticsDao(); //dao 객체생성
-		List<Map<String, Object>> list = staticsDao.StaticsByCountry();  //dao 메소드 생성
+		List<Map<String, Object>> list = staticsDao.StaticsByGender();  //dao 메소드 생성
 		request.setAttribute("list", list); //요청한 속성값 정하기
 		
-		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByGender.jsp").forward(request, response);
 	}
 
 }

@@ -19,18 +19,18 @@
 	</div>
 	
 	<div>
-		<h4 class="text-dark">나라 통계</h4>
 		<form action="<%=request.getContextPath()%>/CountryStaticsController" method="get" class="form-inline">
 		<table class="table table-bordered">
 		<tr>
-			<td>나라</td>
-			<td>
-       			<div><input type="radio" name="country" value="나라" class="form-check-input">나라</div>
-			</td>
-			<td><button type="submit" class="btn btn-primary">검색</button></td>
+			<td><button type="submit" class="btn btn-primary">나라통계 검색</button></td>
+			<td><a href="<%=request.getContextPath()%>/GenderStaticsController" class="btn btn-primary">성별통계 검색</a></td>
+			<td><a href="<%=request.getContextPath()%>/AgeStaticsController" class="btn btn-primary">나이통계 검색</a></td>
+			<td><a href="<%=request.getContextPath()%>/MonthStaticsController" class="btn btn-primary">월별통계 검색</a></td>
+			<td><a href="<%=request.getContextPath()%>/AreaStaticsController" class="btn btn-primary">지역통계 검색</a></td>
 		</tr>
 		</table>
 		</form>
+		
 	</div>
 	<table class="table table-bordered small">
 		<tr>

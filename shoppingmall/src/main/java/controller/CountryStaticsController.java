@@ -17,12 +17,11 @@ public class CountryStaticsController extends HttpServlet {
 	private StaticsDao staticsDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");//인코딩
-		String country = request.getParameter("country"); //나라 가져오기
 		
-		this.staticsDao = new StaticsDao();
-		List<Map<String, Object>> list = staticsDao.StaticsByCountry();
-		request.setAttribute("list", list);
-		request.setAttribute("country", country);
+		this.staticsDao = new StaticsDao(); //dao 객체생성
+		List<Map<String, Object>> list = staticsDao.StaticsByCountry(); //dao 메소드 생성
+		request.setAttribute("list", list); //요청한 속성값 정하기
+		
 		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
 	}
 

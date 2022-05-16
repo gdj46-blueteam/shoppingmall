@@ -8,12 +8,12 @@ public class Tour {
 	private int tourAreaId;
 	private String tourName;
 	private String tourDescription;
-	private String tourImage;
+	private int tourImageNo;
 	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-		return "Tour[tourNo=" + tourNo + ", tourAreaId=" + tourAreaId + ", tourName=" + tourName
-				+ ", tourDescription=" + tourDescription + ", tourImage=" + tourImage + "]";
+		return "Tour [tourNo=" + tourNo + ", tourAreaId=" + tourAreaId + ", tourName=" + tourName + ", tourDescription="
+				+ tourDescription + ", tourImageNo=" + tourImageNo + "]";
 	}
 	//getter & setter
 	public int getTourNo() {
@@ -28,8 +28,8 @@ public class Tour {
 	public String getTourDescription() {
 		return tourDescription;
 	}
-	public String getTourImage() {
-		return tourImage;
+	public int getTourImageNo() {
+		return tourImageNo;
 	}
 	public void setTourNo(int tourNo) {
 		this.tourNo = tourNo;
@@ -43,8 +43,7 @@ public class Tour {
 	public void setTourDescription(String tourDescription) {
 		this.tourDescription = tourDescription;
 	}
-	public void setTourImage(String tourImage) {
-		this.tourImage = tourImage;
+	public void setTourImageNo(int tourImageNo) {
+		this.tourImageNo = tourImageNo;
 	}
-	
 }

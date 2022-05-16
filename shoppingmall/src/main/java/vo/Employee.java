@@ -16,7 +16,7 @@ public class Employee {
 	private String employeeGender;
 	private int authority;
 	private String employeeIntroduce;
-	private int employeeImageNo;
+	//private int employeeImageNo;
 	private String createDate;
 	private String updateDate;
 	
@@ -26,7 +26,7 @@ public class Employee {
 				+ ", empAddressId=" + empAddressId + ", employeeAddressDetail=" + employeeAddressDetail
 				+ ", employeeName=" + employeeName + ", employeeEmail=" + employeeEmail + ", employeePhone="
 				+ employeePhone + ", employeeGender=" + employeeGender + ", authority=" + authority
-				+ ", employeeIntroduce=" + employeeIntroduce + ", employeeImageNo=" + employeeImageNo + ", createDate="
+				+ ", employeeIntroduce=" + employeeIntroduce + ", createDate="
 				+ createDate + ", updateDate=" + updateDate + "]";
 	}
 
@@ -103,14 +103,13 @@ public class Employee {
 		this.employeeGender = employeeGender;
 	}
 
-	public int getEmployeeImageNo() {
-		return employeeImageNo;
-	}
-
-
-	public void setEmployeeImageNo(int employeeImageNo) {
-		this.employeeImageNo = employeeImageNo;
-	}
+	/*
+	 * public int getEmployeeImageNo() { return employeeImageNo; }
+	 * 
+	 * 
+	 * public void setEmployeeImageNo(int employeeImageNo) { this.employeeImageNo =
+	 * employeeImageNo; }
+	 */
 
 	public int getAuthority() {
 		return authority;

@@ -42,7 +42,7 @@ public class EmployeeDao {
 				Employee employee = new Employee(); //Employee 객체 생성
 				employee.setEmployeeNo(rs.getInt("employeeNo")); //직원번호 가져오기
 				employee.setEmployeeName(rs.getString("employeeName")); //직원이름 가져오기
-				employee.setEmployeeImageNo(rs.getInt("employeeImageNo")); //직원 사진 가져오기
+				//employee.setEmployeeImageNo(rs.getInt("employeeImageNo")); //직원 사진 가져오기
 				list.add(employee); //list에 가져온 값 추가
 			}
 			
@@ -68,19 +68,21 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
-					+ " VALUES(PASSWORD('?'), ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW());";
+			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender, employee_introduce, create_date, update_date)"
+					+ " VALUES(PASSWORD('?'), ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW());";
 			stmt = conn.prepareStatement(sql); //쿼리 실행
 			stmt.setString(1, employee.getEmployeePw());
+					System.out.println(employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeSn());
+					System.out.println(employee.getEmployeeSn());
 			stmt.setInt(3, employee.getEmpAddressId());
 			stmt.setString(4, employee.getEmployeeAddressDetail());
 			stmt.setString(5, employee.getEmployeeName());
 			stmt.setString(6, employee.getEmployeeEmail());
 			stmt.setString(7, employee.getEmployeePhone());
 			stmt.setString(8, employee.getEmployeeGender());
-			stmt.setInt(9, employee.getEmployeeImageNo());
-			stmt.setString(10, employee.getEmployeeIntroduce());
+			//stmt.setInt(9, employee.getEmployeeImageNo());
+			stmt.setString(9, employee.getEmployeeIntroduce());
 			row = stmt.executeUpdate(); //쿼리 실행 결과 저장
 			System.out.println("직원 입력 stmt -> " + stmt); //디버깅
 			
@@ -119,7 +121,7 @@ public class EmployeeDao {
 			stmt.setString(1, employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeEmail());
 			stmt.setString(3, employee.getEmployeePhone());
-			stmt.setInt(4, employee.getEmployeeImageNo());
+			//stmt.setInt(4, employee.getEmployeeImageNo());
 			stmt.setString(5, employee.getEmployeeIntroduce());
 			stmt.setInt(6, employee.getEmployeeNo());
 			System.out.println("직원 수정 stmt -> " + stmt); //디버깅
@@ -214,7 +216,7 @@ public class EmployeeDao {
 				e.setEmployeeEmail(rs.getString("employeeEmail"));
 				e.setEmployeePhone(rs.getString("employeePhone"));
 				e.setEmployeeGender(rs.getString("employeeGender"));
-				//e.setEmployeeImageNo(rs.getString("employeeImage"));
+				//e.setEmployeeImageNo(rs.getString("employeeImageNo"));
 				e.setAuthority(rs.getInt("authority"));
 				e.setEmployeeIntroduce(rs.getString("employeeIntroduce"));
 				e.setCreateDate(rs.getString("createDate"));

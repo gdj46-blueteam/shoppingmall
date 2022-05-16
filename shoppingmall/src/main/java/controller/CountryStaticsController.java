@@ -23,7 +23,7 @@ public class CountryStaticsController extends HttpServlet {
 		List<Map<String, Object>> list = staticsDao.StaticsByCountry();
 		request.setAttribute("list", list);
 		request.setAttribute("country", country);
-		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp");
+		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
 	}
 
 }

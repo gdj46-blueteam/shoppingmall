@@ -18,6 +18,6 @@ public class SelectStaticsController extends HttpServlet {
 		this.staticsDao = new StaticsDao();
 		List<Map<String, Object>> list = staticsDao.StaticsByAll();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/view/admin/staticsList.jsp");
+		request.getRequestDispatcher("/WEB-INF/view/admin/staticsList.jsp").forward(request, response);
 	}
 }

@@ -220,13 +220,13 @@ public class StaticsDao {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
 			String sql ="select country,gender, age, month, area, COUNT(*) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list "
-					+ " GROUP BY country order by rank limit ?,?";
+					+ " GROUP BY country order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			System.out.println("stmt(StaticsDaoByAll) -> " + stmt);
 			
 			rs = stmt.executeQuery(); //실행된 쿼리문 결과 저장
 			while(rs.next()) {
-				Map<String, Object> map = new HashMap<>();
+				Map<String, Object> map = new HashMap<>(); 
 				map.put("country", rs.getString("country"));
 				map.put("gender", rs.getString("gender"));
 				map.put("age", rs.getString("age"));

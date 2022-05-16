@@ -28,7 +28,6 @@
 						<td><%=ac.getAnnouncementContent()%></td>
 						<td><%=ac.getCreateDate()%></td>
 					</tr>
-				
 		</table>
 		<a href="<%=request.getContextPath()%>/UpdateAnnoController?announcementNo=<%=ac.getAnnouncementNo() %>&announcementTitle=<%=ac.getAnnouncementTitle()%>&announcementContent=<%=ac.getAnnouncementContent()%>"><button>수정</button></a>
 		<a href="<%=request.getContextPath()%>/DeleteAnnoController?announcementNo=<%=ac.getAnnouncementNo() %>"><button>삭제</button></a>

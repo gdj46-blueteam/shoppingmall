@@ -21,7 +21,6 @@ public class SelectAnnoListController extends HttpServlet {
 		List<Announcement> announcement = new ArrayList<Announcement>();
 		AnnouncementDao announcementDao = new AnnouncementDao();
 		announcement = announcementDao.SelectAnnouncementList();
-			
 			//System.out.println(((Announcement) announcement).getAnnouncementNo());
 
 			//view 요청 (v)

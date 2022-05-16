@@ -18,7 +18,6 @@
 					<td>title</td>
 					<td><input type="text" name="announcementTitle" value="${announcement.getAnnouncementTitle()}"></td>
 					
-					
 					<td>content</td>
 					<td><input type="text" name="announcementContent" value="${announcement.getAnnouncementContent()}"></td>
 				</tr>

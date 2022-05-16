@@ -24,6 +24,7 @@ public class UpdateAnnoController extends HttpServlet {
 		Announcement announcement = new Announcement();
 		announcement.setAnnouncementNo(announcementNo);
 		System.out.println(announcementNo+" get");
+		
 		announcement.setAnnouncementContent(announcementContent);
 		announcement.setAnnouncementTitle(announcementTitle);
 		
@@ -33,6 +34,7 @@ public class UpdateAnnoController extends HttpServlet {
 		request.setAttribute("announcementTitle", announcementTitle);
 		request.setAttribute("announcementContent", announcementContent);
 		System.out.println(announcementTitle);
+		
 		request.getRequestDispatcher("/WEB-INF/view/admin/updateAnnoForm.jsp").forward(request, response);
 	
 	}	
@@ -44,15 +46,15 @@ public class UpdateAnnoController extends HttpServlet {
 		String announcementTitle = request.getParameter("announcementTitle");
 		String announcementContent = request.getParameter("announcementContent");
 		
-		System.out.println(announcementNo);
+		System.out.println(announcementNo);//디버깅
+		
 		Announcement announcement = new Announcement();
 		announcement.setAnnouncementNo(announcementNo);
 		announcement.setAnnouncementContent(announcementContent);
 		announcement.setAnnouncementTitle(announcementTitle);
 		
-		
 		AnnouncementDao announcementDao = new AnnouncementDao();
-	
+		
 		int row = announcementDao.updateAnno(announcement);
 		if (row == 1) { //성공
 	        System.out.println("수정성공");

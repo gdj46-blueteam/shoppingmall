@@ -126,6 +126,7 @@ public class AnnouncementDao {
 		String sql = "UPDATE announcement "
 				+ " SET announcement_title= ? , announcement_content= ? "
 				+ " WHERE announcement_no = ? ";
+		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);

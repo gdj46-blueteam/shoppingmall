@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import dao.AnnouncementDao;
 import vo.Announcement;
 
-
 @WebServlet("/DeleteAnnoController")
 public class DeleteAnnoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

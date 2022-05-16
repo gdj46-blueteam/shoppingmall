@@ -58,7 +58,7 @@
 					<input name="customerCountry" type="text" value="<%=customer.getCustomerCountry()%>">
 				</td>
 			</tr>
-			<a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=customer.getCustomerId()%>">뒤로</a>
+			<a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=customer.getCustomerId()%>">뒤로가</a>
 			<button type="submit">수정</button>
 		</table>
 	</form>

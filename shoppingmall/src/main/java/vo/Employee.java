@@ -14,7 +14,6 @@ public class Employee {
 	private String employeeEmail;
 	private String employeePhone;
 	private String employeeGender;
-	private String employeeImage;
 	private int authority;
 	private String employeeIntroduce;
 	private int employeeImageNo;
@@ -26,14 +25,10 @@ public class Employee {
 		return "Employee [employeeNo=" + employeeNo + ", employeePw=" + employeePw + ", employeeSn=" + employeeSn
 				+ ", empAddressId=" + empAddressId + ", employeeAddressDetail=" + employeeAddressDetail
 				+ ", employeeName=" + employeeName + ", employeeEmail=" + employeeEmail + ", employeePhone="
-				+ employeePhone + ", employeeGender=" + employeeGender + ", employeeImage=" + employeeImage
-				+ ", authority=" + authority + ", employeeIntroduce=" + employeeIntroduce + ", employeeImageNo="
-				+ employeeImageNo + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+				+ employeePhone + ", employeeGender=" + employeeGender + ", authority=" + authority
+				+ ", employeeIntroduce=" + employeeIntroduce + ", employeeImageNo=" + employeeImageNo + ", createDate="
+				+ createDate + ", updateDate=" + updateDate + "]";
 	}
-	
-
-	
-
 
 	//getter & setter
 	public int getEmployeeNo() {

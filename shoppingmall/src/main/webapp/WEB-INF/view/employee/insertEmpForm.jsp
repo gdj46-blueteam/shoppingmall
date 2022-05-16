@@ -62,15 +62,16 @@
 				<tr>
 					<td>employeeGender</td>
 					<td>
-						<input type ="text" name="employeeGender">
+						<input type ="radio" name="employeeGender" value="남">남
+						<input type ="radio" name="employeeGender" value="여">여
 					</td>
 				</tr>
-				<!-- <tr>
-					<td>employeeImageNo</td>
+				<tr>
+					<td>employeeImageName</td>
 					<td>
-						<input type ="text" name="employeeImageNo">
+						<input type ="text" name="employeeImageName">
 					</td>
-				</tr> -->
+				</tr>
 				<tr>
 					<td>employeeIntroduce</td>
 					<td>
@@ -78,7 +79,7 @@
 					</td>
 				</tr>
 			</table>
-			<button type = "submit">직원등록</button>
+			<button type ="submit">직원등록</button>
 		</form>
 	</div>
 </body>

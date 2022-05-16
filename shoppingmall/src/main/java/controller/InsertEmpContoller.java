@@ -27,7 +27,7 @@ public class InsertEmpContoller extends HttpServlet {
 		employee.setEmployeeEmail(request.getParameter("employeeEmail"));
 		employee.setEmployeePhone(request.getParameter("employeePhone"));
 		employee.setEmployeeGender(request.getParameter("employeeGender"));
-		//employee.setEmployeeImageNo(Integer.parseInt(request.getParameter("employeeImageNo")));	//int 형변환
+		employee.setEmployeeImageName(request.getParameter("employeeImageName"));
 		employee.setEmployeeIntroduce(request.getParameter("employeeIntroduce"));
 		
 		//Dao 객체 생성해서 insetEmp 메서드 호출해서 실행

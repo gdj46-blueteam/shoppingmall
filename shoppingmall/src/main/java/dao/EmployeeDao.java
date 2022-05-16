@@ -1,6 +1,5 @@
 package dao;
 
-import java.security.DrbgParameters.Reseed;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +14,7 @@ public class EmployeeDao {
 
 //페이징
 	//1.직원 목록
-	public List<Employee> selectEmpList(int beginRow, int rowPerPage){
+	public List<Employee> selectEmpList(){
 		List<Employee> list = new ArrayList<>();
 		
 		//데이터베이스 연결
@@ -25,14 +24,12 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
-			String sql=" SELECT e.employee_no employeeNo, e.employee_name employeeName, ei.employee_imageName employeeImage"
-					+ " FROM employee e"
-					+ " INNER JOIN employee_image ei"
-					+ " ON e.employee_imageNo = ei.employee_imageNo"
-					+ " WHERE employee_imageNo = ?"; //쿼리문
+			//쿼리문
+			String sql=" SELECT employeeNo, employeeName, employeeImageName"
+					+ " FROM employee_list;"
+					+ " WHERE employee_imageNo = ?"; 
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
-			stmt.setInt(1, beginRow); //이전행의 개수를 넣는다
-			stmt.setInt(2, rowPerPage); //행의 개수를 넣는다
+			
 			System.out.println("직원 목록(EmployeeDao)stmt -> " + stmt); //디버깅
 			
 			rs = stmt.executeQuery(); //쿼리 실행결과 저장
@@ -42,7 +39,7 @@ public class EmployeeDao {
 				Employee employee = new Employee(); //Employee 객체 생성
 				employee.setEmployeeNo(rs.getInt("employeeNo")); //직원번호 가져오기
 				employee.setEmployeeName(rs.getString("employeeName")); //직원이름 가져오기
-				//employee.setEmployeeImageNo(rs.getInt("employeeImageNo")); //직원 사진 가져오기
+				employee.setEmployeeImageName(rs.getString("employeeImageName")); //직원 사진 가져오기
 				list.add(employee); //list에 가져온 값 추가
 			}
 			
@@ -58,6 +55,7 @@ public class EmployeeDao {
 		 return list;
 	}
 	
+	//issue : 주소번호 삽입대신 검색해서 삽입하게 
 	//2.직원 삽입
 	public int insertEmp(Employee employee) {
 		int row = 0;
@@ -68,21 +66,21 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender, employee_introduce, create_date, update_date)"
-					+ " VALUES(PASSWORD('?'), ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW());";
+			String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageName, employee_introduce, create_date, update_date)"
+					+ " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
 			stmt = conn.prepareStatement(sql); //쿼리 실행
 			stmt.setString(1, employee.getEmployeePw());
-					System.out.println(employee.getEmployeePw());
+					//System.out.println(employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeSn());
-					System.out.println(employee.getEmployeeSn());
+					//System.out.println(employee.getEmployeeSn());
 			stmt.setInt(3, employee.getEmpAddressId());
 			stmt.setString(4, employee.getEmployeeAddressDetail());
 			stmt.setString(5, employee.getEmployeeName());
 			stmt.setString(6, employee.getEmployeeEmail());
 			stmt.setString(7, employee.getEmployeePhone());
 			stmt.setString(8, employee.getEmployeeGender());
-			//stmt.setInt(9, employee.getEmployeeImageNo());
-			stmt.setString(9, employee.getEmployeeIntroduce());
+			stmt.setString(9, employee.getEmployeeImageName());
+			stmt.setString(10, employee.getEmployeeIntroduce());
 			row = stmt.executeUpdate(); //쿼리 실행 결과 저장
 			System.out.println("직원 입력 stmt -> " + stmt); //디버깅
 			
@@ -114,14 +112,14 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); // DB연결
-			String sql = "UPDATE employee SET employee_pw = PASSWORD('?'), employee_email = ?, employee_phone = ?, employee_imageNo = ?, employee_introduce = ?, update_date = NOW()"
+			String sql = "UPDATE employee SET employee_pw = PASSWORD(?), employee_email = ?, employee_phone = ?, employee_imageName = ?, employee_introduce = ?, update_date = NOW()"
 					+ " WHERE employee_no =? ";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			// ? 값 대입
 			stmt.setString(1, employee.getEmployeePw());
 			stmt.setString(2, employee.getEmployeeEmail());
 			stmt.setString(3, employee.getEmployeePhone());
-			//stmt.setInt(4, employee.getEmployeeImageNo());
+			stmt.setString(4, employee.getEmployeeImageName());
 			stmt.setString(5, employee.getEmployeeIntroduce());
 			stmt.setInt(6, employee.getEmployeeNo());
 			System.out.println("직원 수정 stmt -> " + stmt); //디버깅
@@ -158,7 +156,7 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "DELETE FROM employee WHERE employee_no = ? AND employee_pw = PASSWORD('?')";
+			String sql = "DELETE FROM employee WHERE employee_no = ? AND employee_pw = PASSWORD(?)";
 			stmt = conn.prepareStatement(sql); // 쿼리문 실행
 			// ? 값 대입
 			stmt.setInt(1, employeeNo);
@@ -195,14 +193,10 @@ public class EmployeeDao {
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "SELECT employee_no employeeNo,employee_pw employeePW,employee_sn employeeSn,CONCAT(a.province,' ', a.city,' ', a.town,' ', a.street,' ', a.building1,'-', a.building2) employeeAddress"
-					+ ", e.employee_addressDetail,employee_name employeeName,employee_email, employee_phone,employee_gender, ei.employee_imageName employeeImage"
-					+ ", employee_introduce, authority, e.create_date createDate, update_date updateDate"
-					+ " FROM employee e INNER JOIN address a"
-					+ " ON e.empAddress_id = a.id"
-					+ " INNER JOIN employee_image ei"
-					+ " ON e.employee_imageNo = ei.employee_imageNo"
-					+ " WHERE employee_no = ?";
+			//쿼리문
+			String sql = "SELECT employeeNo,employeePw,employeeSn, employeeAddress, employeeAddressDetail, employeeName, employeeEmail"
+					+ ",employeePhone, employeeGender, employeeImageName, employeeIntroduce, authority, createDate, updateDate"
+					+ "FROM  employee_list_one";
 			stmt = conn.prepareStatement(sql); //쿼리실행
 			stmt.setInt(1, employeeNo);
 			rs = stmt.executeQuery(); //쿼리결과저장
@@ -216,7 +210,7 @@ public class EmployeeDao {
 				e.setEmployeeEmail(rs.getString("employeeEmail"));
 				e.setEmployeePhone(rs.getString("employeePhone"));
 				e.setEmployeeGender(rs.getString("employeeGender"));
-				//e.setEmployeeImageNo(rs.getString("employeeImageNo"));
+				e.setEmployeeImageName(rs.getString("employeeImageName"));
 				e.setAuthority(rs.getInt("authority"));
 				e.setEmployeeIntroduce(rs.getString("employeeIntroduce"));
 				e.setCreateDate(rs.getString("createDate"));

@@ -40,7 +40,7 @@ public class LoginDao {
 				if(rs.next()) { //rs변수에 값이 있으면 
 					loginId = rs.getString("employeeEmail");//loginId에 rs변수에 저장한 결과값을 넣음
 				}
-				if(loginId == null) { //관리자아이디 값이 널이라면
+				if(loginId == null) { //직원아이디 값이 널이라면
 					System.out.println(loginId+"직원아이디null값"); //디버깅
 					//관리자 id, pw를 조회하는 쿼리문
 					sql = "SELECT admin_id adminId, admin_pw adminPw FROM admin"

@@ -20,7 +20,7 @@ public class LoginController extends HttpServlet {
 	//사용자 로그인에 따라서 컨트롤러 접근허가 또는 불허
 	HttpSession session = request.getSession(); //세션 생성 
 	String sessionId = (String)session.getAttribute("sessionId");
-	System.out.println(sessionId);//
+	System.out.println(sessionId);//디버깅
 	if(sessionId!= null) { 														//sessionId 가 널값이 아니라면
 		response.sendRedirect(request.getContextPath()+"/MainHomeController");   //MainHomeController로 이동
 		return; 

@@ -18,7 +18,6 @@ public class DeleteAnnoController extends HttpServlet {
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));	
 		//디버깅
 		System.out.println("DeleteAnnoController P" + announcementNo);
-		
 		AnnouncementDao ad = new AnnouncementDao();
 		int row = 0;
 			row = ad.deleteAnno(announcementNo);

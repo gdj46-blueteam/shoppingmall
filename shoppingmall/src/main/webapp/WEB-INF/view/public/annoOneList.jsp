@@ -21,7 +21,6 @@
 						<th>Content</th>
 						<th>CreateDate</th>
 					</tr>
-				
 					<tr>
 						<td><%=ac.getAnnouncementNo()%></td>
 						<td><%=ac.getAnnouncementTitle()%></td>

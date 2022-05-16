@@ -117,7 +117,7 @@ public class AnnouncementDao {
 		}
 		return row;
 	}
-
+	//수정
 	public int updateAnno(Announcement announcement) {
 		int row = 0;
 		//DB

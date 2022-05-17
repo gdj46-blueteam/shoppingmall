@@ -33,7 +33,9 @@ public class AnnouncementDao {
 				ac = new Announcement();
 				ac.setAnnouncementNo(rs.getInt("announcementNo"));
 				ac.setAnnouncementTitle(rs.getString("announcementTitle"));
-			
+				ac.setAnnouncementContent(rs.getString("announcementContent"));
+				ac.setCreateDate(rs.getString("createDate"));
+				
 //				map.put("cashBookNo",rs.getInt("cashBookNo"));
 //				map.put("day",rs.getInt("day"));
 //				map.put("kind",rs.getString("kind"));
@@ -41,7 +43,7 @@ public class AnnouncementDao {
 //				map.put("memo",rs.getString("memo"));
 				acList.add(ac);
 			}
-			
+			System.out.println(acList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -60,7 +62,7 @@ public class AnnouncementDao {
 	
 	//SelectAnnouncementOne 공지사항 상세보기
 	public Announcement SelectAnnouncementOne(int announcementNo) {// 반환값 Announcement로 생성, announcement_no값으로 상세보기 값 가져옴
-		Announcement announcement = null; // announcement 값 null로 준비
+		Announcement announcement = new Announcement(); // announcement 값 null로 준비
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -75,7 +77,6 @@ public class AnnouncementDao {
 			stmt.setInt(1, announcementNo);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				announcement  = new Announcement();
 				announcement.setAnnouncementNo(rs.getInt("announcementNo"));
 				announcement.setAnnouncementTitle(rs.getString("announcementTitle"));
 				announcement.setAnnouncementContent(rs.getString("announcementContent"));
@@ -84,7 +85,15 @@ public class AnnouncementDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();	
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 		return announcement;
 
 
@@ -116,6 +125,7 @@ public class AnnouncementDao {
 			}
 		}
 		return row;
+		
 	}
 	//수정
 	public int updateAnno(Announcement announcement) {

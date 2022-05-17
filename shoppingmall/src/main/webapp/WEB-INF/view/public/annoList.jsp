@@ -1,11 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="vo.*"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
-<%
-	List<Announcement> list = (List<Announcement>)request.getAttribute("announcement");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,24 +9,17 @@
 </head>
 <body>
 	<h1>공지사항 목록</h1>
-		<form action = "<%=request.getContextPath()%>/SelectAnnoListController" method="post">
-			<table border="1">
-					<tr>
-						<th>No</th>
-						<th>Title</th>
-					</tr>
-				<%
-					for(Announcement a : list){
-				%>
-					<tr>
-						<td><%=a.getAnnouncementNo()%></td>
-						<td><a href="SelectAnnoOneController?announcementNo=<%=a.getAnnouncementNo()%>"><%=a.getAnnouncementTitle()%></a></td>
-					</tr>
-				<%
-					}
-				%>
-		
+		<table border="1">
+			<tr>
+				<th>No</th>
+				<th>Title</th>
+			</tr>
+			<c:forEach var="a" items="${announcementList}">
+				<tr>
+					<td>${a.announcementNo}</td>
+					<td><a href="SelectAnnoOneController?announcementNo=${a.announcementNo}">${a.announcementTitle}</a></td>
+				</tr>
+			</c:forEach>
 		</table>
-		</form>
 </body>
 </html>

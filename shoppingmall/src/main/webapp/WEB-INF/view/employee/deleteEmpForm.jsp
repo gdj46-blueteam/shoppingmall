@@ -15,7 +15,7 @@
 				<tr>
 					<td>employeeNo</td>
 					<td>
-						<input type="text" name="employeeNo" value="">
+						<input type="text" name="employeeNo" value="${employeeNo}">
 					</td>
 				</tr>
 				<tr>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>로그인</h1>
-	<form action = "<%=request.getContextPath()%>/LoginController" method="post">
+	<form action = "${pageContext.request.contextPath}/LoginController" method="post">
  		 <table class="table table-striped">
 			<tr>
 				<td>memberId</td>

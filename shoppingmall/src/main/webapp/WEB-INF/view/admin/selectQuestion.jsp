@@ -1,18 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
-<%@ page import="vo.*" %>
-<%@ page import="dao.*" %>
-<%@ page import="java.util.*" %>
-<%
-	List<Question> questionList = (List<Question>)request.getAttribute("questionList");
-	QuestionDao questionDao = new QuestionDao();
-	Question question = new Question();
-	questionDao.selectQuestion();
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>select question</title>
+<title>selectQuestion</title>
 </head>
 <body>
 	<h2>문의사항 확인</h2>
@@ -29,20 +21,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-					for(Question q : questionList) {
-				%>
+			<c:forEach var="q" items = "${questionList}">
 				<tr>
-					<td><%=q.getQuestionNo() %></td>
-					<td><%=q.getCustomerId() %></td>
-					<td><a href="<%=request.getContextPath()%>/DeleteQuestionController?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
-					<td><%=q.getQuestionContent() %></td>
-					<td><%=q.getCreateDate()%></td>
-					<td><%=q.getUpdateDate()%></td>
+					<td>${q.questionNo}</td>
+					<td>${q.customerId}</td>
+					<td>${q.questionTitle }</td>
+					<td><a href="${pageContext.request.contextPath}/DeleteQuestionController?questionNo=${q.questionNo}">${q.questionTitle}</a></td>
+					<td>${q.questionContent}</td>
+					<td>${q.createDate}</td>
+					<td>${q.updateDate}</td>
 				</tr>
-				<%		
-					}
-				%>
+				</c:forEach>
 			</tbody>	
 		</table>
 	</form>

@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.*" %>
-<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	List<Tour> tourList = (List<Tour>)request.getAttribute("tourList");
-%>
+
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +11,7 @@
 </head>
 <body>
 	<h2>관광리스트2</h2>
-	<form action="<%=request.getContextPath()%>/SelectTourController" method="get">
+	<form action="${pageContext.request.contextPath}/SelectTourController" method="get">
 		<table>
 			<thead>
 				<tr>
@@ -26,19 +23,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-					for(Tour t : tourList) {
-				%>
+				<c:forEach var = "t" items = "${tourList}">
 					<tr>
-						<td><%=t.getTourNo()%></td>
-						<td><%=t.getTourAreaId() %></td>
-						<td><%=t.getTourName() %></td>
-						<td><%=t.getTourDescription() %></td>
-						<td><%=t.getTourNo() %></td>
+						<td>${t.tourNo}</td>
+						<td>${t.tourAreaId}</td>
+						<td>${t.tourName}</td>
+						<td>${t.tourDescription}</td>
+						<td>${t.tourImageNo}</td>
 					</tr>
-				<%
-					}
-				%>
+				</c:forEach>
 			</tbody>
 		</table>
 	</form>

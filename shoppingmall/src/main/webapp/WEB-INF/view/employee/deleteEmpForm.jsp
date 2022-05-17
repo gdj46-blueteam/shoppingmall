@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="vo.*"%>
+<%
+	Employee employee = new Employee();
+	employee = (Employee)request.getAttribute("employee");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +14,8 @@
 </head>
 <body>
 	<div class="container">
-		<form method ="post" action="<%=request.getContextPath()%>/DeleteEmpController">
-			<table class="table table-hover">
+		<table class="table table-hover">
+			<form method ="post" action="<%=request.getContextPath()%>/DeleteEmpController">
 				<tr>
 					<td>employeeNo</td>
 					<td>
@@ -24,8 +28,10 @@
 						<input type="password" name="employeePw">
 					</td>
 				</tr>
-			</table>
-		</form>
+				<button type = "submit">삭제</button>
+			</form>
+			<a href ="<%=request.getContextPath()%>/SelectEmpListController?employeeNo=<%=employee.getEmployeeNo()%>">뒤로가기</a>
+		</table>
 	</div>
 </body>
 </html>

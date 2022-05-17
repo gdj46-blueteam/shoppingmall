@@ -6,10 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import vo.Employee;
 import vo.EmployeeList;
+import vo.EmployeeListOne;
 
 public class EmployeeDao {
 
@@ -184,8 +187,8 @@ public class EmployeeDao {
 	}
 
 	//5. 직원상세보기
-	public Employee selectEmpOneByAdmin(int employeeNo) {
-		Employee e = new Employee();
+	public EmployeeListOne selectEmpOne(int employeeNo) {
+		EmployeeListOne employeeListOne = new EmployeeListOne();
 		//DB 연결
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -194,27 +197,41 @@ public class EmployeeDao {
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			//쿼리문
-			String sql = "SELECT employeeNo,employeePw,employeeSn, employeeAddress, employeeAddressDetail, employeeName, employeeEmail"
-					+ ",employeePhone, employeeGender, employeeImageName, employeeIntroduce, authority, createDate, updateDate"
-					+ "FROM  employee_list_one";
+			String sql = " SELECT employeeNo,employeeSn, employeeAddress, employeeAddressDetail, employeeName, employeeEmail "
+					+ " ,employeePhone, employeeGender, employeeImageName, employeeIntroduce, authority, createDate, updateDate "
+					+ " FROM  employee_list_one where employeeNo=?";
 			stmt = conn.prepareStatement(sql); //쿼리실행
 			stmt.setInt(1, employeeNo);
 			rs = stmt.executeQuery(); //쿼리결과저장
 			if(rs.next()) {
-				e.setEmployeeNo(rs.getInt("employeeNo"));
-				e.setEmployeePw(rs.getString("employeePw"));
-				e.setEmployeeSn(rs.getString("employeeSn"));
-				e.setEmpAddressId(rs.getInt("empAddressId"));
-				e.setEmployeeAddressDetail(rs.getString("employeeAddressDetail"));
-				e.setEmployeeName(rs.getString("employeeName"));
-				e.setEmployeeEmail(rs.getString("employeeEmail"));
-				e.setEmployeePhone(rs.getString("employeePhone"));
-				e.setEmployeeGender(rs.getString("employeeGender"));
-				e.setEmployeeImageName(rs.getString("employeeImageName"));
-				e.setAuthority(rs.getInt("authority"));
-				e.setEmployeeIntroduce(rs.getString("employeeIntroduce"));
-				e.setCreateDate(rs.getString("createDate"));
-				e.setUpdateDate(rs.getString("updateDate"));			}
+				employeeListOne.setEmployeeNo(rs.getInt("employeeNo"));
+				employeeListOne.setEmployeeSn(rs.getString("employeeSn"));
+				employeeListOne.setEmployeeAddress(rs.getString("employeeAddress"));
+				employeeListOne.setEmployeeAddressDetail(rs.getString("employeeAddressDetail"));
+				employeeListOne.setEmployeeName(rs.getString("employeeName"));
+				employeeListOne.setEmployeeEmail(rs.getString("employeeEmail"));
+				employeeListOne.setEmployeePhone(rs.getString("employeePhone"));
+				employeeListOne.setEmployeeGender(rs.getString("employeeGender"));
+				employeeListOne.setEmployeeImageName(rs.getString("employeeImageName"));
+				employeeListOne.setEmployeeIntroduce(rs.getString("employeeIntroduce"));
+				employeeListOne.setAuthority(rs.getInt("authority"));
+				employeeListOne.setCreateDate(rs.getString("createDate"));
+				employeeListOne.setUpdateDate(rs.getString("updateDate"));	
+				
+				System.out.println("employeeNo(selectEmpOne)->" + rs.getInt(employeeNo));
+				System.out.println("employeeSn(selectEmpOne)->" + rs.getString("employeeSn"));
+				System.out.println("employeeAddress(selectEmpOne)->" + rs.getString("employeeAddress"));
+				System.out.println("employeeAddressDetail(selectEmpOne)->" + rs.getString("employeeAddressDetail"));
+				System.out.println("employeeName(selectEmpOne)->" + rs.getString("employeeName"));
+				System.out.println("employeeEmail(selectEmpOne)->" + rs.getString("employeeEmail"));
+				System.out.println("employeePhone(selectEmpOne)->" + rs.getString("employeePhone"));
+				System.out.println("employeeGender(selectEmpOne)->" + rs.getString("employeeGender"));
+				System.out.println("employeeImageName(selectEmpOne)->" + rs.getString("employeeImageName"));
+				System.out.println("authority(selectEmpOne)->" + rs.getInt("authority"));
+				System.out.println("employeeIntroduce(selectEmpOne)->" + rs.getString("employeeIntroduce"));
+				System.out.println("createDate(selectEmpOne)->" + rs.getString("createDate"));
+				System.out.println("createDate(updateDate)->" + rs.getString("updateDate"));
+			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} finally {
@@ -226,7 +243,57 @@ public class EmployeeDao {
 				e1.printStackTrace();
 			}
 		}
-		return e;
+		return employeeListOne;
 	}
-	
+	//6. 직원 실적확인 
+	public Map<String, Object> selectEmpResult(int employeeNo) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		//DB 연결
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			//쿼리문
+			String sql = "SELECT p.employee_no employeeNo, p.employee_name employeeName, sum(e.estimate_price) sum, COUNT(e.estimate_price) cnt "
+					+ " FROM estimate e "
+					+ " INNER JOIN employee p "
+					+ " ON e.employee_no = p.employee_no "
+					+ " WHERE e.employee_no = ? AND estimate_ing = '결제완료' "
+					+ " GROUP BY employeeName "
+					+ " ORDER BY sum(e.estimate_price) DESC ";
+			
+			stmt = conn.prepareStatement(sql); //쿼리실행
+			System.out.println("stmt(selectEmpResult) ->" + stmt);
+			stmt.setInt(1, employeeNo);
+		
+			rs = stmt.executeQuery(); //쿼리결과저장
+			System.out.println("rs(selectEmpResult)->" + rs);
+			if(rs.next()) {
+				map = new HashMap<String, Object>(); 
+				map.put("employeeNo", rs.getInt(employeeNo));
+				map.put("employeeName", rs.getString("employeeName"));
+				map.put("sum", rs.getInt("sum"));
+				map.put("cnt", rs.getInt("cnt"));
+				
+				//디버깅
+				System.out.println("employeeNo(selectEmpResult)->" + rs.getInt(employeeNo));
+				System.out.println("employeeName(selectEmpResult)->" + rs.getString("employeeName"));
+				System.out.println("sum(selectEmpResult)->" + rs.getInt("sum"));
+				System.out.println("cnt(selectEmpResult)->" + rs.getInt("cnt"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
 }

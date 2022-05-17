@@ -44,6 +44,7 @@
 					</td>
 				</tr>
 			</table>
+			<button type="submit">수정</button>
 		</form>
 	</div>
 </body>

@@ -16,6 +16,9 @@ public class UpdateEmpController extends HttpServlet {
 	//객체 생성
 	private EmployeeDao employeeDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
+		request.setAttribute("employeeNo", employeeNo);
+		
 		//jsp 요청
 		request.getRequestDispatcher("/WEB-INF/view/employee/updateEmpForm.jsp").forward(request, response);
 	}
@@ -29,11 +32,11 @@ public class UpdateEmpController extends HttpServlet {
 		String employeeIntroduce = request.getParameter("employeeIntroduce");
 		
 		Employee employee = new Employee(); //Employee 객체생성 -> 가져온 값 저장?
-		/*employee.setEmployeeNo(employeeNo);
+		employee.setEmployeeNo(employeeNo);
 		employee.setEmployeePw(employeePw);
 		employee.setEmployeeEmail(employeeEmail);
 		employee.setEmployeePhone(employeePhone);
-		employee.setEmployeeIntroduce(employeeIntroduce);*/
+		employee.setEmployeeIntroduce(employeeIntroduce);
 		//디버깅
 		System.out.println("employeeNo(UpdateEmpController)-> " + employeeNo );
 		System.out.println("employeePw(UpdateEmpController)-> " + employeePw );
@@ -46,10 +49,9 @@ public class UpdateEmpController extends HttpServlet {
 		int row = employeeDao.updateEmp(employee);
 		//디버깅
 		System.out.println(row +"<- 직원수정");
-		//속성값 가져와서 저장?
-		//request.setAttribute("employeeNo", employeeNo);
+		request.setAttribute("employeeNo", employeeNo);
 		
-		response.sendRedirect(request.getContextPath()+"/SelectEmpOneController");
+		response.sendRedirect(request.getContextPath()+"/SelectEmpOneController?employeeNo="+ request.getParameter("employeeNo"));
 	}
 
 }

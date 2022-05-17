@@ -27,7 +27,7 @@
 			%>
 					<tr>
 						<td><%=e.getEmployeeNo()%></td>
-						<td><%=e.getEmployeeName()%></td>
+						<td><a href="<%=request.getContextPath()%>/SelectEmpOneController?employeeNo=<%=e.getEmployeeNo()%>"><%=e.getEmployeeName()%></a></td>
 						<td><%=e.getEmployeeImageName()%></td>
 					</tr>
 			<%

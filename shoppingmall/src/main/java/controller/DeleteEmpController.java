@@ -13,22 +13,17 @@ import vo.Employee;
 
 @WebServlet("/DeleteEmpController")
 public class DeleteEmpController extends HttpServlet {
-
+	private EmployeeDao employeeDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//요청값 분석
-		String employeeNo = request.getParameter("employeeNo");
+		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
+		request.setAttribute("employeeNo", employeeNo);
 		
 		//디버깅
 		System.out.println("DeleteEmpController employeeNo : " + employeeNo);
 		
-		Employee employee = new Employee();
-		employee.setEmployeeNo(Integer.parseInt(employeeNo));
-		
-		//뷰로 보낼 준비
-		request.setAttribute("employee", employee);
-		
 		//뷰로 보냄
-		request.getRequestDispatcher("/WEB-INF/view/employee/deleteEmpForm.jsp");
+		request.getRequestDispatcher("/WEB-INF/view/admin/deleteEmpForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,20 +31,21 @@ public class DeleteEmpController extends HttpServlet {
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		String employeePw = request.getParameter("employeePw");
 		
+		Employee employee = new Employee();
+		employee.setEmployeeNo(employeeNo);
+		employee.setEmployeePw(employeePw);
+		
 		//디버깅
 		System.out.println("DeleteEmpController employeeNo : " + employeeNo);
 		System.out.println("DeleteEmpController employeePw : " + employeePw);
 		
-		EmployeeDao employeeDao = new EmployeeDao();
+		this.employeeDao = new EmployeeDao();
 		int row = employeeDao.deleteEmp(employeeNo, employeePw);
 		
 		//디버깅
-		if(row == 1) {
-			System.out.println("삭제성공");
-		} else {
-			System.out.println("삭제실패");
-			response.sendRedirect(request.getContextPath() + "/DeleteEmpController");
-		}
+		System.out.println(row +"<- 직원삭제");
+		request.setAttribute("employeeNo", employeeNo);
+		
+		response.sendRedirect(request.getContextPath() + "/SelectEmpListController");
 	}
-
 }

@@ -3,7 +3,7 @@ package vo;
 public class EmployeeListOne {
 	//필드 생성
 	private int employeeNo;
-	private String employeePW;
+	private String employeePw;
 	private String employeeSn;
 	private String employeeAddress;
 	private String employeeAddressDetail;
@@ -19,7 +19,7 @@ public class EmployeeListOne {
 	
 	@Override
 	public String toString() {
-		return "EmployeeListOne [employeeNo=" + employeeNo + ", employeePW=" + employeePW + ", employeeSn=" + employeeSn
+		return "EmployeeListOne [employeeNo=" + employeeNo + ", employeePw=" + employeePw + ", employeeSn=" + employeeSn
 				+ ", employeeAddress=" + employeeAddress + ", employeeAddressDetail=" + employeeAddressDetail
 				+ ", employeeName=" + employeeName + ", employeeEmail=" + employeeEmail + ", employeePhone="
 				+ employeePhone + ", employeeGender=" + employeeGender + ", employeeImageName=" + employeeImageName
@@ -36,12 +36,12 @@ public class EmployeeListOne {
 		this.employeeNo = employeeNo;
 	}
 
-	public String getEmployeePW() {
-		return employeePW;
+	public String getemployeePw() {
+		return employeePw;
 	}
 
-	public void setEmployeePW(String employeePW) {
-		this.employeePW = employeePW;
+	public void setemployeePw(String employeePw) {
+		this.employeePw = employeePw;
 	}
 
 	public String getEmployeeSn() {

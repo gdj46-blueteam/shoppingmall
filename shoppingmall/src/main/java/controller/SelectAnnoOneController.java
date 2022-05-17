@@ -1,4 +1,4 @@
-package controller;
+ package controller;
 
 import java.io.IOException;
 
@@ -17,11 +17,12 @@ public class SelectAnnoOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//dao값 받기 -announcement_no
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));
-		AnnouncementDao ad = new AnnouncementDao();
-		Announcement an = ad.SelectAnnouncementOne(announcementNo);
+		System.out.println("asfknakgnselkng : " + announcementNo);
+		announcementDao = new AnnouncementDao();
+		Announcement announcement = announcementDao.SelectAnnouncementOne(announcementNo);
 		
 		//view로 보내기
-		request.setAttribute("an", an );
+		request.setAttribute("announcement", announcement );
 		request.getRequestDispatcher("/WEB-INF/view/public/annoOneList.jsp").forward(request, response);
 
 	}

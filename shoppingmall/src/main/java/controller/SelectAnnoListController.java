@@ -18,18 +18,15 @@ public class SelectAnnoListController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//dao 값 
-		List<Announcement> announcement = new ArrayList<Announcement>();
+		List<Announcement> announcementList = new ArrayList<Announcement>();
 		AnnouncementDao announcementDao = new AnnouncementDao();
-		announcement = announcementDao.SelectAnnouncementList();
+		announcementList = announcementDao.SelectAnnouncementList();
 		
-			//System.out.println(((Announcement) announcement).getAnnouncementNo());
+		System.out.println("announcementList"+ announcementDao);
+		//System.out.println(((Announcement) announcement).getAnnouncementNo());
+		
 			//view 요청 (v)
-			request.setAttribute("announcement", announcement);
+			request.setAttribute("announcementList", announcementList);
 			request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);
 	}
 }
-
-
-
-
-	

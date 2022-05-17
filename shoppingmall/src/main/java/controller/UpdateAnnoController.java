@@ -29,13 +29,9 @@ public class UpdateAnnoController extends HttpServlet {
 		
 		//뷰
 		request.setAttribute("announcement", announcement);
-		request.setAttribute("announcementNo", announcementNo);
-		request.setAttribute("announcementTitle", announcementTitle);
-		request.setAttribute("announcementContent", announcementContent);
-		System.out.println(announcementTitle);
-		
 		request.getRequestDispatcher("/WEB-INF/view/admin/updateAnnoForm.jsp").forward(request, response);
 	}	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//요청값
 		System.out.println(request.getParameter("announcementNo"));
@@ -58,7 +54,7 @@ public class UpdateAnnoController extends HttpServlet {
 	        System.out.println("수정성공");
 	        response.sendRedirect(request.getContextPath()+"/SelectAnnoListController");
 	        return;
-	     } else {// row==0이면 영향받은 행이 없으므로 오류
+	     } else {// row==0이면 오류
 	        System.out.println("수정실패");
 	        response.sendRedirect(request.getContextPath()+"/UpdateAnnoController"); 
 	     }

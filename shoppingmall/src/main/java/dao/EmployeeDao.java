@@ -272,7 +272,7 @@ public class EmployeeDao {
 			System.out.println("rs(selectEmpResult)->" + rs);
 			if(rs.next()) {
 				map = new HashMap<String, Object>(); 
-				map.put("employeeNo", rs.getInt(employeeNo));
+				map.put("employeeNo", rs.getInt("employeeNo"));
 				map.put("employeeName", rs.getString("employeeName"));
 				map.put("sum", rs.getInt("sum"));
 				map.put("cnt", rs.getInt("cnt"));
@@ -293,6 +293,61 @@ public class EmployeeDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		return map;
+	}
+	
+	//7.배치확인
+	public Map<String, Object> selectMatching(int employeeNo, String tourDIYTerm) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		//DB 연결
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			//쿼리문
+			String sql = " SELECT p.employee_email, c.customer_id, d.tourdiy_term"
+					+ " FROM employee p"
+					+ " INNER JOIN  estimate e"
+					+ " ON p.employee_no = e.employee_no"
+					+ " INNER JOIN tourdiy d"
+					+ " ON e.tourdiy_no = d.tourdiy_no"
+					+ " INNER JOIN customer c"
+					+ " ON c.customer_id = d.customer_id"
+					+ " WHERE p.employee_no = ? AND d.tourdiy_term = ?";
+			stmt = conn.prepareStatement(sql); //쿼리실행
+			stmt.setInt(1, employeeNo);
+			stmt.setString(2, tourDIYTerm);
+			//디버깅
+			System.out.println("stmt(selectMatching) ->" + stmt);
+			rs = stmt.executeQuery(); //쿼리결과저장
+			//디버깅
+			System.out.println("rs(selectMatching)->" + rs);
+			
+			if(rs.next()) {
+				map = new HashMap<String, Object>(); 
+				map.put("employeeEmail", rs.getString("employeeEmail"));
+				map.put("customerId", rs.getString("customerId"));
+				map.put("tourDIYTerm", rs.getString("tourDIYTerm"));
+				
+				//디버깅
+				System.out.println("employeeEmail(selectMatching)->" + rs.getString("employeeEmail"));
+				System.out.println("customerId(selectMatching)->" + rs.getString("customerId"));
+				System.out.println("tourDIYTerm(selectMatching)->" + rs.getString("tourDIYTerm"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 		return map;
 	}

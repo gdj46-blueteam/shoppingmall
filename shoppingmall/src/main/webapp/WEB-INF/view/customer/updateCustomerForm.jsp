@@ -17,7 +17,7 @@
 		<table class="table">
 			<tr>
 				<td>customerId</td>
-				<td><input type="text" name="customerId" value="<%=customer.getCustomerId()%>"></td>
+				<td><input type="text" name="customerId" value="<%=customer.getCustomerId()%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>memberPw</td>

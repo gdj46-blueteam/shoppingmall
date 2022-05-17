@@ -23,8 +23,8 @@
 			</tr>
 			
 			<%
-						for(EmployeeList e : list){
-						%>
+				for(EmployeeList e : list){
+			%>
 					<tr>
 						<td><%=e.getEmployeeNo()%></td>
 						<td><%=e.getEmployeeName()%></td>

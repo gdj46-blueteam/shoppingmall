@@ -11,14 +11,11 @@
 <body>
 	<div class="container">
 		<h3>insert employee</h3>
-			<form action="${pageContext.request.contextPath}/SearchAddressController" method="post">
-			<div>주소검색(주소먼저입력)</div>
-			<input type="text" name="searchAddr">ex) 영당로 
-			<button type="submit">검색</button>
-		</form>
-		&nbsp;
-		<h1>입력란</h1>
 		<form method="post" action="${pageContext.request.contextPath}/InsertEmpContoller">
+			<!-- <form action="${pageContext.request.contextPath}/SearchAddressController" method="post"> -->
+			
+		<h1>입력란</h1>
+		
 			<table class ="table table-hover">
 				<%-- <tr>
 					<td>employeeNo</td>
@@ -26,17 +23,6 @@
 						<input type ="text" name="employeeNo" readonly ="readonly">
 					</td>
 				</tr> --%>
-				<tr>
-					<c:if test="${searchList != null}">
-			<div>
-			<select name="empAddressId">
-				<option value=="">!!주소 선택!!</option>
-				<c:forEach var="m" items="${searchList}">
-					<option value="${m.id}">${m.addr}</option>
-				</c:forEach>
-			</select>
-			</div>
-	</c:if>
 				</tr>
 				<tr>
 					<td>employeePw</td>
@@ -49,6 +35,24 @@
 					<td>
 						<input type ="text" name="employeeSn">
 					</td>
+				</tr>
+				<tr>
+					<div>주소검색(주소먼저입력)</div>
+					<input type="text" name="searchAddr">ex) 영당로 
+					<button type="submit" onclick="javascript: form.action='SearchAddressController';">검색</button>
+				<td>employeeAddr</td>
+				<td>
+				<c:if test="${searchList != null}">
+					<div>
+						<select name="empAddressId">
+								<option value=="">!!주소 선택!!</option>
+							<c:forEach var="m" items="${searchList}">
+								<option value="${m.id}">${m.addr}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</c:if>
+				</td>
 				</tr>
 				<tr>
 					<td>employeeAddressDetail</td>

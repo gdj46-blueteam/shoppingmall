@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "java.util.*" %>
-<%@ page import = "vo.*" %>
-<%
-	List<EmployeeList> list =  (List<EmployeeList>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,19 +16,14 @@
 				<td>employeeNo</td>
 				<td>employeeName</td>
 				<td>employeeImageName</td>
-			</tr>
-			
-			<%
-				for(EmployeeList e : list){
-			%>
-					<tr>
-						<td><%=e.getEmployeeNo()%></td>
-						<td><a href="<%=request.getContextPath()%>/SelectEmpOneController?employeeNo=<%=e.getEmployeeNo()%>"><%=e.getEmployeeName()%></a></td>
-						<td><%=e.getEmployeeImageName()%></td>
-					</tr>
-			<%
-				}
-			%>
+			</tr>	
+			<c:forEach var="e" items="${List}">
+				<tr>
+					<td>${e.employeeNo}</td>
+					<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
+					<td>${e.employeeImageName}</td>
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 </body>

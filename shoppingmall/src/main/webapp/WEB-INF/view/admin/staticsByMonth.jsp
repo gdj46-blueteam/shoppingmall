@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.*"%>
-<%
-	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("list");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +11,7 @@
 <div class="container">
 	<h4 class="text-dark">월별 통계</h4>
 	<div>
-		<a href="<%=request.getContextPath()%>/StaticsListController" class="">통계 검색창</a> 		
+		<a href="${pageContext.request.contextPath}/StaticsListController" class="">통계 검색창</a> 		
 	</div>
 	<table class="table table-bordered small">
 		<tr>
@@ -22,17 +19,13 @@
 			<th>count</th>	
 			<th>rank</th>
 		</tr>
-		<%
-			for(Map<String,Object> map : list){
-		%>
+		<c:forEach var="map" items="${List}">
 			<tr>
-				<td><%=map.get("month") %> 월</td>
-				<td><%=map.get("cnt") %></td>
-				<td><%=map.get("rank") %></td>
+				<td>${map.month} 월</td>
+				<td>${map.cnt}</td>
+				<td>${map.rank}</td>
 			</tr>
-		<%		
-			}
-		%>
+		</c:forEach>
 	</table>
 </div>
 </body>

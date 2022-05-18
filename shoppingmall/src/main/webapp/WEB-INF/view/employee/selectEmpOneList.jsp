@@ -12,8 +12,8 @@
 <div class="container">
 	<h3>직원 상세정보</h3>
 	<div>
-		<a href="<%=request.getContextPath()%>/SelectEmpListController" class=" ">직원 목록</a>
-		<a href="<%=request.getContextPath()%>/SelectEmpMatchingController" class=" ">배치 확인</a> 		
+		<a href="${pageContext.request.contextPath}/SelectEmpListController" class=" ">직원 목록</a>
+		<a href="${pageContext.request.contextPath}/SelectEmpMatchingController" class=" ">배치 확인</a> 		
 	</div>
 	<table class="table table-bordered">
 	
@@ -71,8 +71,8 @@
 		</tr>
 	</table>
 	<div>
-		<a href="<%=request.getContextPath()%>/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
-		<a href="<%=request.getContextPath()%>/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-danger">삭제</a>
+		<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
+		<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-danger">삭제</a>
 	</div>
 	<hr>
 	<div class="container">

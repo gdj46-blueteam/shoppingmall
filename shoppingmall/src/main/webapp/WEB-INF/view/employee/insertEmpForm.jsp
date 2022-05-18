@@ -18,7 +18,7 @@
 		</form>
 		&nbsp;
 		<h1>입력란</h1>
-		<form method="post" action="<%=request.getContextPath()%>/InsertEmpContoller">
+		<form method="post" action="${pageContext.request.contextPath}/InsertEmpContoller">
 			<table class ="table table-hover">
 				<%-- <tr>
 					<td>employeeNo</td>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 			</tr>	
 		</table>
 		<div>
-		<a href="<%=request.getContextPath()%>/SelectEmpListController" class=" ">직원 목록</a> 		
+		<a href="${pageContext.request.contextPath}/SelectEmpListController" class=" ">직원 목록</a> 		
 	</div>
 	</div>
 </body>

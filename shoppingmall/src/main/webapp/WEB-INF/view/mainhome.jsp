@@ -23,7 +23,7 @@
                     <div class="row">
                         <nav class="navbar navbar-expand-lg narbar-light">
                             <a class="navbar-brand mr-auto" href="#"> <!--로고-->
-                                <img src="img/logo.png" alt="Site logo">
+                                <img src="mainhome_img/logo.png" alt="Site logo">
                                 Journey
                             </a>
                             <!-- <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
                             <div class="col-xs-12">
                                 <div class="tm-banner-header">
                                     <h1 class="text-uppercase tm-banner-title">Let's begin</h1> <!--banner title-->
-                                    <img src="img/dots-3.png" alt="Dots">
+                                    <img src="mainhome_img/dots-3.png" alt="Dots">
                                     <p class="tm-banner-subtitle">We assist you to choose the best.</p> <!--banner subtitle-->
                                     <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>  <!--배너 버튼-->   
                                 </div>    
@@ -164,9 +164,9 @@
             <div class="tm-container-outer" id="tm-section-2">
                 <section class="tm-slideshow-section">
                     <div class="tm-slideshow">
-                        <img src="img/tm-img-01.jpg" alt="Image">
-                        <img src="img/tm-img-02.jpg" alt="Image">
-                        <img src="img/tm-img-03.jpg" alt="Image">    
+                        <img src="mainhome_img/tm-img-01.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-02.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-03.jpg" alt="Image">    
                     </div>
                     <div class="tm-slideshow-description tm-bg-primary">
                         <h2 class="">Europe's most visited places</h2>
@@ -177,9 +177,9 @@
                 <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse">
 
                     <div class="tm-right tm-slideshow tm-slideshow-highlight">
-                        <img src="img/tm-img-02.jpg" alt="Image">
-                        <img src="img/tm-img-03.jpg" alt="Image">
-                        <img src="img/tm-img-01.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-02.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-03.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-01.jpg" alt="Image">
                     </div> 
 
                     <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight">
@@ -191,9 +191,9 @@
                 </section>
                 <section class="tm-slideshow-section">
                     <div class="tm-slideshow">
-                        <img src="img/tm-img-03.jpg" alt="Image">
-                        <img src="img/tm-img-02.jpg" alt="Image">
-                        <img src="img/tm-img-01.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-03.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-02.jpg" alt="Image">
+                        <img src="mainhome_img/tm-img-01.jpg" alt="Image">
                     </div>
                     <div class="tm-slideshow-description tm-bg-primary">
                         <h2 class="">America's most famous places</h2>
@@ -206,43 +206,43 @@
                 <ul class="nav nav-pills tm-tabs-links">
                     <li class="tm-tab-link-li">
                         <a href="#1a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/north-america.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/north-america.png" alt="Image" class="img-fluid">
                             North America
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#2a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/south-america.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/south-america.png" alt="Image" class="img-fluid">
                             South America
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#3a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/europe.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/europe.png" alt="Image" class="img-fluid">
                             Europe
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#4a" data-toggle="tab" class="tm-tab-link active"><!-- Current Active Tab -->
-                            <img src="img/asia.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/asia.png" alt="Image" class="img-fluid">
                             Asia
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#5a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/africa.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/africa.png" alt="Image" class="img-fluid">
                             Africa
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#6a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/australia.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/australia.png" alt="Image" class="img-fluid">
                             Australia
                         </a>
                     </li>
                     <li class="tm-tab-link-li">
                         <a href="#7a" data-toggle="tab" class="tm-tab-link">
-                            <img src="img/antartica.png" alt="Image" class="img-fluid">
+                            <img src="mainhome_img/antartica.png" alt="Image" class="img-fluid">
                             Antartica
                         </a>
                     </li>
@@ -253,7 +253,7 @@
                     <div class="tab-pane fade" id="1a">
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">North Garden Resort</h3>
                                     <p class="tm-text-highlight">One North</p>
@@ -266,7 +266,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Felis nec dignissim</h3>
                                     <p class="tm-text-highlight">Two North</p>
@@ -280,7 +280,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Sed fermentum justo</h3>
                                     <p class="tm-text-highlight">Three North</p>
@@ -293,7 +293,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Maecenas ultricies neque</h3>
                                     <p class="tm-text-highlight">Four North</p>
@@ -314,7 +314,7 @@
 
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">South Resort Hotel</h3>
                                     <p class="tm-text-highlight">South One</p>
@@ -327,7 +327,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Aenean ac ante nec diam</h3>
                                     <p class="tm-text-highlight">South Second</p>
@@ -340,7 +340,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Suspendisse nec dapibus</h3>
                                     <p class="tm-text-highlight">South Third</p>
@@ -353,7 +353,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Aliquam viverra mi at nisl</h3>
                                     <p class="tm-text-highlight">South Fourth</p>
@@ -374,7 +374,7 @@
 
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Europe Hotel</h3>
                                     <p class="tm-text-highlight">Venecia, Italy</p>
@@ -387,7 +387,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">In viverra enim turpis</h3>
                                     <p class="tm-text-highlight">Paris, France</p>
@@ -400,7 +400,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Volutpat pellentesque</h3>
                                     <p class="tm-text-highlight">Barcelona, Spain</p>
@@ -413,7 +413,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Grand Resort Pasha</h3>
                                     <p class="tm-text-highlight">Istanbul, Turkey</p>
@@ -434,7 +434,7 @@
                     <!-- Current Active Tab WITH "show active" classes in DIV tag -->
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Asia Resort Hotel</h3>
                                     <p class="tm-text-highlight">Singapore</p>
@@ -447,7 +447,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Nullam eget est a nisl</h3>
                                     <p class="tm-text-highlight">Yangon, Myanmar</p>
@@ -461,7 +461,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Proin interdum ullamcorper</h3>
                                     <p class="tm-text-highlight">Bangkok, Thailand</p>
@@ -474,7 +474,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Lorem ipsum dolor sit</h3>
                                     <p class="tm-text-highlight">Vientiane, Laos</p>
@@ -495,7 +495,7 @@
 
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Africa Resort Hotel</h3>
                                     <p class="tm-text-highlight">First City</p>
@@ -508,7 +508,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Aenean ac magna diam</h3>
                                     <p class="tm-text-highlight">Second City</p>
@@ -521,7 +521,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Beach Barbecue Sunset</h3>
                                     <p class="tm-text-highlight">Third City</p>
@@ -534,7 +534,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Grand Resort Pasha</h3>
                                     <p class="tm-text-highlight">Fourth City</p>
@@ -555,7 +555,7 @@
 
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Hotel Australia</h3>
                                     <p class="tm-text-highlight">City One</p>
@@ -568,7 +568,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Proin interdum ullamcorper</h3>
                                     <p class="tm-text-highlight">City Two</p>
@@ -581,7 +581,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Beach Barbecue Sunset</h3>
                                     <p class="tm-text-highlight">City Three</p>
@@ -594,7 +594,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Grand Resort Pasha</h3>
                                     <p class="tm-text-highlight">City Four</p>
@@ -615,7 +615,7 @@
 
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-04.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Antartica Resort</h3>
                                     <p class="tm-text-highlight">Ant City One</p>
@@ -628,7 +628,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-05.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Pulvinar Semper</h3>
                                     <p class="tm-text-highlight">Ant City Two</p>
@@ -641,7 +641,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-06.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Cras vel sapien</h3>
                                     <p class="tm-text-highlight">Ant City Three</p>
@@ -654,7 +654,7 @@
                             </div>
 
                             <div class="tm-recommended-place">
-                                <img src="img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
+                                <img src="mainhome_img/tm-img-07.jpg" alt="Image" class="img-fluid tm-recommended-img">
                                 <div class="tm-recommended-description-box">
                                     <h3 class="tm-recommended-title">Nullam eget est</h3>
                                     <p class="tm-text-highlight">Ant City Four</p>

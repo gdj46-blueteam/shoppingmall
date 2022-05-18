@@ -52,7 +52,7 @@
 	<%
 	// }
 	%>
-	
+	<a href="${pageContext.request.contextPath}/myPage?customerId=${customer.customerId }">뒤로</a>
 	<a href="${pageContext.request.contextPath}/UpdateCustomerController?customerId=${customer.customerId }&customerName=${customer.customerName }&customerGender=${customer.customerGender }&customerAge=${customer.customerAge }&customerPhone=${customer.customerPhone }&customerEmail=${customer.customerEmail }&customerCountry=${customer.customerCountry }">수정</a>
 	<a href="${pageContext.request.contextPath}/DeleteCustomerController?customerId=${customer.customerId }">삭제</a>
 	</tr>

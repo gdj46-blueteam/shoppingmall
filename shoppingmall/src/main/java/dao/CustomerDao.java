@@ -67,7 +67,6 @@ public class CustomerDao {
 					customer.setCustomerEmail(rs.getString("customerEmail"));
 					customer.setCustomerCountry(rs.getString("customerCountry"));
 					customer.setCreateDate(rs.getString("createDate"));
-					customer.setUpdateDate(rs.getString("updateDate"));
 					customer.setAuthority(rs.getInt("authority"));
 				}
 			} catch (Exception e) {

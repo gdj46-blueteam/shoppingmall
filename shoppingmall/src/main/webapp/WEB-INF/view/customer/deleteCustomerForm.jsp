@@ -1,10 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import = "vo.*" %>
-<%
-	//뷰에 입력하기위해 요청값 넣기
-	Customer customer = new Customer();
-	customer = (Customer)request.getAttribute("customer");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +7,10 @@
 </head>
 <body>
 	<table>
-		<form method="post" action="<%=request.getContextPath()%>/DeleteCustomerController">
+		<form method="post" action="${pageContext.request.contextPath}/DeleteCustomerController">
 			<tr>
 				<td>customerId</td>
-				<td><input type="text" name="customerId" value="<%=customer.getCustomerId()%>" readonly = "readonly"></td>
+				<td><input type="text" name="customerId" value="${customer.customerId }" readonly = "readonly"></td>
 			</tr>
 			<tr>
 				<td>customerPw</td>
@@ -24,7 +18,7 @@
 			</tr>
 			<button type="submit">삭제</button>
 		</form>
-		<a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=customer.getCustomerId()%>">뒤로</a>
+		<a href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }">뒤로</a>
 	</table>
 </body>
 </html>

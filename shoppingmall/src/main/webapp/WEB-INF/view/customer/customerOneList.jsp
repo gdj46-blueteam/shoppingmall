@@ -1,8 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "vo.*" %>
-<%
-	Customer customer = (Customer)request.getAttribute("customer");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,46 +7,38 @@
 </head>
 <body>
 	<table border="1">
-	<h1>MyPage</h1>
+	<h1>회원정보</h1>
 	<tr>
 		<td>Id</td>
-		<td><%=customer.getCustomerId() %></td>
+		<td>${customer.customerId }</td>
 	</tr>
 	<tr>
 		<td>Name</td>
-		<td><%=customer.getCustomerName() %></td>
+		<td>${customer.customerName }</td>
 	</tr>
 	<tr>
 		<td>Gender</td>
-		<td><%=customer.getCustomerGender() %></td>
+		<td>${customer.customerGender }</td>
 	</tr>
 	<tr>
 		<td>Age</td>
-		<td><%=customer.getCustomerAge() %></td>
+		<td>${customer.customerAge }</td>
 	</tr>
 	<tr>
 		<td>Phone</td>
-		<td><%=customer.getCustomerPhone() %></td>
+		<td>${customer.customerPhone }</td>
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td><%=customer.getCustomerEmail() %></td>
+		<td>${customer.customerEmail }</td>
 	</tr>
 	<tr>
 		<td>Country</td>
-		<td><%=customer.getCustomerCountry() %></td>
-	</tr>
-	<tr>
-		<td>UpdateDate</td>
-		<td><%=customer.getUpdateDate() %></td>
+		<td>${customer.customerCountry }</td>
 	</tr>
 	<tr>
 		<td>CreateDate</td>
-		<td><%=customer.getCreateDate() %></td>
-	</tr>
-	<tr>
-		<td>authority</td>
-		<td><%=customer.getAuthority() %></td>
+		<td>${customer.createDate }</td>
 	</tr>
 	<tr>
 	<!-- 
@@ -60,13 +48,13 @@
 	<%
 	// if(세션에 있는 권한이 > 2) {
 	%>
-	<!-- <a href="<%=request.getContextPath()%>/SelectCustomerOneController">회원목록으로</a> -->
+	<!-- <a href="${pageContext.request.contextPath}/SelectCustomerOneController">회원목록으로</a> -->
 	<%
 	// }
 	%>
 	
-	<a href="<%=request.getContextPath()%>/UpdateCustomerController?customerId=<%=customer.getCustomerId() %>&customerName=<%=customer.getCustomerName() %>&customerGender=<%=customer.getCustomerGender() %>&customerAge=<%=customer.getCustomerAge() %>&customerPhone=<%=customer.getCustomerPhone() %>&customerEmail=<%=customer.getCustomerEmail() %>&customerCountry=<%=customer.getCustomerCountry() %>">수정</a>
-	<a href="<%=request.getContextPath()%>/DeleteCustomerController?customerId=<%=customer.getCustomerId() %>">삭제</a>
+	<a href="${pageContext.request.contextPath}/UpdateCustomerController?customerId=${customer.customerId }&customerName=${customer.customerName }&customerGender=${customer.customerGender }&customerAge=${customer.customerAge }&customerPhone=${customer.customerPhone }&customerEmail=${customer.customerEmail }&customerCountry=${customer.customerCountry }">수정</a>
+	<a href="${pageContext.request.contextPath}/DeleteCustomerController?customerId=${customer.customerId }">삭제</a>
 	</tr>
 	<!-- 다른 기능들 넣어햐 합니다. -->
 	</table>

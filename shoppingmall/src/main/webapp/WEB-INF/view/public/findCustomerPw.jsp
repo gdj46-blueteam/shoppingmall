@@ -1,9 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.*" %>
-<%
-		Customer customer = new Customer();
-		customer = (Customer)request.getAttribute("customer");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +9,10 @@
 	<table>
 		<tr>
 			<td>findPw : </td>
-			<td><%=customer.getCustomerPw() %></td>
+			<td>${customer.customerPw }</td>
 		</tr>
 		<tr>
-			<a href="<%=request.getContextPath()%>/LoginController">로그인하러가기</a>
+			<a href="${pageContext.request.contextPath}/LoginController">로그인하러가기</a>
 		</tr>
 	</table>
 </body>

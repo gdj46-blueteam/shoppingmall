@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "vo.*" %>
-<%@ page import = "java.util.*" %>
-<%
-	List<Customer> list = (List<Customer>)request.getAttribute("customer");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,18 +14,15 @@
 		<th>customerCountry</th>
 		<th>customerGender</th>
 	</tr>
-			<%
-			for(Customer c : list) {
-			%>
-				<tr>
-					<td><a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=c.getCustomerId()%>"><%=c.getCustomerId() %></a></td>
-					<td><%=c.getCustomerName() %></td>
-					<td><%=c.getCustomerCountry() %></td>
-					<td><%=c.getCustomerGender() %></td>
-				</tr>
-			<%
-			}
-			 %>
+	<c:forEach var="c" items="${customer}">
+		<tr>
+			<td>${c.customerId}</td>
+			<td><a href="SelectCustomerOneController?customerId=${c.customerId}">${c.customerId}</a></td>
+			<td>${c.customerName }</td>
+			<td>${c.customerCountry }</td>
+			<td>${c.customerGender }</td>
+		</tr>
+	</c:forEach>
 	 </table>
 </body>
 </html>

@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	int estimateNo = (int)request.getAttribute("estimateNo");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +10,7 @@
 	<table>
 	<tr>
 		<td>견적서번호</td>
-		<td><input type="number" name = "estimateNo" value="<%=estimateNo %>" readonly="readonly"><%=estimateNo %></td>
+		<td><input type="number" name = "estimateNo" value="${estimateNo }" readonly="readonly">${estimateNo }</td>
 	</tr>
 	<tr>
 		<td>은행</td>
@@ -23,7 +20,7 @@
 		<td>계좌번호</td>
 		<td><input type="text"></td>
 	</tr>
-	<a href="<%=request.getContextPath()%>/SelectEstimateController?estimateNo=<%=estimateNo %>">결제</a>
+	<a href="${pageContext.request.contextPath}/SelectEstimateController?estimateNo=${estimateNo }">결제</a>
 	</table>
 </body>
 </html>

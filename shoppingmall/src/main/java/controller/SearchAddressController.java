@@ -27,7 +27,7 @@ public class SearchAddressController extends HttpServlet {
 	System.out.println("SearchAddressController : " + list.size());
 	
 	request.setAttribute("searchList", list);
-	request.getRequestDispatcher("/WEB-INF/view/employee/insertEmpForm.jsp").forward(request, response);
+	request.getRequestDispatcher("/WEB-INF/view/admin/insertEmpForm.jsp").forward(request, response);
 		
 	}
 

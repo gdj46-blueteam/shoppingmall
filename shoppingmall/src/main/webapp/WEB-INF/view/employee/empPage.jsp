@@ -15,16 +15,20 @@
 			<tr>
 				<td>employeeNo</td>
 				<td>employeeName</td>
-				<td>employeeImageName</td>
+				<td>employeeImage</td>
 			</tr>	
 			<c:forEach var="e" items="${list}">
 				<tr>
 					<td>${e.employeeNo}</td>
 					<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
 					<td>${e.employeeImageName}</td>
+					<%-- <td><img alt="" src="${pageContext.request.contextPath}/image/${e.employeeImageName}" width="100" height="100"></td> --%>
 				</tr>
 			</c:forEach>
 		</table>
+		<div>
+		<a href="${pageContext.request.contextPath}/InsertEmpContoller" class=" ">직원 등록</a>
+	</div>
 	</div>
 </body>
 </html>

@@ -38,7 +38,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>customerGender</td>
+				<td>customerGender(essential)</td>
 				<td>
 				<input type='radio' name='customerGender' value='남' class="gender">남
 				<input type='radio' name='customerGender' value='여' class="gender">여
@@ -165,13 +165,8 @@
 			
 			$('#customerNameHelper').text('이름을 선택하세요');
 			$('#customerName').focus();
-		} else if($('#customerGender:checked').length == 0) {
-			$('#customerNameHelper').text('');
-			
-			$('#customerGenderHelper').text('성별을 선택하세요');
-			$('#customerGender').focus();
 		} else if($('#customerAge').val() == '') {
-			$('#customerGender').text('');
+			$('#customerNameHelper').text('');
 			
 			$('#customerAgeHelper').text('나이를 입력하세요');
 			$('#customerAge').focus();

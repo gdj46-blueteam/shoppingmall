@@ -6,36 +6,79 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import vo.Photo;
 import vo.Tour;
+import vo.TourArea;
+import vo.TourImage;
 
 public class TourDao {
-	//입력
-	public void insertTour() {
-		int row = 0;
-		Connection conn = null;
+	
+	public void insertTourImage(TourImage tourImage) {
+		
+		System.out.println("insertTourImageDao 실행");
+		String dburl="jdbc:mariadb://localhost:3306/blog";
+		String dbuser="root";														//3가지 변수화
+		String dbpw="java1234"; 
+		Connection conn=null;
+		try {
+			conn=DriverManager.getConnection(dburl,dbuser,dbpw);
+			String sql="insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, tourImage.getTourimageName());
+			stmt.setString(2, tourImage.getTourimageType());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {										//접속 디버깅  
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	}
+						
+	//입력				//반환 값을 뭘로 할까?
+	public void insertTour(List<HashMap<String,Object>> list) {		//tour삽입 쿼리문 --> tourArea와 tourImage를 선 insert 
+		int row = 0;												// tourArea와 tourImage가 있으면 기본키값을 받아 넣는다.
+		Connection conn = null;										//없을 시  insert
+		TourArea tourArea = new TourArea();
+		TourImage tourImage;
+		
+
 		PreparedStatement tourAreaStmt = null;
 		PreparedStatement tourImageStmt = null;
 		PreparedStatement tourStmt = null;
+		
+
+		
+		
 		String touAareaSql = "insert into tourarea(area, city) values(?,?)";
-		String tourImageSql = "insert into tourimage(tourimage_name tourImageName, tourimage_type tourImageType, create_date createDate) values(?,?,now())";
-		String tourSql = "insert into tour(tour_name tourName, tour_description, tourimage_no) values(?,?,?)";
+		String tourImageSql = "insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
+		String tourSql = "insert into tour(tourarea_id, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
+		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			conn.setAutoCommit(false);
-			tourAreaStmt = conn.prepareStatement(touAareaSql);
-			tourImageStmt = conn.prepareStatement(tourImageSql);
-			tourStmt = conn.prepareStatement(tourSql);
-			row = tourAreaStmt.executeUpdate();
-			row = tourImageStmt.executeUpdate();
-			row = tourStmt.executeUpdate();
-			conn.commit();
-			if(row == 0) {
-				System.out.println("입력실패");
-			} else {
-				System.out.println("입력성공");
-			}
+			
+			tourAreaStmt =  conn.prepareStatement(touAareaSql);
+			tourAreaStmt.setString(1, x);							//tourArea insert
+			tourAreaStmt.setString(2, x);	
+			
+			System.out.println(tourArea.getTourAreaId() + " insertTour에서의 tourAreaId");
+																								
+																								
+															//tourAreaId 값이 있으면 tourArea의 조회 값을 사용
+			tourStmt = conn.prepareStatement(tourSql);	
+			tourStmt.setInt(1, x);										//insertTourSql 쿼리 실행
+			tourStmt.setString(2,x);
+			tourStmt.setString(3, x);
+			tourStmt.setInt(4, x)
+					
+					
+					
+					
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

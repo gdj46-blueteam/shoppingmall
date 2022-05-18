@@ -6,14 +6,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>findId</td>
-			<td>${customer.customerPw }</td>
-		</tr>
-		<tr>
-			<a href="${pageContext.request.contextPath}/LoginController">로그인하러가기</a>
-		</tr>
-	</table>
+	<ol>
+		<li><a href="${pageContext.request.contextPath}/SelectCustomerOneController">회원정보</a></li>
+		<li><a href="${pageContext.request.contextPath}/InsertReviewController">리뷰</a></li>
+	</ol>
 </body>
 </html>

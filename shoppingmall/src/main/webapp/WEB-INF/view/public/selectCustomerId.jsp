@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +7,7 @@
 </head>
 <body>
 	<table>
-		<form method="get" action="<%=request.getContextPath()%>/FindCustomerIdController">
+		<form method="get" action="${pageContext.request.contextPath}/FindCustomerIdController">
 			<tr>customerEmail : </tr>
 			<tr><input type="text" name="customerEmail"></tr>
 			<button type="submit">찾기</button>

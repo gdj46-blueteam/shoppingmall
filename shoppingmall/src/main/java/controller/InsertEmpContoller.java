@@ -16,7 +16,7 @@ import vo.Employee;
 public class InsertEmpContoller extends HttpServlet {
 	private EmployeeDao employeeDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/employee/insertEmpForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/admin/insertEmpForm.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Employee employee = new Employee();

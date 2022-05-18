@@ -1,10 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import = "vo.*" %>
-<%
-	//뷰에 입력하기위해 요청값 넣기
-	Customer customer = new Customer();
-	customer = (Customer)request.getAttribute("customer");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +7,11 @@
 </head>
 <body>
 	<h1>회원 수정</h1>
-	<form method="post" action="<%=request.getContextPath()%>/UpdateCustomerController">
+	<form method="post" action="${pageContext.request.contextPath}/UpdateCustomerController">
 		<table class="table">
 			<tr>
 				<td>customerId</td>
-				<td><input type="text" name="customerId" value="<%=customer.getCustomerId()%>" readonly="readonly"></td>
+				<td><input type="text" name="customerId" value="${customer.customerId }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>memberPw</td>
@@ -25,7 +19,7 @@
 			</tr>
 			<tr>	
 				<td>customerName</td>
-				<td><input type="text" name="customerName" " value="<%=customer.getCustomerName()%>"></td>
+				<td><input type="text" name="customerName" " value="${customer.customerName }"></td>
 			</tr>
 			<tr>
 				<td>customerGender</td>
@@ -37,28 +31,28 @@
 			<tr>
 				<td>customerAge</td>
 				<td>
-					<input name="customerAge" type="number" value="<%=customer.getCustomerAge()%>">
+					<input name="customerAge" type="number" value="${customer.customerAge }">
 				</td>
 			</tr>
 			<tr>
 				<td>customerPhone</td>
 				<td>
-					<input name="customerPhone" type="text" value="<%=customer.getCustomerPhone()%>">
+					<input name="customerPhone" type="text" value="${customer.customerPhone }>">
 				</td>
 			</tr>
 			<tr>
 				<td>customerEmail</td>
 				<td>
-					<input name="customerEmail" type="text" value="<%=customer.getCustomerEmail()%>">
+					<input name="customerEmail" type="text" value="${customer.customerEmail }">
 				</td>
 			</tr>
 			<tr>
 				<td>customerCountry</td>
 				<td>
-					<input name="customerCountry" type="text" value="<%=customer.getCustomerCountry()%>">
+					<input name="customerCountry" type="text" value="${customer.customerCountry }">
 				</td>
 			</tr>
-			<a href="<%=request.getContextPath()%>/SelectCustomerOneController?customerId=<%=customer.getCustomerId()%>">뒤로</a>
+			<a href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }">뒤로</a>
 			<button type="submit">수정</button>
 		</table>
 	</form>

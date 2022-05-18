@@ -12,7 +12,8 @@
 <div class="container">
 	<h3>직원 상세정보</h3>
 	<div>
-		<a href="<%=request.getContextPath()%>/SelectEmpListController" class=" ">직원 목록</a> 		
+		<a href="<%=request.getContextPath()%>/SelectEmpListController" class=" ">직원 목록</a>
+		<a href="<%=request.getContextPath()%>/SelectEmpMatchingController" class=" ">배치 확인</a> 		
 	</div>
 	<table class="table table-bordered">
 	

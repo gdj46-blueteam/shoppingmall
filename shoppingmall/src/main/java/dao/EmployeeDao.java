@@ -218,7 +218,7 @@ public class EmployeeDao {
 				employeeListOne.setCreateDate(rs.getString("createDate"));
 				employeeListOne.setUpdateDate(rs.getString("updateDate"));	
 				
-				System.out.println("employeeNo(selectEmpOne)->" + rs.getInt(employeeNo));
+				System.out.println("employeeNo(selectEmpOne)->" + rs.getInt("employeeNo"));
 				System.out.println("employeeSn(selectEmpOne)->" + rs.getString("employeeSn"));
 				System.out.println("employeeAddress(selectEmpOne)->" + rs.getString("employeeAddress"));
 				System.out.println("employeeAddressDetail(selectEmpOne)->" + rs.getString("employeeAddressDetail"));

@@ -13,13 +13,22 @@
 		<table border="1">
 			<tr>
 				<td>No</td>
-				<td><input type="text" name="announcementNo" value="${announcement.announcementNo}"></td>
+				<td>${announcement.announcementNo}</td>
+			</tr>
+	
+			<tr>
 				<td>Title</td>
-				<td><input type="text" name="announcementTitle" value="${announcement.announcementTitle}"></td>
+				<td>${announcement.announcementTitle}</td>
+			</tr>
+			
+			<tr>
 				<td>Content</td>
-				<td><input type="text" name="announcementContent" value="${announcement.announcementContent}"></td>
+				<td>${announcement.announcementContent}</td>
+			</tr>
+			
+			<tr>
 				<td>CreateDate</td>
-				<td><input type="text" name="createDate" value="${announcement.createDate}"></td>
+				<td>${announcement.createDate}</td>
 			</tr>
 		</table>
 	</form>

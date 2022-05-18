@@ -26,7 +26,7 @@ public class AnnouncementDao {
 			String sql = " SELECT announcement_no announcementNo, announcement_title announcementTitle, announcement_content announcementContent, create_date createDate "
 					+ 	 " FROM announcement ";
 			
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) { //결과값 넣기
@@ -41,7 +41,7 @@ public class AnnouncementDao {
 //				map.put("kind",rs.getString("kind"));
 //				map.put("cash",rs.getInt("cash"));
 //				map.put("memo",rs.getString("memo"));
-				acList.add(ac);
+				acList.add(ac); // 가져온 값 추가
 			}
 			System.out.println(acList);
 		} catch (Exception e) {
@@ -60,8 +60,8 @@ public class AnnouncementDao {
 		return acList;
 	}
 	
-	//SelectAnnouncementOne 공지사항 상세보기
-	public Announcement SelectAnnouncementOne(int announcementNo) {// 반환값 Announcement로 생성, announcement_no값으로 상세보기 값 가져옴
+	// 공지사항 상세보기
+	public Announcement selectAnnouncementOne(int announcementNo) {// 반환값 Announcement로 생성, announcement_no값으로 상세보기 값 가져옴
 		Announcement announcement = new Announcement(); // announcement 값 null로 준비
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -73,7 +73,7 @@ public class AnnouncementDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setInt(1, announcementNo);
 			rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -81,7 +81,12 @@ public class AnnouncementDao {
 				announcement.setAnnouncementTitle(rs.getString("announcementTitle"));
 				announcement.setAnnouncementContent(rs.getString("announcementContent"));
 				announcement.setCreateDate(rs.getString("createDate"));
-			 
+				//디버깅
+				System.out.println("announcementNo---" + rs.getInt("announcementNo"));
+				System.out.println("announcementTitle---" + rs.getString("announcementTitle"));
+				System.out.println("announcementContent---" + rs.getString("announcementContent"));
+				System.out.println("createDate---" + rs.getString("createDate"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();	
@@ -98,7 +103,7 @@ public class AnnouncementDao {
 
 
 	}
-	//Delete announcement 공지사항 삭제하기
+	// 공지사항 삭제하기
 	public int deleteAnno(int announcementNo) {
 		int row = 0;
 		//DB
@@ -111,7 +116,9 @@ public class AnnouncementDao {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, announcementNo);	
-			row = stmt.executeUpdate();
+			System.out.println();
+			
+			row = stmt.executeUpdate("deleteAnno----"+stmt);
 			
 		} catch (Exception e) {
 			e.printStackTrace();	
@@ -127,7 +134,7 @@ public class AnnouncementDao {
 		return row;
 		
 	}
-	//수정
+	//공지사항 수정
 	public int updateAnno(Announcement announcement) {
 		int row = 0;
 		//DB
@@ -142,6 +149,8 @@ public class AnnouncementDao {
 			stmt.setString(1, announcement.getAnnouncementTitle());
 			stmt.setString(2, announcement.getAnnouncementContent());
 			stmt.setInt(3, announcement.getAnnouncementNo());
+			System.out.println("updateAnno----"+stmt);
+			
 			row = stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

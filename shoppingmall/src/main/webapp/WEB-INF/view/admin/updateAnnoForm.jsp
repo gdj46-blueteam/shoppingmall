@@ -23,6 +23,7 @@
 				</tr>
 			</table>
 			<button type="submit">수정</button>
+			<a href="${pageContext.request.contextPath}/SelectAnnoOneController?announcementNo=${announcement.announcementNo}"><button>슈</button></a>
 		</form>
 </body>
 </html>

@@ -52,7 +52,7 @@ public class UpdateAnnoController extends HttpServlet {
 		int row = announcementDao.updateAnno(announcement);
 		if (row == 1) { //성공
 	        System.out.println("수정성공");
-	        response.sendRedirect(request.getContextPath()+"/SelectAnnoListController");
+	        response.sendRedirect(request.getContextPath()+"/SelectAnnoOneController? ="+announcement.getAnnouncementNo());
 	        return;
 	     } else {// row==0이면 오류
 	        System.out.println("수정실패");

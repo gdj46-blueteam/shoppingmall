@@ -17,9 +17,9 @@ public class SelectAnnoOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//dao값 받기 -announcement_no
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));
-		System.out.println("asfknakgnselkng : " + announcementNo);
+		System.out.println("SelectAnnoOneController --- " + announcementNo);
 		announcementDao = new AnnouncementDao();
-		Announcement announcement = announcementDao.SelectAnnouncementOne(announcementNo);
+		Announcement announcement = announcementDao.selectAnnouncementOne(announcementNo);
 		
 		//view로 보내기
 		request.setAttribute("announcement", announcement );

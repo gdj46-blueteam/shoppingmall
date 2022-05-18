@@ -46,18 +46,9 @@
 					관광설명
 				</td>
 				<td>
-					<textarea name="tourName" rows="2" cols="60"></textarea>
+					<textarea name="tourDescription" rows="2" cols="60"></textarea>
 				</td>
 			</tr>
-			
-		<!-- 	<tr>
-				<td>
-					이미지이름:
-				</td>
-				<td>
-					<input type="text" name="tourImageName">
-				</td>
-			</tr> -->
 			<tr>
 				<td>이미지파일</td>
 				<td><input type="file" name="tourImage" ></td>

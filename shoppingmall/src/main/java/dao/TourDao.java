@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import vo.Photo;
 import vo.Tour;
 import vo.TourArea;
 import vo.TourImage;
@@ -18,17 +17,20 @@ public class TourDao {
 	
 	public void insertTourImage(TourImage tourImage) {
 		
-		System.out.println("insertTourImageDao 실행");
-		String dburl="jdbc:mariadb://localhost:3306/blog";
-		String dbuser="root";														//3가지 변수화
-		String dbpw="java1234"; 
+		System.out.println("insertTourImageDao 실행"); 
+		int row=0;
 		Connection conn=null;
+		String sql="insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
 		try {
-			conn=DriverManager.getConnection(dburl,dbuser,dbpw);
-			String sql="insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			System.out.println(tourImage.getTourimageName());
+			System.out.println(tourImage.getTourimageType());
+			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, tourImage.getTourimageName());
 			stmt.setString(2, tourImage.getTourimageType());
+			
+			row=stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {										//접속 디버깅  
@@ -38,6 +40,7 @@ public class TourDao {
 			e.printStackTrace();
 		}
 		}
+		System.out.println(row +"<-- insertmember");
 	}
 						
 	//입력				//반환 값을 뭘로 할까?

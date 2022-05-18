@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,11 @@
       <table class = "table table-bordered">
          <tr>
             <td>직원 번호</td>
-            <td>${list.employeeNo } </td>
+            <td>${list.employeeNo}</td>
          </tr>
          <tr>
             <td>직원 이름</td>
-            <td>${list.employeeName } </td>
+            <td>${list.employeeName}</td>
          </tr>
          <tr>
             <td>고객 아이디</td>
@@ -29,7 +30,7 @@
          </tr>   
       </table>
       <div>
-      <a href="<%=request.getContextPath()%>/SelectEmpOneController?employeeNo=${employeeListOne.employeeNo}" class=" ">직원 상세정보</a>       
+      <a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${employeeListOne.employeeNo}" class=" ">직원 상세정보</a>       
    </div>
    </div>
 </body>

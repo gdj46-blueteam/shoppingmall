@@ -9,20 +9,28 @@
 </head>
 <body>
 	<div class="container">
-		<h3>select Matching</h3>
+		<h3>배치 확인</h3>
 		<table class = "table table-bordered">
 			<tr>
-				<td>employeeEmail</td>
-				<td>customerId</td>
-				<td>tourDIYTerm</td>
+				<td>직원 번호</td>
+				<td></td>
 			</tr>
 			<tr>
-		
+				<td>직원 이름</td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>고객 아이디</td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>여행 날짜</td>
 				<td></td>
 			</tr>	
 		</table>
+		<div>
+		<a href="<%=request.getContextPath()%>/SelectEmpListController" class=" ">직원 목록</a> 		
+	</div>
 	</div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,10 +32,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>empAddressId</td>
-					<td>
-						<input type ="text" name="empAddressId">
-					</td>
+					<input type ="text" name="empAddressId" readonly="readonly" hidden="hidden" value="${m.id}">
 				</tr>
 				<tr>
 					<td>employeeAddressDetail</td>
@@ -81,6 +79,20 @@
 			</table>
 			<button type ="submit">직원등록</button>
 		</form>
-	</div>
+	<form action="${pageContext.request.contextPath}/SearchAddressController" method="post">
+			<input type="text" name="searchAddr">ex) 영당로 
+			<button type="submit">주소검색</button>
+		</form>
+	<c:if test="${searchList != null}">
+		<h2>검색 결과</h2>
+			<div>
+			<select name="empAddressId">
+				<option value=="">!!주소 선택!!</option>
+				<c:forEach var="m" items="${searchList}">
+					<option  value="${m.id}">${m.addr}</option>
+				</c:forEach>
+			</select>
+			</div>
+	</c:if>
 </body>
 </html>

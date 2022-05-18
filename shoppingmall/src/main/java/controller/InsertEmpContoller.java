@@ -14,8 +14,10 @@ import vo.Employee;
 
 @WebServlet("/InsertEmpContoller")
 public class InsertEmpContoller extends HttpServlet {
-	//객체 생성
 	private EmployeeDao employeeDao;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/view/employee/insertEmpForm.jsp").forward(request, response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Employee employee = new Employee();
 		// insertEmpForm.jsp 에서 받은 정보 받아오기
@@ -36,9 +38,5 @@ public class InsertEmpContoller extends HttpServlet {
 		//디버깅
 		System.out.println(row +"<- 직원등록");
 		response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
-	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//jsp 요청
-		request.getRequestDispatcher("/WEB-INF/view/employee/insertEmpForm.jsp").forward(request, response);
 	}
 }

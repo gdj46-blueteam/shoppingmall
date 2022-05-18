@@ -11,6 +11,13 @@
 <body>
 	<div class="container">
 		<h3>insert employee</h3>
+			<form action="${pageContext.request.contextPath}/SearchAddressController" method="post">
+			<div>주소검색(주소먼저입력)</div>
+			<input type="text" name="searchAddr">ex) 영당로 
+			<button type="submit">검색</button>
+		</form>
+		&nbsp;
+		<h1>입력란</h1>
 		<form method="post" action="<%=request.getContextPath()%>/InsertEmpContoller">
 			<table class ="table table-hover">
 				<%-- <tr>
@@ -19,6 +26,18 @@
 						<input type ="text" name="employeeNo" readonly ="readonly">
 					</td>
 				</tr> --%>
+				<tr>
+					<c:if test="${searchList != null}">
+			<div>
+			<select name="empAddressId">
+				<option value=="">!!주소 선택!!</option>
+				<c:forEach var="m" items="${searchList}">
+					<option value="${m.id}">${m.addr}</option>
+				</c:forEach>
+			</select>
+			</div>
+	</c:if>
+				</tr>
 				<tr>
 					<td>employeePw</td>
 					<td>
@@ -30,9 +49,6 @@
 					<td>
 						<input type ="text" name="employeeSn">
 					</td>
-				</tr>
-				<tr>
-					<input type ="text" name="empAddressId" readonly="readonly" hidden="hidden" value="${m.id}">
 				</tr>
 				<tr>
 					<td>employeeAddressDetail</td>
@@ -79,20 +95,5 @@
 			</table>
 			<button type ="submit">직원등록</button>
 		</form>
-	<form action="${pageContext.request.contextPath}/SearchAddressController" method="post">
-			<input type="text" name="searchAddr">ex) 영당로 
-			<button type="submit">주소검색</button>
-		</form>
-	<c:if test="${searchList != null}">
-		<h2>검색 결과</h2>
-			<div>
-			<select name="empAddressId">
-				<option value=="">!!주소 선택!!</option>
-				<c:forEach var="m" items="${searchList}">
-					<option  value="${m.id}">${m.addr}</option>
-				</c:forEach>
-			</select>
-			</div>
-	</c:if>
 </body>
 </html>

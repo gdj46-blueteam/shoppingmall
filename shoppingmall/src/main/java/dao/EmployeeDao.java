@@ -62,49 +62,61 @@ public class EmployeeDao {
    //issue : 주소번호 삽입대신 검색해서 삽입하게 
    //2.직원 삽입
    public int insertEmp(Employee employee) {
-      int row = 0;
-      
-      //DB 연결
-      Connection conn = null;
-      PreparedStatement stmt = null;
-      
-      try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageName, employee_introduce, create_date, update_date)"
-               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
-         stmt = conn.prepareStatement(sql); //쿼리 실행
-         stmt.setString(1, employee.getEmployeePw());
-               //System.out.println(employee.getEmployeePw());
-         stmt.setString(2, employee.getEmployeeSn());
-               //System.out.println(employee.getEmployeeSn());
-         stmt.setInt(3, employee.getEmpAddressId());
-         stmt.setString(4, employee.getEmployeeAddressDetail());
-         stmt.setString(5, employee.getEmployeeName());
-         stmt.setString(6, employee.getEmployeeEmail());
-         stmt.setString(7, employee.getEmployeePhone());
-         stmt.setString(8, employee.getEmployeeGender());
-         stmt.setString(9, employee.getEmployeeImageName());
-         stmt.setString(10, employee.getEmployeeIntroduce());
-         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
-         System.out.println("직원 입력 stmt -> " + stmt); //디버깅
-         
-         if(row == 1) {
-            System.out.println("1행 입력 성공");
-         } else {
-            System.out.println("입력 실패");
-         }
-      } catch (SQLException e) {
-         e.printStackTrace();
-      } finally {
-         try {
-            stmt.close();
-            conn.close();
-         } catch (SQLException e) {
-            e.printStackTrace();
-         }
-      }
-      return row;
-   }
+	      int row = 0;
+	      
+	      //DB 연결
+	      Connection conn = null;
+	      PreparedStatement stmt = null;
+	      PreparedStatement stmt2 = null;
+	      
+	      try {
+	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	         conn.setAutoCommit(false);
+	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageName, employee_introduce, create_date, update_date)"
+	               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
+	         
+	         String sql2 = "INSERT INTO employee_image(employee_imageName, employee_imageType, create_date) VALUES(?, ? ,NOW())";
+	         
+	         stmt2 = conn.prepareStatement(sql2);
+	         stmt2.setString(1, employee.getEmployeeName());
+	         stmt2.setString(2, "jpeg");
+	         int row2 = stmt2.executeUpdate();
+	         System.out.println("employee_image" + row2);
+	         
+	         stmt = conn.prepareStatement(sql); //쿼리 실행
+	         stmt.setString(1, employee.getEmployeePw());
+	               //System.out.println(employee.getEmployeePw());
+	         stmt.setString(2, employee.getEmployeeSn());
+	               //System.out.println(employee.getEmployeeSn());
+	         stmt.setInt(3, employee.getEmpAddressId());
+	         stmt.setString(4, employee.getEmployeeAddressDetail());
+	         stmt.setString(5, employee.getEmployeeName());
+	         stmt.setString(6, employee.getEmployeeEmail());
+	         stmt.setString(7, employee.getEmployeePhone());
+	         stmt.setString(8, employee.getEmployeeGender());
+	         stmt.setString(9, employee.getEmployeeImageName());
+	         stmt.setString(10, employee.getEmployeeIntroduce());
+	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
+	         System.out.println("직원 입력 stmt -> " + stmt); //디버깅
+	         
+	         conn.commit();
+	         if(row == 1) {
+	            System.out.println("1행 입력 성공");
+	         } else {
+	            System.out.println("입력 실패");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	      return row;
+	   }
    
    //3.직원 수정
    public int updateEmp(Employee employee) {
@@ -361,7 +373,7 @@ public class EmployeeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null; 
 		ResultSet rs = null;
-		String sql=" SELECT id Id, concat(province, ' ', city,' ', town,' ', street,' ', building1) address "
+		String sql = " SELECT id, concat(province, ' ', city,' ', town,' ', street,' ', building1) address "
 					+ "FROM address "
 					+ "WHERE street LIKE ? "; 
 		try {
@@ -371,7 +383,7 @@ public class EmployeeDao {
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<>();
-				m.put("Id", rs.getInt("Id"));
+				m.put("id", rs.getInt("id"));
 				m.put("addr", rs.getString("address"));
 				list.add(m);
 			}

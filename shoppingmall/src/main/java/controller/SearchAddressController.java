@@ -23,7 +23,9 @@ public class SearchAddressController extends HttpServlet {
 		
 	this.employeeDao = new EmployeeDao();
 	List<Map<String, Object>> list = this.employeeDao.selectAddressList(searchAddr);
-		
+	
+	System.out.println("SearchAddressController : " + list.size());
+	
 	request.setAttribute("searchList", list);
 	request.getRequestDispatcher("/WEB-INF/view/employee/insertEmpForm.jsp").forward(request, response);
 		

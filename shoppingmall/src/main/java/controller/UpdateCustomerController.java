@@ -83,9 +83,10 @@ public class UpdateCustomerController extends HttpServlet {
 		
 		CustomerDao customerDao = new CustomerDao();
 		int row = customerDao.updateCustomer(customer);
+        System.out.println("수정전후");
 		if (row == 1) { //성공
 	        System.out.println("수정성공");
-	        response.sendRedirect(request.getContextPath()+"/SelectCustomerOneController");
+	        response.sendRedirect(request.getContextPath()+"/SelectCustomerOneController?customerId="+customer.getCustomerId());
 	        return;
 	     } else {// row==0이면 영향받은 행이 없으므로 오류
 	        System.out.println("수정실패");

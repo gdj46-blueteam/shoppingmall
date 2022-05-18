@@ -13,7 +13,7 @@
 	<h3>직원 상세정보</h3>
 	<div>
 		<a href="${pageContext.request.contextPath}/SelectEmpListController" class=" ">직원 목록</a>
-		<a href="${pageContext.request.contextPath}/SelectEmpMatchingController" class=" ">배치 확인</a> 		
+		<a href="${pageContext.request.contextPath}/SelectEmpMatchingController?employeeNo=${employeeListOne.employeeNo}" class=" ">배치 확인</a> 		
 	</div>
 	<table class="table table-bordered">
 	

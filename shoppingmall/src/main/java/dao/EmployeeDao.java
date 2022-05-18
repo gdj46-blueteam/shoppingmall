@@ -320,7 +320,7 @@ public class EmployeeDao {
       try {
          conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
          //쿼리문
-         String sql = " SELECT p.employee_no ,p.employee_name, c.customer_id,  d.tourdiy_term"
+         String sql = " SELECT p.employee_no employeeNo ,p.employee_name employeeName, c.customer_id customerId,  d.tourdiy_term tourdiyTerm"
          		+ " FROM employee p"
          		+ " INNER JOIN  estimate e"
          		+ " ON p.employee_no = e.employee_no"
@@ -328,26 +328,27 @@ public class EmployeeDao {
          		+ " ON e.tourdiy_no = d.tourdiy_no"
          		+ " INNER JOIN customer c"
          		+ " ON c.customer_id = d.customer_id"
-         		+ " WHERE p.employee_no = ?";
+         		+ " WHERE p.employee_no = ?"
+         		+ " order by d.tourdiy_term DESC";
          stmt = conn.prepareStatement(sql); //쿼리실행
+         System.out.println("stmt(selectMatching) ->" + stmt);
          stmt.setInt(1, employeeNo);
          
-         //디버깅
-         System.out.println("stmt(selectMatching) ->" + stmt);
          rs = stmt.executeQuery(); //쿼리결과저장
-         //디버깅
-         System.out.println("rs(selectMatching)->" + rs);
+         System.out.println("rs(selectMatching)->" + rs); //디버깅
          
          if(rs.next()) {
             map = new HashMap<String, Object>(); 
             map.put("employeeNo", rs.getInt("employeeNo"));
-            map.put("employeeEmail", rs.getString("employeeEmail"));
+            map.put("employeeName", rs.getString("employeeName"));
             map.put("customerId", rs.getString("customerId"));
+            map.put("tourdiyTerm", rs.getString("tourdiyTerm"));
             
             //디버깅
-            System.out.println("employeeNo(selectMatching)->" + rs.getString("employeeNo"));
-            System.out.println("employeeEmail(selectMatching)->" + rs.getString("employeeEmail"));
+            System.out.println("employeeNo(selectMatching)->" + rs.getInt("employeeNo"));
+            System.out.println("employeeName(selectMatching)->" + rs.getString("employeeName"));
             System.out.println("customerId(selectMatching)->" + rs.getString("customerId"));
+            System.out.println("tourdiyTerm(selectMatching)->" + rs.getString("tourdiyTerm"));
           
          }
       } catch (SQLException e) {

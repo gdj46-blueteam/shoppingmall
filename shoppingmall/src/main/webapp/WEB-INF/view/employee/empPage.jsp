@@ -17,7 +17,7 @@
 				<td>employeeName</td>
 				<td>employeeImageName</td>
 			</tr>	
-			<c:forEach var="e" items="${List}">
+			<c:forEach var="e" items="${list}">
 				<tr>
 					<td>${e.employeeNo}</td>
 					<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>

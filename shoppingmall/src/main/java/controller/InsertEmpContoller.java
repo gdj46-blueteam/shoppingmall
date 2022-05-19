@@ -29,15 +29,18 @@ public class InsertEmpContoller extends HttpServlet {
 		System.out.println("path(InsertEmpContoller) ->" + path);
 		
 		//MultipartRequest
-		MultipartRequest multiReq = new MultipartRequest(request,path,1024*1024*100,"utf-8", new DefaultFileRenamePolicy());
-		String employeeImageName = multiReq.getFilesystemName("employeeImageName"); //new DefaultFileRenamePolicy() 객체를 통해 변경된 이름
-		String employeeImageType = multiReq.getContentType("employeeImageType");
+		MultipartRequest multiRequest = new MultipartRequest(request,path,1024*1024*100,"utf-8", new DefaultFileRenamePolicy());
+		String employeeImageName = multiRequest.getFilesystemName("employeeImageName"); //new DefaultFileRenamePolicy() 객체를 통해 변경된 이름
+		String employeeImageType = multiRequest.getContentType("employeeImageType");
 		//디버깅
 		System.out.println("employeeImageName(InsertEmpContoller) ->" + employeeImageName);
 		System.out.println("employee_imageType(InsertEmpContoller)->" + employeeImageType);
 		
 		//이미지 타입
 		//파일 업로드의 경우 100Mbyte 이하의 image/gif, image/png, image/jpeg 3가지 이미지만 허용
+		if(employeeImageType==null) {
+			employeeImageType="image/jpeg";
+		}
 		if(employeeImageType.equals("image/gif") ||employeeImageType.equals("image/png")||employeeImageType.equals("image/jpeg")){
 			//db에 저장
 			System.out.println("사진 db에 저장(InsertEmpContoller)");
@@ -59,41 +62,20 @@ public class InsertEmpContoller extends HttpServlet {
 		}	
 		
 		// insertEmpForm.jsp 에서 받은 정보 받아오기
-		String employeePw = request.getParameter("employeePw");
-		String employeeSn = request.getParameter("employeeSn");
-		int empAddressId = Integer.parseInt(request.getParameter("empAddressId"));
-		String employeeAddressDetail= request.getParameter("employeeAddressDetail");
-		String employeeName =request.getParameter("employeeName");
-		String employeeEmail = request.getParameter("employeeEmail");
-		String employeePhone = request.getParameter("employeePhone");
-		String employeeGender = request.getParameter("employeeGender");
-		int employeeImageNo = Integer.parseInt(multiReq.getParameter("employeeImageNo"));
-		String employeeIntroduce = request.getParameter("employeeIntroduce");
-		
 		Employee employee = new Employee();
-		//request
-		employee.setEmployeePw(employeePw);
-		employee.setEmployeeSn(employeeSn);
-		employee.setEmpAddressId(empAddressId); //int 형변환
-		employee.setEmployeeAddressDetail(employeeAddressDetail);
-		employee.setEmployeeName(employeeName);
-		employee.setEmployeeEmail(employeeEmail);
-		employee.setEmployeePhone(employeePhone);
-		employee.setEmployeeGender(employeeGender);
-		employee.setEmployeeImageNo(employeeImageNo);
-		employee.setEmployeeIntroduce(employeeIntroduce);
-		
 		//multiReq
-		/*employee.setEmployeePw(multiReq.getParameter("employeePw"));
-		employee.setEmployeeSn(multiReq.getParameter("employeeSn"));
-		employee.setEmpAddressId(Integer.parseInt(multiReq.getParameter("empAddressId"))); //int 형변환
-		employee.setEmployeeAddressDetail(multiReq.getParameter("employeeAddressDetail"));
-		employee.setEmployeeNo(Integer.parseInt(multiReq.getParameter("employeeNo")));
-		employee.setEmployeeEmail(multiReq.getParameter("employeeEmail"));
-		employee.setEmployeePhone(multiReq.getParameter("employeePhone"));
-		employee.setEmployeeGender(multiReq.getParameter("employeeGender"));
-		employee.setEmployeeImageNo(multiReq.getParameter("employeeImageNo"));
-		employee.setEmployeeIntroduce(multiReq.getParameter("employeeIntroduce"));*/
+		employee.setEmployeePw(multiRequest.getParameter("employeePw"));
+		employee.setEmployeeSn(multiRequest.getParameter("employeeSn"));
+		employee.setEmpAddressId(Integer.parseInt(multiRequest.getParameter("empAddressId"))); //int 형변환
+		employee.setEmployeeAddressDetail(multiRequest.getParameter("employeeAddressDetail"));
+		employee.setEmployeeName(multiRequest.getParameter("employeeName"));
+		employee.setEmployeeEmail(multiRequest.getParameter("employeeEmail"));
+		employee.setEmployeePhone(multiRequest.getParameter("employeePhone"));
+		employee.setEmployeeGender(multiRequest.getParameter("employeeGender"));
+		employee.setEmployeeImageNo(Integer.parseInt(multiRequest.getParameter("employeeImageNo")));
+		employee.setEmployeeIntroduce(multiRequest.getParameter("employeeIntroduce"));
+		
+		System.out.println("employeeImageNo(InsertEmpContoller)->" + multiRequest.getParameter("employeeImageNo"));
 		
 		//Dao 객체 생성해서 insetEmp 메서드 호출해서 실행
 		int row = employeeDao.insertEmp(employee); //직원삽입 메소드

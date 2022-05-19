@@ -94,13 +94,13 @@ public class TourDao {
 		Connection conn = null;										
 		PreparedStatement stmt= null;
 		int row=0;
-		String sql = "insert into tour(tourarea_id, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
+		String sql = "insert into tour(tourarea_No, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			
 			stmt =  conn.prepareStatement(sql);
-			stmt.setInt(1, tour.getTourAreaId());							
+			stmt.setInt(1, tour.getTourAreaNo());								
 			stmt.setString(2, tour.getTourName());
 			stmt.setString(3,tour.getTourDescription());
 			stmt.setInt(4,tour.getTourImageNo());																
@@ -175,7 +175,7 @@ public class TourDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//상세보기 쿼리문
-		String sql = "select tour_no tourNo, tourarea_id tourAreaId, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
+		String sql = "select tour_no tourNo, tourarea_No tourAreaNo, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리실행
@@ -184,7 +184,7 @@ public class TourDao {
 			while(rs.next()) {
 				tour = new Tour();
 				tour.setTourNo(rs.getInt("tourNo"));
-				tour.setTourAreaId(rs.getInt("tourAreaId"));
+				tour.setTourAreaNo(rs.getInt("tourAreaNo"));
 				tour.setTourName(rs.getString("tourName"));
 				tour.setTourDescription(rs.getString("tourDescription"));
 				tour.setTourImageNo(rs.getInt("tourImageNo"));
@@ -205,7 +205,7 @@ public class TourDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//관광리스트 조회하는 쿼리문
-		String sql =  " SELECT tour_no tourNo, tourarea_id tourareaId, tour_name tourName, tour_description tourDescription,"
+		String sql =  " SELECT tour_no tourNo, tourarea_no tourareaNo, tour_name tourName, tour_description tourDescription,"
 					+ "	tourimage_no tourImageNo FROM tour";
 		try {
 			//DB접속
@@ -218,7 +218,7 @@ public class TourDao {
 				tour = new Tour();
 				//객체에 각 조회된 결과값을 저장
 				tour.setTourNo(rs.getInt("tourNo"));
-				tour.setTourAreaId(rs.getInt("tourareaId"));
+				tour.setTourAreaNo(rs.getInt("tourareaNo"));
 				tour.setTourName(rs.getString("tourName"));
 				tour.setTourDescription(rs.getString("tourDescription"));
 				tour.setTourImageNo(rs.getInt("tourImageNo"));
@@ -239,7 +239,7 @@ public class TourDao {
 		ResultSet rs = null;
 		System.out.println(tourNo+"tour상세보기");
 		//관광리스트 조회하는 쿼리문
-		String sql =  " select tour_no tourNo, tourArea_id tourAreaId, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
+		String sql =  " select tour_no tourNo, tourArea_No tourAreaNo, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
 		try {
 			//DB접속
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
@@ -250,7 +250,7 @@ public class TourDao {
 			while(rs.next()) {		 
 				//객체에 각 조회된 결과값을 저장
 				tour.setTourNo(rs.getInt("tourNo"));
-				tour.setTourAreaId(rs.getInt("tourareaId"));
+				tour.setTourAreaNo(rs.getInt("tourareaNo"));
 				tour.setTourName(rs.getString("tourName"));
 				tour.setTourDescription(rs.getString("tourDescription"));
 				tour.setTourImageNo(rs.getInt("tourImageNo"));
@@ -303,17 +303,17 @@ public class TourDao {
 		ResultSet rs = null;
 		System.out.println(tour.getTourImageNo()+" tourImageNo tourImage상세보기");
 		//관광리스트 조회하는 쿼리문
-		String sql =  " select TourArea_id tourAreaId, area,city from tourArea where tourArea_id = ?";
+		String sql =  " select TourArea_No tourAreaNo, area,city from tourArea where tourArea_No = ?";
 		try {
 			//DB접속
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);										//쿼리실행
-			stmt.setInt(1, tour.getTourAreaId());
+			stmt.setInt(1, tour.getTourAreaNo());
 			rs = stmt.executeQuery();//쿼리문 실행값 저장
 			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
 			while(rs.next()) {		
 				//객체에 각 조회된 결과값을 저장
-				tourArea.setTourAreaId(rs.getInt("tourAreaId"));
+				tourArea.setTourAreaNo(rs.getInt("tourAreaNo"));
 				tourArea.setArea(rs.getString("area"));
 				tourArea.setCity(rs.getString("city"));
 				//디버깅

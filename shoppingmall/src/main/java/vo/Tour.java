@@ -5,45 +5,46 @@ public class Tour {
 	public Tour() {}
 	//필드생성
 	private int tourNo;
-	private int tourAreaId;
+	private int tourAreaNo;
 	private String tourName;
 	private String tourDescription;
 	private int tourImageNo;
 	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-		return "Tour [tourNo=" + tourNo + ", tourAreaId=" + tourAreaId + ", tourName=" + tourName + ", tourDescription="
+		return "Tour [tourNo=" + tourNo + ", tourAreaNo=" + tourAreaNo + ", tourName=" + tourName + ", tourDescription="
 				+ tourDescription + ", tourImageNo=" + tourImageNo + "]";
 	}
-	//getter & setter
 	public int getTourNo() {
 		return tourNo;
-	}
-	public int getTourAreaId() {
-		return tourAreaId;
-	}
-	public String getTourName() {
-		return tourName;
-	}
-	public String getTourDescription() {
-		return tourDescription;
-	}
-	public int getTourImageNo() {
-		return tourImageNo;
 	}
 	public void setTourNo(int tourNo) {
 		this.tourNo = tourNo;
 	}
-	public void setTourAreaId(int tourAreaId) {
-		this.tourAreaId = tourAreaId;
+	public int getTourAreaNo() {
+		return tourAreaNo;
+	}
+	public void setTourAreaNo(int tourAreaNo) {
+		this.tourAreaNo = tourAreaNo;
+	}
+	public String getTourName() {
+		return tourName;
 	}
 	public void setTourName(String tourName) {
 		this.tourName = tourName;
 	}
+	public String getTourDescription() {
+		return tourDescription;
+	}
 	public void setTourDescription(String tourDescription) {
 		this.tourDescription = tourDescription;
+	}
+	public int getTourImageNo() {
+		return tourImageNo;
 	}
 	public void setTourImageNo(int tourImageNo) {
 		this.tourImageNo = tourImageNo;
 	}
+	
+	
 }

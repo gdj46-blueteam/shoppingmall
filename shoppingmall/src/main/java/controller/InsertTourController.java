@@ -22,9 +22,7 @@ import vo.TourImage;
 public class InsertTourController extends HttpServlet {
   private TourDao tourDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-				
+
 		request.getRequestDispatcher("/WEB-INF/view/admin/insertTourForm.jsp").forward(request, response); 
 
 	}
@@ -34,11 +32,8 @@ public class InsertTourController extends HttpServlet {
 
 		//String path= application.getRealPath("upload");	
 		//String path= "C:\Users\User\git\shoppingmall\shoppingmall\src\main\webapp\Image";
-		//request.setCharacterEncoding("utf-8");
-		//String path = request.getSession().getServletContext().getRealPath("/image");
-		
+		//request.setCharacterEncoding("utf-8");		
 		String path = request.getSession().getServletContext().getRealPath("/") + "image";
-		
 		System.out.println(path);
 		MultipartRequest multipartRequest  = new MultipartRequest(request, path, 1024*1024*100, "utf-8", new DefaultFileRenamePolicy());
 		
@@ -75,13 +70,13 @@ public class InsertTourController extends HttpServlet {
 			System.out.println(tourImage.toString());
 			// 메서드 호출
 			tour.setTourImageNo(tourDao.insertTourImage(tourImage));		
-			int tourAreaId = tourDao.insertTourArea(tourArea);
+			int tourAreaNo = tourDao.insertTourArea(tourArea);
 		
 			tour.setTourName(tourName);
 			tour.setTourDescription(tourDescription);
 			
-			tour.setTourAreaId(tourAreaId);
-			System.out.println(tour.getTourAreaId()+"tourAreaId");
+			tour.setTourAreaNo(tourAreaNo);
+			System.out.println(tour.getTourAreaNo()+"tourAreaNo");
 			System.out.println(tour.getTourImageNo() +"tourImageNO");
 			System.out.println(tour.toString());
 			tourDao.insertTour(tour);

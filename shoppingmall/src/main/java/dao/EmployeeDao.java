@@ -18,7 +18,7 @@ import vo.EmployeeListOne;
 public class EmployeeDao {
 
 //페이징
-   //issue :  사진이름대신 사진이 나오게?
+ 
    //1.직원 목록
    public List<EmployeeList> selectEmpList(){
       List<EmployeeList> list = new ArrayList<>();
@@ -63,7 +63,7 @@ public class EmployeeDao {
    //2.직원 삽입
    public int insertEmp(Employee employee) {
 	      int row = 0;
-	      
+	      System.out.println("직원 삽입 메서드 시작");
 	      //DB 연결
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
@@ -113,7 +113,7 @@ public class EmployeeDao {
 	         } catch (SQLException e) {
 	            e.printStackTrace();
 	         }
-	      }
+	      }System.out.println("직원 삽입 메서드 끝");
 	      return row;
 	   }
    
@@ -400,6 +400,8 @@ public class EmployeeDao {
 	}
    //9. 직원이미지 삽입
 	public int insertEmployeeImage(EmpImage empImage) {
+		
+		System.out.println("직원이미지 삽입 메서드 시작");
 	   int row =0;
 	//데이터베이스 연결
 	Connection conn = null;
@@ -430,6 +432,7 @@ public class EmployeeDao {
 			e.printStackTrace();
 		}
 	}
+	System.out.println("직원이미지 삽입 메서드 끝");
 	return row;
 	 
 	}
@@ -464,7 +467,7 @@ public class EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}	System.out.println("직원이미지 삽입 메서드 끝");
 	return row;
 	 
    }

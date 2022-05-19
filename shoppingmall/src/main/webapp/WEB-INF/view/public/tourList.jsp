@@ -16,7 +16,7 @@
 			<thead>
 				<tr>
 					<td>tourNo</td>
-					<td>tourAreaId</td>
+					<td>tourAreaNo</td>
 					<td>tourName</td>
 					<td>tourDescription</td>
 					<td>tourImageNo</td>
@@ -26,7 +26,7 @@
 				<c:forEach var = "t" items = "${tourList}">
 					<tr>
 						<td>${t.tourNo}</td>
-						<td>${t.tourAreaId}</td>
+						<td>${t.tourAreaNo}</td>
 						<td><a href="${pageContext.request.contextPath}/DeleteTourController?tourNo=${t.tourNo}">${t.tourName}</a></td>
 						<td>${t.tourDescription}</td>
 						<td>${t.tourImageNo}</td>

@@ -6,9 +6,9 @@ public class Review {
 	
 	//필드생성
 	private int reviewNo;
-	private String customerID;
+	private String customerId;
 	private String review;
-	private int tourDIYNO;
+	private int tourDIYNo;
 	private int estimateNo;
 	private String createDate;
 	private String updateDate;
@@ -16,8 +16,8 @@ public class Review {
 	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", customerID=" + customerID + ", review=" + review + ", tourDIYNO="
-				+ tourDIYNO + ", estimateNo=" + estimateNo + ", createDate=" + createDate + ", updateDate=" + updateDate
+		return "Review [reviewNo=" + reviewNo + ", customerId=" + customerId + ", review=" + review + ", tourDIYNo="
+				+ tourDIYNo + ", estimateNo=" + estimateNo + ", createDate=" + createDate + ", updateDate=" + updateDate
 				+ "]";
 	}
 	
@@ -28,11 +28,11 @@ public class Review {
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
 	}
-	public String getCustomerID() {
-		return customerID;
+	public String getcustomerId() {
+		return customerId;
 	}
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setcustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 	public String getReview() {
 		return review;
@@ -40,11 +40,11 @@ public class Review {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	public int getTourDIYNO() {
-		return tourDIYNO;
+	public int gettourDIYNo() {
+		return tourDIYNo;
 	}
-	public void setTourDIYNO(int tourDIYNO) {
-		this.tourDIYNO = tourDIYNO;
+	public void settourDIYNo(int tourDIYNo) {
+		this.tourDIYNo = tourDIYNo;
 	}
 	public int getEstimateNo() {
 		return estimateNo;

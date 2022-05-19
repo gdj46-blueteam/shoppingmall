@@ -67,21 +67,22 @@ public class EmployeeDao {
 	      //DB 연결
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
-	      PreparedStatement stmt2 = null;
+	      //PreparedStatement stmt2 = null;
 	      
 	      try {
 	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-	         conn.setAutoCommit(false);
-	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name, employee_email, employee_phone, employee_gender,employee_imageName, employee_introduce, create_date, update_date)"
+	         //conn.setAutoCommit(false);
+	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name,"
+	         		+ " employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
 	               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
 	         
-	         String sql2 = "INSERT INTO employee_image(employee_imageName, employee_imageType, create_date) VALUES(?, ? ,NOW())";
-	         
-	         stmt2 = conn.prepareStatement(sql2);
-	         stmt2.setString(1, employee.getEmployeeName());
-	         stmt2.setString(2, "jpeg");
-	         int row2 = stmt2.executeUpdate();
-	         System.out.println("employee_image" + row2);
+				/*String sql2 = "INSERT INTO employee_image(employee_imageNo, employee_imageType, create_date) VALUES(?, ? ,NOW())";
+				
+				stmt2 = conn.prepareStatement(sql2);
+				stmt2.setString(1, employee.getEmployeeName());
+				stmt2.setString(2, "jpeg");
+				int row2 = stmt2.executeUpdate();
+				System.out.println("employee_image" + row2);*/
 	         
 	         stmt = conn.prepareStatement(sql); //쿼리 실행
 	         stmt.setString(1, employee.getEmployeePw());
@@ -92,16 +93,16 @@ public class EmployeeDao {
 	         stmt.setString(6, employee.getEmployeeEmail());
 	         stmt.setString(7, employee.getEmployeePhone());
 	         stmt.setString(8, employee.getEmployeeGender());
-	         stmt.setString(9, employee.getEmployeeImageName());
+	         stmt.setInt(9, employee.getEmployeeImageNo());
 	         stmt.setString(10, employee.getEmployeeIntroduce());
 	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
-	         System.out.println("직원 입력 stmt -> " + stmt); //디버깅
+	         System.out.println("직원입력(insertEmpDao) stmt -> " + stmt); //디버깅
 	         
-	         conn.commit();
+	         //conn.commit();
 	         if(row == 1) {
-	            System.out.println("1행 입력 성공");
+	            System.out.println("직원 1행 입력 성공(insertEmpDao)");
 	         } else {
-	            System.out.println("입력 실패");
+	            System.out.println("직원 입력 실패(insertEmpDao)");
 	         }
 	      } catch (SQLException e) {
 	         e.printStackTrace();
@@ -135,14 +136,14 @@ public class EmployeeDao {
          stmt.setString(3, employee.getEmployeePhone());
          stmt.setString(4, employee.getEmployeeIntroduce());
          stmt.setInt(5, employee.getEmployeeNo());
-         System.out.println("직원 수정 stmt -> " + stmt); //디버깅
+         System.out.println("직원 수정stmt(updateEmpDao) -> " + stmt); //디버깅
          
          row = stmt.executeUpdate(); // 몇행입력했는지 리턴
          
          if(row == 1) {
-            System.out.println("1행 수정 성공");
+            System.out.println("1행 수정 성공(updateEmpDao)");
          } else {
-            System.out.println("수정실패");
+            System.out.println("수정실패(updateEmpDao)");
          }
          
       } catch (SQLException e) {
@@ -174,14 +175,14 @@ public class EmployeeDao {
          // ? 값 대입
          stmt.setInt(1, employeeNo);
          stmt.setString(2, employeePw);
-         System.out.println("직원 삭제 stmt -> " + stmt); //디버깅
+         System.out.println("직원 삭제 stmt(deleteEmpDao) -> " + stmt); //디버깅
          
          row = stmt.executeUpdate();
          
          if(row == 1) {
-            System.out.println("1행 삭제 성공");
+            System.out.println("1행 삭제 성공(deleteEmpDao)");
          } else {
-            System.out.println("삭제실패");
+            System.out.println("삭제실패(deleteEmpDao)");
          }
       } catch (SQLException e) {
          e.printStackTrace();
@@ -372,7 +373,7 @@ public class EmployeeDao {
 		Connection conn = null;
 		PreparedStatement stmt = null; 
 		ResultSet rs = null;
-		String sql = " SELECT id, concat(province, ' ', city,' ', town,' ', street,' ', building1) address "
+		String sql = " SELECT id, concat(province, ' ', city,' ', town,' ', street,' ', building1,' ',building2) address "
 					+ "FROM address "
 					+ "WHERE street LIKE ? "; 
 		try {
@@ -398,13 +399,13 @@ public class EmployeeDao {
 		 return list;
 	}
    //9. 직원이미지 삽입
-	/*public int insertEmployeeImage(EmpImage empImage) {
+	public int insertEmployeeImage(EmpImage empImage) {
 	   int row =0;
 	//데이터베이스 연결
 	Connection conn = null;
 	PreparedStatement stmt = null; 
 	
-	String sql = "insert into tourimage(tourimage_name, tourimage_type,create_date) values(?,?,NOW())"; 
+	String sql = "insert into employee_image(employee_imageName, employee_imageType, create_date) values(?,?,NOW())"; 
 	try {
 		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
 		stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -414,15 +415,16 @@ public class EmployeeDao {
 		row = stmt.executeUpdate();
 		
 		 if(row == 1) {
-	            System.out.println("1행 입력 성공");
+	            System.out.println("1행 입력 성공(insertEmployeeImage)");
 	         } else {
-	            System.out.println("입력 실패");
+	            System.out.println("입력 실패(insertEmployeeImage)");
 	         }
 		
 	} catch (SQLException e) {
 		e.printStackTrace();
 	} finally {
 		try {
+			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -430,20 +432,20 @@ public class EmployeeDao {
 	}
 	return row;
 	 
-	}*/
+	}
    
    //10. 직원 이미지삭제
-   public int delteEmployeeImage(String employeeImageName) {
+   public int delteEmployeeImage(int employeeImageNo) {
 	   int row =0;
 	//데이터베이스 연결
 	Connection conn = null;
 	PreparedStatement stmt = null; 
 	
-	String sql = "delete from employee_image where employee_imageName = ?"; 
+	String sql = "delete from employee_image where employee_imageNo = ?"; 
 	try {
 		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
 		stmt = conn.prepareStatement(sql); //쿼리문 실행
-		stmt.setString(1, employeeImageName);
+		stmt.setInt(1, employeeImageNo);
 		System.out.println("stmt (delteEmployeeImage) -> " + stmt); //디버깅
 		row = stmt.executeUpdate();
 		
@@ -457,6 +459,7 @@ public class EmployeeDao {
 		e.printStackTrace();
 	} finally {
 		try {
+			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -466,17 +469,17 @@ public class EmployeeDao {
 	 
    }
    //11.직원 이미지 이름 반환
-   public String selectEmpImageName(String employeeImageName) {
+   public int selectEmpImageName(int employeeImageNo) {
 	//데이터베이스 연결
 	Connection conn = null;
 	PreparedStatement stmt = null; 
 	ResultSet rs =null;
 	
-	String EmpImageName  = "select employee_imageName where employee_imageName =?"; 
+	String EmpImageName  = "select employee_imageName where employee_imageNo =?"; 
 	try {
 		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
 		stmt = conn.prepareStatement(EmpImageName); //쿼리문 실행
-		stmt.setString(1, employeeImageName);
+		stmt.setInt(1, employeeImageNo);
 		System.out.println("stmt (selectEmpImageName) -> " + stmt); //디버깅
 		rs = stmt.executeQuery(); //실행결과 저장
 		System.out.println("rs(selectEmpImageName) ->" + rs);
@@ -485,14 +488,13 @@ public class EmployeeDao {
 		e.printStackTrace();
 	} finally {
 		try {
+			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	return employeeImageName;
+	return employeeImageNo;
 	 
    }
-   
-   
 }

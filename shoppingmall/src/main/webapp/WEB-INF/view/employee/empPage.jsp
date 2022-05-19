@@ -22,7 +22,7 @@
 					<td>${e.employeeNo}</td>
 					<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
 					<td>${e.employeeImageName}</td>
-					<%-- <td><img alt="" src="${pageContext.request.contextPath}/image/${e.employeeImageName}" width="100" height="100"></td> --%>
+					<%-- <td><img alt="직원사진" src="${pageContext.request.contextPath}/image/${e.employeeImageName}" width="100" height="100"></td>  --%>
 				</tr>
 			</c:forEach>
 		</table>

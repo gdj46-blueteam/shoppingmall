@@ -53,8 +53,8 @@ public class InsertTourController extends HttpServlet {
 		
 		System.out.println(tourImageName + " <-- tourimageName");
 		System.out.println(tourImageType + " <-- tourimageType");
-		System.out.println(province + "<--province");
-		System.out.println(tourCity + "<--tourcity");
+		System.out.println(province + "<--값확인");
+		System.out.println(tourCity + "<--값확인");
 		System.out.println(tourName + "<--tourName");
 		System.out.println(tourDescription + "<--tourDescription");
 		

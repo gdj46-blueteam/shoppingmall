@@ -104,7 +104,7 @@ public class TourDao {
 			stmt.setString(2, tour.getTourName());
 			stmt.setString(3,tour.getTourDescription());
 			stmt.setInt(4,tour.getTourImageNo());																
-			stmt.executeUpdate();
+			row=stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {										

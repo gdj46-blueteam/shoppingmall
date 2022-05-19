@@ -138,7 +138,7 @@ public class TourDao {
 				System.out.println("수정성공");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return row;
@@ -190,7 +190,7 @@ public class TourDao {
 				tour.setTourImageNo(rs.getInt("tourImageNo"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -228,7 +228,6 @@ public class TourDao {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		//반환
 		return tourList;
@@ -248,7 +247,7 @@ public class TourDao {
 			stmt.setInt(1, tourNo);
 			rs = stmt.executeQuery();//쿼리문 실행값 저장
 			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
-			while(rs.next()) {		
+			while(rs.next()) {		 
 				//객체에 각 조회된 결과값을 저장
 				tour.setTourNo(rs.getInt("tourNo"));
 				tour.setTourAreaId(rs.getInt("tourareaId"));
@@ -292,7 +291,7 @@ public class TourDao {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		//반환
 		return tourImage;
@@ -322,7 +321,7 @@ public class TourDao {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		//반환
 		return tourArea;

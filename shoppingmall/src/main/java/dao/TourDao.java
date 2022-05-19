@@ -9,94 +9,127 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.mariadb.jdbc.message.client.ExecutePacket;
+
 import vo.Tour;
 import vo.TourArea;
 import vo.TourImage;
 
 public class TourDao {
 	
-	public void insertTourImage(TourImage tourImage) {
-		
+	public int insertTourImage(TourImage tourImage) {							//TourImage 삽입
 		System.out.println("insertTourImageDao 실행"); 
 		int row=0;
+		int tourImageNo=0;
 		Connection conn=null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		String sql="insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			System.out.println(tourImage.getTourimageName());
-			System.out.println(tourImage.getTourimageType());
+			System.out.println(tourImage.getTourImageName());
+			System.out.println(tourImage.getTourImageType());
 			
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, tourImage.getTourimageName());
-			stmt.setString(2, tourImage.getTourimageType());
+			stmt = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);					//insert쿼리문 실행 후 기본키 반환
+			stmt.setString(1, tourImage.getTourImageName());
+			stmt.setString(2, tourImage.getTourImageType());
+			stmt.executeUpdate();
+			rs=stmt.getGeneratedKeys();
+			if(rs.next()) {
+				tourImageNo = rs.getInt(1);
+			}
 			
+			System.out.println(tourImageNo + "<-- insertTourImageDao");
 			row=stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {										//접속 디버깅  
+		}finally {										
 		try {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		}
-		System.out.println(row +"<-- insertmember");
+		System.out.println(row +"<-- insertTourImage row");
+		return tourImageNo;
+	}
+	
+	public int insertTourArea(TourArea tourArea) {							//TourArea  삽입
+		System.out.println("insertTourArea 실행"); 
+		int tourAreaNo=0;
+		int row=0;
+		Connection conn=null;
+		ResultSet rs=null;
+		String sql = "insert into tourarea(area, city) values(?,?)";		
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			System.out.println(tourArea.getArea());
+			System.out.println(tourArea.getCity());
+			
+			PreparedStatement stmt = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS); 	//insert쿼리문 실행 후 기본키 반환
+			stmt.setString(1, tourArea.getArea());
+			stmt.setString(2, tourArea.getCity());
+			row=stmt.executeUpdate();
+			rs=stmt.getGeneratedKeys();
+			if(rs.next()) {
+				tourAreaNo = rs.getInt(1);																	//기본키 저장
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {										
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+		System.out.println(row +"<-- insertTourArea");
+		System.out.println(tourAreaNo + "<-- tourAreaNoDao");
+		return tourAreaNo;																				//기본키 반환
 	}
 						
-	//입력				//반환 값을 뭘로 할까?
-	public void insertTour(List<HashMap<String,Object>> list) {		//tour삽입 쿼리문 --> tourArea와 tourImage를 선 insert 
-		int row = 0;												// tourArea와 tourImage가 있으면 기본키값을 받아 넣는다.
-		Connection conn = null;										//없을 시  insert
-		TourArea tourArea = new TourArea();
-		TourImage tourImage;
-		
-
-		PreparedStatement tourAreaStmt = null;
-		PreparedStatement tourImageStmt = null;
-		PreparedStatement tourStmt = null;
-		
-
-		
-		
-		String touAareaSql = "insert into tourarea(area, city) values(?,?)";
-		String tourImageSql = "insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
-		String tourSql = "insert into tour(tourarea_id, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
+	//입력				
+	public void insertTour(Tour tour) {								//tourImage,tourArea 삽입메서드 실행 후 tour 실행
+		Connection conn = null;										
+		PreparedStatement stmt= null;
+		int row=0;
+		String sql = "insert into tour(tourarea_id, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
 		
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			
-			tourAreaStmt =  conn.prepareStatement(touAareaSql);
-			tourAreaStmt.setString(1, x);							//tourArea insert
-			tourAreaStmt.setString(2, x);	
-			
-			System.out.println(tourArea.getTourAreaId() + " insertTour에서의 tourAreaId");
-																								
-																								
-															//tourAreaId 값이 있으면 tourArea의 조회 값을 사용
-			tourStmt = conn.prepareStatement(tourSql);	
-			tourStmt.setInt(1, x);										//insertTourSql 쿼리 실행
-			tourStmt.setString(2,x);
-			tourStmt.setString(3, x);
-			tourStmt.setInt(4, x)
-					
-					
-					
-					
+			stmt =  conn.prepareStatement(sql);
+			stmt.setInt(1, tour.getTourAreaId());							
+			stmt.setString(2, tour.getTourName());
+			stmt.setString(3,tour.getTourDescription());
+			stmt.setInt(4,tour.getTourImageNo());																
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally {										
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			}
+		System.out.println(row +"<-- insertTour");
 	}
 	//수정
-	public int updateTour(int tourNo) {
+	public int updateTour(Tour tour) {									// tour Update 쿼리
 		int row = 0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		//수정하는 쿼리문
-		String sql = "update tour set tour_no = ?, tourarea_id = ?, tour_name = ?, tour_description = ?, tourimage_no = ? where tour_name = ?";
+		String sql = "update tour set tour_name = ?, tour_description = ?, where tour_no = ?";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리실행
-			stmt.setInt(1, tourNo);
+				
+			stmt.setString(1, tour.getTourName());
+			stmt.setString(2, tour.getTourDescription());
+			stmt.setInt(3, tour.getTourNo());
 			
 			row = stmt.executeUpdate();
 			if(row == 0) {
@@ -111,8 +144,30 @@ public class TourDao {
 		return row;
 	}
 	//삭제
-	public void deleteTour() {
+	public void deleteTour(int tourNo) {	
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		//삭제 쿼리문
+		String sql = "delete from tour where tour_no = ?";
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);//쿼리실행
+				
+			stmt.setInt(1, tourNo);
+			
+			row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("수정성공");
+			} else {
+				System.out.println("수정실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+
 	//상세보기
 	public int selectTourListOne(int tourNo){
 		Tour tour;
@@ -143,7 +198,7 @@ public class TourDao {
 		
 	}
 	//조회
-	public List<Tour> selectTourList() { //관광리스트 조회
+	public List<Tour> selectTourList() { 							//관광리스트 조회
 		List<Tour> tourList = new ArrayList<>();
 		Tour tour;
 		Connection conn = null;
@@ -178,5 +233,98 @@ public class TourDao {
 		//반환
 		return tourList;
 	}
-	
+	public Tour selectTourOne(int tourNo) {
+		Tour tour= new Tour();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		System.out.println(tourNo+"tour상세보기");
+		//관광리스트 조회하는 쿼리문
+		String sql =  " select tour_no tourNo, tourArea_id tourAreaId, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
+		try {
+			//DB접속
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);										//쿼리실행
+			stmt.setInt(1, tourNo);
+			rs = stmt.executeQuery();//쿼리문 실행값 저장
+			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
+			while(rs.next()) {		
+				//객체에 각 조회된 결과값을 저장
+				tour.setTourNo(rs.getInt("tourNo"));
+				tour.setTourAreaId(rs.getInt("tourareaId"));
+				tour.setTourName(rs.getString("tourName"));
+				tour.setTourDescription(rs.getString("tourDescription"));
+				tour.setTourImageNo(rs.getInt("tourImageNo"));
+				//디버깅
+				System.out.println(tour+"<-tour");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//반환
+		return tour;
+		
+	}
+	public TourImage selectTourImageOne(Tour tour){				//tourImage 상세보기(tour.getTourImageNo를 통하여 TourImage 값 가져오기
+		TourImage tourImage = new TourImage();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		System.out.println(tour.getTourImageNo()+" tourImageNo tourImage상세보기");
+		//관광리스트 조회하는 쿼리문
+		String sql =  " select tourImage_no tourImageNo, tourImage_name tourImageName,tourImage_type tourImageType, create_date createDate from tourImage where TourImage_No = ?";
+		try {
+			//DB접속
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);										//쿼리실행
+			stmt.setInt(1, tour.getTourImageNo());
+			rs = stmt.executeQuery();//쿼리문 실행값 저장
+			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
+			while(rs.next()) {		
+				//객체에 각 조회된 결과값을 저장
+				tourImage.setTourImageNo(rs.getInt("tourImageNo"));
+				tourImage.setTourImageName(rs.getString("tourImageName"));
+				tourImage.setTourImageType(rs.getString("tourImageType"));
+				tourImage.setCreateDate(rs.getString("createDate"));
+				//디버깅
+				System.out.println(tourImage+"<-tourImage 상세보기");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//반환
+		return tourImage;
+	}
+	public TourArea selectTourAreaOne(Tour tour){
+		TourArea tourArea = new TourArea();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		System.out.println(tour.getTourImageNo()+" tourImageNo tourImage상세보기");
+		//관광리스트 조회하는 쿼리문
+		String sql =  " select TourArea_id tourAreaId, area,city from tourArea where tourArea_id = ?";
+		try {
+			//DB접속
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);										//쿼리실행
+			stmt.setInt(1, tour.getTourAreaId());
+			rs = stmt.executeQuery();//쿼리문 실행값 저장
+			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
+			while(rs.next()) {		
+				//객체에 각 조회된 결과값을 저장
+				tourArea.setTourAreaId(rs.getInt("tourAreaId"));
+				tourArea.setArea(rs.getString("area"));
+				tourArea.setCity(rs.getString("city"));
+				//디버깅
+				System.out.println(tourArea +"<-tourArea 상세보기 ");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//반환
+		return tourArea;
+	}
 }

@@ -15,13 +15,13 @@
 				</td>
 				<td>
 					 <select  name="province" >
- 						 <option value="choongchung" >충청도</option>
- 						 <option value="jeonla" > 전라도</option>
-  						<option value="kyunggi" > 경기도</option>
-  						<option value="kangwon"> 강원도</option>
-  						 <option value="seoul" > 서울</option>
-  						<option value="jeju" >제주도</option>
-  						<option value="kyungsang">경상도</option>
+ 						 <option value="충청도" >충청도</option>
+ 						 <option value="전라도" > 전라도</option>
+  						<option value="경기도" > 경기도</option>
+  						<option value="강원도"> 강원도</option>
+  						 <option value="서울" > 서울</option>
+  						<option value="제주도" >제주도</option>
+  						<option value="경상도">경상도</option>
 					</select>
 				</td>
 			</tr>

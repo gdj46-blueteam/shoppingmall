@@ -27,7 +27,7 @@
 					<tr>
 						<td>${t.tourNo}</td>
 						<td>${t.tourAreaId}</td>
-						<td>${t.tourName}</td>
+						<td><a href="${pageContext.request.contextPath}/DeleteTourController?tourNo=${t.tourNo}">${t.tourName}</a></td>
 						<td>${t.tourDescription}</td>
 						<td>${t.tourImageNo}</td>
 					</tr>

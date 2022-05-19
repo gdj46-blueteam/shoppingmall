@@ -13,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/이클2/project/blog1/src/main/webapp/WEB-INF/lib/cos.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

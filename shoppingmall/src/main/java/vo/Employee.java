@@ -14,7 +14,7 @@ public class Employee {
 	private String employeeEmail;
 	private String employeePhone;
 	private String employeeGender;
-	private String employeeImageName;
+	private int employeeImageNo;
 	private int authority;
 	private String employeeIntroduce;
 	private String createDate;
@@ -25,7 +25,7 @@ public class Employee {
 		return "Employee [employeeNo=" + employeeNo + ", employeePw=" + employeePw + ", employeeSn=" + employeeSn
 				+ ", empAddressId=" + empAddressId + ", employeeAddressDetail=" + employeeAddressDetail
 				+ ", employeeName=" + employeeName + ", employeeEmail=" + employeeEmail + ", employeePhone="
-				+ employeePhone + ", employeeGender=" + employeeGender + ", employeeImageName=" + employeeImageName
+				+ employeePhone + ", employeeGender=" + employeeGender + ", employeeImageNo=" + employeeImageNo
 				+ ", authority=" + authority + ", employeeIntroduce=" + employeeIntroduce + ", createDate=" + createDate
 				+ ", updateDate=" + updateDate + "]";
 	}
@@ -85,11 +85,11 @@ public class Employee {
 	public void setEmployeeGender(String employeeGender) {
 		this.employeeGender = employeeGender;
 	}
-	public String getEmployeeImageName() {
-		return employeeImageName;
+	public int getEmployeeImageNo() {
+		return employeeImageNo;
 	}
-	public void setEmployeeImageName(String employeeImageName) {
-		this.employeeImageName = employeeImageName;
+	public void setEmployeeImageNo(int employeeImageNo) {
+		this.employeeImageNo = employeeImageNo;
 	}
 	public int getAuthority() {
 		return authority;
@@ -115,5 +115,5 @@ public class Employee {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("")
+@WebFilter("/login/*")
 public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		if(request instanceof HttpServletRequest) { // request가 HttpServletRequest로 변경가능하다면 
@@ -20,6 +20,9 @@ public class LoginFilter implements Filter {
 			HttpSession session = req.getSession(); //세션 불러오기 
 			String id = (String)session.getAttribute("sessionId"); // 현재 접속중인 아이디
 			int authority = (int)session.getAttribute("sessionAuthority"); 
+			
+			System.out.println("session id 확인 : " + id);
+			System.out.println("session authority 확인 : " + authority);
 			
 			if(id == null) { // 로그인이 안돼있으면
 				if(response instanceof HttpServletResponse) {

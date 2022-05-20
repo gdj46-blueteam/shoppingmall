@@ -15,7 +15,7 @@ import vo.Review;
 
 @WebServlet("/SelectReviewListController")
 public class SelectReviewListController extends HttpServlet {
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//요청값
 	List<Review> reviewList = new ArrayList<Review>();

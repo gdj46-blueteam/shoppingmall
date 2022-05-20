@@ -35,7 +35,7 @@ public class InsertReviewController extends HttpServlet {
 		Review reviewOne = new Review();
 		reviewOne.setcustomerId(customerId);
 		reviewOne.setReview(review);
-		reviewOne.settourDIYNo(tourDIYNo);
+		reviewOne.settourdiyNo(tourDIYNo);
 		reviewOne.setEstimateNo(estimateNo);
 		
 		int row = reviewDao.insertReview(reviewOne);

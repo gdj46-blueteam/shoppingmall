@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,17 +43,25 @@ public class LoginController extends HttpServlet {
 		System.out.println(id+", "+pw +"Logincontroller");	//id,pw 디버깅
 		
 		this.loginDao = new LoginDao();
-		String returnId = loginDao.selectLogin(id, pw);
-		System.out.println(returnId + "login후");
+		HashMap<String, Object> returnInfo = null;
+		try {
+			returnInfo = loginDao.selectLogin(id, pw);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(returnInfo + "login후");
 		
-		if(returnId == null) {
+		if(returnInfo == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginController");
 			return;
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("sessionId", returnId);
-		response.sendRedirect(request.getContextPath()+"/MainHomeController");
+		session.setAttribute("sessionId", returnInfo.get("loginId"));
+		session.setAttribute("sessionAuthority", returnInfo.get("authority"));
 		
+		System.out.println("Login session 저장확인 : " + returnInfo);
+		
+		response.sendRedirect(request.getContextPath()+"/MainHomeController");		
 	}
 	
 }

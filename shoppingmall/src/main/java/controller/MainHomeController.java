@@ -13,11 +13,7 @@ public class MainHomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("메인홈 불러오기");
-		request.getRequestDispatcher("/WEB-INF/view/mainhome.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.getRequestDispatcher("/WEB-INF/view/mainHome/mainhome.jsp").forward(request, response);
 	}
 
 }

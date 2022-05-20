@@ -24,7 +24,7 @@ public class SelectReviewListController extends HttpServlet {
 	
 	System.out.println("ReviewList"+ reviewDao);
 	
-	
+	//뷰
 	request.setAttribute("reviewList", reviewList);
 	request.getRequestDispatcher("/WEB-INF/view/public/reviewList.jsp").forward(request, response);
 	}

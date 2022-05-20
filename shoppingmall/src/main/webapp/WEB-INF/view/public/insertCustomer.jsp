@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,18 +70,12 @@
 			<tr>
 				<td>customerCountry</td>
 				<td>
-					<select id="customerCountry" name="customerCountry">
-						<!-- 필수 -->
-                        <option value="대한민국">대한민국</option>
-                        <option value="미국">미국</option>
-                        <option value="스위스">스위스</option>
-                        <option value="스페인">스페인</option>
-                        <option value="영국">영국</option>
-                        <option value="일본">일본</option>
-                        <option value="증극">중국</option>
-                        <option value="프랑스">프랑스</option>
-                    </select>
+                    <select id="customerCountry" name="customerCountry">
+                    <c:forEach var="c" items="${list}">
+							<option value="${c.country}">${c.country}</option>
+					</c:forEach>
 					<span id="customerCountryHelper" class="helper"></span>
+					</select>
 				</td>
 			</tr>
 			<button type="button" id="signup">가입</button>

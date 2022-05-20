@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,11 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CustomerDao;
+import vo.Country;
 import vo.Customer;
 
 @WebServlet("/InsertCustomerController")
 public class InsertCustomerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 메서드 이용하여 모델값 구하기(M)
+		CustomerDao customerDao = new CustomerDao();
+		List<Country> list = new ArrayList<Country>();
+		list = customerDao.selectCountry();
+		
+		// 뷰로 보낼준비
+		request.setAttribute("list", list);
+		
 		// 뷰 포워딩(v)
 		request.getRequestDispatcher("/WEB-INF/view/public/insertCustomer.jsp").forward(request, response);
 	}

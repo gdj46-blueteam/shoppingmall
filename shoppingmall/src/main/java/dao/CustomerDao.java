@@ -252,4 +252,33 @@ public class CustomerDao {
 			}
 			return row;
 		}
+		
+	// 국가선택(selectCountry)
+		public List<Country> selectCountry() {
+			List<Country> list = new ArrayList<Country>();
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			String sql = "SELECT country "
+					+ "from country";
+			try {
+				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+				stmt = conn.prepareStatement(sql);
+				rs = stmt.executeQuery();
+				while(rs.next()) {
+					Country c =  new Country();
+					c.setCountry(rs.getString("country"));
+					list.add(c);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return list;
+		}
 }

@@ -11,48 +11,57 @@ import javax.servlet.http.HttpServletResponse;
 import dao.TourDao;
 import vo.Tour;
 import vo.TourArea;
+import vo.TourImage;
 
 @WebServlet("/UpdateTourController")
 public class UpdateTourController extends HttpServlet {
+	private TourDao tourDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		TourDao tourDao = new TourDao();
+		this.tourDao = new TourDao();
 		int tourNo = Integer.parseInt(request.getParameter("tourNo"));
-		String tourName = request.getParameter("tourName");
-		String tourDescription = request.getParameter("tourDescription");
-		String province = request.getParameter("province");
-		String tourCity = request.getParameter("tourCity");
 		
 		System.out.println(tourNo + "<-전updateTourController");
-		System.out.println(tourName + "<-전updateTourController");
-		System.out.println(tourDescription + "<-전updateTourController");
-		System.out.println(province + "<-전updateTourController");
-		System.out.println(tourCity + "<-전updateTourController");
+
 
 		Tour tour = tourDao.selectTourOne(tourNo);
-	//	TourImage tourImage = tourDao.selectTourImageOne(tour);
+		TourImage tourImage = tourDao.selectTourImageOne(tour);
 		TourArea tourArea = tourDao.selectTourAreaOne(tour);
 		
 		request.setAttribute("tour", tour);
-	//	request.setAttribute("tourImage", tourImage);
+		request.setAttribute("tourImage", tourImage);
 		request.setAttribute("tourArea", tourArea);
 		
 		System.out.println(tour + "<-updatetour");
-	//	System.out.println(tourImage + "<-updatetourImage");
+		System.out.println(tourImage + "<-updatetourImage");
 		System.out.println(tourArea + "<-updatetourArea");
 		
 		request.getRequestDispatcher("/WEB-INF/view/admin/updateTourForm.jsp").forward(request, response);
 		}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	int tourNo = Integer.parseInt(request.getParameter("tourNo"));
-	String tourName = request.getParameter("tourName");
-	String tourDescription = request.getParameter("tourDescription");
-	String province = request.getParameter("province");
-	String tourCity = request.getParameter("tourCity");
-	//이미지
-	System.out.println(tourNo + "<-후updateTourController");
-	TourDao tourDao=new TourDao();
-	tourDao.updateTour(null);//???????
-	response.sendRedirect(request.getContextPath()+"/UpdateTourController");
+		int tourNo = Integer.parseInt(request.getParameter("tourNo"));
+		System.out.println(tourNo + "<-후updateTourController");
+		
+		String tourName = request.getParameter("tourName");
+		System.out.println(tourName +"<-tourName후updateTourController");
+		
+		String tourDescription = request.getParameter("tourDescription");
+		System.out.println(tourDescription + "<-tourDescription후updateTourController");
+		
+		Tour tour = new Tour();
+		tour.setTourNo(tourNo);
+		tour.setTourName(tourName);
+		tour.setTourDescription(tourDescription);
+		
+		//디버깅
+		System.out.println(tourNo + "<-tourNo후updateTourController");
+		System.out.println(tourName + "<-tourName후updateTourController");
+		System.out.println(tourDescription + "<-tourDescription후updateTourController");
+		
+		this.tourDao=new TourDao();
+		int row = tourDao.updateTour(tour);
+		System.out.println(row + "<-row후updateTourController");
+		request.setAttribute("tourNo", tourNo);
+		response.sendRedirect(request.getContextPath()+"/SelectTourController?tourNo="+ request.getParameter("tourNo"));
 	}
 }

@@ -16,11 +16,11 @@
 			</tr>
 			<tr>
 				<td>tourName</td>
-				<td><input type="text" name="tourName"></td>
+				<td><input type="text" name="tourName" value="${tour.tourName }"></td>
 			</tr>
 			<tr>
 				<td>tourDescription</td>
-				<td><input type="text" name="tourDescription"></td>
+				<td><input type="text" name="tourDescription" value="${tour.tourDescription }"></td>
 			</tr>
 			<tr>
 				<td>province</td>
@@ -30,12 +30,12 @@
 				<td>tourCity</td>
 				<td><input type="text" name="tourCity" readOnly = "readOnly" value="${tourArea.city}"></td>
 			</tr>
-			 <!--  <tr>
+			  <tr>
 				<td>tourImage</td>
 				<td><img src="${pageContext.request.contextPath}/Image/${tourImage.tourImageName}" width="200" height="200"></td>
-			</tr>-->
+			</tr>
 			<button type="submit">수정</button>
-				<a href="${pageContext.request.contextPath}/SelecTourController?tourNo=${tour.tourNo}">목록으로</a>
+				<a href="${pageContext.request.contextPath}/SelectTourController?tourNo=${tour.tourNo}">목록으로</a>
 		</table>
 	</form>
 </body>

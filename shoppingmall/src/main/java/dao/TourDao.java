@@ -134,7 +134,7 @@ public class TourDao {
 			stmt.setString(1, tour.getTourName());
 			stmt.setString(2, tour.getTourDescription());
 			stmt.setInt(3, tour.getTourNo());
-			
+			System.out.println(stmt + "<-updateTourDaostmt");
 			row = stmt.executeUpdate();
 			if(row == 0) {
 				System.out.println("수정실패");

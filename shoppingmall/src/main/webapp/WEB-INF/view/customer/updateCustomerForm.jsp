@@ -4,10 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<h1>회원 수정</h1>
-	<form method="post" action="${pageContext.request.contextPath}/UpdateCustomerController">
+	<form id="signupForm" method="post" action="${pageContext.request.contextPath}/UpdateCustomerController">
 		<table class="table">
 			<tr>
 				<td>customerId</td>
@@ -15,7 +16,9 @@
 			</tr>
 			<tr>
 				<td>memberPw</td>
-				<td><input type="password" name="customerPw"></td>
+				<td><input type="password" name="customerPw" id="customerPw">
+				<span id="customerPwHelper" class="helper"></span>
+				</td>
 			</tr>
 			<tr>	
 				<td>customerName</td>
@@ -53,8 +56,18 @@
 				</td>
 			</tr>
 			<a href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }">뒤로</a>
-			<button type="submit">수정</button>
+			<button type="button" id="signup">수정</button>
 		</table>
 	</form>
 </body>
+<script>
+$('#signup').click(function(){
+	if($('#customerPw').val() == '') {
+		$('#customerPwHelper').text('Pw 입력해주세요');
+		$('#customerPw').focus();
+	} else {
+		$('#signupForm').submit();
+	}
+});
+</script>
 </html>

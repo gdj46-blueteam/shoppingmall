@@ -23,7 +23,8 @@ public class InsertEmpContoller extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8"); //인코딩
 		this.employeeDao = new EmployeeDao(); //dao 객체 생성
-		
+		Employee employee = new Employee();
+		EmpImage empImage = new EmpImage();
 		//사진 삽입
 		String path= request.getSession().getServletContext().getRealPath("/")+ "image";
 		System.out.println("path(InsertEmpContoller) ->" + path);
@@ -44,14 +45,13 @@ public class InsertEmpContoller extends HttpServlet {
 		if(employeeImageType.equals("image/gif") ||employeeImageType.equals("image/png")||employeeImageType.equals("image/jpeg")){
 			//db에 저장
 			System.out.println("사진 db에 저장(InsertEmpContoller)");
-			EmpImage empImage = new EmpImage();
+		
 			empImage.setEmployeeImageName(employeeImageName);
 			empImage.setEmployeeImageType(employeeImageType);
 			
-			employeeDao.insertEmployeeImage(empImage); //이미지 삽입 메소드 호출
-			//employeeDao.insertEmp(null);//메서드 구현
+			employee.setEmployeeImageNo(employeeDao.insertEmployeeImage(empImage)); //이미지 삽입 메소드 호출
+			System.out.println(empImage +" 메서드 실행 후 키값 가져오기");
 			
-			response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
 			
 		}else{
 			System.out.println("이미지 파일을 올려주세요");
@@ -60,9 +60,8 @@ public class InsertEmpContoller extends HttpServlet {
 			file.delete(); //잘못된 파일 삭제
 			response.sendRedirect(request.getContextPath()+"/admin/insertEmpForm.jsp");
 		}	
-		
+
 		// insertEmpForm.jsp 에서 받은 정보 받아오기
-		Employee employee = new Employee();
 		//multiReq
 		employee.setEmployeePw(multiRequest.getParameter("employeePw"));
 		employee.setEmployeeSn(multiRequest.getParameter("employeeSn"));
@@ -72,17 +71,14 @@ public class InsertEmpContoller extends HttpServlet {
 		employee.setEmployeeEmail(multiRequest.getParameter("employeeEmail"));
 		employee.setEmployeePhone(multiRequest.getParameter("employeePhone"));
 		employee.setEmployeeGender(multiRequest.getParameter("employeeGender"));
-		employee.setEmployeeImageNo(Integer.parseInt(multiRequest.getParameter("employeeImageNo")));
 		employee.setEmployeeIntroduce(multiRequest.getParameter("employeeIntroduce"));
-		
-		System.out.println("employeeImageNo(InsertEmpContoller)->" + multiRequest.getParameter("employeeImageNo"));
 		
 		//Dao 객체 생성해서 insetEmp 메서드 호출해서 실행
 		int row = employeeDao.insertEmp(employee); //직원삽입 메소드
 		//디버깅
 		System.out.println(row +" <- 직원등록(InsertEmpContoller)");
 		
-		//response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
-		
+		response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
+
 	}
 }

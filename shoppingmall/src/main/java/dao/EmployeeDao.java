@@ -68,6 +68,7 @@ public class EmployeeDao {
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
 	      //PreparedStatement stmt2 = null;
+	 
 	      
 	      try {
 	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
@@ -96,8 +97,7 @@ public class EmployeeDao {
 	         stmt.setInt(9, employee.getEmployeeImageNo());
 	         stmt.setString(10, employee.getEmployeeIntroduce());
 	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
-	         System.out.println("직원입력(insertEmpDao) stmt -> " + stmt); //디버깅
-	         
+				
 	         //conn.commit();
 	         if(row == 1) {
 	            System.out.println("직원 1행 입력 성공(insertEmpDao)");
@@ -406,16 +406,20 @@ public class EmployeeDao {
 	//데이터베이스 연결
 	Connection conn = null;
 	PreparedStatement stmt = null; 
-	
+	ResultSet rs =null;
+	int imageNo=0;
 	String sql = "insert into employee_image(employee_imageName, employee_imageType, create_date) values(?,?,NOW())"; 
 	try {
 		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
-		stmt = conn.prepareStatement(sql); //쿼리문 실행
+		stmt = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS); //쿼리문 실행
 		stmt.setString(1, empImage.getEmployeeImageName());
 		stmt.setString(2, empImage.getEmployeeImageType());
 		System.out.println("stmt (insertEmployeeImage) -> " + stmt); //디버깅
 		row = stmt.executeUpdate();
-		
+		rs=stmt.getGeneratedKeys();
+		if(rs.next()) {
+			imageNo = rs.getInt(1);
+		}
 		 if(row == 1) {
 	            System.out.println("1행 입력 성공(insertEmployeeImage)");
 	         } else {
@@ -428,12 +432,13 @@ public class EmployeeDao {
 		try {
 			stmt.close();
 			conn.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	System.out.println("직원이미지 삽입 메서드 끝");
-	return row;
+	return imageNo;
 	 
 	}
    

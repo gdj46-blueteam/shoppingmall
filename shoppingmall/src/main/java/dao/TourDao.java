@@ -45,6 +45,8 @@ public class TourDao {
 			e.printStackTrace();
 		}finally {										
 		try {
+			rs.close();
+			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,6 +81,7 @@ public class TourDao {
 			e.printStackTrace();
 		}finally {										
 		try {
+			rs.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,6 +112,7 @@ public class TourDao {
 			e.printStackTrace();
 		}finally {										
 			try {
+				stmt.close();
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -122,7 +126,7 @@ public class TourDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		//수정하는 쿼리문
-		String sql = "update tour set tour_name = ?, tour_description = ?, where tour_no = ?";
+		String sql = "update tour set tour_name = ?, tour_description = ? where tour_no = ?";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리실행
@@ -140,6 +144,13 @@ public class TourDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return row;
 	}
@@ -164,6 +175,13 @@ public class TourDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -192,6 +210,14 @@ public class TourDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return tourNo;

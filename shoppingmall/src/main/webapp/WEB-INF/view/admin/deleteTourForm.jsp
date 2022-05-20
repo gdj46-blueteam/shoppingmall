@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@
 				</tr>
 			</table>
 			<button type="submit" >삭제</button>
-			<a href="">수정</a>
+			<a href="${pageContext.request.contextPath}/UpdateTourController?tourNo=${tour.tourNo}">수정</a>
 	</form>
 </body>
 </html>

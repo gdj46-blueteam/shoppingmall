@@ -8,7 +8,7 @@ public class Review {
 	private int reviewNo;
 	private String customerId;
 	private String review;
-	private int tourDIYNo;
+	private int tourdiyNo;
 	private int estimateNo;
 	private String createDate;
 	private String updateDate;
@@ -16,8 +16,8 @@ public class Review {
 	//toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", customerId=" + customerId + ", review=" + review + ", tourDIYNo="
-				+ tourDIYNo + ", estimateNo=" + estimateNo + ", createDate=" + createDate + ", updateDate=" + updateDate
+		return "Review [reviewNo=" + reviewNo + ", customerId=" + customerId + ", review=" + review + ", tourdiyNo="
+				+ tourdiyNo + ", estimateNo=" + estimateNo + ", createDate=" + createDate + ", updateDate=" + updateDate
 				+ "]";
 	}
 	
@@ -40,11 +40,11 @@ public class Review {
 	public void setReview(String review) {
 		this.review = review;
 	}
-	public int gettourDIYNo() {
-		return tourDIYNo;
+	public int gettourdiyNo() {
+		return tourdiyNo;
 	}
-	public void settourDIYNo(int tourDIYNo) {
-		this.tourDIYNo = tourDIYNo;
+	public void settourdiyNo(int tourdiyNo) {
+		this.tourdiyNo = tourdiyNo;
 	}
 	public int getEstimateNo() {
 		return estimateNo;

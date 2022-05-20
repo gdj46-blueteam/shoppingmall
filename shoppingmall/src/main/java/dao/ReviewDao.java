@@ -21,7 +21,7 @@ public class ReviewDao {
 
    try {
       conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-      String sql = " SELECT review_no reviewNo , customer_id customerId, review review, tourdiy_no tourydiyNo, estimate_no estimateNo, create_date createDate, update_date updateDate "
+      String sql = " SELECT review_no reviewNo , customer_id customerId, review review, tourdiy_no tourdiyNo, estimate_no estimateNo, create_date createDate, update_date updateDate "
             +     " FROM review "; 
       stmt = conn.prepareStatement(sql); //쿼리문 실행
       rs = stmt.executeQuery();
@@ -31,10 +31,11 @@ public class ReviewDao {
          r.setReviewNo(rs.getInt("reviewNo"));
          r.setcustomerId(rs.getString("customerId"));
          r.setReview(rs.getString("Review"));
-         r.settourDIYNo(rs.getInt("tourDIYNo"));
+         r.settourdiyNo(rs.getInt("tourdiyNo"));
          r.setEstimateNo(rs.getInt("estimateNo"));
          r.setCreateDate(rs.getString("createDate"));
          r.setUpdateDate(rs.getString("UpdateDate"));
+         reviewList.add(r);
          }
 
       } catch (Exception e) {
@@ -67,7 +68,7 @@ public class ReviewDao {
          stmt = conn.prepareStatement(sql); //쿼리문 실행
          stmt.setString(1, review.getcustomerId());
          stmt.setString(2, review.getReview());
-         stmt.setInt(3, review.gettourDIYNo());
+         stmt.setInt(3, review.gettourdiyNo());
          stmt.setInt(4, review.getEstimateNo());
          row = stmt.executeUpdate();
          
@@ -132,7 +133,7 @@ public class ReviewDao {
 			 review.setReviewNo(rs.getInt("reviewNo"));
 			 review.setcustomerId(rs.getString("CustomerId"));
 			 review.setReview(rs.getString("review"));
-			 review.settourDIYNo(rs.getInt("tourdiyNo"));
+			 review.settourdiyNo(rs.getInt("tourdiyNo"));
 			 review.setEstimateNo(rs.getInt("estimateNo"));
 			 review.setCreateDate(rs.getString("createDate"));
 			 review.setUpdateDate(rs.getString("updateDate"));

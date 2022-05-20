@@ -15,7 +15,9 @@
 		<a href="${pageContext.request.contextPath}/SelectEmpMatchingController?employeeNo=${employeeListOne.employeeNo}" class=" ">배치 확인</a> 		
 	</div>
 	<table class="table table-bordered">
-	
+		<tr>
+			<td colspan="2"><img src="./Image/${employeeListOne.employeeImageName}" width="500" height="300" alt="직원사진" style="display: block; margin: auto;"></td>
+		</tr>
 		<tr>
 			<td>employeeNo</td>
 			<td>${employeeListOne.employeeNo}</td>
@@ -48,10 +50,7 @@
 			<td>employeeGender</td>
 			<td>${employeeListOne.employeeGender}</td>
 		</tr>
-		<tr>
-			<td>employeeImageName</td>
-			<td>${employeeListOne.employeeImageName}</td>
-		</tr>
+		
 		<tr>
 			<td>employeeIntroduce</td>
 			<td>${employeeListOne.employeeIntroduce}</td>

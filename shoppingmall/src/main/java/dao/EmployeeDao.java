@@ -160,43 +160,6 @@ public class EmployeeDao {
       return row;
    }
    
-   //4.직원 삭제
-   public int deleteEmp(int employeeNo, String employeePw) {
-      int row = 0;
-      
-      //DB연결
-      Connection conn = null;
-      PreparedStatement stmt = null;
-      
-      try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-         String sql = "DELETE FROM employee WHERE employee_no = ? AND employee_pw = PASSWORD(?)";
-         stmt = conn.prepareStatement(sql); // 쿼리문 실행
-         // ? 값 대입
-         stmt.setInt(1, employeeNo);
-         stmt.setString(2, employeePw);
-         System.out.println("직원 삭제 stmt(deleteEmpDao) -> " + stmt); //디버깅
-         
-         row = stmt.executeUpdate();
-         
-         if(row == 1) {
-            System.out.println("1행 삭제 성공(deleteEmpDao)");
-         } else {
-            System.out.println("삭제실패(deleteEmpDao)");
-         }
-      } catch (SQLException e) {
-         e.printStackTrace();
-      } finally {
-         try {
-            stmt.close();
-            conn.close();
-         } catch (SQLException e) {
-            e.printStackTrace();
-         }
-      }
-      return row;
-   }
-
    //5. 직원상세보기
    public EmployeeListOne selectEmpOne(int employeeNo) {
       EmployeeListOne employeeListOne = new EmployeeListOne();

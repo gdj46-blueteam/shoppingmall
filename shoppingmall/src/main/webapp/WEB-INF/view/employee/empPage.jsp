@@ -12,24 +12,22 @@
 	<div class="container">
 		<h3>employee List</h3>
 		<table class = "table table-bordered">
-			
+			<thead>
+				<tr>
+					<th>employeeNo</th>
+					<th>employeeName</th>
+					<th>employeeImage</th>
+				</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="e" items="${list}">
 				<tr>
-				<td>employeeNo</td>
-				<td>${e.employeeNo}</td>
-			</tr>	
-			<tr>
-				<td>employeeName</td>
-				<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
-			</tr>
-				<tr>
-				
-					<td>employeeImage</td>
-					<td><img src="./Image/${e.employeeImageName}" width="200" height="200"></td>
-		
-					<%-- <td><img alt="직원사진" src="${pageContext.request.contextPath}/image/${e.employeeImageName}" width="100" height="100"></td>  --%>
+					<td>${e.employeeNo}</td>
+					<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
+					<td><img src="./Image/${e.employeeImageName}" width="120" height="80" alt="직원사진"></td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
 		<div>
 		<a href="${pageContext.request.contextPath}/InsertEmpContoller" class=" ">직원 등록</a>

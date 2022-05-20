@@ -22,7 +22,7 @@ public class SelectReviewListController extends HttpServlet {
 	ReviewDao reviewDao = new ReviewDao();
 	reviewList = reviewDao.selecteReview();
 	
-	System.out.println("ReviewList"+ reviewDao);
+	System.out.println("reviewList : "+ reviewList.size());
 	
 	//뷰
 	request.setAttribute("reviewList", reviewList);

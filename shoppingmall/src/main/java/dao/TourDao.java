@@ -254,6 +254,14 @@ public class TourDao {
 			}
 			
 		} catch (Exception e) {
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		//반환
 		return tourList;
@@ -286,6 +294,14 @@ public class TourDao {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		//반환
 		return tour;
@@ -318,6 +334,14 @@ public class TourDao {
 			
 		} catch (Exception e) {
 
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		//반환
 		return tourImage;
@@ -348,6 +372,14 @@ public class TourDao {
 			
 		} catch (Exception e) {
 
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		//반환
 		return tourArea;

@@ -13,10 +13,9 @@
 	<h3>insert employee</h3>
 	<form action="${pageContext.request.contextPath}/SearchAddressController" method="post">
 		<div>주소검색(주소먼저입력)</div>
-			<input type="text" name="searchAddr"> <span style="color: red; font-size:small;">공백없이 검색!</span>
+			<input type="text" name="searchAddr"> <span style="color: red; font-size:small;">공백없이 검색!(필수)</span>
 	</form>
 	<form method="post" action="${pageContext.request.contextPath}/InsertEmpContoller" enctype="multipart/form-data">
-		<!-- <form action="${pageContext.request.contextPath}/SearchAddressController" method="post"> -->
 		<table class ="table table-hover">
 			<tr>
 				<td>employeePw</td>
@@ -36,7 +35,7 @@
 			<c:if test="${searchList != null}">
 				<div>
 					<select name="empAddressId">
-							<option value="">!!주소 선택!!</option>
+							<option value="">주소 선택</option>
 						<c:forEach var="m" items="${searchList}">
 							<option value="${m.id}">${m.addr}</option>
 						</c:forEach>
@@ -85,6 +84,14 @@
 				<td>employeeIntroduce</td>
 				<td>
 					<input type ="text" name="employeeIntroduce">
+				</td>
+			</tr>
+			<tr>
+				<td>language</td>
+				<td>
+			         <c:forEach var="l" items="${language}">
+			            <input type="checkbox" name="language" value="${l.languageNo}">${l.language}
+			          </c:forEach>
 				</td>
 			</tr>
 		</table>

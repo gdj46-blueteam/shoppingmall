@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.EmployeeDao;
+import vo.Language;
 
-/**
- * Servlet implementation class SearchAddressController
- */
 @WebServlet("/SearchAddressController")
 public class SearchAddressController extends HttpServlet {
 	private EmployeeDao employeeDao;
@@ -22,11 +21,19 @@ public class SearchAddressController extends HttpServlet {
 	String searchAddr = request.getParameter("searchAddr");
 		
 	this.employeeDao = new EmployeeDao();
-	List<Map<String, Object>> list = this.employeeDao.selectAddressList(searchAddr);
+	List<Map<String, Object>> address = this.employeeDao.selectAddressList(searchAddr);
 	
-	System.out.println("SearchAddressController : " + list.size());
+	System.out.println("SearchAddressController : " + address.size());
 	
-	request.setAttribute("searchList", list);
+	request.setAttribute("searchList", address);
+	
+	this.employeeDao = new EmployeeDao();
+	List<Language> language = new ArrayList<>();
+	language = employeeDao.selectlanguage();
+	
+	System.out.println("selectlanguage(InsertEmpContoller-doGet)" + language.size());
+	request.setAttribute("language", language);
+	
 	request.getRequestDispatcher("/WEB-INF/view/admin/insertEmpForm.jsp").forward(request, response);
 		
 	}

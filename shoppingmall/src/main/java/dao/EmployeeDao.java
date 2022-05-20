@@ -14,6 +14,7 @@ import vo.EmpImage;
 import vo.Employee;
 import vo.EmployeeList;
 import vo.EmployeeListOne;
+import vo.Language;
 
 public class EmployeeDao {
 
@@ -67,23 +68,12 @@ public class EmployeeDao {
 	      //DB 연결
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
-	      //PreparedStatement stmt2 = null;
-	 
 	      
 	      try {
 	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-	         //conn.setAutoCommit(false);
 	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name,"
 	         		+ " employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
 	               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
-	         
-				/*String sql2 = "INSERT INTO employee_image(employee_imageNo, employee_imageType, create_date) VALUES(?, ? ,NOW())";
-				
-				stmt2 = conn.prepareStatement(sql2);
-				stmt2.setString(1, employee.getEmployeeName());
-				stmt2.setString(2, "jpeg");
-				int row2 = stmt2.executeUpdate();
-				System.out.println("employee_image" + row2);*/
 	         
 	         stmt = conn.prepareStatement(sql); //쿼리 실행
 	         stmt.setString(1, employee.getEmployeePw());
@@ -98,7 +88,6 @@ public class EmployeeDao {
 	         stmt.setString(10, employee.getEmployeeIntroduce());
 	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
 				
-	         //conn.commit();
 	         if(row == 1) {
 	            System.out.println("직원 1행 입력 성공(insertEmpDao)");
 	         } else {
@@ -159,6 +148,41 @@ public class EmployeeDao {
       
       return row;
    }
+   //4.직원 - 언어삽입
+   public int insertEmpLanguage(int languageNo, Employee employee) {
+	      int row = 0;
+	      System.out.println("직원언어삽입 메서드시작(insertEmpLanguageDao)");
+	      //DB 연결
+	      Connection conn = null;
+	      PreparedStatement stmt = null;
+	      
+	      try {
+	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	         String sql = "INSERT INTO employee_language(language_no, employee_no) VALUES(?, ?)";
+	         
+	         stmt = conn.prepareStatement(sql); //쿼리 실행
+	         stmt.setInt(1, languageNo);
+	         stmt.setInt(2, employee.getEmployeeNo());
+	       
+	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
+				
+	         if(row == 1) {
+	            System.out.println("직원-언어 입력성공(insertEmpLanguage)");
+	         } else {
+	            System.out.println("직원-언어 입력 실패(insertEmpLanguage)");
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }System.out.println("직원 삽입 메서드 끝");
+	      return row;
+	   }
    
    //5. 직원상세보기
    public EmployeeListOne selectEmpOne(int employeeNo) {
@@ -172,7 +196,7 @@ public class EmployeeDao {
          conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
          //쿼리문
          String sql = " SELECT employeeNo,employeeSn, employeeAddress, employeeAddressDetail, employeeName, employeeEmail "
-               + " ,employeePhone, employeeGender, employeeImageName, employeeIntroduce, authority, createDate, updateDate "
+               + " ,employeePhone, employeeGender, employeeImageName, employeeIntroduce,language, authority, createDate, updateDate "
                + " FROM  employee_list_one where employeeNo=?";
          stmt = conn.prepareStatement(sql); //쿼리실행
          stmt.setInt(1, employeeNo);
@@ -188,6 +212,7 @@ public class EmployeeDao {
             employeeListOne.setEmployeeGender(rs.getString("employeeGender"));
             employeeListOne.setEmployeeImageName(rs.getString("employeeImageName"));
             employeeListOne.setEmployeeIntroduce(rs.getString("employeeIntroduce"));
+            employeeListOne.setLanguage(rs.getString("language"));
             employeeListOne.setAuthority(rs.getInt("authority"));
             employeeListOne.setCreateDate(rs.getString("createDate"));
             employeeListOne.setUpdateDate(rs.getString("updateDate"));   
@@ -203,6 +228,7 @@ public class EmployeeDao {
             System.out.println("employeeImageName(selectEmpOne)->" + rs.getString("employeeImageName"));
             System.out.println("authority(selectEmpOne)->" + rs.getInt("authority"));
             System.out.println("employeeIntroduce(selectEmpOne)->" + rs.getString("employeeIntroduce"));
+            System.out.println("language(selectEmpOne)->" + rs.getString("language"));
             System.out.println("createDate(selectEmpOne)->" + rs.getString("createDate"));
             System.out.println("createDate(updateDate)->" + rs.getString("updateDate"));
          }
@@ -440,7 +466,7 @@ public class EmployeeDao {
 	 
    }
    //11.직원 이미지 이름 반환
-   public int selectEmpImageName(int employeeImageNo) {
+	public int selectEmpImageName(int employeeImageNo) {
 	//데이터베이스 연결
 	Connection conn = null;
 	PreparedStatement stmt = null; 
@@ -455,7 +481,7 @@ public class EmployeeDao {
 		rs = stmt.executeQuery(); //실행결과 저장
 		System.out.println("rs(selectEmpImageName) ->" + rs);
 		 
-	} catch (SQLException e) {
+	} catch (SQLException e) { 
 		e.printStackTrace();
 	} finally {
 		try {
@@ -467,5 +493,48 @@ public class EmployeeDao {
 	}
 	return employeeImageNo;
 	 
-   }
+	}
+   
+   // 12. 언어선택(selectlanguageDao)
+   public List<Language> selectlanguage(){
+	      List<Language> list = new ArrayList<>();
+	      
+	      //데이터베이스 연결
+	      Connection conn = null;
+	      PreparedStatement stmt = null; 
+	      ResultSet rs = null;
+	      
+	      try {
+	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+	         //쿼리문
+	         String sql=" SELECT language_no languageNo, language"
+	               + " FROM language"; 
+	         stmt = conn.prepareStatement(sql); //쿼리문 실행
+	         
+	         System.out.println("언어목록(selectlanguageDao)stmt -> " + stmt); //디버깅
+	         
+	         rs = stmt.executeQuery(); //쿼리 실행결과 저장
+	         System.out.println("언어목록(selectlanguageDao)rs ->" + rs); //디버깅
+	         
+	         while(rs.next()) { //다음 행이 있으면 true반환해서 실행
+	        	 Language language = new Language(); //Language 객체 생성
+	        	 language.setLanguageNo(rs.getInt("languageNo")); 
+	        	 language.setLanguage(rs.getString("language"));
+	             list.add(language); //list에 가져온 값 추가
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	        	 rs.close();
+	        	 stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	       return list;
+	   }
+   
 }

@@ -56,6 +56,10 @@
 			<td>${employeeListOne.employeeIntroduce}</td>
 		</tr>
 		<tr>
+			<td>language</td>
+			<td>${l.language}</td>
+		</tr>
+		<tr>
 			<td>authority</td>
 			<td>${employeeListOne.authority}</td>
 		</tr>
@@ -70,7 +74,6 @@
 	</table>
 	<div>
 		<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
-		<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-danger">삭제</a>
 	</div>
 	<hr>
 	<div class="container">

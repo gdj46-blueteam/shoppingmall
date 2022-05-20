@@ -1,7 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,7 @@ import java.io.File;
 import dao.EmployeeDao;
 import vo.EmpImage;
 import vo.Employee;
+import vo.Language;
 
 @WebServlet("/InsertEmpContoller")
 public class InsertEmpContoller extends HttpServlet {
@@ -25,6 +29,7 @@ public class InsertEmpContoller extends HttpServlet {
 		this.employeeDao = new EmployeeDao(); //dao 객체 생성
 		Employee employee = new Employee();
 		EmpImage empImage = new EmpImage();
+		
 		//사진 삽입
 		String path= request.getSession().getServletContext().getRealPath("/")+ "image";
 		System.out.println("path(InsertEmpContoller) ->" + path);
@@ -61,6 +66,8 @@ public class InsertEmpContoller extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/admin/insertEmpForm.jsp");
 		}	
 
+		
+		
 		// insertEmpForm.jsp 에서 받은 정보 받아오기
 		//multiReq
 		employee.setEmployeePw(multiRequest.getParameter("employeePw"));
@@ -77,6 +84,18 @@ public class InsertEmpContoller extends HttpServlet {
 		int row = employeeDao.insertEmp(employee); //직원삽입 메소드
 		//디버깅
 		System.out.println(row +" <- 직원등록(InsertEmpContoller)");
+		
+		//삽입 메소드 반복 - post
+		//Language language = new Language();
+		//language.setLanguage(multiRequest.getParameter("language"));
+		
+		String[] arrLanguage = multiRequest.getParameterValues("language");
+		System.out.println(arrLanguage + "arrLanguage(InsertEmpContoller)");
+		
+		for(int i =0; i <arrLanguage.length; i=i+1) {
+			employeeDao.insertEmpLanguage(Integer.parseInt(arrLanguage[i]), employee);
+			//request.setAttribute("language", language);
+		}
 		
 		response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
 

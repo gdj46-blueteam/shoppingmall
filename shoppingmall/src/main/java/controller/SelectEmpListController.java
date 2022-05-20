@@ -18,7 +18,9 @@ public class SelectEmpListController extends HttpServlet {
 		//dao 메소드 호출 객체생성 -> 호출
 		this.employeeDao = new EmployeeDao();
 		List<EmployeeList> list = employeeDao.selectEmpList();
+		
 		request.setAttribute("list", list);
+		
 		System.out.println("list.size(SelectEmpListController) -> " + list.size());
 		request.getRequestDispatcher("/WEB-INF/view/employee/empPage.jsp").forward(request, response);	
 	}

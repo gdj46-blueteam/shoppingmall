@@ -12,7 +12,7 @@ import vo.Review;
 public class ReviewDao {
    //리뷰 리스트
    public List<Review> selecteReview(){ // 반환값 List
-   List<Review> ReviewList = new ArrayList<Review>();
+   List<Review> reviewList = new ArrayList<Review>();
    Review r = null; // Review 값 null로 준비
 
    Connection conn = null;
@@ -50,8 +50,9 @@ public class ReviewDao {
          e.printStackTrace();
       }
    }
-         return ReviewList;
+         return reviewList;
       }
+   
    // 리뷰 입력
    public int insertReview(Review review) {
       int row = 0;
@@ -110,4 +111,46 @@ public class ReviewDao {
    }
       return row;
    }
+
+
+	//리뷰 상세보기
+	public Review selectReviewOne(int reviewNo){
+		Review review = new Review();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT r.review_no reviewNo, r.customer_id customerId, r.review, r.tourdiy_no tourdiyNo, r.estimate_no estimateNo, r.create_date createDate, r.update_date updateDate "
+				+ 	 "FROM review "
+				+ 	 "WHERE r.review_no ? ";
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			stmt = conn.prepareStatement(sql);//쿼리 실행
+			stmt.setInt(1, reviewNo);
+			rs = stmt.executeQuery();
+			if(rs.next());
+			 review.setReviewNo(rs.getInt("reviewNo"));
+			 review.setcustomerId(rs.getString("CustomerId"));
+			 review.setReview(rs.getString("review"));
+			 review.settourDIYNo(rs.getInt("tourdiyNo"));
+			 review.setEstimateNo(rs.getInt("estimateNo"));
+			 review.setCreateDate(rs.getString("createDate"));
+			 review.setUpdateDate(rs.getString("updateDate"));
+			 
+		} catch (Exception e) {
+			e.printStackTrace();	
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 }
+	return review;
+}
+	
+	
+}
+
+

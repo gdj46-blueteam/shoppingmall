@@ -19,7 +19,7 @@
 			<th>rank</th>
 			<th>count</th>	
 		</tr>
-		<c:forEach var="map" items="${List}">
+		<c:forEach var="map" items="${list}">
 			<tr>
 				<td>${map.country}</td>
 				<td>${map.rank}</td>

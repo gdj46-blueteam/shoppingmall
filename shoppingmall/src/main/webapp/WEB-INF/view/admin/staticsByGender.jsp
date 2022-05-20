@@ -19,7 +19,7 @@
 			<th>count</th>	
 			<th>rank</th>
 		</tr>
-		<c:forEach var="map" items="${List}">
+		<c:forEach var="map" items="${list}">
 			<tr>
 				<td>${map.gender}</td>
 				<td>${map.cnt}</td>

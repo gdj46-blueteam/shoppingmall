@@ -38,7 +38,7 @@
 			<th>area</th>
 			<th>count</th>
 		</tr>
-		<c:forEach var="map" items="${List}">
+		<c:forEach var="map" items="${list}">
 			<tr>
 				<td>${map.rank}</td>
 				<td>${map.country}</td>

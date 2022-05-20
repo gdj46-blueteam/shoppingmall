@@ -7,7 +7,7 @@ public TourDIY() {}
 	private int tourDIYNo;
 	private String customerId;
 	private int languageNo;
-	private int tourAreaId;
+	private int tourAreaNo;
 	private int tourDIYPeople;
 	private String tourDIYTerm;
 	private String tourStay;
@@ -17,65 +17,64 @@ public TourDIY() {}
 	@Override
 	public String toString() {
 		return "TourDIY [tourDIYNo=" + tourDIYNo + ", customerId=" + customerId + ", languageNo=" + languageNo
-				+ ", tourareaId=" + tourAreaId + ", tourDIYPeople=" + tourDIYPeople + ", tourDIYTerm=" + tourDIYTerm
+				+ ", tourAreaNo=" + tourAreaNo + ", tourDIYPeople=" + tourDIYPeople + ", tourDIYTerm=" + tourDIYTerm
 				+ ", tourStay=" + tourStay + ", tourDIYEtc=" + tourDIYEtc + ", createDate=" + createDate + "]";
 	}
-	//getter & setter
 	public int getTourDIYNo() {
 		return tourDIYNo;
-	}
-	public String getCustomerId() {
-		return customerId;
-	}
-	public int getLanguageNo() {
-		return languageNo;
-	}
-	public int getTourareaId() {
-		return tourAreaId;
-	}
-	public int getTourDIYPeople() {
-		return tourDIYPeople;
-	}
-	public String getTourDIYTerm() {
-		return tourDIYTerm;
-	}
-	public String getTourStay() {
-		return tourStay;
-	}
-	public String getTourDIYEtc() {
-		return tourDIYEtc;
-	}
-	public String getCreateDate() {
-		return createDate;
 	}
 	public void setTourDIYNo(int tourDIYNo) {
 		this.tourDIYNo = tourDIYNo;
 	}
+	public String getCustomerId() {
+		return customerId;
+	}
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+	public int getLanguageNo() {
+		return languageNo;
 	}
 	public void setLanguageNo(int languageNo) {
 		this.languageNo = languageNo;
 	}
-	public void setTourareaId(int tourareaId) {
-		this.tourAreaId = tourAreaId;
+	public int getTourAreaNo() {
+		return tourAreaNo;
+	}
+	public void setTourAreaNo(int tourAreaNo) {
+		this.tourAreaNo = tourAreaNo;
+	}
+	public int getTourDIYPeople() {
+		return tourDIYPeople;
 	}
 	public void setTourDIYPeople(int tourDIYPeople) {
 		this.tourDIYPeople = tourDIYPeople;
 	}
+	public String getTourDIYTerm() {
+		return tourDIYTerm;
+	}
 	public void setTourDIYTerm(String tourDIYTerm) {
 		this.tourDIYTerm = tourDIYTerm;
+	}
+	public String getTourStay() {
+		return tourStay;
 	}
 	public void setTourStay(String tourStay) {
 		this.tourStay = tourStay;
 	}
+	public String getTourDIYEtc() {
+		return tourDIYEtc;
+	}
 	public void setTourDIYEtc(String tourDIYEtc) {
 		this.tourDIYEtc = tourDIYEtc;
+	}
+	public String getCreateDate() {
+		return createDate;
 	}
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
-	
+
 	
 	
 	

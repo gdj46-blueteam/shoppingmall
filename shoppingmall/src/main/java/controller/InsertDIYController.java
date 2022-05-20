@@ -1,41 +1,46 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class InsertDIYController
- */
+import dao.DIYDao;
+import vo.Language;
+import vo.TourArea;
+import vo.TourDIY;
+
+
 @WebServlet("/InsertDIYController")
 public class InsertDIYController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InsertDIYController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		dIYDao = new DIYDao();
+		
+		List<TourArea> tourAreaList = dIYDao.TourAreaList();
+		List<Language> languageList =  dIYDao.LanguageList();
+		request.setAttribute("tourAreaList", tourAreaList);
+		request.setAttribute("languageList", languageList);
+		
+		request.getRequestDispatcher("/WEB-INF/view/customer/insertDIY.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	TourDIY tourDIY = new TourDIY();		
+	tourDIY.setTourAreaNo(Integer.parseInt(request.getParameter("tourArea")));
+	tourDIY.setLanguageNo(Integer.parseInt(request.getParameter("language")));
+	tourDIY.setTourDIYEtc(request.getParameter("tourDIYEtc"));
+	tourDIY.setTourDIYPeople(Integer.parseInt(request.getParameter("tourDIYPeople")));
+	tourDIY.setTourStay(request.getParameter("tourDIYStay"));
+	tourDIY.setTourDIYTerm(request.getParameter("tourDIYTerm"));
+	
+	dIYDao = new DIYDao();
+	dIYDao.insertTourDIY(tourDIY);
+	response.sendRedirect(request.getContextPath()+"/InsertDIYController");
 	}
 
 }

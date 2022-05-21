@@ -35,12 +35,12 @@ public class InsertDIYController extends HttpServlet {
 	tourDIY.setLanguageNo(Integer.parseInt(request.getParameter("language")));
 	tourDIY.setTourDIYEtc(request.getParameter("tourDIYEtc"));
 	tourDIY.setTourDIYPeople(Integer.parseInt(request.getParameter("tourDIYPeople")));
-	tourDIY.setTourStay(request.getParameter("tourDIYStay"));
+	tourDIY.setTourDIYStay(request.getParameter("tourDIYStay"));
 	tourDIY.setTourDIYTerm(request.getParameter("tourDIYTerm"));
 	
 	dIYDao = new DIYDao();
 	dIYDao.insertTourDIY(tourDIY);
-	response.sendRedirect(request.getContextPath()+"/InsertDIYController");
+	response.sendRedirect(request.getContextPath()+"/SelectEstimateController");
 	}
 
 }

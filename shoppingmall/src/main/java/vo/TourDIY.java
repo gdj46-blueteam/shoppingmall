@@ -10,7 +10,7 @@ public TourDIY() {}
 	private int tourAreaNo;
 	private int tourDIYPeople;
 	private String tourDIYTerm;
-	private String tourStay;
+	private String tourDIYStay;
 	private String tourDIYEtc;
 	private String createDate;
 	//toString() : 필드값을 문자열로 출력
@@ -18,7 +18,7 @@ public TourDIY() {}
 	public String toString() {
 		return "TourDIY [tourDIYNo=" + tourDIYNo + ", customerId=" + customerId + ", languageNo=" + languageNo
 				+ ", tourAreaNo=" + tourAreaNo + ", tourDIYPeople=" + tourDIYPeople + ", tourDIYTerm=" + tourDIYTerm
-				+ ", tourStay=" + tourStay + ", tourDIYEtc=" + tourDIYEtc + ", createDate=" + createDate + "]";
+				+ ", tourDIYStay=" + tourDIYStay + ", tourDIYEtc=" + tourDIYEtc + ", createDate=" + createDate + "]";
 	}
 	public int getTourDIYNo() {
 		return tourDIYNo;
@@ -56,11 +56,11 @@ public TourDIY() {}
 	public void setTourDIYTerm(String tourDIYTerm) {
 		this.tourDIYTerm = tourDIYTerm;
 	}
-	public String getTourStay() {
-		return tourStay;
+	public String getTourDIYStay() {
+		return tourDIYStay;
 	}
-	public void setTourStay(String tourStay) {
-		this.tourStay = tourStay;
+	public void setTourDIYStay(String tourDIYStay) {
+		this.tourDIYStay = tourDIYStay;
 	}
 	public String getTourDIYEtc() {
 		return tourDIYEtc;

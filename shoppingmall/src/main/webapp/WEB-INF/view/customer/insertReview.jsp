@@ -6,12 +6,36 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>reivew</h1>
+	<h1>inset_Reivew</h1>
 	<form method="post" action="${pageContext.request.contextPath}/InsertReviewController">
-	<td><!-- 사용자ID(히든처리) --></td>
-	<td><!-- 옵션ID(히든처리) --></td>
-	<td><!-- 견적서ID(히든처리) --></td>
-	<td><input type="text" name="review"></td>
+		<table border="1">
+		<tr>
+			<th>reviewNo</th>
+			<th><input type="text" id="reviewNo" name="reviewNo" value=""></th>
+		</tr>
+		
+		<tr>
+			<th>customerId</th>
+			<th><input type="text" id="customerId" name="customerId" value="" hidden="hidden"></th>
+		</tr>
+		
+		<tr>
+			<th>review</th>
+			<th><input type="text" id="review" name="review" value=""></th>
+		</tr>
+		
+		<tr>
+			<th>tourdiyNo</th>
+			<th><input type="text" id="tourdiyNo" name="tourdiyNo" value=""></th>
+		</tr>
+		
+		<tr>
+			<th>estimateNo</th>
+			<th><input type="text" id="estimateNo" name="c" value=""></th>
+		</tr>
+	
+		</table>
+		<button type="button">등록</button>
 	</form>
 </body>
 </html>

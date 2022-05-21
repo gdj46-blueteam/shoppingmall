@@ -24,6 +24,9 @@ public class LoginFilter implements Filter {
 			System.out.println("session id 확인 : " + id);
 			System.out.println("session authority 확인 : " + authority);
 			
+			session.setAttribute("id", id);
+			session.setAttribute("authority", authority);
+			
 			if(id == null) { // 로그인이 안돼있으면
 				if(response instanceof HttpServletResponse) {
 					((HttpServletResponse)response).sendRedirect(req.getContextPath()+"/loginDenied/loginController"); // 로그인 페이지로 이동

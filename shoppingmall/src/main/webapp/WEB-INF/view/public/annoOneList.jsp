@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>공지사항 상세보기</h2>
-	<form action = "${pageContext.request.contextPath}/SelectAnnoListController" method="post">
+	
 		<table border="1">
 			<tr>
 				<td>No</td>

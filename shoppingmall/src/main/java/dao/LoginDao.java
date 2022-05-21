@@ -29,7 +29,7 @@ public class LoginDao {
 			stmt.setString(2, pw);//물음표 값에 값을 넣음
 			rs = stmt.executeQuery(); //rs변수에 결과값 저장
 			if(rs.next()) { //rs변수에 값이 있으면  
-				login.put("loginId", rs.getString("cusotmerId"));  //loginId에 rs변수에 저장한 결과값을 넣음
+				login.put("loginId", rs.getString("customerId"));  //loginId에 rs변수에 저장한 결과값을 넣음
 				login.put("authority", rs.getInt("authority"));
 			}
 			if(login.isEmpty()) { //고객아이디 값이 널이라면

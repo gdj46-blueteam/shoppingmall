@@ -198,7 +198,7 @@ public class DIYDao {
 			stmt.setInt(2, tourDIY.getLanguageNo());
 			stmt.setInt(3, tourDIY.getTourAreaNo());
 			stmt.setInt(4, tourDIY.getTourDIYPeople());
-			stmt.setString(5, tourDIY.getTourStay());
+			stmt.setString(5, tourDIY.getTourDIYStay());
 			stmt.setString(6, tourDIY.getTourDIYEtc());
 			stmt.setString(7, tourDIY.getTourDIYTerm());
 			rs = stmt.executeUpdate();

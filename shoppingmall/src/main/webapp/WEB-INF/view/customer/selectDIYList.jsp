@@ -7,7 +7,7 @@
 <title>selectEstimate</title>
 </head>
 <body>
-	<h2>요구사항확인서목록</h2>
+	<h2>요구사항확인서목록(관리자용)</h2>
 		<table border="1">
 			<form>
 				<thead>
@@ -40,6 +40,6 @@
 				</tbody>
 			</form>
 		</table>
-		<a href="${pageContext.request.contextPath}/UpdateEstimateController}"><button>수정</button></a>
+		<a href="${pageContext.request.contextPath}/SelectDIYListController}"><button>수정</button></a>
 </body>
 </html>

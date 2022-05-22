@@ -11,19 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DIYDao;
-import dao.EstimateDao;
 
-@WebServlet("/SelectEstimateController")
+@WebServlet("/SelectDIYListController")
 public class SelectDIYListController extends HttpServlet {
 	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
-		List<Map<String,Object>> list = dIYDao.selectEstimate();
+		List<Map<String,Object>> list = dIYDao.selectDIYListExcept();
 		request.setAttribute("list", list);
 		//디버깅
 		System.out.println(list +"<-list");
 		//요청페이지
-	request.getRequestDispatcher("/WEB-INF/view/customer/selectEstimate.jsp").forward(request, response);
+	request.getRequestDispatcher("/WEB-INF/view/customer/selectDIYList.jsp").forward(request, response);
 	}
-
 }

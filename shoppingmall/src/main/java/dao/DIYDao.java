@@ -17,7 +17,7 @@ import vo.TourDIY;
 
 public class DIYDao {
 	//
-	public List<Map<String,Object>> selectDIYListExcept() { //관리자용 견적서가 없는 요구사항확인서 확인
+	public List<Map<String,Object>> selectDIYListExcept() { //관리자용 견적서가 없는 요구사항확인서 확인/대기중인 요구사항확인서
 		List<Map<String, Object>> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -25,14 +25,14 @@ public class DIYDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "SELECT t.tourdiy_no tourDIYNo, customer_id customerId, language, city,"
-					+ "tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, "
-					+ "tourDiy_etc, t.create_date createDate FROM tourdiy "
-					+ "INNER JOIN language l ON t.language_no = l.language_no"
-					+ "INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no"
-					+ "INNER JOIN estimate e ON t.tourdiy_no != e.tourdiy_no";
+			String sql = "SELECT t.tourdiy_no tourDIYNo, customer_id customerId, language, city, "
+					+ " tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, "
+					+ " tourDiy_etc tourDIYEtc, t.create_date createDate FROM tourdiy t"
+					+ " INNER JOIN language l ON t.language_no = l.language_no "
+					+ " INNER JOIN tourarea ta ON t.tourArea_no = ta.tourarea_no "
+					+ " INNER JOIN estimate e ON t.tourdiy_no != e.tourdiy_no";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
-			System.out.println(sql + "<-selectEstimate");
+			System.out.println(sql + "<-selectDIYListExcept");
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> map = new HashMap<>();

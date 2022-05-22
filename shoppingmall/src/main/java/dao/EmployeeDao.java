@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
+
 import vo.EmpImage;
 import vo.Employee;
 import vo.EmployeeList;
@@ -64,18 +66,19 @@ public class EmployeeDao {
    //2.직원 삽입
    public int insertEmp(Employee employee) {
 	      int row = 0;
-	      System.out.println("직원 삽입 메서드 시작");
+	      System.out.println("직원 삽입 메서드 시작 "+employee);
 	      //DB 연결
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
-	      
+	      ResultSet rs = null;
+	      int employNo=0;
 	      try {
 	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name,"
 	         		+ " employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
 	               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
 	         
-	         stmt = conn.prepareStatement(sql); //쿼리 실행
+	         stmt = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS); //쿼리 실행
 	         stmt.setString(1, employee.getEmployeePw());
 	         stmt.setString(2, employee.getEmployeeSn());
 	         stmt.setInt(3, employee.getEmpAddressId());
@@ -86,8 +89,11 @@ public class EmployeeDao {
 	         stmt.setString(8, employee.getEmployeeGender());
 	         stmt.setInt(9, employee.getEmployeeImageNo());
 	         stmt.setString(10, employee.getEmployeeIntroduce());
-	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
-				
+	         stmt.executeUpdate();
+			 rs=stmt.getGeneratedKeys();
+			if(rs.next()) {
+				employNo = rs.getInt(1);
+			}
 	         if(row == 1) {
 	            System.out.println("직원 1행 입력 성공(insertEmpDao)");
 	         } else {
@@ -103,7 +109,7 @@ public class EmployeeDao {
 	            e.printStackTrace();
 	         }
 	      }System.out.println("직원 삽입 메서드 끝");
-	      return row;
+	      return employNo;
 	   }
    
    //3.직원 수정
@@ -149,20 +155,20 @@ public class EmployeeDao {
       return row;
    }
    //4.직원 - 언어삽입
-   public int insertEmpLanguage(int languageNo, Employee employee) {
+   public int insertEmpLanguage(int languageNo, int employNo) {
 	      int row = 0;
 	      System.out.println("직원언어삽입 메서드시작(insertEmpLanguageDao)");
 	      //DB 연결
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
-	      
+	      System.out.println(languageNo+"   " +employNo);
 	      try {
 	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 	         String sql = "INSERT INTO employee_language(language_no, employee_no) VALUES(?, ?)";
 	         
 	         stmt = conn.prepareStatement(sql); //쿼리 실행
 	         stmt.setInt(1, languageNo);
-	         stmt.setInt(2, employee.getEmployeeNo());
+	         stmt.setInt(2, employNo);
 	       
 	         row = stmt.executeUpdate(); //쿼리 실행 결과 저장
 				
@@ -536,5 +542,44 @@ public class EmployeeDao {
 	      }
 	       return list;
 	   }
-   
+   public List<Map<String,Object>> selectEmplanguage(int employeeNo){					//직원상세보기에서 언어 조회
+	      List<Map<String,Object>> empLanguageList = new ArrayList<>();
+	      Map<String,Object> map;
+	      //데이터베이스 연결
+	      Connection conn = null;
+	      PreparedStatement stmt = null; 
+	      ResultSet rs = null;
+	      
+	      try {
+	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+	         //쿼리문
+	         String sql=" SELECT employee_language_no empLanguageNo, e.language_no languageNo, e.employee_no employeeNo, l.language"
+	         		+ "	                FROM employee_language e INNER JOIN language l on e.language_no = l.language_no and employee_no =?"; 
+	         stmt = conn.prepareStatement(sql); //쿼리문 실행
+	         stmt.setInt(1, employeeNo);
+	         System.out.println("언어목록(selectlanguageDao)stmt -> " + stmt); //디버깅
+	         
+	         rs = stmt.executeQuery(); //쿼리 실행결과 저장
+	         System.out.println("언어목록(selectlanguageDao)rs ->" + rs); //디버깅
+	         
+	         while(rs.next()) { //다음 행이 있으면 true반환해서 실행
+	        	 map = new HashMap<String,Object>(); 
+	        	map.put("empLanguageNo", rs.getString("empLanguageNo"));
+	        	map.put("language", rs.getString("language"));
+	        	 empLanguageList.add(map); //list에 가져온 값 추가
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	        	 rs.close();
+	        	 stmt.close();
+	            conn.close();
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+	       return empLanguageList;
+	   }
 }

@@ -57,7 +57,11 @@
 		</tr>
 		<tr>
 			<td>language</td>
-			<td>${l.language}</td>
+			<td>
+				 <c:forEach var="l" items="${empLanguageList}">
+					${l.language}
+				 </c:forEach>		
+			</td>
 		</tr>
 		<tr>
 			<td>authority</td>

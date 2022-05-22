@@ -16,6 +16,7 @@ import vo.EmployeeListOne;
 @WebServlet("/SelectEmpOneController")
 public class SelectEmpOneController extends HttpServlet {
 	private EmployeeDao employeeDao;  //dao변수 생성
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo")); //요청값 받아오기
 		System.out.println("employeeNo(SelectEmpOneController) -> " + employeeNo);// 디버깅
@@ -24,11 +25,15 @@ public class SelectEmpOneController extends HttpServlet {
 		//직원상세정보
 		this.employeeDao = new EmployeeDao();
 		EmployeeListOne employeeListOne = employeeDao.selectEmpOne(employeeNo);
-		request.setAttribute("employeeListOne", employeeListOne);
-		System.out.println("employeelist.size(SelectEmpOneController) -> " + employeeListOne);
+		List<Map<String,Object>> empLanguageList = employeeDao.selectEmplanguage(employeeNo);
 		
+		request.setAttribute("employeeListOne", employeeListOne);
+		request.setAttribute("empLanguageList", empLanguageList);
+		System.out.println("employeelist.size(SelectEmpOneController) -> " + employeeListOne);
+		System.out.println("empLanguageList.size(SelectEmpOneController) -> " + empLanguageList);
 		//직원 실적
 		Map<String, Object> list =  employeeDao.selectEmpResult(employeeNo);
+		
 		request.setAttribute("list", list);
 		
 		System.out.println("list.size(SelectEmpOneController) -> " +list.size());

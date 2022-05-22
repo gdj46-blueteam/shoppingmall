@@ -81,19 +81,21 @@ public class InsertEmpContoller extends HttpServlet {
 		employee.setEmployeeIntroduce(multiRequest.getParameter("employeeIntroduce"));
 		
 		//Dao 객체 생성해서 insetEmp 메서드 호출해서 실행
-		int row = employeeDao.insertEmp(employee); //직원삽입 메소드
+		employee.setEmployeeNo(employeeDao.insertEmp(employee)); //직원삽입 메소드
 		//디버깅
-		System.out.println(row +" <- 직원등록(InsertEmpContoller)");
+		System.out.println(employee.getEmployeeNo() +" <- 직원등록(InsertEmpContoller)");
 		
 		//삽입 메소드 반복 - post
 		//Language language = new Language();
 		//language.setLanguage(multiRequest.getParameter("language"));
 		
 		String[] arrLanguage = multiRequest.getParameterValues("language");
-		System.out.println(arrLanguage + "arrLanguage(InsertEmpContoller)");
+		
+		for(int i =0; i<arrLanguage.length; i++)
+			System.out.println(arrLanguage[i] + "arrLanguage(InsertEmpContoller)");
 		
 		for(int i =0; i <arrLanguage.length; i=i+1) {
-			employeeDao.insertEmpLanguage(Integer.parseInt(arrLanguage[i]), employee);
+			employeeDao.insertEmpLanguage(Integer.parseInt(arrLanguage[i]), employee.getEmployeeNo());
 			//request.setAttribute("language", language);
 		}
 		

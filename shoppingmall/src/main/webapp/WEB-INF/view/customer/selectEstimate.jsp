@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>selectEstimate</title>
 </head>
 <body>
-	<h2>견적서 확인</h2>
+	<h2>요구사항확인서목록</h2>
 		<table border="1">
 			<form>
 				<thead>

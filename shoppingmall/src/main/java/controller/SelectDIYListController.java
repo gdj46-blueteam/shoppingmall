@@ -14,7 +14,7 @@ import dao.DIYDao;
 import dao.EstimateDao;
 
 @WebServlet("/SelectEstimateController")
-public class SelectEstimateController extends HttpServlet {
+public class SelectDIYListController extends HttpServlet {
 	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();

@@ -1,13 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	int authority = 0;
-	if(session.getAttribute("sessionAuthority") != null) {
-		authority = (int)session.getAttribute("sessionAuthority");
-
-		}
-	System.out.println("authority(mainhome) ->" + authority);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-<title>Contact & Question</title>
+<title>Contact | Question</title>
 	<!-- css 링크 -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
@@ -40,12 +31,11 @@
     </section>
     <!-- END section -->
     
-    
     <section class="probootstrap_section bg-light" id="section-contact">
       <div class="container">
         <div class="row">
           <div class="col-md-6 probootstrap-animate">
-            <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="mb-5">외국인 대상 Korea City Tour Site</p>
             <div class="row">
               <div class="col-md-6">
                 <ul class="probootstrap-contact-details">

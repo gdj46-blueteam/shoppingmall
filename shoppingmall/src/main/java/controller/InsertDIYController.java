@@ -40,7 +40,7 @@ public class InsertDIYController extends HttpServlet {
 	
 	dIYDao = new DIYDao();
 	dIYDao.insertTourDIY(tourDIY);
-	response.sendRedirect(request.getContextPath()+"/SelectEstimateController");
+	response.sendRedirect(request.getContextPath()+"/SelectDIYByCustomerController");
 	}
 
 }

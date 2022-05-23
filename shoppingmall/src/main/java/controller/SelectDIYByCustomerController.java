@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DIYDao;
 
-@WebServlet("/SelectDIYListController")
-public class SelectDIYListController extends HttpServlet {
+@WebServlet("/SelectDIYByCustomerController")
+public class SelectDIYByCustomerController extends HttpServlet {			//고객용  (customerId로 삭제)
 	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
-		List<Map<String,Object>> list = dIYDao.selectDIYListExcept();
+		List<Map<String,Object>> list = dIYDao.selectDIY();			//<--where 조건 추가
 		request.setAttribute("list", list);
 		//디버깅
 		System.out.println(list +"<-list");

@@ -8,8 +8,8 @@
 </head>
 <body>
 	<h2>요구사항확인서목록</h2>
-		<table border="1">
-			<form>
+		<form>
+			<table border="1">
 				<thead>
 					<tr>
 							<td>tourdiyNo</td>
@@ -26,7 +26,7 @@
 				<tbody>
 					<c:forEach var="map" items = "${list}">
 						<tr>
-							<td>${map.tourDIYNo}</td>
+							<td><a href="${pageContext.request.contextPath}/InsertEstimateController?tourDIYNo=${map.tourDIYNo}">${map.tourDIYNo}</a></td>
 							<td>${map.customerId}</td>
 							<td>${map.language}</td>
 							<td>${map.city}</td>
@@ -38,8 +38,7 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-			</form>
-		</table>
-		<a href="${pageContext.request.contextPath}/UpdateEstimateController}"><button>수정</button></a>
+			</table>
+		</form>
 </body>
 </html>

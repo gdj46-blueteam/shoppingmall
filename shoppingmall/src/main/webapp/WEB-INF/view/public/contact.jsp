@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-<title>Contact | Question</title>
+<title>Contact & Question</title>
 	<!-- css 링크 -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="col-md-6  probootstrap-animate">
-            <form action="/" method="post" class="probootstrap-form probootstrap-form-box mb60">
+            <form action="${pageContext.request.contextPath}/" method="post" class="probootstrap-form probootstrap-form-box mb60">
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -149,4 +149,5 @@
        </div>
     </footer>
 	</body>
+</body>
 </html>

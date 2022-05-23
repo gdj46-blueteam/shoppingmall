@@ -22,7 +22,7 @@ public class AdminDao {
 		FROM admin
 		WHERE admin_id = ?
 		 */
-		String sql ="SELECT admin_id adminId, admin_pw adminPw, admin_phone adminPhone, admin_email adminEmail, adminAddress_id adminAddressId, admin_addressDtail adminAddressDetail, create_date createDate, authority "
+		String sql ="SELECT admin_id adminId, admin_pw adminPw, admin_phone adminPhone, admin_email adminEmail, adminAddress_id adminAddressId, admin_addressDetail adminAddressDetail, create_date createDate, authority "
 				+ "	FROM admin "
 				+ "	WHERE admin_id = ?";
 		try {

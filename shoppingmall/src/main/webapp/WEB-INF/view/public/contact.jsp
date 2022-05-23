@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="col-md-6  probootstrap-animate">
-            <form action="${pageContext.request.contextPath}/" method="post" class="probootstrap-form probootstrap-form-box mb60">
+            <form action="/" method="post" class="probootstrap-form probootstrap-form-box mb60">
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -149,5 +149,4 @@
        </div>
     </footer>
 	</body>
-</body>
 </html>

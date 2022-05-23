@@ -13,17 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DIYDao;
 import dao.EstimateDao;
 
-@WebServlet("/SelectEstimateController")
-public class SelectEstimateController extends HttpServlet {
+@WebServlet("/SelectDIYByAdminController")							//관리자가 볼 DIY견적서 
+public class SelectDIYByAdminController extends HttpServlet {
 	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
-		List<Map<String,Object>> list = dIYDao.selectEstimate();
+		List<Map<String,Object>> list = dIYDao.selectDIYListExcept();		//견적서가 완료된 DIY를 제외한 DIY리스트 출력
 		request.setAttribute("list", list);
 		//디버깅
-		System.out.println(list +"<-list");
+		System.out.println(list +"<-SelectDIYByAdminController(selectDIYListExcept)");
 		//요청페이지
-	request.getRequestDispatcher("/WEB-INF/view/customer/selectEstimate.jsp").forward(request, response);
+	request.getRequestDispatcher("/WEB-INF/view/admin/selectDIY.jsp").forward(request, response);
 	}
 
 }

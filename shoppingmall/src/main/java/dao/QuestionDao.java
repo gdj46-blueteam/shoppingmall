@@ -10,6 +10,43 @@ import java.util.*;
 import vo.Question;
 
 public class QuestionDao {
+	
+	//입력
+	public int indertQuestion(Question question) {
+		int row = 0;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			String sql = " INSERT INTO question(customer_id, question_title, question_content, create_date, update_date)"
+					+ " VALUES(?, ?, ?, NOW(), NOW())";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, question.getCustomerId());
+			stmt.setString(2, question.getQuestionTitle());
+			stmt.setString(3, question.getQuestionContent());
+			row = stmt.executeUpdate();
+			if(row == 1) {
+	            System.out.println("문의사항 1행 입력 성공(indertQuestion)");
+	         } else {
+	            System.out.println("문의사항 입력 실패(indertQuestion)");
+	         }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("문의사항 삽입 메서드 끝");
+
+		return row;
+	}
+	
 	//삭제
 	public void deleteQuestion(int questionNo) { //문의사항 삭제
 		System.out.println(questionNo + "deleteQuestion");//매개값 디버깅

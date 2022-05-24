@@ -35,8 +35,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 probootstrap-animate">
-            <p class="mb-5">K-TRAVEL started its journey by envisioning a world with no mass tourism, but personalized traveling, at scale. This vision started from noticing travellers and locals living in separate worlds.<br>
-					While tourists are flocking to the city centers and hotspots, locals are drawn away to avoid the crowds, and enjoy their local life. This is where K-TRAVEL comes in.<br>
+            <p class="mb-5">K-TRAVEL started its journey by envisioning a world with no mass tourism, but personalized traveling, at scale. Profesor, por favor, tómese su clase con Calma.<br>
+					While tourists are flocking to the city centers and hotspots, locals are drawn away to avoid the crowds, and enjoy their local life. This is where K-TRAVEL comes in. no hay fracaso.<br>
 					Our platform is a wonderful way for our guests to explore the highlights but also the hidden gems of a city with their private local host, while locals have the opportunity to earn an income by sharing their city & passions with their guests. </p>
             <div class="row">
               <div class="col-md-6">

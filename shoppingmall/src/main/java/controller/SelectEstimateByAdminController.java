@@ -20,7 +20,7 @@ public class SelectEstimateByAdminController extends HttpServlet {			//관리자
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
-		
+		// 권한,아이디 가져오기
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
 		int authority = (int)session.getAttribute("authority");

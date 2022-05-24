@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class SelectEstimateListController
  */
 @WebServlet("/SelectEstimateListController")
-public class SelectEstimateListController extends HttpServlet {
+public class SelectEstimateListController extends HttpServlet {			//고객?
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

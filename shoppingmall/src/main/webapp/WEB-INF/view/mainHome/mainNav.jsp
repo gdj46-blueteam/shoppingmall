@@ -5,9 +5,9 @@
    String sessionId = "";
       if(session.getAttribute("sessionAuthority") != null) {
          authority = (int)session.getAttribute("sessionAuthority");
-         sessionId = (String)session.getAttribute("sessionId");
+         sessionId = (String)session.getAttribute("sessionId"); 
 
-         }
+        }
       System.out.println("authority(mainhome) ->" + authority);
       System.out.println("sessionId(mainhome) ->" + sessionId);
 %>
@@ -52,9 +52,6 @@
              <li class="nav-item"><a class="nav-link disable active" ><%=sessionId %>님 반갑습니다.</a></li>
             <li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/MainHomeController">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController">로그아웃</a></li>
-               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/InsertQuestionController">문의사항</a></li>
-           
                <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/Login/SelectAdminListController">관리자페이지</a>
                 <div class="dropdown-menu">
@@ -65,7 +62,7 @@
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectTourController">관광</a>                  
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a>                     
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEstimateController">견적서</a>
-                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectQuestionController">문의사항</a>
+                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectQuestionController">문의사항 확인</a>
                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/StaticsListController">통계</a>
                </div>
             </li>

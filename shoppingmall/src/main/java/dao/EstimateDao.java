@@ -153,8 +153,8 @@ public class EstimateDao {
 		ResultSet rs = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
-					+ " est.estimate_price estimatePrice, emp.employee_name employeeName, "
+			String sql = "SELECT est.estimate_no estimateNo,est.tourDIY_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
+					+ " est.estimate_price estimatePrice, emp.employee_name employeeName, est.estimate_ing estimateIng, "
 					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,"
 					+ " est.update_date updateDate FROM tourdiy t "
 					+ " INNER JOIN language l ON t.language_no = l.language_no "
@@ -168,6 +168,7 @@ public class EstimateDao {
 			while(rs.next()) {
 
 				map.put("estimateNo", rs.getInt("estimateNo"));
+				map.put("tourDIYNo", rs.getInt("tourDIYNo"));
 				map.put("customerId", rs.getString("customerId"));
 				map.put("language", rs.getString("language"));
 				map.put("city", rs.getString("city"));
@@ -175,6 +176,7 @@ public class EstimateDao {
 				map.put("tourDIYPeople", rs.getInt("tourDIYPeople"));
 				map.put("employeeName", rs.getString("employeeName"));
 				map.put("tourDIYTerm", rs.getString("tourDIYTerm"));
+				map.put("estimateIng", rs.getString("estimateIng"));
 				map.put("tourDIYStay", rs.getString("tourDIYStay"));
 				map.put("tourDIYEtc", rs.getString("tourDIYEtc"));
 				map.put("createDate", rs.getString("createDate"));
@@ -198,17 +200,58 @@ public class EstimateDao {
 		return map;
 	}
 	
-	public int deleteEstimate(int estimateNo) {					//견적서 삭제
+	public int deleteEstimate(int estimateNo,int tourDIYNo) {					//견적서 삭제(DIY도 같이 삭제)
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement stmt= null;
+		PreparedStatement stmt2 = null;	
 		int row =0;
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
-			String sql = "delete from estimate where estimate_No= ?";
-			stmt = conn.prepareStatement(sql); //쿼리문 실행
-			stmt.setInt(1, estimateNo);
-			row = stmt.executeUpdate();
+			String deleteEstSql = "delete from estimate where estimate_No= ?";
 			
+			stmt = conn.prepareStatement(deleteEstSql);											 //견적서 삭제 쿼리문 실행
+			stmt.setInt(1, estimateNo);
+			String deleteDIYSql = "delete from DIY where tourDIY_no=? ";						//DIY 삭제 쿼리문 실행
+			stmt2 = conn.prepareStatement(deleteDIYSql);
+			stmt.setInt(1, tourDIYNo);
+			stmt.executeUpdate();
+			row = stmt2.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//DB자원 반납
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		
+		}
+		return row;
+	}
+	public int  updateEstimate(Estimate estimate) {
+
+		Connection conn = null;
+		PreparedStatement stmt= null;
+		PreparedStatement stmt2 = null;	
+		int row =0;
+		System.out.println(estimate +"updateEstimate" );
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			String EstSql="UPDATE estimate SET employee_no = ?,estimate_price = ?, estimate_ing = ?, update_date = NOW()"
+		               + " WHERE estimate_no =?";
+			
+			stmt = conn.prepareStatement(EstSql);											 ///견적서 수정쿼리문
+			stmt.setInt(1, estimate.getEmployeeNo());
+			stmt.setInt(2, estimate.getEstimatePrice());
+			stmt.setString(3, estimate.getEstimateIng());
+			stmt.setInt(4, estimate.getEstimateNo());
+
+			
+
+			row=stmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

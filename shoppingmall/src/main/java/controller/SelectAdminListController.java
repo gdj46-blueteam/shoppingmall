@@ -16,7 +16,7 @@ public class SelectAdminListController extends HttpServlet {
 		HttpSession session = req.getSession();
 		int authority = (int)session.getAttribute("authority");
 		
-		System.out.println("왔니 : " + authority);
+		System.out.println("관리자 권한 : " + authority);
 		
 		if(authority > 2) {
 			// 뷰 포워딩(v)

@@ -12,7 +12,8 @@
 
 					<tr>
 							<td>estimateNo</td>
-							<td><input type="text" value="${map.estimateNo}" name="estimateNo" readonly="readonly"></td>
+							<td><input type="text" value="${map.tourDIYNo}" name="tourDIYNo" hidden="hidden"><input type="text" value="${map.estimateNo}" name="estimateNo" ></td>
+							
 					</tr>
 					<tr>
 							<td>customerId</td>
@@ -51,14 +52,18 @@
 							<td>${map.tourDIYEtc}</td>
 					</tr>
 					<tr>
+							<td>estimateIng</td>
+							<td>${map.estimateIng}</td>
+					</tr>
+					<tr>
 							<td>createDate</td>
 							<td>${map.createDate}</td>
 					</tr>
 	
 			</table>
 			<button type="submit">삭제</button>
-			<!-- <a href="${pageContext.request.contextPath}/DeleteEstimateController?estimateNo=${map.estimateNo}">수정</a>
-			-->
+			<a href="${pageContext.request.contextPath}/UpdateEstimateController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}">수정</a>
+
 		</form>
 </body>
 </html>

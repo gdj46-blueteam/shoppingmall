@@ -28,8 +28,9 @@ public class DeleteEstimateController extends HttpServlet {				//상세보기겸
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
 		int estimateNo =Integer.parseInt(request.getParameter("estimateNo"));
-		int row=estDao.deleteEstimate(estimateNo);
-		System.out.println(estimateNo + "  "+row +"<--DeleteEstimatecontroller" );
+		int tourDIYNo = Integer.parseInt(request.getParameter("tourDIYNo"));
+		int row=estDao.deleteEstimate(estimateNo,tourDIYNo);
+		System.out.println(estimateNo + "   "+row +"<--DeleteEstimatecontroller" );
 		if(row==1) {
 			response.sendRedirect(request.getContextPath()+"/SelectEstimateByAdminController");
 		}else {

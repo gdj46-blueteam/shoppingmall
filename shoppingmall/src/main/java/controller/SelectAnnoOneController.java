@@ -15,7 +15,7 @@ import vo.Announcement;
 public class SelectAnnoOneController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//dao값 받기 -announcemeNo
+		//모델값
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));
 		System.out.println("SelectAnnoOneController --- " + announcementNo);
 		announcementDao = new AnnouncementDao();
@@ -24,6 +24,5 @@ public class SelectAnnoOneController extends HttpServlet {
 		//view로 보내기
 		request.setAttribute("announcement", announcement );
 		request.getRequestDispatcher("/WEB-INF/view/public/annoOneList.jsp").forward(request, response);
-
 	}
 }

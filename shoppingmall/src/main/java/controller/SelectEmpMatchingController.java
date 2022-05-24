@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.EmployeeDao;
 import vo.EmployeeListOne;
@@ -17,16 +18,24 @@ import vo.EmployeeListOne;
 public class SelectEmpMatchingController extends HttpServlet {
 	private EmployeeDao employeeDao; //dao 변수생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int employeeNo = Integer.parseInt(request.getParameter("employeeNo")); //요청값 받아오기
-		System.out.println("employeeNo(SelectEmpMatchingController) -> " + employeeNo); // 디버깅
+		int sessionId = 0; //요청값 받아오기
+		// 권한 가져오기
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
+				
+		System.out.println("왔니 : " + sessionId);
+				
+		System.out.println("employeeNo(SelectEmpOneController) -> " + sessionId);// 디버깅
+		System.out.println("employeeNo(SelectEmpMatchingController) -> " + sessionId); // 디버깅
 		
 		//배치확인 DAO 호출
 		this.employeeDao = new EmployeeDao();
-		Map<String, Object> list =  employeeDao.selectMatching(employeeNo);
+		Map<String, Object> list =  employeeDao.selectMatching(sessionId);
 		request.setAttribute("list", list);
 		System.out.println("list.size(SelectEmpMatchingController) -> " + list.size());// 디버깅
 		
-		EmployeeListOne employeeListOne = employeeDao.selectEmpOne(employeeNo);
+		EmployeeListOne employeeListOne = employeeDao.selectEmpOne(sessionId);
 		request.setAttribute("employeeListOne", employeeListOne);
 		System.out.println("employeelist.size(SelectEmpOneController) -> " + employeeListOne);
 		request.getRequestDispatcher("/WEB-INF/view/employee/selectMatching.jsp").forward(request, response);	

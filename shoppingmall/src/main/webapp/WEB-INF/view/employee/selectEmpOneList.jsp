@@ -78,6 +78,7 @@
 	</table>
 	<div>
 		<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
+		<a href="${pageContext.request.contextPath}/EmpMyPageController" class="btn btn-outline-success">뒤로</a>
 	</div>
 	<hr>
 	<div class="container">
@@ -91,6 +92,7 @@
 			<td>근무 횟수</td>
 			<td>${list.cnt} 회</td>
 		</tr>	
+		
 	</table>
 	</div>
 </div>

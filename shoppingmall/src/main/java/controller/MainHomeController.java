@@ -25,11 +25,7 @@ public class MainHomeController extends HttpServlet {
 		request.setAttribute("tourAreaList", tourAreaList);
 		request.setAttribute("languageList", languageList);
 		
-		
 		//diy fomr End
-		
-		
-		
 		System.out.println("메인홈 불러오기");
 		request.getRequestDispatcher("/WEB-INF/view/mainHome/mainhome.jsp").forward(request, response);
 	}

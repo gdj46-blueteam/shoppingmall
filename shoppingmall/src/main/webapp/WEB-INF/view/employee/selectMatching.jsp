@@ -30,7 +30,8 @@
          </tr>   
       </table>
       <div>
-      <a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${employeeListOne.employeeNo}" class=" ">직원 상세정보</a>       
+      <a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${employeeListOne.employeeNo}" class=" ">직원 상세정보</a>
+      <a href="${pageContext.request.contextPath}/EmpMyPageController" class="btn btn-outline-success">뒤로</a>       
    </div>
    </div>
 </body>

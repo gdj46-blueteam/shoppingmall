@@ -15,11 +15,9 @@ public class SelectCustomerOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 요청값 분석(c)
 		String customerId = request.getParameter("customerId");
-		
-		// 디버깅
 		System.out.println("SelectAdminOneController customerId : " + customerId);
 		
-		// 모델값(m)
+		// 모델값
 		Customer customer = new Customer();
 		CustomerDao customerDao = new CustomerDao();
 		try {
@@ -28,7 +26,7 @@ public class SelectCustomerOneController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		// 뷰로 보낼준비
+		// view로 값 보내기
 		request.setAttribute("customer", customer);
 		// 뷰 포워딩(c)
 		request.getRequestDispatcher("/WEB-INF/view/customer/customerOneList.jsp").forward(request, response);

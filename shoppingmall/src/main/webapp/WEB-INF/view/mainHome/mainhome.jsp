@@ -179,7 +179,7 @@
       <div class="probootstrap-text">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInRight">
           <h2 class="heading mb-4">Information</h2>
-          <p>Quote usage and process</p>3
+          <p>User guide page</p>
           <p><a href="${pageContext.request.contextPath}/SelectInfoController" class="btn btn-primary">Read More</a></p>
         </div>
       </div>
@@ -190,7 +190,7 @@
       <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/tourInfo.jpg)"></div>
       <div class="probootstrap-text order-1">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInLeft">
-          <h2 class="heading mb-4">tourist information</h2>
+          <h2 class="heading mb-4">Review information</h2>
          <p>Decide where to travel</p>
           <p><a href="${pageContext.request.contextPath}/SelectTourController" class="btn btn-primary">Learn More</a></p>
         </div>
@@ -209,46 +209,24 @@
         <div class="row">
           <div class="col-md-6">
             <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
-              <div class="probootstrap-media-image" style="background-image: url(assets/images/img_1.jpg)">
-              </div>
-              <div class="media-body">
-                <h5 class="mb-3">01. Service Title Here</h5>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-              </div>
+	              <table>
+	              	<tr>
+	              		<th>reviewNo</th>		
+						<th>review</th>
+						<th>customerId</th>	
+	              	</tr>
+	              	
+	              	<c:forEach var="r" items="${reviewList}">  
+	              	<tr>
+					<td>${r.reviewNo}</td>
+					<td><a href="SelectOneReviewController?reviewNo=${r.reviewNo}">${r.review}</a></td>
+					<td>${r.customerId}</td>
+					</tr>
+					</c:forEach>
+	              </table>
             </div>
-
-            <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
-              <div class="probootstrap-media-image" style="background-image: url(assets/images/img_2.jpg)">
-              </div>
-              <div class="media-body">
-                <h5 class="mb-3">02. Service Title Here</h5>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-md-6">
-            
-            <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
-              <div class="probootstrap-media-image" style="background-image: url(assets/images/img_4.jpg)">
-              </div>
-              <div class="media-body">
-                <h5 class="mb-3">03. Service Title Here</h5>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-              </div>
-            </div>
-
-            <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
-              <div class="probootstrap-media-image" style="background-image: url(assets/images/img_5.jpg)">
-              </div>
-              <div class="media-body">
-                <h5 class="mb-3">04. Service Title Here</h5>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
+         </div>
+        </div>  
       </div>
     </section>
     <!-- END section -->

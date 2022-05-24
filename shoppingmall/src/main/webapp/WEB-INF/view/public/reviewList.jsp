@@ -14,9 +14,7 @@
 					<th>review</th>
 					<th>customerId</th>					
 				</tr>
-				
 				<c:forEach var="r" items="${reviewList}">  
-			
 				<tr>
 					<td>${r.reviewNo}</td>
 					<td><a href="SelectOneReviewController?reviewNo=${r.reviewNo}">${r.review}</a></td>

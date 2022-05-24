@@ -175,11 +175,11 @@
     </section>
     
     <section class="probootstrap-section-half d-md-flex" id="section-about">
-      <div class="probootstrap-image probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/info.png)"></div>
+      <div class="probootstrap-image probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/infomation.png)"></div>
       <div class="probootstrap-text">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInRight">
           <h2 class="heading mb-4">Information</h2>
-          <p>Quote usage and process</p>
+          <p>Quote usage and process</p>3
           <p><a href="${pageContext.request.contextPath}/SelectInfoController" class="btn btn-primary">Read More</a></p>
         </div>
       </div>
@@ -187,7 +187,7 @@
 
 
     <section class="probootstrap-section-half d-md-flex">
-      <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/tourInfo.png)"></div>
+      <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/tourInfo.jpg)"></div>
       <div class="probootstrap-text order-1">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInLeft">
           <h2 class="heading mb-4">tourist information</h2>

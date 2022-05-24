@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mariadb.jdbc.message.client.ExecutePacket;
 
@@ -224,15 +225,16 @@ public class TourDao {
 		
 	}
 	//조회
-	public List<Tour> selectTourList() { 							//관광리스트 조회
-		List<Tour> tourList = new ArrayList<>();
-		Tour tour;
+	public List<Map<String,Object>> selectTourList() { 							//관광리스트 조회
+		List<Map<String,Object>> tourList = new ArrayList<>();
+		Map<String,Object> map;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//관광리스트 조회하는 쿼리문
-		String sql =  " SELECT tour_no tourNo, tourarea_no tourareaNo, tour_name tourName, tour_description tourDescription,"
-					+ "	tourimage_no tourImageNo FROM tour";
+		String sql =  " SELECT tour_no tourNo, tourarea_no tourareaNo, tour_name tourName, tour_description tourDescription, "
+				+ "t.tourimage_no tourImageNo, ti.tourimage_name tourImageName FROM tour t "
+				+ "INNER JOIN tourimage ti ON ti.tourimage_no = t.tourImage_no";
 		try {
 			//DB접속
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
@@ -241,17 +243,17 @@ public class TourDao {
 			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
 			while(rs.next()) {		
 				//데이터 저장을 위한 객체생성
-				tour = new Tour();
+				map = new HashMap<String,Object>();
 				//객체에 각 조회된 결과값을 저장
-				tour.setTourNo(rs.getInt("tourNo"));
-				tour.setTourAreaNo(rs.getInt("tourareaNo"));
-				tour.setTourName(rs.getString("tourName"));
-				tour.setTourDescription(rs.getString("tourDescription"));
-				tour.setTourImageNo(rs.getInt("tourImageNo"));
-				tourList.add(tour);
-				//디버깅
-				System.out.println(tour+"<-tour");
+				map.put("tourNo",rs.getInt("tourNo"));
+				map.put("tourareaNo",rs.getInt("tourareaNo"));
+				map.put("tourName",rs.getString("tourName"));
+				map.put("tourDescription",rs.getString("tourDescription"));
+				map.put("tourImageNo",rs.getInt("tourImageNo"));
+				map.put("tourImageName", rs.getString("tourImageName"));
+				tourList.add(map);				
 			}
+			System.out.println(tourList+"<--TourDao(selectTourList)");
 			
 		} catch (Exception e) {
 		} finally {
@@ -384,4 +386,5 @@ public class TourDao {
 		//반환
 		return tourArea;
 	}
+
 }

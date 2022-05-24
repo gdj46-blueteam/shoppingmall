@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,27 +11,32 @@
 	<table border="1">
 		<tr>
 			<td>reviewNo</td>
-			<td>${review.reviewNo}</td>
+			<td>${map.ReviewNo}</td>
 		</tr>
 		
 		<tr>
 			<td>CustomerId</td>
-			<td>${review.customerId} </td>
+			<td>${map.CustomerId} </td>
 		</tr>
 		
 		<tr>
 			<td>review</td>
-			<td>${review.review} </td>
+			<td>${map.review} </td>
 		</tr>
 		
 		<tr>
-			<td>tourdiyNo</td>
-			<td>${review.tourdiyNo} </td>
+			<td>EmployeeName</td>
+			<td>${map.EmployeeName} </td>
 		</tr>
 		
 		<tr>
-			<td>estimateNo</td>
-			<td>${review.estimateNo} </td>
+			<td>area</td>
+			<td>${map.area} </td>
+		</tr>
+		
+		<tr>
+			<td>city</td>
+			<td>${map.city} </td>
 		</tr>
 	</table>
 </body>

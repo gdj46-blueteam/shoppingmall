@@ -117,9 +117,12 @@ public class ReviewDao {
 
 
 	// 리뷰 상세보기
-	public Review selectReviewOne(int byreviewNo){
-	Map<String, Object> map = new HashMap<String, Object>(); 
+	public Map<String, Object> selectReviewOne(int reviewNo){
+		
+		System.out.println(reviewNo+ "<---ReviewDao(selectReviewOne");
+		Map<String, Object> map = new HashMap<String, Object>(); 
 		Review review = new Review();
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -135,16 +138,16 @@ public class ReviewDao {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리 실행
-			stmt.setInt(1, byreviewNo);
+			stmt.setInt(1, reviewNo);
 			rs = stmt.executeQuery();
 			if(rs.next());
-			 map.put("ReviewNo", rs.getInt("reviewNo"));
-			 map.put("CustomerId", rs.getString("CustomerId"));
+			 map.put("ReviewNo",rs.getInt("reviewNo"));
+			 map.put("CustomerId",rs.getString("CustomerId"));
 			 map.put("review", rs.getString("review"));
 			 map.put("EmployeeName",rs.getString("EmployeeName"));
 			 map.put("area", rs.getString("area"));
 			 map.put("city", rs.getString("city"));
-			 
+			
 			 System.out.println("ReviewNo"+rs.getInt("reviewNo"));
 			 System.out.println("CustomerId"+rs.getString("CustomerId"));
 			 System.out.println("review"+rs.getString("review"));
@@ -162,7 +165,7 @@ public class ReviewDao {
 				e.printStackTrace();
 			}
 }
-	return review;
+	return map;
 }
 	
 	

@@ -168,33 +168,31 @@
       <div class="container">
         <div class="row text-center mb-5 probootstrap-animate">
           <div class="col-md-12">
-            <h2 class="display-4 border-bottom probootstrap-section-heading">Our Services</h2>
+            <h2 class="display-4 border-bottom probootstrap-section-heading">Our Information</h2>
           </div>
         </div>
       </div>
     </section>
     
     <section class="probootstrap-section-half d-md-flex" id="section-about">
-      <div class="probootstrap-image probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(assets/images/ex.jpg)"></div>
+      <div class="probootstrap-image probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/info.png)"></div>
       <div class="probootstrap-text">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInRight">
-          <h2 class="heading mb-4">이용안내</h2>
-          <p>여기에 뭐넣지</p>
-          <p>뭐라고 적어야될까...</p>
-          <p><a href="#" class="btn btn-primary">Read More</a></p>
+          <h2 class="heading mb-4">Information</h2>
+          <p>Quote usage and process</p>
+          <p><a href="${pageContext.request.contextPath}/SelectInfoController" class="btn btn-primary">Read More</a></p>
         </div>
       </div>
     </section>
 
 
     <section class="probootstrap-section-half d-md-flex">
-      <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(assets/images/logo2.png)"></div>
+      <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/tourInfo.png)"></div>
       <div class="probootstrap-text order-1">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInLeft">
-          <h2 class="heading mb-4">관광안내</h2>
-         <p>여기에 뭐넣지</p>
-          <p>뭐라고 적어야될까...</p>
-          <p><a href="#" class="btn btn-primary">Learn More</a></p>
+          <h2 class="heading mb-4">tourist information</h2>
+         <p>Decide where to travel</p>
+          <p><a href="${pageContext.request.contextPath}/SelectTourController" class="btn btn-primary">Learn More</a></p>
         </div>
       </div>
     </section>

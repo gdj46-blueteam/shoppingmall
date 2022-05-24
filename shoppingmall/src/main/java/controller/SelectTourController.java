@@ -27,11 +27,4 @@ public class SelectTourController extends HttpServlet {
 		request.setAttribute("tourList", tourList);
 		request.getRequestDispatcher("/WEB-INF/view/public/tourList.jsp").forward(request, response); 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
-	
-	}
-
 }

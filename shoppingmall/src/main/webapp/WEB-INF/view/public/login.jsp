@@ -39,7 +39,7 @@
 								<div class="form-group">
 									<label for="probootstrap-date-departure">ID</label>
 									<div class="probootstrap-date-wrap">
-										<input type="text" id="id" class="form-control" placeholder="아이디를 입력해주세요" name="memberId">
+										<input type="text" id="id" class="form-control" placeholder="아이디를 입력해주세요" name="id">
 									</div>
 								</div>
 							</div>

@@ -65,7 +65,7 @@
 								<%
 									if(authority == 3){
 								%>
-									<a href="${pageContext.request.contextPath}/DeleteQuestionController" class="btn btn-danger btn-block">삭제</a>
+									<button type="submit"class="btn btn-danger btn-block">삭제</button>
 								<%
 									}
 								%>

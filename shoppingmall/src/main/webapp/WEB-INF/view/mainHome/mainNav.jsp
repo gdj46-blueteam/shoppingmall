@@ -31,10 +31,18 @@
           <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a class="nav-link disable active"><%=sessionId %>님 반갑습니다.</a></li>
             <li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/MainHomeController">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/MyPageController">마이페이지</a></li>
+				
               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController">로그아웃</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/InsertQuestionController">문의사항</a></li>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/MyPageController">마이페이지</a>
+                <div class="dropdown-menu">
+                   	<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectCustomerOneController">회원정보</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/">견적서확인</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/InsertReviewController">리뷰</a>
+               </div>
+            </li>
           </ul>
           <%
          }else if(authority == 2){ //권한 2 직원
@@ -42,8 +50,14 @@
               <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a class="nav-link disable active" ><%=sessionId %>님 반갑습니다.</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/MainHomeController">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/EmpMyPageController">직원정보페이지</a></li>
               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController">로그아웃</a></li>
+              <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/EmpMyPageController">직원정보페이지</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/SelectEmpOneController">직원정보</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectEmpMatchingController">배치확인</a>
+               </div>
+            </li>
           </ul>
           <%
          }else if(authority == 3){ //권한 3 관리자
@@ -57,8 +71,7 @@
                 <div class="dropdown-menu">
                    <a class="dropdown-item " href="${pageContext.request.contextPath}/SelectAdminOneController">관리자정보</a>
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectCustomerListController">회원</a>            
-                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEmpListController">직원</a>                  
-                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEmpMatchingController">매칭확인</a>                  
+                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEmpListController">직원</a>                                   
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectTourController">관광</a>                  
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a>                     
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEstimateController">견적서</a>

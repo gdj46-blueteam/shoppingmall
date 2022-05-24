@@ -17,7 +17,6 @@ public class InsertReviewController extends HttpServlet {
 		// 뷰 포워딩(v)
 		request.getRequestDispatcher("/WEB-INF/view/customer/insertReview.jsp").forward(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1) request 분석(C)
 		String customerId = request.getParameter("customerId");

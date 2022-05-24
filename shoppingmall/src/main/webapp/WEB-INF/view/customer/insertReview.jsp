@@ -6,19 +6,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>inset_Reivew</h1>
+	<h1>리뷰 입력</h1>
 	<form method="post" action="${pageContext.request.contextPath}/InsertReviewController">
+		
+		
 		<table border="1">
-		<tr>
-			<th>reviewNo</th>
-			<th><input type="text" id="reviewNo" name="reviewNo" value=""></th>
-		</tr>
-		
-		<tr>
-			<th>customerId</th>
-			<th><input type="text" id="customerId" name="customerId" value="" hidden="hidden"></th>
-		</tr>
-		
+	
+		<input type="text" id="reviewNo" name="reviewNo" value="" hidden="hidden">
+
 		<tr>
 			<th>review</th>
 			<th><input type="text" id="review" name="review" value=""></th>
@@ -35,7 +30,7 @@
 		</tr>
 	
 		</table>
-		<button type="button">등록</button>
+		<button type="button" id="signup">등록</button>
 	</form>
 </body>
 </html>

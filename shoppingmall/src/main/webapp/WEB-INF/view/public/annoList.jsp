@@ -21,5 +21,6 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<a href="${pageContext.request.contextPath}/InsertAnnoController"><button>공지사항 작성</button></a>
 </body>
 </html>

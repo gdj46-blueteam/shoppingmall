@@ -14,14 +14,16 @@
 					<th>review</th>
 					<th>customerId</th>					
 				</tr>
+				
 				<c:forEach var="r" items="${reviewList}">  
-					<tr>
-						<td>${r.reviewNo}</td>
-						<td><a href="SelectReviewOneController?reviewNo=${r.reviewNo}">${r.review}</a></td>
-						<td>${r.customerId}</td>
-					</tr>
+				
+				<tr>
+					<td>${r.reviewNo}</td>
+					<td><a href="SelectReviewOneController?reviewNo=${r.reviewNo}">${r.review}</a></td>
+					<td>${r.customerId}</td>
+				</tr>
 				</c:forEach>	
-		
 			</table>
+			<a href="${pageContext.request.contextPath}/InsertReviewController"><button>리뷰작성</button></a>
 </body>
 </html>

@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import vo.Review;
 
@@ -115,28 +117,40 @@ public class ReviewDao {
 
 
 	// 리뷰 상세보기
-	public Review selectReviewOne(int reviewNo){
+	public Review selectReviewOne(int byreviewNo){
+	Map<String, Object> map = new HashMap<String, Object>(); 
 		Review review = new Review();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT r.review_no reviewNo, r.customer_id customerId, r.review, r.tourdiy_no tourdiyNo, r.estimate_no estimateNo, r.create_date createDate, r.update_date updateDate "
-				+ 	 "FROM review "
-				+ 	 "WHERE r.review_no ? ";
+		String sql = "SELECT r.review_no reviewNo, r.customer_id customerId, r.review, em.employee_name employeeName, ta.area, ta.city "
+				+ "FROM review r "
+				+ "INNER JOIN estimate e ON r.estimate_no = e.estimate_no "
+				+ "INNER JOIN employee em ON e.employee_no = em.employee_no "
+				+ "INNER JOIN tourdiy td ON td.tourdiy_no = e.tourdiy_no "
+				+ "INNER JOIN tourarea ta ON ta.tourarea_no = td.tourarea_no "
+				+ "INNER JOIN tour t ON ta.tourarea_no = t.tourarea_no "
+				+ "WHERE r.review_no = ? ";
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리 실행
-			stmt.setInt(1, reviewNo);
+			stmt.setInt(1, byreviewNo);
 			rs = stmt.executeQuery();
 			if(rs.next());
-			 review.setReviewNo(rs.getInt("reviewNo"));
-			 review.setcustomerId(rs.getString("CustomerId"));
-			 review.setReview(rs.getString("review"));
-			 review.settourdiyNo(rs.getInt("tourdiyNo"));
-			 review.setEstimateNo(rs.getInt("estimateNo"));
-			 review.setCreateDate(rs.getString("createDate"));
-			 review.setUpdateDate(rs.getString("updateDate"));
+			 map.put("ReviewNo", rs.getInt("reviewNo"));
+			 map.put("CustomerId", rs.getString("CustomerId"));
+			 map.put("review", rs.getString("review"));
+			 map.put("EmployeeName",rs.getString("EmployeeName"));
+			 map.put("area", rs.getString("area"));
+			 map.put("city", rs.getString("city"));
+			 
+			 System.out.println("ReviewNo"+rs.getInt("reviewNo"));
+			 System.out.println("CustomerId"+rs.getString("CustomerId"));
+			 System.out.println("review"+rs.getString("review"));
+			 System.out.println("EmployeeName"+rs.getString("EmployeeName"));
+			 System.out.println("area"+rs.getString("area"));
+			 System.out.println("city"+rs.getString("city"));
 			 
 		} catch (Exception e) {
 			e.printStackTrace();	
@@ -153,6 +167,5 @@ public class ReviewDao {
 	
 	
 }
- 
 
 

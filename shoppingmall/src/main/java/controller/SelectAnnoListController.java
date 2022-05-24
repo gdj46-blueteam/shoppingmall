@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.AnnouncementDao;
 import vo.Announcement;
@@ -24,7 +25,8 @@ public class SelectAnnoListController extends HttpServlet {
 		
 		System.out.println("announcementList"+ announcementDao);
 		//System.out.println(((Announcement) announcement).getAnnouncementNo());
-		
+	
+	    
 			//view 요청 (v)
 			request.setAttribute("announcementList", announcementList);
 			request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);

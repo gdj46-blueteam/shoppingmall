@@ -116,9 +116,9 @@ public class AnnouncementDao {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, announcementNo);	
-			System.out.println();
+			System.out.println("deleteAnno----"+stmt);
 			
-			row = stmt.executeUpdate("deleteAnno----"+stmt);
+			row = stmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();	
@@ -165,4 +165,37 @@ public class AnnouncementDao {
 	}
 
 	
+
+	//공지사항 입력
+	public int insertanno(Announcement announcement) {
+	int row = 0;
+	 Connection conn = null;
+     PreparedStatement stmt = null;
+     
+     String sql = "INSERT INTO announcement(announcement_title, announcement_content, create_date)"
+     			+ "VALUES(?, ?, NOW())";
+     
+     try {
+         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+         stmt = conn.prepareStatement(sql); //쿼리문 실행
+        
+         stmt.setString(1, announcement.getAnnouncementTitle());
+         stmt.setString(2, announcement.getAnnouncementContent());
+      
+
+         row = stmt.executeUpdate();
+	
+     } catch (Exception e) {
+         e.printStackTrace();
+      }finally {
+         try {
+            //DB자원 반납
+            stmt.close();
+            conn.close();
+         }catch(SQLException e) {
+         e.printStackTrace();
+      }
+   }
+      return row; 
+   }
 }

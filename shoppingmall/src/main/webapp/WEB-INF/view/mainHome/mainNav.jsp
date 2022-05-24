@@ -5,9 +5,9 @@
    String sessionId = "";
       if(session.getAttribute("sessionAuthority") != null) {
          authority = (int)session.getAttribute("sessionAuthority");
-         sessionId = (String)session.getAttribute("sessionId");
+         sessionId = (String)session.getAttribute("sessionId"); 
 
-         }
+        }
       System.out.println("authority(mainhome) ->" + authority);
       System.out.println("sessionId(mainhome) ->" + sessionId);
 %>

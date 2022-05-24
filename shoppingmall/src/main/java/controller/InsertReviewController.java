@@ -1,21 +1,48 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ReviewDao;
 import vo.Review;
+import vo.TourArea;
 
 @WebServlet("/InsertReviewController")
 public class InsertReviewController extends HttpServlet {
 	private ReviewDao reviewDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 뷰 포워딩(v)
-		request.getRequestDispatcher("/WEB-INF/view/customer/insertReview.jsp").forward(request, response);
+		// 권한 가져오기
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		String sessionId = (String)session.getAttribute("sessionId");
+				
+		System.out.println("왔니 : " + sessionId);
+		this.reviewDao = new ReviewDao();
+		List<TourArea> list = this.reviewDao.selectReviewConfirm(sessionId);
+		System.out.println(list.size());
+		if(this.reviewDao.selectReviewConfirm(sessionId) == null) {
+			request.getRequestDispatcher("/WEB-INF/view/customer/MyPage.jsp").forward(request, response);
+		} else {
+			List<TourArea> list2 = this.reviewDao.selectReviewConfirm(sessionId);
+			request.setAttribute("cityList", list2);
+			System.out.println("InsertReviewController확인 : " + list2.size());
+			// 뷰 포워딩(v)
+			request.getRequestDispatcher("/WEB-INF/view/customer/insertReview.jsp").forward(request, response);	
+		}
+		
+				
+		
+		
+		
+		
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1) request 분석(C)

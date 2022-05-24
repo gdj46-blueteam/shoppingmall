@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import vo.Review;
+import vo.TourArea;
 
 public class ReviewDao {
    //리뷰 리스트
@@ -169,7 +170,43 @@ public class ReviewDao {
 }
 	
 	
-	
+	public List<TourArea> selectReviewConfirm(String customerId) {
+		List<TourArea> list = new ArrayList<TourArea>();
+		Connection conn = null;
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+	    String sql = "SELECT ta.city city "
+	    		+ "FROM tourdiy tdy "
+	    		+ "INNER JOIN estimate est  "
+	    		+ "ON est.tourdiy_no = tdy.tourdiy_no "
+	    		+ "INNER JOIN tourarea ta  "
+	    		+ "ON tdy.tourarea_no = ta.tourarea_no "
+	    		+ "WHERE  est.estimate_ing = '결제완료' "
+	    		+ "and tdy.tourdiy_no NOT IN (SELECT tourdiy_no FROM review) "
+	    		+ "AND  tdy.customer_id = ? ";
+	    try {
+	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	         stmt = conn.prepareStatement(sql); //쿼리문 실행
+	         stmt.setString(1, customerId);
+	         rs = stmt.executeQuery();
+	         while(rs.next()) {
+	        	 TourArea list2 = new TourArea();
+	        	 list2.setCity(rs.getString("city"));
+	        	 list.add(list2);
+	         }
+	      }catch (Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         try {
+	            //DB자원 반납
+	            stmt.close();
+	            conn.close();
+	         }catch(SQLException e) {
+	         e.printStackTrace();
+	      }
+	   }
+		return list;
+	}
 	
 }
 

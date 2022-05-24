@@ -1,14 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	int authority = 0;
-	if(session.getAttribute("sessionAuthority") != null) {
-		authority = (int)session.getAttribute("sessionAuthority");
-
-		}
-	System.out.println("authority(mainhome) ->" + authority);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,13 +56,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-								<%
-									if(authority == 3){
-								%>
 									<a href="${pageContext.request.contextPath}/StaticsListController" class="btn btn-primary btn-block">통계검색창</a>
-								<%
-									}
-								%>
 								</div>
 							</div>
 						</div>

@@ -18,16 +18,14 @@ import vo.Announcement;
 public class SelectAnnoListController extends HttpServlet {
 	private AnnouncementDao announcementDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//요청값 
+		//모델값 
 		List<Announcement> announcementList = new ArrayList<Announcement>();
 		AnnouncementDao announcementDao = new AnnouncementDao();
 		announcementList = announcementDao.SelectAnnouncementList();
-		
 		System.out.println("announcementList"+ announcementDao);
-		//System.out.println(((Announcement) announcement).getAnnouncementNo());
-	
-			//view 요청 (v)
-			request.setAttribute("announcementList", announcementList);
-			request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);
+		
+		//view로 값 보내기  
+		request.setAttribute("announcementList", announcementList);
+		request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);
 	}
 }

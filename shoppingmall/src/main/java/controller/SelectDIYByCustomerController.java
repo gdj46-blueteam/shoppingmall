@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DIYDao;
 
@@ -17,7 +18,16 @@ public class SelectDIYByCustomerController extends HttpServlet {			//고객용  
 	private DIYDao dIYDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
-		List<Map<String,Object>> list = dIYDao.selectDIY();			//<--where 조건 추가
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		List<Map<String,Object>> list = dIYDao.selectDIY(sessionId);			//<--where 조건 추가
 		request.setAttribute("list", list);
 		//디버깅
 		System.out.println(list +"<-list");

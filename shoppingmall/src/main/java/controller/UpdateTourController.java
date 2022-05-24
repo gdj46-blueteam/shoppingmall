@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.TourDao;
 import vo.Tour;
@@ -18,6 +19,17 @@ public class UpdateTourController extends HttpServlet {
 	private TourDao tourDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.tourDao = new TourDao();
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		
+
 		int tourNo = Integer.parseInt(request.getParameter("tourNo"));
 		
 		System.out.println(tourNo + "<-전updateTourController");

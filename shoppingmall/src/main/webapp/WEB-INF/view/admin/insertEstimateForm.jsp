@@ -10,6 +10,7 @@
 <body>
 	<h2>견적서 배정</h2>
 	<form method="post" action="${pageContext.request.contextPath}/InsertEstimateController">
+		<input type="text" value="${sessionId }" name="sessionId" hidden="hidden">
 		<table border="1">
 			
 					<tr>
@@ -61,7 +62,7 @@
 					</tr>
 				
 			</table>
-				<button>배정</button>
+				<button type="submit">배정</button>
 		</form>
 </body>
 </html>

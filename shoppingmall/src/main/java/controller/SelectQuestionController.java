@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.QuestionDao;
 import vo.Question;
@@ -19,6 +20,15 @@ public class SelectQuestionController extends HttpServlet {
 	public SelectQuestionController() {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
 		this.questionDao = new QuestionDao();
 		List<Question> questionList = questionDao.selectQuestion();
 		request.setAttribute("questionList", questionList);

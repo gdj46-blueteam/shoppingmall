@@ -10,6 +10,7 @@
 <body>
 	<h1>DIY입력폼</h1>
 	<form method="post" action="${pageContext.request.contextPath}/InsertDIYController">
+		<input type = "text" name= "sessionId" value = "${sessionId}" hidden="hidden" >
 		<table>
 		<tr>
 			<td>여행 도시<td>

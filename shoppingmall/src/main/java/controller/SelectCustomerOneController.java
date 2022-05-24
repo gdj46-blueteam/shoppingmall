@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CustomerDao;
 import vo.Customer;
@@ -13,6 +14,16 @@ import vo.Customer;
 @WebServlet("/SelectCustomerOneController")
 public class SelectCustomerOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		
 		// 요청값 분석(c)
 		String customerId = request.getParameter("customerId");
 		System.out.println("SelectAdminOneController customerId : " + customerId);

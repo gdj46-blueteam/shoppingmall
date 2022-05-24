@@ -21,9 +21,11 @@ public class InsertReviewController extends HttpServlet {
 		// 권한 가져오기
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
-		String sessionId = (String)session.getAttribute("sessionId");
-				
-		System.out.println("왔니 : " + sessionId);
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
 		this.reviewDao = new ReviewDao();
 		List<TourArea> list = this.reviewDao.selectReviewConfirm(sessionId);
 		System.out.println(list.size());

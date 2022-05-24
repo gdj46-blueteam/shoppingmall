@@ -24,7 +24,7 @@ public class SelectEmpOneController extends HttpServlet {
 		HttpSession session = req.getSession();
 		sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		
-		System.out.println("왔니 : " + sessionId);
+		System.out.println("SelectEmpOneController(sessionId) : " + sessionId);
 		
 		System.out.println("employeeNo(SelectEmpOneController) -> " + sessionId);// 디버깅
 		

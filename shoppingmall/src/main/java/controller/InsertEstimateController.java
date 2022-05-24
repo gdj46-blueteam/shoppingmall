@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DIYDao;
 import dao.EmployeeDao;
@@ -23,6 +24,16 @@ public class InsertEstimateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
 		this.estDao = new EstimateDao();
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		
 		int tourDIYNo = Integer.parseInt(request.getParameter("tourDIYNo"));
 		//System.out.println(tourDIYNo +"   InsertEstimateController");
 		Map<String,Object> tourDIYMap = dIYDao.selectDIYOne(tourDIYNo);
@@ -30,7 +41,7 @@ public class InsertEstimateController extends HttpServlet {
 		
 		System.out.println(tourDIYMap.get("language") +" <-------- InsertEstimateController(selectDIYOneDao)");
 		System.out.println(empLanguageList.size() +" <-------- InsertEstimateController(insertEstimateDao)");
-		//System.out.println(empLanguageList.get(0).get("employeeName") +" <-------- InsertEstimateController(insertEstimate)");
+		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("tourDIYMap", tourDIYMap);
 		request.setAttribute("empLanguageList", empLanguageList);
 		
@@ -43,7 +54,7 @@ public class InsertEstimateController extends HttpServlet {
 		est.setTourdiyNo(Integer.parseInt(request.getParameter("tourDIYNo")));
 		est.setEmployeeNo(Integer.parseInt(request.getParameter("employeeNo")));
 		est.setEstimatePrice(Integer.parseInt(request.getParameter("estimatePrice")));
-		
+		est.setAdminId(request.getParameter("sessionId"));
 		int row = estDao.insertEstimate(est);
 		
 		if(row ==1) {		

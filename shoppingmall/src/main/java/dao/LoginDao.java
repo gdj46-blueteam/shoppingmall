@@ -16,8 +16,8 @@ public class LoginDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		System.out.println("id 잘들어오냐" + id);
-		System.out.println("pw 잘들어오냐" + pw);
+		System.out.println("id selectLogin" + id);
+		System.out.println("pw selectLogin" + pw);
 		//회원 id,pw를 조회하는 쿼리문
 		String sql = "SELECT customer_id customerId, customer_pw customerPw, authority FROM customer"
 				+ "		WHERE customer_id = ? AND customer_pw=?";

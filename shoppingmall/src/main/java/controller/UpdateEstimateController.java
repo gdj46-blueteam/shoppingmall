@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.EstimateDao;
 import vo.Estimate;
@@ -21,6 +22,16 @@ public class UpdateEstimateController extends HttpServlet {
 	private EstimateDao estDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		
 		int tourDIYNo = Integer.parseInt(request.getParameter("tourDIYNo"));						//tourDIYNo 추출
 		int estimateNo = Integer.parseInt(request.getParameter("estimateNo"));						//estimateNo 추출
 		

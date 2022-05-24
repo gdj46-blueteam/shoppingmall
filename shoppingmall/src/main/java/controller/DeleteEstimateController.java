@@ -26,7 +26,7 @@ public class DeleteEstimateController extends HttpServlet {		//상세보기겸 �
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 		
-		if(authority > 1) {
+		if(authority > 2) {
 			// 뷰 포워딩(v)
 			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
 		} else {

@@ -15,7 +15,10 @@ public class SelectEmpController extends HttpServlet {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
 		int authority = (int)session.getAttribute("authority");
-		System.out.println("로그인 : " + authority);
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
 		
 		if(authority == 2) {
 			// 뷰 포워딩(v)

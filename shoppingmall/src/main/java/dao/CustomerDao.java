@@ -140,14 +140,13 @@ public class CustomerDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		int row = 0;
-		String estimateIng = "결제완료";
-		String sql = "UPDATE estimate SET estimate_ing = ? "
+
+		String sql = "UPDATE estimate SET estimate_ing = '결제완료' "
 				+ "WHERE estimate_no = ? ";
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setInt(1, estimateNo);
-			stmt.setString(2, estimateIng);
 			row = stmt.executeUpdate(); //쿼리 실행된 행수
 		} catch (Exception e) {
 			e.printStackTrace();

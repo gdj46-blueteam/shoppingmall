@@ -7,7 +7,7 @@
 <title>selectEstimate</title>
 </head>
 <body>
-	<h2>요구사항확인서목록(관리자용)</h2>
+	<h2>요구사항확인서목록(고객용)</h2>
 	<form>
 		<table border="1">
 

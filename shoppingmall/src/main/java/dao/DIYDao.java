@@ -24,6 +24,7 @@ public class DIYDao {
 		ResultSet rs = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			
 			String sql = " SELECT tourdiy_no tourDIYNo, customer_id customerId, language, city, "
 					+ " tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, "
 					+ "tourDiy_etc tourDIYEtc, t.create_date createDate  "
@@ -66,7 +67,7 @@ public class DIYDao {
 	}
 	
 	//요구사항확인서목록 조회
-			public List<Map<String,Object>> selectDIY() { //고객용
+			public List<Map<String,Object>> selectDIY(String sessionId) { //고객용
 				List<Map<String, Object>> list = new ArrayList<>();
 				Connection conn = null;
 				PreparedStatement stmt = null;
@@ -74,9 +75,10 @@ public class DIYDao {
 				try {
 					conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
 					String sql = 	"	 SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
-							+ "	  INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no";
+							+ "	  INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no where customer_id = ?";
 					stmt = conn.prepareStatement(sql); //쿼리문 실행
 					System.out.println(sql + "<-selectEstimate");
+					stmt.setString(1, sessionId);
 					rs = stmt.executeQuery();
 					while(rs.next()) {
 						Map<String, Object> map = new HashMap<>();
@@ -181,9 +183,8 @@ public class DIYDao {
 		}
 		return languagelist;
 	}
-	public void insertTourDIY(TourDIY tourDIY) {
+	public void insertTourDIY(TourDIY tourDIY) {					
 		System.out.println(tourDIY);
-		tourDIY.setCustomerId("guest");									//임의의 게스트값 삽입 (########삭제)
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -221,7 +222,7 @@ public class DIYDao {
 		}
 
 	}
-	public Map<String,Object> selectDIYOne(int tourDIYNo) { //고객용
+	public Map<String,Object> selectDIYOne(int tourDIYNo) {							 //고객용 DIY상세보기
 		Map<String, Object> map = new HashMap<String, Object>();
 		Connection conn = null;
 		PreparedStatement stmt = null;

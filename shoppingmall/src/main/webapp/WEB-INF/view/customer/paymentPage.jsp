@@ -7,20 +7,22 @@
 </head>
 <body>
 	<h1>결제</h1>
-	<table>
-	<tr>
-		<td>견적서번호</td>
-		<td><input type="number" name = "estimateNo" value="${estimateNo }" readonly="readonly">${estimateNo }</td>
-	</tr>
-	<tr>
-		<td>은행</td>
-		<td><input type="text"></td>
-	</tr>
-	<tr>
-		<td>계좌번호</td>
-		<td><input type="text"></td>
-	</tr>
-	<a href="${pageContext.request.contextPath}/SelectEstimateController?estimateNo=${estimateNo }">결제</a>
-	</table>
+	<form method="post" action="${pageContext.request.contextPath}/SelectEstimateController">
+		<table>
+			<tr>
+				<td>견적서번호</td>
+				<td><input type="number" name = "estimateNo" value="${estimateNo }" readonly="readonly">${estimateNo }</td>
+			</tr>
+			<tr>
+				<td>은행</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td>계좌번호</td>
+				<td><input type="text"></td>
+			</tr>
+		</table>
+		<button type="submit">결제</button>
+	</form>
 </body>
 </html>

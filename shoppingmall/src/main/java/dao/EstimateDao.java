@@ -66,8 +66,8 @@ public class EstimateDao {
 	public int insertEstimate(Estimate est) {				//DIY -> 관리자가 직원 배치, 금액 설정 후  견적서로 삽입	
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		est.setEstimateIng("직원 배치 확인"); 	   //견적서 상태 초기값 설정	
-		est.setAdminId("admin");				//				##########관리자 admin  초깃 값 설정
+		est.setEstimateIng("관리자확인"); 	   		//견적서 상태 초기값 설정	
+
 		int row= 0;
 		try {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
@@ -267,4 +267,61 @@ public class EstimateDao {
 		}
 		return row;
 	}
+	public List<Map<String,Object>> selectEstimateByCustomerList(String id) {			//고객 견적서리스트 조회
+		List<Map<String,Object>> list = new ArrayList<>();
+		Map<String,Object> map;
+		Connection conn = null;
+		PreparedStatement stmt= null;
+		PreparedStatement stmt2 = null;	
+		ResultSet rs = null;
+		try {
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, est.tourDIY_no tourDIYNo, "
+					+ "est.estimate_price estimatePrice, emp.employee_name employeeName, "
+					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,  "
+					+ "est.update_date updateDate FROM tourdiy t  "
+					+ "INNER JOIN language l ON t.language_no = l.language_no  "
+					+ "INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no  "
+					+ "INNER JOIN estimate est ON est.tourdiy_no = t.tourdiy_no  "
+					+ "iNNER JOIN employee emp ON emp.employee_no = est.employee_no where customer_id = ?";
+			
+			stmt = conn.prepareStatement(sql);											 
+			stmt.setString(1, id);								
+
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				map = new HashMap<String, Object>();
+				map.put("estimateNo", rs.getInt("estimateNo"));
+				map.put("customerId", rs.getString("customerId"));
+				map.put("language", rs.getString("language"));
+				map.put("tourDIYNo", rs.getString("tourDIYNo"));
+				map.put("city", rs.getString("city"));
+				map.put("estimatePrice", rs.getInt("estimatePrice"));
+				map.put("tourDIYPeople", rs.getInt("tourDIYPeople"));
+				map.put("employeeName", rs.getString("employeeName"));
+				map.put("tourDIYTerm", rs.getString("tourDIYTerm"));
+				map.put("tourDIYStay", rs.getString("tourDIYStay"));
+				map.put("tourDIYEtc", rs.getString("tourDIYEtc"));
+				map.put("createDate", rs.getString("createDate"));
+				map.put("updateDate", rs.getString("updateDate"));
+				list.add(map);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//DB자원 반납
+				stmt.close();
+				conn.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		
+		}
+
+		return list;
+		
+	}
+	
 }

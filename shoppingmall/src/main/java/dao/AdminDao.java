@@ -17,11 +17,7 @@ public class AdminDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		/*
-		SELECT admin_id, admin_pw, admin_phone, admin_email, adminAddress_id, admin_addressDetail, create_date
-		FROM admin
-		WHERE admin_id = ?
-		 */
+
 		String sql ="SELECT admin_id adminId, admin_pw adminPw, admin_phone adminPhone, admin_email adminEmail, adminAddress_id adminAddressId, admin_addressDetail adminAddressDetail, create_date createDate, authority "
 				+ "	FROM admin "
 				+ "	WHERE admin_id = ?";
@@ -42,7 +38,7 @@ public class AdminDao {
 			admin.setcreateDate(rs.getString("createDate"));
 			admin.setauthority(rs.getInt("authority"));
 			}
-			System.out.println(admin.getauthority());
+			System.out.println(admin +"<---selectAdminOne ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.EstimateDao;
 
@@ -19,6 +20,16 @@ public class SelectEstimateByAdminController extends HttpServlet {			//관리자
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
+		
 		List<Map<String, Object>> list = estDao.selectEstimateByAdminList();
 		System.out.println(list.size() + "<------SelectEstimateByAdminController(selectEstimateByAdminList)");
 		request.setAttribute("list", list);

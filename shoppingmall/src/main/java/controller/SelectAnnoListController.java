@@ -26,7 +26,6 @@ public class SelectAnnoListController extends HttpServlet {
 		System.out.println("announcementList"+ announcementDao);
 		//System.out.println(((Announcement) announcement).getAnnouncementNo());
 	
-	    
 			//view 요청 (v)
 			request.setAttribute("announcementList", announcementList);
 			request.getRequestDispatcher("/WEB-INF/view/public/annoList.jsp").forward(request, response);

@@ -16,7 +16,7 @@
 				</tr>
 				
 				<c:forEach var="r" items="${reviewList}">  
-				
+			
 				<tr>
 					<td>${r.reviewNo}</td>
 					<td><a href="SelectReviewOneController?reviewNo=${r.reviewNo}">${r.review}</a></td>

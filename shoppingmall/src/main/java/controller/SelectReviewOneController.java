@@ -16,12 +16,10 @@ public class SelectReviewOneController extends HttpServlet {
 	private ReviewDao reviewDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//dao 값 받기 - reviewNo
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		reviewDao = new ReviewDao();
-		Review review = reviewDao.selectReviewOne(reviewNo);
+		
 		
 		// view로 값 보내기
-		request.setAttribute("review", review);
+	
 		request.getRequestDispatcher("/WEB-INF/view/public/reviewOneList.jsp").forward(request, response);
 	
 	}

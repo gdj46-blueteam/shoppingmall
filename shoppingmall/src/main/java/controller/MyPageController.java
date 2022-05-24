@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 뷰 포워딩(v)
-		request.getRequestDispatcher("/WEB-INF/view/customer/myPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/customer/customerPage.jsp").forward(request, response);
 	}
 
 }

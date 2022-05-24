@@ -219,7 +219,7 @@
 	              	<c:forEach var="r" items="${reviewList}">  
 	              	<tr>
 					<td>${r.reviewNo}</td>
-					<td><a href="SelectOneReviewController?reviewNo=${r.reviewNo}">${r.review}</a></td>
+					<td><a href="${pageContext.request.contextPath}/SelectOneReviewController">${r.review}</a></td>
 					<td>${r.customerId}</td>
 					</tr>
 					</c:forEach>

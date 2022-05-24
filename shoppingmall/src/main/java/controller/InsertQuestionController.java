@@ -26,15 +26,16 @@ public class InsertQuestionController extends HttpServlet {
 		String questionTitle = request.getParameter("questionTitle");
 		String questionContent = request.getParameter("questionContent");
 		
-		//디버깅
-		System.out.println("InsertQuestionController : " + customerId);
-		System.out.println("InsertQuestionController : " + questionTitle);
-		System.out.println("InsertQuestionController : " + questionContent);
-		
 		//메서드 이용하여 모델값 구하기 (받아온 정보 vo에 넣어주기)
 		question.setCustomerId(customerId);
 		question.setQuestionTitle(questionTitle);
 		question.setQuestionContent(questionContent);
+		
+		//디버깅
+		System.out.println("InsertQuestionController(customerId) : " + customerId);
+		System.out.println("InsertQuestionController(questionTitle) : " + questionTitle);
+		System.out.println("InsertQuestionController(questionContent) : " + questionContent);
+		
 		
 		int row = questionDao.indertQuestion(question);
 		//디버깅

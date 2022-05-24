@@ -35,7 +35,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 probootstrap-animate">
-            <p class="mb-5">외국인 대상 Korea City Tour Site --> 짧은 회사 소개글 작성</p>
+            <p class="mb-5">K-TRAVEL started its journey by envisioning a world with no mass tourism, but personalized traveling, at scale. This vision started from noticing travellers and locals living in separate worlds.<br>
+					While tourists are flocking to the city centers and hotspots, locals are drawn away to avoid the crowds, and enjoy their local life. This is where K-TRAVEL comes in.<br>
+					Our platform is a wonderful way for our guests to explore the highlights but also the hidden gems of a city with their private local host, while locals have the opportunity to earn an income by sharing their city & passions with their guests. </p>
             <div class="row">
               <div class="col-md-6">
                 <ul class="probootstrap-contact-details">
@@ -68,28 +70,32 @@
             </div>
           </div>
            <div class="col-md-6  probootstrap-animate">
-            <form action="${pageContext.request.contextPath}/" method="post" class="probootstrap-form probootstrap-form-box mb60">
+            <form action="${pageContext.request.contextPath}/InsertQuestionController" method="post" class="probootstrap-form probootstrap-form-box mb60">
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for=""id"" class="sr-only sr-only-focusable">ID</label>
-                    <input type="text" class="form-control" id="id" name=""id"" placeholder="ID">
+                    <label for="" id"" class="sr-only sr-only-focusable">ID</label>
+                    <input type="text" class="form-control" id="id" name="customerId" placeholder="ID">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="password" class="sr-only sr-only-focusable">PASSWORD</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD">
+                    <input type="password" class="form-control" id="password" name="customerPw" placeholder="PASSWORD">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="name" class="sr-only sr-only-focusable">NAME</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                <input type="text" class="form-control" id="name" name="customerName" placeholder="name">
+              </div>
+              <div class="form-gruop">
+              <label for="name" class="sr-only sr-only-focusable">TITLE</label>
+                <input type="text" class="form-control" id="name" name="questionTitle" placeholder="title">              
               </div>
               <div class="form-group">
                 <label for="content" class="sr-only sr-only-focusable">CONTENT</label>
-                <textarea cols="30" rows="10" class="form-control" id="content" name="content" placeholder="Write your question"></textarea>
+                <textarea cols="30" rows="10" class="form-control" id="content" name="questionContent" placeholder="Write your question"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Question">

@@ -35,7 +35,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 probootstrap-animate">
-            <p class="mb-5">외국인 대상 Korea City Tour Site</p>
+            <p class="mb-5">외국인 대상 Korea City Tour Site --> 짧은 회사 소개글 작성</p>
             <div class="row">
               <div class="col-md-6">
                 <ul class="probootstrap-contact-details">
@@ -67,29 +67,29 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6  probootstrap-animate">
+           <div class="col-md-6  probootstrap-animate">
             <form action="${pageContext.request.contextPath}/" method="post" class="probootstrap-form probootstrap-form-box mb60">
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="fname" class="sr-only sr-only-focusable">ID</label>
-                    <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
+                    <label for=""id"" class="sr-only sr-only-focusable">ID</label>
+                    <input type="text" class="form-control" id="id" name=""id"" placeholder="ID">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="lname" class="sr-only sr-only-focusable">PASSWORD</label>
-                    <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                    <label for="password" class="sr-only sr-only-focusable">PASSWORD</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="PASSWORD">
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email" class="sr-only sr-only-focusable">NAME</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <label for="name" class="sr-only sr-only-focusable">NAME</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="name">
               </div>
               <div class="form-group">
-                <label for="message" class="sr-only sr-only-focusable">CONTENT</label>
-                <textarea cols="30" rows="10" class="form-control" id="message" name="message" placeholder="Write your message"></textarea>
+                <label for="content" class="sr-only sr-only-focusable">CONTENT</label>
+                <textarea cols="30" rows="10" class="form-control" id="content" name="content" placeholder="Write your question"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Question">
@@ -100,29 +100,6 @@
       </div>
     </section>
     <!-- END section -->
-
-    <!-- <section class="probootstrap_section" id="section-feature-testimonial">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-12 text-center mb-5 probootstrap-animate">
-            <h2 class="display-4 border-bottom probootstrap-section-heading">Why we Love Places</h2>
-            <blockquote class="">
-              <p class="lead mb-4"><em>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</em></p>
-              <p class="probootstrap-author">
-                <a href="https://probootstrap.com/" target="_blank">
-                  <img src="assets/images/person_1.jpg" alt="Free Template by ProBootstrap.com" class="rounded-circle">
-                  <span class="probootstrap-name">James Smith</span>
-                  <span class="probootstrap-title">Chief Executive Officer</span>
-                </a>
-              </p>
-            </blockquote>
-
-          </div>
-        </div>
-        
-      </div>
-    </section>
-    END section -->
   
     <footer class="probootstrap_section probootstrap-border-top">
       <div class="container">
@@ -148,6 +125,14 @@
          </div>
        </div>
     </footer>
-	</body>
+	<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/jquery.easing.1.3.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

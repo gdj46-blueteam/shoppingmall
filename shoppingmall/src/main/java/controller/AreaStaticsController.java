@@ -31,7 +31,7 @@ public class AreaStaticsController extends HttpServlet {
 		List<Map<String, Object>> list = staticsDao.StaticsByArea();  //dao 메소드 생성
 		request.setAttribute("list", list); //요청한 속성값 정하기
 		
-		if(authority > 1) {
+		if(authority > 2) {
 			// 뷰 포워딩(v)
 			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByArea.jsp").forward(request, response);
 		} else {

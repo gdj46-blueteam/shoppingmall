@@ -32,7 +32,7 @@
             <li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/MainHomeController">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/SelectCustomerOneController">마이페이지</a></li>
            	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LogoutController">로그아웃</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/">공지사항</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/InsertQuestionController">문의사항</a></li>
             <li class="nav-item"><a class="nav-link disable" ><%=sessionId %>님 반갑습니다.</a></li>
           </ul>

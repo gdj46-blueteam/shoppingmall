@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate" >
-					<form method="post" class="probootstrap-form" action="${pageContext.request.contextPath}/InsertAnnoController">
+					<form method="post" class="probootstrap-form" action="${pageContext.request.contextPath}/UpdateAnnoController">
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
@@ -43,7 +43,7 @@
 										</tr>
 										<tr>
 											<td>content</td>
-											<td><textarea rows="10" cols="30" name="announcementContent" value="${announcement.announcementContent}"></textarea></td>
+											<td><textarea rows="10" cols="30" name="announcementContent"> ${announcement.announcementContent}</textarea></td>
 										</tr>
 									</table>
 								</div>

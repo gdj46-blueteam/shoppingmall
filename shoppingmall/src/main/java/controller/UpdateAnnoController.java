@@ -22,10 +22,9 @@ public class UpdateAnnoController extends HttpServlet {
 		
 		Announcement announcement = new Announcement();
 		announcement.setAnnouncementNo(announcementNo);
-		System.out.println(announcementNo+" get");
-		
 		announcement.setAnnouncementContent(announcementContent);
 		announcement.setAnnouncementTitle(announcementTitle);
+		System.out.println(announcementNo+" get");
 		
 		//뷰
 		request.setAttribute("announcement", announcement);
@@ -36,7 +35,8 @@ public class UpdateAnnoController extends HttpServlet {
 		//요청값
 		System.out.println(request.getParameter("announcementNo"));
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));
-		System.out.println(announcementNo+" post");
+		System.out.println(announcementNo+"post");
+		
 		String announcementTitle = request.getParameter("announcementTitle");
 		String announcementContent = request.getParameter("announcementContent");
 		
@@ -52,7 +52,7 @@ public class UpdateAnnoController extends HttpServlet {
 		int row = announcementDao.updateAnno(announcement);
 		if (row == 1) { //성공
 	        System.out.println("수정성공");
-	        response.sendRedirect(request.getContextPath()+"/SelectAnnoOneController? ="+announcement.getAnnouncementNo());
+	        response.sendRedirect(request.getContextPath()+"/SelectAnnoOneController?announcementNo="+announcement.getAnnouncementNo());
 	        return;
 	     } else {// row==0이면 오류
 	        System.out.println("수정실패");

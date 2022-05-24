@@ -28,7 +28,6 @@
 			<th>estimateNo</th>
 			<th><input type="text" id="estimateNo" name="c" value=""></th>
 		</tr>
-	
 		</table>
 		<button type="button" id="signup">등록</button>
 	</form>

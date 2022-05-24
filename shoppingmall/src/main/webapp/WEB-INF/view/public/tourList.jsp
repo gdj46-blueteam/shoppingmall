@@ -132,7 +132,7 @@
 				<tbody>
 					<c:forEach var = "t" items = "${tourList}">
 						<tr>
-							<Td><img src="./assets/images/${t.tourName}" width="200" height="200">
+							<Td><img src="./assets/images/${t.tourImageName}" width="200" height="200">
 							<td>${t.tourNo}</td>
 							<td>${t.tourAreaNo}</td>
 							<td><a href="${pageContext.request.contextPath}/DeleteTourController?tourNo=${t.tourNo}">${t.tourName}</a></td>

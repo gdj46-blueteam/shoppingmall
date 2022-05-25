@@ -14,16 +14,15 @@ import vo.Customer;
 @WebServlet("/DeleteCustomerController")
 public class DeleteCustomerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한 가져오기
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 		
-		if(authority > 1) {
+		if(authority > 0) {
 			// 뷰 포워딩(v)
 			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
 		} else {
@@ -48,6 +47,14 @@ public class DeleteCustomerController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
 		// 요청값 분석(c)
 		String customerId = request.getParameter("custmoerId");
 		String customerPw = request.getParameter("custmoerPw");
@@ -65,12 +72,10 @@ public class DeleteCustomerController extends HttpServlet {
 	        response.sendRedirect(request.getContextPath()+"/DeleteCustomerController");
 	     }
 		// 관리자는 회원목록으로 회원은 로그아웃으로
-		/*
-		if(세션권한) {	// 관리자
+		if(authority > 2) {	// 관리자
 			response.sendRedirect(request.getContextPath()+"/SelectCustomerOneController");
 		} else {	// 회원
 			response.sendRedirect(request.getContextPath()+"/LogoutController");
 		}
-		*/
 	 }
 }

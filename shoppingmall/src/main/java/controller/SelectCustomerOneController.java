@@ -15,9 +15,9 @@ import vo.Customer;
 public class SelectCustomerOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
@@ -40,7 +40,12 @@ public class SelectCustomerOneController extends HttpServlet {
 		// view로 값 보내기
 		request.setAttribute("customer", customer);
 		// 뷰 포워딩(c)
-		request.getRequestDispatcher("/WEB-INF/view/customer/customerOneList.jsp").forward(request, response);
+		if(authority == 1 || authority == 3) {
+			request.getRequestDispatcher("/WEB-INF/view/customer/customerOneList.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 		
 	}
 }

@@ -25,9 +25,9 @@ public class InsertEstimateController extends HttpServlet {
 		this.dIYDao = new DIYDao();
 		this.estDao = new EstimateDao();
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
@@ -45,7 +45,7 @@ public class InsertEstimateController extends HttpServlet {
 		request.setAttribute("tourDIYMap", tourDIYMap);
 		request.setAttribute("empLanguageList", empLanguageList);
 		
-		request.getRequestDispatcher("/WEB-INF/view/admin/insertEstimateForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/public/insertEstimateForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

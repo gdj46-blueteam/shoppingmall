@@ -18,21 +18,24 @@ public class UpdateEmpController extends HttpServlet {
 	private EmployeeDao employeeDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
+		// 권한
+		HttpSession session = request.getSession();
 		int authority = (int)session.getAttribute("authority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 		
-		
-		
 		int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
 		request.setAttribute("employeeNo", employeeNo);
 		
 		//jsp 요청
-		request.getRequestDispatcher("/WEB-INF/view/employee/updateEmpForm.jsp").forward(request, response);
+		if(authority > 1) {
+			request.getRequestDispatcher("/WEB-INF/view/employee/updateEmpForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

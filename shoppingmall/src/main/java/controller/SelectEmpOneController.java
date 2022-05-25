@@ -18,16 +18,15 @@ import vo.EmployeeListOne;
 public class SelectEmpOneController extends HttpServlet {
 	private EmployeeDao employeeDao;  //dao변수 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int sessionId = 0; //요청값 받아오기
-		// 권한 가져오기
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		
-		System.out.println("SelectEmpOneController(sessionId) : " + sessionId);
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (int)session.getAttribute("authority");
+		int sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		
-		System.out.println("employeeNo(SelectEmpOneController) -> " + sessionId);// 디버깅
-		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+
 		//dao 메소드 호출 객체생성 -> 호출
 		//직원상세정보
 		this.employeeDao = new EmployeeDao();

@@ -19,9 +19,9 @@ public class MonthStaticsController extends HttpServlet {
 	private StaticsDao staticsDao; //dao변수 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
@@ -31,7 +31,12 @@ public class MonthStaticsController extends HttpServlet {
 		List<Map<String, Object>> list = staticsDao.StaticsByMonth();  //dao 메소드 생성
 		request.setAttribute("list", list); //요청한 속성값 정하기
 		
-		request.getRequestDispatcher("/WEB-INF/view/admin/staticsByMonth.jsp").forward(request, response);
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByMonth.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 }

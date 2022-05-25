@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CustomerDao;
 import vo.*;
@@ -13,6 +14,15 @@ import vo.*;
 @WebServlet("/UpdateCustomerController")
 public class UpdateCustomerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (int)session.getAttribute("authority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
 		// 요청값 분석(c)
 		String customerId = request.getParameter("customerId");
 		String customerName = request.getParameter("customerName");
@@ -45,7 +55,13 @@ public class UpdateCustomerController extends HttpServlet {
 		request.setAttribute("customer", customer);
 		
 		// 뷰 포워딩(c)
-		request.getRequestDispatcher("/WEB-INF/view/customer/updateCustomerForm.jsp").forward(request, response);
+		
+		if(authority == 1 || authority == 3) {
+			request.getRequestDispatcher("/WEB-INF/view/customer/updateCustomerForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 		
 	}
 

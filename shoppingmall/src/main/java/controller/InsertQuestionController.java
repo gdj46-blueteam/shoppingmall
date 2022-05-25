@@ -15,14 +15,20 @@ import vo.Question;
 public class InsertQuestionController extends HttpServlet {
 	private QuestionDao questionDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
-		request.getRequestDispatcher("/WEB-INF/view/public/insertQuestionForm.jsp").forward(request, response);
+		
+		if(authority > 0) {
+			request.getRequestDispatcher("/WEB-INF/view/public/insertQuestionForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

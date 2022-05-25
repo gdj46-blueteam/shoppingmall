@@ -17,8 +17,8 @@ public class UpdateAnnoController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
+		// 권한
+		HttpSession session = request.getSession();
 		int authority = (int)session.getAttribute("authority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
@@ -39,7 +39,12 @@ public class UpdateAnnoController extends HttpServlet {
 		
 		//뷰
 		request.setAttribute("announcement", announcement);
-		request.getRequestDispatcher("/WEB-INF/view/admin/updateAnnoForm.jsp").forward(request, response);
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/updateAnnoForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

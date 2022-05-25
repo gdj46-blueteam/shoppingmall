@@ -20,9 +20,9 @@ public class SelectDIYByAdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.dIYDao = new DIYDao();
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
@@ -34,7 +34,12 @@ public class SelectDIYByAdminController extends HttpServlet {
 		//디버깅
 		System.out.println(list +"<-SelectDIYByAdminController(selectDIYListExcept)");
 		//요청페이지
-	request.getRequestDispatcher("/WEB-INF/view/admin/selectDIY.jsp").forward(request, response);
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/selectDIY.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/admin/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 }

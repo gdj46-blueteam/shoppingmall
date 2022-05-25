@@ -6,12 +6,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/EmpMyPageController")
 public class EmpMyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
 		//뷰포워딩
-		request.getRequestDispatcher("/WEB-INF/view/employee/empMyPage.jsp").forward(request, response);
+		if(authority == 2) { 
+			request.getRequestDispatcher("/WEB-INF/view/employee/empMyPage.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 }

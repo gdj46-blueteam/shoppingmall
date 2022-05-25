@@ -18,15 +18,14 @@ import vo.EmployeeListOne;
 public class SelectEmpMatchingController extends HttpServlet {
 	private EmployeeDao employeeDao; //dao 변수생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한 가져오기
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
+		
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (int)session.getAttribute("authority");
 		int sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
-				
-		System.out.println("SelectEmpOneController(sessionId) : " + sessionId);
-				
-		System.out.println("employeeNo(SelectEmpOneController) -> " + sessionId);// 디버깅
-		System.out.println("employeeNo(SelectEmpMatchingController) -> " + sessionId); // 디버깅
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
 		
 		//배치확인 DAO 호출
 		this.employeeDao = new EmployeeDao();
@@ -37,7 +36,13 @@ public class SelectEmpMatchingController extends HttpServlet {
 		EmployeeListOne employeeListOne = employeeDao.selectEmpOne(sessionId);
 		request.setAttribute("employeeListOne", employeeListOne);
 		System.out.println("employeelist.size(SelectEmpOneController) -> " + employeeListOne);
-		request.getRequestDispatcher("/WEB-INF/view/employee/selectMatching.jsp").forward(request, response);	
+		
+		if(authority > 1) {
+			request.getRequestDispatcher("/WEB-INF/view/employee/selectMatching.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/employee/errorPage.jsp").forward(request, response);
+		}
+			
 	}
 
 	

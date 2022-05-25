@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import java.io.File;
@@ -29,6 +31,15 @@ public class InsertEmpContoller extends HttpServlet {
 		this.employeeDao = new EmployeeDao(); //dao 객체 생성
 		Employee employee = new Employee();
 		EmpImage empImage = new EmpImage();
+		
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
+		
 		
 		//사진 삽입
 		String path= request.getSession().getServletContext().getRealPath("/")+ "image";
@@ -98,8 +109,12 @@ public class InsertEmpContoller extends HttpServlet {
 			employeeDao.insertEmpLanguage(Integer.parseInt(arrLanguage[i]), employee.getEmployeeNo());
 			//request.setAttribute("language", language);
 		}
+		if(authority > 2) {
+			response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
+		}
 		
-		response.sendRedirect(request.getContextPath()+"/SelectEmpListController");
 
 	}
 }

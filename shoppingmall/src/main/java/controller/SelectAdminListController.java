@@ -11,12 +11,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Login/SelectAdminListController")
 public class SelectAdminListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한 가져오기
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
-		System.out.println("관리자 권한 : " + authority);
+		System.out.println("권한 : " + authority);
+		System.out.println("ID : " + sessionId);
 		
 		if(authority > 2) {
 			// 뷰 포워딩(v)

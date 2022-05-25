@@ -18,14 +18,13 @@ import vo.Customer;
 public class SelectCustomerListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);		
-		
+		System.out.println("ID : " + sessionId);
 		
 		//모델값
 		List<Customer> customer = new ArrayList<Customer>();
@@ -34,7 +33,13 @@ public class SelectCustomerListController extends HttpServlet {
 		
 		// view로 값 보내기
 		request.setAttribute("customer", customer);
-		request.getRequestDispatcher("/WEB-INF/view/admin/selectCustomerList.jsp").forward(request, response);
+		
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/selectCustomerList.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 }

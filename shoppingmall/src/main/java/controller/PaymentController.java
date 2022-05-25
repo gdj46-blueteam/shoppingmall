@@ -13,14 +13,14 @@ import dao.CustomerDao;
 @WebServlet("/PaymentController")
 public class PaymentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한,아이디 가져오기
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");
+		// 권한
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
+		
 		// 요청값 분석(c)
 		int estimateNo = Integer.parseInt(request.getParameter("estimateNo"));
 		

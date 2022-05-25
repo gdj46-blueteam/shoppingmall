@@ -34,7 +34,13 @@ public class SelectAdminOneController extends HttpServlet {
 		// 뷰로 보낼준비
 		request.setAttribute("admin", admin);
 		// 뷰 포워딩(c)
-		request.getRequestDispatcher("/WEB-INF/view/admin/selectAdminOne.jsp").forward(request, response);
+		
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/selectAdminOne.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 		
 	}
 

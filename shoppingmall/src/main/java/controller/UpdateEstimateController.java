@@ -23,8 +23,8 @@ public class UpdateEstimateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
+		// 권한
+		HttpSession session = request.getSession();
 		int authority = (int)session.getAttribute("authority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
@@ -41,7 +41,12 @@ public class UpdateEstimateController extends HttpServlet {
 		List<Map<String, Object>> empLanguageList = estDao.insertEstimate(map);
 		request.setAttribute("map", map);
 		request.setAttribute("empLanguageList", empLanguageList);
-		request.getRequestDispatcher("/WEB-INF/view/admin/updateEstimateForm.jsp").forward(request, response);
+		if(authority > 2) {
+			request.getRequestDispatcher("/WEB-INF/view/admin/updateEstimateForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

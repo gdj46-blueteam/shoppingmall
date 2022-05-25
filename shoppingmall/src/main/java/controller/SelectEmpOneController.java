@@ -22,11 +22,12 @@ public class SelectEmpOneController extends HttpServlet {
 		// 권한
 		HttpSession session = request.getSession();
 		int sessionId = 0; 
-		int authority = (Integer)session.getAttribute("sessionAuthority");
+		int authority = 0;
 		
 		if(authority == 2) {
 			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
-		} else {
+		}
+		if(authority == 0){
 			sessionId = Integer.parseInt(request.getParameter("employeeNo"));
 		}
 		

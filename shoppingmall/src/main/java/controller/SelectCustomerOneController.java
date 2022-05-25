@@ -17,22 +17,25 @@ public class SelectCustomerOneController extends HttpServlet {
 		
 		// 권한
 		HttpSession session = request.getSession();
+		String sessionId = ""; 
 		int authority = (Integer)session.getAttribute("sessionAuthority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
-		System.out.println("권한 : " + authority);
+		if(authority == 1) {
+			sessionId = (String)session.getAttribute("sessionId");
+		} else {
+			sessionId = request.getParameter("customerId");
+		}
+		
 		System.out.println("ID : " + sessionId);
 		
-		
 		// 요청값 분석(c)
-		String customerId = request.getParameter("customerId");
-		System.out.println("SelectAdminOneController customerId : " + customerId);
+		System.out.println("SelectCustomerOneController customerId : " + sessionId);
 		
 		// 모델값
 		Customer customer = new Customer();
 		CustomerDao customerDao = new CustomerDao();
 		try {
-			customer = customerDao.selectCustomerOne(customerId);
+			customer = customerDao.selectCustomerOne(sessionId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

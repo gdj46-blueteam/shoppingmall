@@ -25,13 +25,6 @@ public class DeleteAnnoController extends HttpServlet {
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 		
-		if(authority > 2) {
-			// 뷰 포워딩(v)
-			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
-		
 		// 요청값
 		int announcementNo = Integer.parseInt(request.getParameter("announcementNo"));	
 		// 디버깅

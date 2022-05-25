@@ -8,7 +8,7 @@
 <body>
 	<ol>
 		<li><a href="${pageContext.request.contextPath}/SelectCustomerOneController">회원정보</a></li>
-		<li><a href="${pageContext.request.contextPath}/">견적서확인</a></li>
+		<li><a href="${pageContext.request.contextPath}/SelectEstimateListController">견적서확인</a></li>
 		<li><a href="${pageContext.request.contextPath}/InsertReviewController">리뷰</a></li>
 	</ol>
 </body>

@@ -24,7 +24,7 @@ public class DeleteCustomerController extends HttpServlet {
 		
 		if(authority > 0) {
 			// 뷰 포워딩(v)
-			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/view/customer/deleteCustomerForm.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
 		}

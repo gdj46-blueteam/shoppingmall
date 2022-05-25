@@ -190,7 +190,7 @@
       <div class="probootstrap-image order-2 probootstrap-animate" data-animate-effect="fadeIn" style="background-image: url(${pageContext.request.contextPath}/assets/images/tourInfo.jpg)"></div>
       <div class="probootstrap-text order-1">
         <div class="probootstrap-inner probootstrap-animate" data-animate-effect="fadeInLeft">
-          <h2 class="heading mb-4">Review information</h2>
+          <h2 class="heading mb-4">Tour information</h2>
          <p>Decide where to travel</p>
           <p><a href="${pageContext.request.contextPath}/SelectTourController" class="btn btn-primary">Learn More</a></p>
         </div>

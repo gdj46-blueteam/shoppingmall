@@ -17,20 +17,14 @@ import dao.EstimateDao;
 public class DeleteEstimateController extends HttpServlet {		//상세보기겸 삭제페이지
 	private EstimateDao estDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (Integer)session.getAttribute("sessionAuthority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
-		
-		if(authority > 2) {
-			// 뷰 포워딩(v)
-			request.getRequestDispatcher("/WEB-INF/view/admin/staticsByCountry.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
+		/*
+		 * // 권한 HttpSession session = request.getSession(); int authority =
+		 * (Integer)session.getAttribute("sessionAuthority"); String sessionId =
+		 * (String)session.getAttribute("sessionId"); //로그인 세션정보
+		 * 
+		 * System.out.println("권한 : " + authority); System.out.println("ID : " +
+		 * sessionId);
+		 */
 		
 		estDao = new EstimateDao();
 		Map<String,Object> map = estDao.selectEstOne(Integer.parseInt(request.getParameter("estimateNo")));

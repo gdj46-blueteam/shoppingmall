@@ -22,12 +22,9 @@ public class SelectEstimateListController extends HttpServlet {			//고객 estim
 	private EstimateDao estimate;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estimate = new EstimateDao();
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		HttpSession session = request.getSession();
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 
 		List<Map<String,Object>> list = estimate.selectEstimateByCustomerList(sessionId);

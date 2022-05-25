@@ -15,13 +15,14 @@ import vo.*;
 public class UpdateCustomerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
+		/*
+		 * // 권한 HttpSession session = request.getSession(); int authority =
+		 * (int)session.getAttribute("authority"); String sessionId =
+		 * (String)session.getAttribute("sessionId"); //로그인 세션정보
+		 * 
+		 * System.out.println("권한 : " + authority); System.out.println("ID : " +
+		 * sessionId);
+		 */
 		
 		// 요청값 분석(c)
 		String customerId = request.getParameter("customerId");
@@ -56,12 +57,7 @@ public class UpdateCustomerController extends HttpServlet {
 		
 		// 뷰 포워딩(c)
 		
-		if(authority == 1 || authority == 3) {
-			request.getRequestDispatcher("/WEB-INF/view/customer/updateCustomerForm.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
-		
+		request.getRequestDispatcher("/WEB-INF/view/customer/updateCustomerForm.jsp").forward(request, response);
 		
 	}
 

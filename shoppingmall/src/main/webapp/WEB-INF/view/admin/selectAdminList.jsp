@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/mainHome/mainNav.jsp" /> <!-- nav -->
+	<jsp:include page="/WEB-INF/view/mainNav.jsp" /> <!-- nav -->
 	<%-- <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('${pageContext.request.contextPath}/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
 			<div class="container">

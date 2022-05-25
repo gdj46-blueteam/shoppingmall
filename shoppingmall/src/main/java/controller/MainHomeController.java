@@ -40,7 +40,7 @@ public class MainHomeController extends HttpServlet {
 		
 		//diy fomr End
 		System.out.println("메인홈 불러오기");
-		request.getRequestDispatcher("/WEB-INF/view/mainHome/mainhome.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view//mainhome.jsp").forward(request, response);
 	}
 
 }; 

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/mainHome/mainNav.jsp" /> <!-- nav -->
+	<jsp:include page="/WEB-INF/view/mainNav.jsp" /> <!-- nav -->
 	<!-- 견적서 폼 -->
 	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>

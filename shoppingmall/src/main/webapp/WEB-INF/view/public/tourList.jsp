@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/mainHome/mainNav.jsp" /> <!-- nav -->
+	<jsp:include page="/WEB-INF/view/mainNav.jsp" /> <!-- nav -->
     <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/Jinhae.jpg');" data-stellar-background-ratio="0.5" id="section-home">
       <div class="overlay"></div>
       <div class="container">

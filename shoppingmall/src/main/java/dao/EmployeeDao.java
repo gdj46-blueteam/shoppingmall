@@ -583,4 +583,37 @@ public class EmployeeDao {
 	      }
 	       return empLanguageList;
 	   }
+   public int deleteEmployeeDao(int employeeNo) {
+	   int row = 0;
+	      
+      //DB 연결
+      Connection conn = null;
+      PreparedStatement stmt = null;
+
+      try {
+    	  conn = DBUtil.getConnection();
+         String sql = "delete from Employee where employee_no = ?";
+         
+         stmt = conn.prepareStatement(sql); //쿼리 실행
+         stmt.setInt(1,employeeNo);
+         row=stmt.executeUpdate();
+		 
+
+         if(row == 1) {
+            System.out.println("직원 삭제 성공(deleteEmployeeDao)");
+         } else {
+            System.out.println("직원 삭제 실패(deleteEmployeeDao)");
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } finally {
+         try {
+            stmt.close();
+            conn.close();
+         } catch (SQLException e) {
+            e.printStackTrace();
+         }
+      }
+      	return row;
+   }
 }

@@ -50,7 +50,8 @@
 										</tbody>
 									</table>
 										<div>
-											<a href="${pageContext.request.contextPath}/InsertEmpContoller" class=" ">직원 등록</a>
+											<a href="${pageContext.request.contextPath}/InsertEmpContoller" class="btn btn-primary btn-block">직원 등록</a>
+											<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeNo}" class="btn btn-danger btn-block">직원 등록</a>
 										</div>
 								</div>
 							</div>

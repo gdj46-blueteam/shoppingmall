@@ -78,7 +78,7 @@ public class DIYDao {
 					String sql = 	"	 SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
 							+ "	  INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no where customer_id = ?";
 					stmt = conn.prepareStatement(sql); //쿼리문 실행
-					System.out.println(sql + "<-selectEstimate");
+		
 					stmt.setString(1, sessionId);
 					rs = stmt.executeQuery();
 					while(rs.next()) {
@@ -185,8 +185,7 @@ public class DIYDao {
 		return languagelist;
 	}
 	public void insertTourDIY(TourDIY tourDIY) {					
-		System.out.println(tourDIY);
-
+		System.out.println("123 : " + tourDIY);
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
@@ -206,8 +205,14 @@ public class DIYDao {
 			stmt.setString(5, tourDIY.getTourDIYStay());
 			stmt.setString(6, tourDIY.getTourDIYEtc());
 			stmt.setString(7, tourDIY.getTourDIYTerm());
-
-		
+			int row = stmt.executeUpdate();
+			if(row == 1) {
+				System.out.println("입력성공    insertTourDIY");
+			} else {
+				System.out.println("입력실패    insertTourDIY");
+			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

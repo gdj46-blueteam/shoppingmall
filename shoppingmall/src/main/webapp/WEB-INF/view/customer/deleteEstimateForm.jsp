@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="${pageContext.request.contextPath}/DeleteEstimateByCustomerController">
+	<form method="post" action="${pageContext.request.contextPath}/DeleteEstimateController">
 			<table border="1">
 
 					<tr>
@@ -62,7 +62,8 @@
 	
 			</table>
 			<button type="submit">삭제</button>
-			<a href="${pageContext.request.contextPath}/PaymentCompleteController?estimateNo=${map.estimateNo}"><button>결제</button></a>
+			<a href="${pageContext.request.contextPath}/PaymentController?estimateNo=${map.estimateNo}">결제</a>
 		</form>
+		
 </body>
 </html>

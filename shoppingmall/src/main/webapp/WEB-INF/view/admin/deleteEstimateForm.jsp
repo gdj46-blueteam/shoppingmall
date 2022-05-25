@@ -27,7 +27,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md probootstrap-animate" >
-					<form method="get" class="probootstrap-form" action="${pageContext.request.contextPath}/DeleteEstimateController">
+					<form method="post" class="probootstrap-form" action="${pageContext.request.contextPath}/DeleteEstimateController">
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
@@ -87,7 +87,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit class="btn btn-primary btn-block">삭제</button>
+									<button type="submit" class="btn btn-primary btn-block">삭제</button>
 									<a href="${pageContext.request.contextPath}/UpdateEstimateController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}"  class="btn btn-danger btn-block">수정</a>
 								</div>
 							</div>

@@ -128,14 +128,13 @@ public class ReviewDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT r.review_no reviewNo, r.customer_id customerId, r.review, em.employee_name employeeName, ta.area, ta.city "
-				+ "FROM review r "
-				+ "INNER JOIN estimate e ON r.estimate_no = e.estimate_no "
-				+ "INNER JOIN employee em ON e.employee_no = em.employee_no "
-				+ "INNER JOIN tourdiy td ON td.tourdiy_no = e.tourdiy_no "
-				+ "INNER JOIN tourarea ta ON ta.tourarea_no = td.tourarea_no "
-				+ "INNER JOIN tour t ON ta.tourarea_no = t.tourarea_no "
-				+ "WHERE r.review_no = ? ";
+		String sql = "sELECT r.review_no reviewNo, r.customer_id customerId, r.review, em.employee_name employeeName, ta.area, ta.city  "
+				+ " FROM review r  "
+				+ " INNER JOIN estimate e ON r.estimate_no = e.estimate_no  "
+				+ " INNER JOIN employee em ON e.employee_no = em.employee_no "
+				+ " INNER JOIN  tourdiy td ON td.tourdiy_no = r.tourdiy_no  "
+				+ " INNER JOIN tourarea ta ON ta.tourarea_no = td.tourarea_no "
+				+ " WHERE review_no = ? ";
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DBUtil.getConnection();

@@ -72,7 +72,8 @@
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectCustomerListController">회원</a>            
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEmpListController">직원</a>                                   
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectTourController">관광</a>                  
-                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a>                     
+                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a>   
+                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectDIYByAdminController">고객요구사항</a>                  
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEstimateByAdminController">견적서</a>
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectQuestionController">문의사항 확인</a>
                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/StaticsListController">통계</a>

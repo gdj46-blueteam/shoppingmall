@@ -54,7 +54,7 @@ public class InsertAnnoController extends HttpServlet {
 	int row = announcementDao.insertanno(announcement);
 	if (row == 1) { //성공
         System.out.println("입력성공");
-        response.sendRedirect(request.getContextPath()+"/MyPageController");
+        response.sendRedirect(request.getContextPath()+"/SelectAnnoListController");
         return;
      } else {// row==0이면 영향받은 행이 없으므로 오류
         System.out.println("입력실패");

@@ -4,11 +4,11 @@ public class EmployeeList {
 	private int employeeNo;
 	private String employeeName;
 	private String employeeImageName;
+	private int employeeImageNo;
 	
 	@Override
 	public String toString() {
-		return "EmployeeImageList [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", employeeImageName="
-				+ employeeImageName + "]";
+		return "EmployeeList [employeeNo=" + employeeNo + ", employeeName=" + employeeName + ", employeeImageName=" + employeeImageName + ", employeeImageNo=" + employeeImageNo + "]";
 	}
 	//getter & setter
 	public int getEmployeeNo() {
@@ -36,6 +36,12 @@ public class EmployeeList {
 	}
 
 	public EmployeeList() { //기본생성자
+	}
+	public int getEmployeeImageNo() {
+		return employeeImageNo;
+	}
+	public void setEmployeeImageNo(int employeeImageNo) {
+		this.employeeImageNo = employeeImageNo;
 	}
 	
 	

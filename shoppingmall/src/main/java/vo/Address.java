@@ -9,16 +9,29 @@ public class Address {
 	private String city;
 	private String town;
 	private String street;
-
+	private String building1;
+	private String building2;
+	
 	// toString() : 필드값을 문자열로 출력
 	@Override
 	public String toString() {
-	 	return "Address [id=" + id + ", zipCode=" + zipCode + ", province=" + province + ", city=" + city + ", town=" + town
-	 			+ ", street=" + street + "]";
+		return "Address [id=" + id + ", zipCode=" + zipCode + ", province=" + province + ", city=" + city + ", town=" + town + ", street=" + street + ", building1=" + building1 + ", building2=" + building2 + "]";
 	}
 	// getter & setter
 	public int getId() {
 		return id;
+	}
+	public String getBuilding1() {
+		return building1;
+	}
+	public void setBuilding1(String building1) {
+		this.building1 = building1;
+	}
+	public String getBuilding2() {
+		return building2;
+	}
+	public void setBuilding2(String building2) {
+		this.building2 = building2;
 	}
 	public void setId(int id) {
 		this.id = id;

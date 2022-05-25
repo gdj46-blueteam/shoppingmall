@@ -167,9 +167,9 @@ public class CustomerDao {
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
-	String sql = "SELECT customer_id customerId"
-			+ "FROM customer "
-			+ "WHERE customer_email = ? ";
+	String sql = "SELECT customer_id customerId "
+			+ " FROM customer "
+			+ " WHERE customer_email = ? ";
 	try {
 		conn = DBUtil.getConnection();
 		stmt = conn.prepareStatement(sql);

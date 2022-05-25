@@ -15,29 +15,18 @@ import vo.Admin;
 public class SelectAdminOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
 		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
-		
-		
-		// 요청값 분석(c)
-		String adminId = "";
-		if(request.getParameter("adminId") != null) {
-			adminId = request.getParameter("adminId");
-		}	
-		
-		// 디버깅
-		adminId = "admin";
-		System.out.println("SelectAdminOneController adminId : " + adminId);
+
 		// 모델값(m)
 		Admin admin = new Admin();
 		AdminDao adminDao = new AdminDao();
 		try {
-			admin = adminDao.selectAdminOne(adminId);
+			admin = adminDao.selectAdminOne(sessionId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

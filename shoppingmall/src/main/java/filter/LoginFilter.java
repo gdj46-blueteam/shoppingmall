@@ -24,8 +24,8 @@ public class LoginFilter implements Filter {
 			System.out.println("session id 확인 : " + sessionId);
 			System.out.println("session authority 확인 : " +sessionAuthority);
 			
-			session.setAttribute("sessionId", sessionId);
-			session.setAttribute("sessionAuthority", sessionAuthority);
+			// session.setAttribute("sessionId", sessionId);
+			// session.setAttribute("sessionAuthority", sessionAuthority);
 			
 			if(sessionId == null) { // 로그인이 안돼있으면
 				if(response instanceof HttpServletResponse) {

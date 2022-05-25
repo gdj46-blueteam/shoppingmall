@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DIYDao;
+import dao.EmployeeDao;
 import dao.ReviewDao;
+import vo.EmployeeList;
 import vo.Language;
 import vo.Review;
 import vo.TourArea;
@@ -22,11 +24,14 @@ public class MainHomeController extends HttpServlet {
 	private DIYDao dIYDao; //DIY Dao객체 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DIY form
+		EmployeeDao employeeDao = new EmployeeDao();
 		dIYDao = new DIYDao();
 		List<TourArea> tourAreaList = dIYDao.TourAreaList();
 		List<Language> languageList =  dIYDao.LanguageList();
+		List<EmployeeList> list = employeeDao.selectEmpList();
 		request.setAttribute("tourAreaList", tourAreaList);
 		request.setAttribute("languageList", languageList);
+		request.setAttribute("list", list);
 		
 		//review
 		List<Review> reviewList = new ArrayList<Review>();

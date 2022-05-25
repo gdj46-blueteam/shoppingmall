@@ -21,13 +21,14 @@ public class SelectQuestionController extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
+		/*
+		 * HttpServletRequest req = (HttpServletRequest)request; HttpSession session =
+		 * req.getSession(); int authority = (int)session.getAttribute("authority");
+		 * String sessionId = (String)session.getAttribute("sessionId"); //로그인 세션정보
+		 * 
+		 * System.out.println("권한 : " + authority); System.out.println("ID : " +
+		 * sessionId);
+		 */
 		
 		this.questionDao = new QuestionDao();
 		List<Question> questionList = questionDao.selectQuestion();
@@ -36,10 +37,6 @@ public class SelectQuestionController extends HttpServlet {
 			System.out.println(q+"<-dao호출확인");
 		}
 		request.getRequestDispatcher("/WEB-INF/view/admin/selectQuestion.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }

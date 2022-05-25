@@ -32,7 +32,7 @@ public class SelectEmpListController extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		System.out.println("list.size(SelectEmpListController) -> " + list.size());
-		request.getRequestDispatcher("/WEB-INF/view/employee/empPage.jsp").forward(request, response);	
+		request.getRequestDispatcher("/WEB-INF/view/public/empPage.jsp").forward(request, response);	
 	}
 
 }

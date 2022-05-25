@@ -207,158 +207,63 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <div class="media probootstrap-media d-flex align-items-stretch mb-4 probootstrap-animate">
-	              <table>
-	              	<tr>
-	              		<th>reviewNo</th>		
-						<th>review</th>
-						<th>customerId</th>	
-	              	</tr>
-	              	
-	              	<c:forEach var="r" items="${reviewList}">  
-	              	<tr>
-					<td>${r.reviewNo}</td>
-					<td><a href="${pageContext.request.contextPath}/SelectOneReviewController">${r.review}</a></td>
-					<td>${r.customerId}</td>
-					</tr>
-					</c:forEach>
-	              </table>
-            </div>
+          <div class="col-md-12">
+              <table style="width:100%;height: 100% " class="table">
+              	<tr>
+              		<th>번호</th>		
+					<th>리뷰</th>
+					<th>고객아이디</th>	
+              	</tr>
+              	
+              	<c:forEach var="r" items="${reviewList}">  
+              	<tr>
+				<td>${r.reviewNo}</td>
+				<td><a href="${pageContext.request.contextPath}/SelectOneReviewController">${r.review}</a></td>
+				<td>${r.customerId}</td>
+				</tr>
+				</c:forEach>
+              </table>
          </div>
         </div>  
       </div>
     </section>
     <!-- END section -->
 
-
-	<!-- 슬라이드 -->
-    <section class="probootstrap_section">
+	<!-- 직원목록 -->
+	<section class="probootstrap_section" id="section-city-guides">
       <div class="container">
+        <div class="container">
         <div class="row text-center mb-5 probootstrap-animate">
           <div class="col-md-12">
-            <h2 class="display-4 border-bottom probootstrap-section-heading">직원목록</h2>
+            <h2 class="display-4 border-bottom probootstrap-section-heading">Our Employees</h2>
           </div>
         </div>
-        <div class="row probootstrap-animate">
-          <div class="col-md-12">
-            <div class="owl-carousel js-owl-carousel-2">
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_2.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_1.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_3.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_4.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_5.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_2.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_1.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_3.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_4.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-
-              <div>
-                <div class="media probootstrap-media d-block align-items-stretch mb-4 probootstrap-animate">
-                  <img src="assets/images/sq_img_5.jpg" alt="Free Template by ProBootstrap" class="img-fluid">
-                  <div class="media-body">
-                    <h5 class="mb-3">02. Service Title Here</h5>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END slide item -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- END section -->
+	        <div class="row">
+	          <div class="col-md-12">
+	              <table class = "table table-bordered">
+					<thead>
+						<tr>
+							<th>employeeNo</th>
+							<th>employeeName</th>
+							<th>employeeImage</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="e" items="${list}">
+						<tr>
+							<td>${e.employeeNo}</td>
+							<td><a href="${pageContext.request.contextPath}/SelectEmpOneController?employeeNo=${e.employeeNo}">${e.employeeName}</a></td>
+							<td><img src="./Image/${e.employeeImageName}" width="120" height="80" alt="직원사진"></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+	         </div>
+	        </div>  
+     	</div>
+   	</div>
+   	</section>
+	
     
     <!-- footer -->
     <footer class="probootstrap_section probootstrap-border-top">
@@ -368,16 +273,16 @@
             <h3 class="probootstrap_font-18 mb-3">K-Travel 소개</h3>
             <ul class="list-unstyled">
               <li><a href="${pageContext.request.contextPath}/MainHomeController" target="_blank">Home</a></li>
-              <li><a href="${pageContext.request.contextPath}/" target="_blank">이용안내</a></li>
-              <li><a href="https://free-template.co" target="_blank">직원목록</a></li>
-              <li><a href="https://free-template.co" target="_blank">관광안내</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectInfoController" target="_blank">이용안내</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectEmpListController" target="_blank">직원목록</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectTourController" target="_blank">관광안내</a></li>
             </ul>
           </div>
           <div class="col-md-3">
             <h3 class="probootstrap_font-18 mb-3">고객센터</h3>
             <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">문의사항</a></li>
-              <li><a href="https://free-template.co" target="_blank">공지사항</a></li>
+              <li><a href="${pageContext.request.contextPath}/InsertQuestionController" target="_blank">문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectAnnoListController" target="_blank">공지사항</a></li>
             </ul>
           </div>
             <div class="col-md-3">

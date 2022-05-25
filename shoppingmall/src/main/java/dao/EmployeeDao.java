@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 
+import util.DBUtil;
 import vo.EmpImage;
 import vo.Employee;
 import vo.EmployeeList;
@@ -32,7 +33,7 @@ public class EmployeeDao {
       ResultSet rs = null;
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+    	  conn = DBUtil.getConnection();
          //쿼리문
          String sql=" SELECT employeeNo, employeeName, employeeImageName"
                + " FROM employee_list"; 
@@ -73,7 +74,7 @@ public class EmployeeDao {
 	      ResultSet rs = null;
 	      int employNo=0;
 	      try {
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	    	  conn = DBUtil.getConnection();
 	         String sql = "INSERT INTO employee(employee_pw, employee_sn, empAddress_id, employee_addressDetail, employee_name,"
 	         		+ " employee_email, employee_phone, employee_gender,employee_imageNo, employee_introduce, create_date, update_date)"
 	               + " VALUES(PASSWORD(?), ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), NOW())";
@@ -121,7 +122,7 @@ public class EmployeeDao {
       PreparedStatement stmt = null;
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); // DB연결
+    	  conn = DBUtil.getConnection();
          String sql = "UPDATE employee SET employee_pw = PASSWORD(?), employee_email = ?, employee_phone = ?, employee_introduce = ?, update_date = NOW()"
                + " WHERE employee_no =? ";
          stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -163,7 +164,7 @@ public class EmployeeDao {
 	      PreparedStatement stmt = null;
 	      System.out.println(languageNo+"   " +employNo);
 	      try {
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	    	  conn = DBUtil.getConnection();
 	         String sql = "INSERT INTO employee_language(language_no, employee_no) VALUES(?, ?)";
 	         
 	         stmt = conn.prepareStatement(sql); //쿼리 실행
@@ -199,7 +200,7 @@ public class EmployeeDao {
       ResultSet rs = null;
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+    	  conn = DBUtil.getConnection();
          //쿼리문
          String sql = " SELECT employeeNo,employeeSn, employeeAddress, employeeAddressDetail, employeeName, employeeEmail "
                + " ,employeePhone, employeeGender, employeeImageName, employeeIntroduce,language, authority, createDate, updateDate "
@@ -260,7 +261,7 @@ public class EmployeeDao {
       ResultSet rs = null;
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+    	  conn = DBUtil.getConnection();
          //쿼리문
          String sql = "SELECT p.employee_no employeeNo, p.employee_name employeeName, sum(e.estimate_price) sum, COUNT(e.estimate_price) cnt "
                + " FROM estimate e "
@@ -312,7 +313,7 @@ public class EmployeeDao {
       ResultSet rs = null;
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+    	  conn = DBUtil.getConnection();
          //쿼리문
          String sql = " SELECT p.employee_no employeeNo ,p.employee_name employeeName, c.customer_id customerId,  d.tourdiy_term tourdiyTerm"
          		+ " FROM employee p"
@@ -372,7 +373,7 @@ public class EmployeeDao {
 					+ "FROM address "
 					+ "WHERE street LIKE ? "; 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			stmt.setString(1, "%"+street+"%");
 			rs = stmt.executeQuery();
@@ -405,7 +406,7 @@ public class EmployeeDao {
 	int imageNo=0;
 	String sql = "insert into employee_image(employee_imageName, employee_imageType, create_date) values(?,?,NOW())"; 
 	try {
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+		conn = DBUtil.getConnection();
 		stmt = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS); //쿼리문 실행
 		stmt.setString(1, empImage.getEmployeeImageName());
 		stmt.setString(2, empImage.getEmployeeImageType());
@@ -446,7 +447,7 @@ public class EmployeeDao {
 	
 	String sql = "delete from employee_image where employee_imageNo = ?"; 
 	try {
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+		conn = DBUtil.getConnection(); //DB에 연결한다.
 		stmt = conn.prepareStatement(sql); //쿼리문 실행
 		stmt.setInt(1, employeeImageNo);
 		System.out.println("stmt (delteEmployeeImage) -> " + stmt); //디버깅
@@ -480,7 +481,7 @@ public class EmployeeDao {
 	
 	String EmpImageName  = "select employee_imageName where employee_imageNo =?"; 
 	try {
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+		conn = DBUtil.getConnection(); //DB에 연결한다.
 		stmt = conn.prepareStatement(EmpImageName); //쿼리문 실행
 		stmt.setInt(1, employeeImageNo);
 		System.out.println("stmt (selectEmpImageName) -> " + stmt); //디버깅
@@ -511,7 +512,7 @@ public class EmployeeDao {
 	      ResultSet rs = null;
 	      
 	      try {
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+	    	  conn = DBUtil.getConnection();//DB에 연결한다.
 	         //쿼리문
 	         String sql=" SELECT language_no languageNo, language"
 	               + " FROM language"; 
@@ -551,7 +552,7 @@ public class EmployeeDao {
 	      ResultSet rs = null;
 	      
 	      try {
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+	    	  conn = DBUtil.getConnection();//DB에 연결한다.
 	         //쿼리문
 	         String sql=" SELECT employee_language_no empLanguageNo, e.language_no languageNo, e.employee_no employeeNo, l.language"
 	         		+ "	                FROM employee_language e INNER JOIN language l on e.language_no = l.language_no and employee_no =?"; 

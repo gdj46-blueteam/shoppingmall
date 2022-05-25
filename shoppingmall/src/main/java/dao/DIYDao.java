@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import util.DBUtil;
 import vo.Announcement;
 import vo.Language;
 import vo.TourArea;
@@ -23,7 +24,7 @@ public class DIYDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			
 			String sql = " SELECT tourdiy_no tourDIYNo, customer_id customerId, language, city, "
 					+ " tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, "
@@ -73,7 +74,7 @@ public class DIYDao {
 				PreparedStatement stmt = null;
 				ResultSet rs = null;
 				try {
-					conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+					conn = DBUtil.getConnection();
 					String sql = 	"	 SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
 							+ "	  INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no where customer_id = ?";
 					stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -118,7 +119,7 @@ public class DIYDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = " 	SELECT tourArea_no tourAreaNo, AREA, city FROM tourarea";
 			
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -155,7 +156,7 @@ public class DIYDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = " 	SELECT language_no languageNo, language from language";
 			
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -193,7 +194,7 @@ public class DIYDao {
 			//String sql = "SELECT tourDiy_no tourdiyNo, customer_id customerId,language,city, tourdiy_people tourDiyPeople, tourdiy_term tourDIYTERM, tourdiy_stay tourDiyStay,"
 				//	+ " tourDiy_etc, create_date createDate FROM tourdiy t "
 				//	+ "INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no;";
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = "insert into tourDIY(customer_id, language_no, tourArea_no, tourDIY_People, tourDIY_Stay,"
 					+ " tourDIY_Etc,tourdiy_term, create_date) values(?,?,?,?,?,?,?,now())";
 			
@@ -228,7 +229,7 @@ public class DIYDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = 	"SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
 					+ " tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
 					+ " INNER JOIN language l ON t.language_no = l.language_no "

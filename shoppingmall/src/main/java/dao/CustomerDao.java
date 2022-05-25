@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.DBUtil;
 import vo.*;
 public class CustomerDao {
 	// 회원목록 리스트
@@ -19,7 +20,7 @@ public class CustomerDao {
 		String sql = " SELECT customer_id customerId, customer_name customerName, customer_country customerCountry, customer_gender customerGender "
 				+ " FROM customer ";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			rs = stmt.executeQuery();//쿼리 저장
 			while(rs.next()) { //객체를 while 안에서 초기화 
@@ -52,7 +53,7 @@ public class CustomerDao {
 					+ "FROM customer "
 					+ "WHERE customer_id = ?";
 			try {
-				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+				conn = DBUtil.getConnection();
 				stmt = conn.prepareStatement(sql);//쿼리 실행
 				stmt.setString(1, customerId);
 				rs = stmt.executeQuery();//쿼리 저장
@@ -89,7 +90,7 @@ public class CustomerDao {
 				+ "SET customer_pw = PASSWORD(?), customer_name= ?, customer_age= ?, customer_phone= ?, customer_email= ?, customer_country= ?, update_date = NOW() "
 				+ "WHERE customer_id = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, customer.getCustomerPw());
 			stmt.setString(2, customer.getCustomerName());
@@ -118,7 +119,7 @@ public class CustomerDao {
 		int row = 0;
 		String sql = "DELETE FROM customer WHERE customer_id = ? AND customer_pw = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setString(1, customerId);
 			stmt.setString(2, customerPw);
@@ -144,7 +145,7 @@ public class CustomerDao {
 		String sql = "UPDATE estimate SET estimate_ing = '결제완료' "
 				+ "WHERE estimate_no = ? ";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setInt(1, estimateNo);
 			row = stmt.executeUpdate(); //쿼리 실행된 행수
@@ -170,7 +171,7 @@ public class CustomerDao {
 			+ "FROM customer "
 			+ "WHERE customer_email = ? ";
 	try {
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+		conn = DBUtil.getConnection();
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, customerEmail);
 		rs = stmt.executeQuery();
@@ -200,7 +201,7 @@ public class CustomerDao {
 			+ "	 FROM customer "
 			+ "	 WHERE customer_id = ? ";
 	try {
-		conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+		conn = DBUtil.getConnection();
 		stmt = conn.prepareStatement(sql); //쿼리 실행
 		stmt.setString(1, customerId);
 		rs = stmt.executeQuery();
@@ -228,7 +229,7 @@ public class CustomerDao {
 		String sql ="INSERT INTO customer(customer_id , customer_pw, customer_gender, customer_age, customer_phone, customer_email, customer_country, create_date , update_date, customer_name) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?) ";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql); //쿼리 실행
 			stmt.setString(1, customer.getCustomerId());
 			stmt.setString(2, customer.getCustomerPw());
@@ -261,7 +262,7 @@ public class CustomerDao {
 			String sql = "SELECT country "
 					+ "from country";
 			try {
-				conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+				conn = DBUtil.getConnection();
 				stmt = conn.prepareStatement(sql); //쿼리 실행
 				rs = stmt.executeQuery();
 				while(rs.next()) { // while 안에서 초기화

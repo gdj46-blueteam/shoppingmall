@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+
+import util.DBUtil;
 import vo.*; 
 public class StaticsDao {
 	//페이징
@@ -20,7 +22,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select country, COUNT(country) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list GROUP BY country order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -60,7 +62,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select gender, COUNT(gender) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list GROUP BY gender order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -99,7 +101,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select age, COUNT(age) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list GROUP BY age order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -139,7 +141,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select month, COUNT(month) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list GROUP BY month order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -178,7 +180,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select area, COUNT(area) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list GROUP BY area order by rank";
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -217,7 +219,7 @@ public class StaticsDao {
 		ResultSet rs = null;
 		 
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234"); //DB에 연결한다.
+			conn = DBUtil.getConnection(); //DB에 연결한다.
 			String sql ="select country,gender, age, month, area, COUNT(*) cnt, RANK() over(ORDER BY cnt desc) rank"
 					+ " from statics_list "
 					+ " GROUP BY country order by rank";

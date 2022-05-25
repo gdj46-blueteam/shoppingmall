@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.DBUtil;
 import vo.Announcement;
 
 public class AnnouncementDao {
@@ -21,7 +22,7 @@ public class AnnouncementDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = " SELECT announcement_no announcementNo, announcement_title announcementTitle, announcement_content announcementContent, create_date createDate "
 					+ 	 " FROM announcement ";
 			
@@ -74,7 +75,7 @@ public class AnnouncementDao {
 				+ "				WHERE announcement_no = ? ";
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setInt(1, announcementNo);
 			rs = stmt.executeQuery();
@@ -113,7 +114,7 @@ public class AnnouncementDao {
 		String sql =" DELETE FROM announcement WHERE announcement_no = ? ";
 				
 		try { 
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, announcementNo);	
 			System.out.println("deleteAnno----"+stmt);
@@ -144,7 +145,7 @@ public class AnnouncementDao {
 				+ " SET announcement_title= ? , announcement_content= ? "
 				+ " WHERE announcement_no = ? ";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql); //퀴리문 실행
 			stmt.setString(1, announcement.getAnnouncementTitle());
 			stmt.setString(2, announcement.getAnnouncementContent());
@@ -177,7 +178,7 @@ public class AnnouncementDao {
      			+ "VALUES(?, ?, NOW())";
      
      try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+    	 conn = DBUtil.getConnection();
          stmt = conn.prepareStatement(sql); //쿼리문 실행
         
          stmt.setString(1, announcement.getAnnouncementTitle());

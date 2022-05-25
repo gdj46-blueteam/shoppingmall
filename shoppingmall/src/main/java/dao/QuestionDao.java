@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import util.DBUtil;
 import vo.Question;
 
 public class QuestionDao {
@@ -18,7 +19,7 @@ public class QuestionDao {
 		PreparedStatement stmt = null;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = " INSERT INTO question(customer_id, question_title, question_content, create_date, update_date)"
 					+ " VALUES(?, ?, ?, NOW(), NOW())";
 			stmt = conn.prepareStatement(sql);
@@ -56,7 +57,7 @@ public class QuestionDao {
 		String sql = "DELETE FROM question WHERE question_no = ?";
 		try {
 			//DB연결
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 			stmt.setInt(1, questionNo);//물음표값 넣기
 			int row = stmt.executeUpdate();//실행결과 행의 수 받기
@@ -79,7 +80,7 @@ public class QuestionDao {
 				+ "		FROM question";
 		try {
 			//DB접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 			rs = stmt.executeQuery();//쿼리문실행값을 저장
 			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.mariadb.jdbc.message.client.ExecutePacket;
 
+import util.DBUtil;
 import vo.Tour;
 import vo.TourArea;
 import vo.TourImage;
@@ -27,7 +28,7 @@ public class TourDao {
 		ResultSet rs = null;
 		String sql="insert into tourimage(tourimage_name, tourimage_type , create_date ) values(?,?,now())";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			System.out.println(tourImage.getTourImageName());
 			System.out.println(tourImage.getTourImageType());
 			
@@ -65,7 +66,7 @@ public class TourDao {
 		ResultSet rs=null;
 		String sql = "insert into tourarea(area, city) values(?,?)";		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			System.out.println(tourArea.getArea());
 			System.out.println(tourArea.getCity());
 			
@@ -101,7 +102,7 @@ public class TourDao {
 		String sql = "insert into tour(tourarea_No, tour_name, tour_description, tourimage_no) values(?,?,?,?)";
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			
 			stmt =  conn.prepareStatement(sql);
 			stmt.setInt(1, tour.getTourAreaNo());								
@@ -129,7 +130,7 @@ public class TourDao {
 		//수정하는 쿼리문
 		String sql = "update tour set tour_name = ?, tour_description = ? where tour_no = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 				
 			stmt.setString(1, tour.getTourName());
@@ -163,7 +164,7 @@ public class TourDao {
 		//삭제 쿼리문
 		String sql = "delete from tour where tour_no = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 				
 			stmt.setInt(1, tourNo);
@@ -196,7 +197,7 @@ public class TourDao {
 		//상세보기 쿼리문
 		String sql = "select tour_no tourNo, tourarea_No tourAreaNo, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 			stmt.setInt(1, tourNo);
 			rs = stmt.executeQuery();//결과값 저장
@@ -237,7 +238,7 @@ public class TourDao {
 				+ "INNER JOIN tourimage ti ON ti.tourimage_no = t.tourImage_no";
 		try {
 			//DB접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리실행
 			rs = stmt.executeQuery();//쿼리문 실행값 저장
 			//커서가 잡히고 리스트에서 선택되는 행을 바꿈, 내려갈행이 있다면 값을 가져오고 아니면 빠져나감
@@ -278,7 +279,7 @@ public class TourDao {
 		String sql =  " select tour_no tourNo, tourArea_No tourAreaNo, tour_name tourName, tour_description tourDescription, tourimage_no tourImageNo from tour where tour_no = ?";
 		try {
 			//DB접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);										//쿼리실행
 			stmt.setInt(1, tourNo);
 			rs = stmt.executeQuery();//쿼리문 실행값 저장
@@ -319,7 +320,7 @@ public class TourDao {
 		String sql =  " select tourImage_no tourImageNo, tourImage_name tourImageName,tourImage_type tourImageType, create_date createDate from tourImage where TourImage_No = ?";
 		try {
 			//DB접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);										//쿼리실행
 			stmt.setInt(1, tour.getTourImageNo());
 			rs = stmt.executeQuery();//쿼리문 실행값 저장
@@ -358,7 +359,7 @@ public class TourDao {
 		String sql =  " select TourArea_No tourAreaNo, area,city from tourArea where tourArea_No = ?";
 		try {
 			//DB접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);										//쿼리실행
 			stmt.setInt(1, tour.getTourAreaNo());
 			rs = stmt.executeQuery();//쿼리문 실행값 저장

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+
+import util.DBUtil;
 import vo.*;
 
 public class LoginDao {
@@ -23,7 +25,7 @@ public class LoginDao {
 				+ "		WHERE customer_id = ? AND customer_pw=?";
 
 			//db접속
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql); //쿼리실행
 			stmt.setString(1, id);//물음표 값에 값을 넣음
 			stmt.setString(2, pw);//물음표 값에 값을 넣음

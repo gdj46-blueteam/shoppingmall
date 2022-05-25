@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import util.DBUtil;
 import vo.Review;
 import vo.TourArea;
 
@@ -23,7 +24,7 @@ public class ReviewDao {
    ResultSet rs = null;
 
    try {
-      conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+      conn = DBUtil.getConnection();
       String sql = " SELECT review_no reviewNo , customer_id customerId, review review, tourdiy_no tourdiyNo, estimate_no estimateNo, create_date createDate, update_date updateDate "
             +     " FROM review "; 
       stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -67,7 +68,7 @@ public class ReviewDao {
             + "VALUES(?, ?, ?, ?, NOW(), NOW());";
       
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+         conn = DBUtil.getConnection();
          stmt = conn.prepareStatement(sql); //쿼리문 실행
          stmt.setString(1, review.getcustomerId());
          stmt.setString(2, review.getReview());
@@ -98,7 +99,7 @@ public class ReviewDao {
       String sql = "DELETE FROM review "
             + "WHERE review_no = ?";
       try {
-         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+         conn = DBUtil.getConnection();
          stmt = conn.prepareStatement(sql); //쿼리문 실행
          stmt.setInt(1, reviewNo);
          row = stmt.executeUpdate();
@@ -137,7 +138,7 @@ public class ReviewDao {
 				+ "WHERE r.review_no = ? ";
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);//쿼리 실행
 			stmt.setInt(1, reviewNo);
 			rs = stmt.executeQuery();
@@ -185,7 +186,7 @@ public class ReviewDao {
 	    		+ "and tdy.tourdiy_no NOT IN (SELECT tourdiy_no FROM review) "
 	    		+ "AND  tdy.customer_id = ? ";
 	    try {
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+	         conn = DBUtil.getConnection();
 	         stmt = conn.prepareStatement(sql); //쿼리문 실행
 	         stmt.setString(1, customerId);
 	         rs = stmt.executeQuery();

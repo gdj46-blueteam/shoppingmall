@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import util.DBUtil;
 import vo.Admin;
 
 
@@ -22,7 +23,7 @@ public class AdminDao {
 				+ "	FROM admin "
 				+ "	WHERE admin_id = ?";
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, adminId);
 			rs = stmt.executeQuery();

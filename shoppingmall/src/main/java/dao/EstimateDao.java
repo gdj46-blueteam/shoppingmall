@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import util.DBUtil;
 import vo.Estimate;
 import vo.TourDIY;
 
@@ -21,7 +22,7 @@ public class EstimateDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql ="SELECT emp.employee_no employeeNo, emp.employee_name employeeName, l.language "
 					+ "FROM employee emp "
 					+ "INNER JOIN employee_language el ON el.employee_no = emp.employee_no "					//견적서에 배치된 직원은 제외
@@ -70,7 +71,7 @@ public class EstimateDao {
 
 		int row= 0;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = "insert into estimate(tourdiy_no, admin_id, employee_no, estimate_price, estimate_ing, create_date, update_date) "
 					+ "values(?,?,?,?,?,now(),now())";
 			
@@ -102,7 +103,7 @@ public class EstimateDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
 					+ " est.estimate_price estimatePrice, emp.employee_name employeeName, "
 					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,"
@@ -152,7 +153,7 @@ public class EstimateDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = "SELECT est.estimate_no estimateNo,est.tourDIY_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
 					+ " est.estimate_price estimatePrice, emp.employee_name employeeName, est.estimate_ing estimateIng, "
 					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,"
@@ -206,7 +207,7 @@ public class EstimateDao {
 		PreparedStatement stmt2 = null;	
 		int row =0;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String deleteEstSql = "delete from estimate where estimate_No= ?";
 			
 			stmt = conn.prepareStatement(deleteEstSql);											 //견적서 삭제 쿼리문 실행
@@ -239,7 +240,7 @@ public class EstimateDao {
 		int row =0;
 		System.out.println(estimate +"updateEstimate" );
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String EstSql="UPDATE estimate SET employee_no = ?,estimate_price = ?, estimate_ing = ?, update_date = NOW()"
 		               + " WHERE estimate_no =?";
 			
@@ -275,7 +276,7 @@ public class EstimateDao {
 		PreparedStatement stmt2 = null;	
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shoppingmall","root","java1234");
+			conn = DBUtil.getConnection();
 			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, est.tourDIY_no tourDIYNo, "
 					+ "est.estimate_price estimatePrice, emp.employee_name employeeName, "
 					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,  "

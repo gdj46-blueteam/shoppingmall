@@ -21,23 +21,12 @@ public class SelectEstimateByAdminController extends HttpServlet {			//관리자
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
 		
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
-		
 		
 		List<Map<String, Object>> list = estDao.selectEstimateByAdminList();
 		System.out.println(list.size() + "<------SelectEstimateByAdminController(selectEstimateByAdminList)");
 		request.setAttribute("list", list);
-		if(authority > 2) {
-			request.getRequestDispatcher("WEB-INF/view/admin/selectEstimate.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
+		
+		request.getRequestDispatcher("WEB-INF/view/admin/selectEstimate.jsp").forward(request, response);
 		
 	}
 

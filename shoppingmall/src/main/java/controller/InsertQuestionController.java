@@ -14,21 +14,9 @@ import vo.Question;
 @WebServlet("/InsertQuestionController")
 public class InsertQuestionController extends HttpServlet {
 	private QuestionDao questionDao;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (Integer)session.getAttribute("sessionAuthority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
-		
-		if(authority > 0) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
+
 			request.getRequestDispatcher("/WEB-INF/view/public/insertQuestionForm.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

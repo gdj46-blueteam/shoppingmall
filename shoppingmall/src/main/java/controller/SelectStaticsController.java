@@ -19,21 +19,10 @@ public class SelectStaticsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.staticsDao = new StaticsDao();
 		
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
+
 		
 		List<Map<String, Object>> list = staticsDao.StaticsByAll();
 		request.setAttribute("list", list);
-		if(authority > 2) {
 			request.getRequestDispatcher("/WEB-INF/view/admin/staticsList.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
-		
 	}
 }

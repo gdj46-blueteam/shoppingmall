@@ -39,7 +39,7 @@
                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${pageContext.request.contextPath}/MyPageController">마이페이지</a>
                 <div class="dropdown-menu">
                    	<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectCustomerOneController">회원정보</a>
-					<a class="dropdown-item" href="${pageContext.request.contextPath}/">견적서확인</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectEstimateListController">견적서확인</a>
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/InsertReviewController">리뷰</a>
                </div>
             </li>
@@ -74,7 +74,7 @@
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEmpListController">직원</a>                                   
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectTourController">관광</a>                  
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectAnnoListController">공지사항</a>                     
-                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEstimateController">견적서</a>
+                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectEstimateByAdminController">견적서</a>
                   <a class="dropdown-item"  href="${pageContext.request.contextPath}/SelectQuestionController">문의사항 확인</a>
                  <a class="dropdown-item"  href="${pageContext.request.contextPath}/StaticsListController">통계</a>
                </div>

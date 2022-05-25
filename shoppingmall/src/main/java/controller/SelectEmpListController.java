@@ -17,14 +17,6 @@ public class SelectEmpListController extends HttpServlet {
 	private EmployeeDao employeeDao; //dao변수 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
-		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
-		
 		//dao 메소드 호출 객체생성 -> 호출
 		this.employeeDao = new EmployeeDao();
 		List<EmployeeList> list = employeeDao.selectEmpList();

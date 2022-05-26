@@ -73,8 +73,9 @@
 									</table>
 								</div>
 							</div>
+						</form>
 						</div>
-					</form>
+					
 				</div>
 
 			</div>

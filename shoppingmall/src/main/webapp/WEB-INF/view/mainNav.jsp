@@ -40,6 +40,7 @@
                 <div class="dropdown-menu">
                    	<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectCustomerOneController">회원정보</a>
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectEstimateListController">견적서확인</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/SelectDIYByCustomerController">주문서확인</a>
                </div>
             </li>
           </ul>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,8 +99,6 @@
 						<div>
 							<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
 							<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-danger btn-success">직원 삭제</a>
-							<a href="${pageContext.request.contextPath}/EmpMyPageController" class="btn btn-outline-success">뒤로</a>
-							
 						</div>
 					</form>
 				</div>

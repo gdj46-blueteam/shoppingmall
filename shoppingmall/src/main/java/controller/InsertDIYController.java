@@ -46,7 +46,8 @@ public class InsertDIYController extends HttpServlet {
 		int authority = (int)session.getAttribute("sessionAuthority");
 		System.out.println("ID : " + sessionId);	
 		
-		
+		int transportatinonNo = Integer.parseInt(request.getParameter("transportationNo"));
+		int tourkindNo = Integer.parseInt(request.getParameter("tourkindNo"));
 		
 		TourDIY tourDIY = new TourDIY();		
 		tourDIY.setTourAreaNo(Integer.parseInt(request.getParameter("tourArea")));
@@ -60,9 +61,10 @@ public class InsertDIYController extends HttpServlet {
 		if(sessionId == null) {
 			response.sendRedirect(request.getContextPath()+"/MainHomeController");
 		}
+		
 		if(authority==1) {
 		dIYDao = new DIYDao();
-		dIYDao.insertTourDIY(tourDIY);
+		dIYDao.insertTourDIY(tourDIY, tourkindNo, transportatinonNo);
 		response.sendRedirect(request.getContextPath()+"/SelectDIYByCustomerController");
 		}
 		

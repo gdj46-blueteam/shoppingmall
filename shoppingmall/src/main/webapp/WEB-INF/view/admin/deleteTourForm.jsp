@@ -76,8 +76,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-block" >삭제</button>	
-									<a href="${pageContext.request.contextPath}/InsertAnnoController" class="btn btn-primary btn-block">공지사항 작성</a>
+									<button type="submit" class="btn btn-primary btn-block" >삭제</button>
 									<a href="${pageContext.request.contextPath}/UpdateTourController?tourNo=${tour.tourNo}" class="btn btn-primary btn-block">수정</a>
 								</div>
 							</div>

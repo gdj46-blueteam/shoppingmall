@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-<title>selectCustomerList</title>
+<title>EstimateList</title>
 <!-- css 링크 -->
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
@@ -35,7 +35,7 @@
 						<form method="get" class="probootstrap-form">
 							<div class="col-md">
 								<div class="form-group">
-									<table class="probootstrap-date-wrap table table-striped " style="color: black;">
+									<table class="probootstrap-date-wrap table table-striped">
 										<thead>
 											<tr>
 												<th>estimateNo</th>

@@ -10,7 +10,6 @@
 	<h2>요구사항확인서목록(고객용)</h2>
 	<form>
 		<table border="1">
-
 					<tr>
 							<td>tourdiyNo</td>
 							<td>customerId</td>
@@ -21,10 +20,7 @@
 							<td>tourditStay</td>
 							<td>tourdiyEtc</td>
 							<td>createDate</td>
-							
 					</tr>
-
-
 					<c:forEach var="map" items = "${list}">
 						<tr>
 							<td>${map.tourDIYNo}</td>

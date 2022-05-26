@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -22,13 +22,17 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/mainNav.jsp" />
-	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/busanTour.jpg');"data-stellar-background-ratio="0.5" id="section-home">
+	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/busanTour.jpg');" data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="col-md probootstrap-animate" >
-					<form method="get" class="probootstrap-form"  style="width: 150%">
-						<div class="row mb-2">
+				<div class="col-md probootstrap-animate">
+					<div class="col-md">
+						<h2 class="heading mb-2 display-4 font-light probootstrap-animate">ESTIMATE	LIST</h2>
+						<p class="lead mb-5 probootstrap-animate">
+					</div>
+					<div class="row mb-2">
+						<form method="get" class="probootstrap-form">
 							<div class="col-md">
 								<div class="form-group">
 									<table class="probootstrap-date-wrap table table-striped " style="color: black;">
@@ -46,48 +50,44 @@
 												<th>tourdiyEtc</th>
 												<th>createDate</th>
 												<th>updateDate</th>
-										</tr>
+											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="map" items = "${list}">
-											<tr>
-												<td><a href="${pageContext.request.contextPath}/DeleteEstimateController?estimateNo=${map.estimateNo}">${map.estimateNo}</a></td>
-												<td>${map.customerId}</td>
-												<td>${map.language}</td>
-												<td>${map.city}</td>
-												<td>${map.employeeName }</td>
-												<td>${map.estimatePrice }</td>
-												<td>${map.tourDIYPeople}</td>
-												<td>${map.tourDIYTerm}</td>
-												<td>${map.tourDIYStay}</td>
-												<td>${map.tourDIYEtc}</td>
-												<td>${map.createDate}</td>
-												<td>${map.updateDate}</td>
-											</tr>
+											<c:forEach var="map" items="${list}">
+												<tr>
+													<td><a	href="${pageContext.request.contextPath}/DeleteEstimateController?estimateNo=${map.estimateNo}">${map.estimateNo}</a></td>
+													<td>${map.customerId}</td>
+													<td>${map.language}</td>
+													<td>${map.city}</td>
+													<td>${map.employeeName }</td>
+													<td>${map.estimatePrice }</td>
+													<td>${map.tourDIYPeople}</td>
+													<td>${map.tourDIYTerm}</td>
+													<td>${map.tourDIYStay}</td>
+													<td>${map.tourDIYEtc}</td>
+													<td>${map.createDate}</td>
+													<td>${map.updateDate}</td>
+												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</div>
 							</div>
-						</div>
-					</form>
-				</div>
-				<div class="col-md">
-				<h2 class="heading mb-2 display-4 font-light probootstrap-animate">ESTIMATE LIST</h2>
-				<p class="lead mb-5 probootstrap-animate">
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	 
-	 <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/bootstrap-datepicker.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/jquery.easing.1.3.js"></script>
-    <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/main.js"></script>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="assets/js/bootstrap-datepicker.js"></script>
+	<script src="assets/js/jquery.waypoints.min.js"></script>
+	<script src="assets/js/jquery.easing.1.3.js"></script>
+	<script src="assets/js/select2.min.js"></script>
+	<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -22,12 +22,7 @@ public class DeleteCustomerController extends HttpServlet {
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);
 		
-		if(authority > 0) {
-			// 뷰 포워딩(v)
-			request.getRequestDispatcher("/WEB-INF/view/customer/deleteCustomerForm.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
-		}
+
 		
 		// 요청값 분석(c)
 		String customerId = request.getParameter("customerId");
@@ -42,7 +37,12 @@ public class DeleteCustomerController extends HttpServlet {
 		request.setAttribute("customer", customer);
 		
 		// 뷰
-		request.getRequestDispatcher("/WEB-INF/view/customer/deleteCustomerForm.jsp").forward(request, response);
+		if(authority > 0) {
+			// 뷰 포워딩(v)
+			request.getRequestDispatcher("/WEB-INF/view/customer/deleteCustomerForm.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/public/errorPage.jsp").forward(request, response);
+		}
 		
 	}
 

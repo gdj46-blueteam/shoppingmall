@@ -63,6 +63,34 @@
 								</div>
 							</div>
 							<!-- END row -->
+							<div class="row mb-3">
+								<div class="col-md">
+									<div class="form-group">
+										<label for="id_label_single">교통수단
+										<select class="js-example-basic-single js-states form-control" id="id_label_single" style="width: 100%;" name=transportationNo>
+												<c:forEach var="t" items="${transportationList}">
+													<option value="${t.transportationNo}">${t.transportation}</option>
+												</c:forEach>
+										</select>
+										</label>
+									</div>
+								</div>
+								<div class="col-md">
+									<div class="form-group">
+										<label for="id_label_single2">테마</label>
+										<div class="probootstrap_select-wrap">
+											<label for="id_label_single2" style="width: 100%;"> 
+											<select class="js-example-basic-single js-states form-control" id="id_label_single2" style="width: 100%;" name="tourkindNo">
+													<c:forEach var="k" items="${tourkindList}">
+														<option value="${k.tourkindNo }">${k.tourkind}</option>
+													</c:forEach>
+											</select>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- END row -->
 							<div class="row mb-5">
 								<div class="col-md">
 									<div class="form-group">
@@ -103,7 +131,7 @@
 										<label for="id_label_single2">Requirements</label>
 										<div class="probootstrap_select-wrap">
 											<label for="id_label_single2" style="width: 100%;"> 
-											<textArea name="tourDIYEtc" rows="10" Cols="60" class="form-control" placeholder="요구사항을 입력해주세요"></textArea>
+											<textArea name="tourDIYEtc" rows="10" Cols="40" class="form-control" placeholder="요구사항을 입력해주세요"></textArea>
 											</label>
 										</div>
 									</div>

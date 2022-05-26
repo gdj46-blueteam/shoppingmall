@@ -19,14 +19,14 @@ public class UpdateTourController extends HttpServlet {
 	private TourDao tourDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.tourDao = new TourDao();
-		
+		int authority =0;
 		// 권한
 		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		authority = (int)session.getAttribute("authority");
+		//String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
+		//System.out.println("ID : " + sessionId);
 		
 		
 

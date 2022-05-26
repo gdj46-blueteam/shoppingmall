@@ -14,6 +14,8 @@
 							<td>tourdiyNo</td>
 							<td>customerId</td>
 							<td>language</td>
+							<td>transportation</td>
+							<td>tourKind</td>
 							<td>city</td>
 							<td>tourdiyPeople</td>
 							<td>tourdiyTerm</td>
@@ -26,6 +28,8 @@
 							<td>${map.tourDIYNo}</td>
 							<td>${map.customerId}</td>
 							<td>${map.language}</td>
+							<td>${map.transportation}</td>
+							<td>${map.tourkind}</td>
 							<td>${map.city}</td>
 							<td>${map.tourDIYPeople}</td>
 							<td>${map.tourDIYTerm}</td>

@@ -23,13 +23,10 @@ public class UpdateEstimateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
 		
-		// 권한
-		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
-		System.out.println("권한 : " + authority);
-		System.out.println("ID : " + sessionId);
+		HttpSession session = request.getSession();
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
 		
 		
 		int tourDIYNo = Integer.parseInt(request.getParameter("tourDIYNo"));						//tourDIYNo 추출

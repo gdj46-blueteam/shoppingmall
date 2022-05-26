@@ -75,7 +75,8 @@ public class DIYDao {
 				ResultSet rs = null;
 				try {
 					conn = DBUtil.getConnection();
-					String sql = 	"	 SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
+					String sql = "	 SELECT tourdiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, "
+							+ "		tourdiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
 							+ "	  INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no where customer_id = ?";
 					stmt = conn.prepareStatement(sql); //쿼리문 실행
 		
@@ -120,7 +121,7 @@ public class DIYDao {
 		
 		try {
 			conn = DBUtil.getConnection();
-			String sql = " 	SELECT tourArea_no tourAreaNo, AREA, city FROM tourarea";
+			String sql = " 	SELECT tourarea_no tourAreaNo, area, city FROM tourarea";
 			
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			rs = stmt.executeQuery();
@@ -236,7 +237,7 @@ public class DIYDao {
 		try {
 			conn = DBUtil.getConnection();
 			String sql = 	"SELECT tourDiy_no tourDIYNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople,"
-					+ " tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
+					+ " tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourdiy_etc tourDIYEtc, create_date createDate FROM tourdiy t"
 					+ " INNER JOIN language l ON t.language_no = l.language_no "
 					+ "INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no and tourDiy_no = ?" ;
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
@@ -265,7 +266,6 @@ public class DIYDao {
 			}catch(SQLException e) {
 			e.printStackTrace();
 			}
-		
 		}
 		//반환
 		return map;

@@ -29,7 +29,7 @@ public class SelectEmpOneController extends HttpServlet {
 		if(authority == 2) {
 			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		}
-		if(authority == 0){
+		if(authority < 2){
 			sessionId = Integer.parseInt(request.getParameter("employeeNo"));
 		}
 		

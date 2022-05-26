@@ -21,6 +21,18 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<%
+   request.setCharacterEncoding("UTF-8");
+   int authority = 0;
+   String sessionId = "";
+      if(session.getAttribute("sessionAuthority") != null) {
+         authority = (int)session.getAttribute("sessionAuthority");
+         sessionId = (String)session.getAttribute("sessionId");
+
+         }
+      System.out.println("authority(mainhome) ->" + authority);
+      System.out.println("sessionId(mainhome) ->" + sessionId);
+%>
 	<jsp:include page="/WEB-INF/view/mainNav.jsp" />
 	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/Jeju.jpg');"data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
@@ -97,8 +109,18 @@
 							</div>
 						</div>
 						<div>
-							<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">수정</a>
-							<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-danger btn-success">직원 삭제</a>
+						<%
+							if(authority == 3) {
+						%>
+								<a href="${pageContext.request.contextPath}/UpdateEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-outline-success">직원 수정</a>
+								<a href="${pageContext.request.contextPath}/DeleteEmpController?employeeNo=${employeeListOne.employeeNo}" class="btn btn-danger btn-success">직원 삭제</a>
+						<%
+							} else {
+						%>
+								<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-outline-success">뒤로</a>
+						<%
+							}
+						%>
 						</div>
 					</form>
 				</div>

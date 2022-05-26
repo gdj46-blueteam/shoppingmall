@@ -7,11 +7,11 @@
 </head>
 <body>
 	<h1>결제</h1>
-	<form method="post" action="${pageContext.request.contextPath}/SelectEstimateController">
+	<form method="post" action="${pageContext.request.contextPath}/PaymentController">
 		<table>
 			<tr>
 				<td>견적서번호</td>
-				<td><input type="number" name = "estimateNo" value="${estimateNo }" readonly="readonly">${estimateNo }</td>
+				<td><input type="number" name = "estimateNo" value="${estimateNo }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>은행</td>

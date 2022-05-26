@@ -43,7 +43,7 @@ public class MainHomeController extends HttpServlet {
 		//뷰
 		request.setAttribute("reviewList", reviewList);
 		
-		//diy fomr End
+		
 		System.out.println("메인홈 불러오기");
 		request.getRequestDispatcher("/WEB-INF/view//mainhome.jsp").forward(request, response);
 	}

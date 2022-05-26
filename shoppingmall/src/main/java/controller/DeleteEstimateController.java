@@ -17,31 +17,46 @@ import dao.EstimateDao;
 public class DeleteEstimateController extends HttpServlet {		//상세보기겸 삭제페이지
 	private EstimateDao estDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * // 권한 HttpSession session = request.getSession(); int authority =
-		 * (Integer)session.getAttribute("sessionAuthority"); String sessionId =
-		 * (String)session.getAttribute("sessionId"); //로그인 세션정보
-		 * 
-		 * System.out.println("권한 : " + authority); System.out.println("ID : " +
-		 * sessionId);
-		 */
+		
+		  HttpSession session = request.getSession(); 
+		  int authority =(Integer)session.getAttribute("sessionAuthority"); 
+		  String sessionId =(String)session.getAttribute("sessionId"); //로그인 세션정보
+		 
+		 System.out.println("권한 : " + authority); 
+		 System.out.println("ID : " + sessionId);
+		 
 		
 		estDao = new EstimateDao();
 		Map<String,Object> map = estDao.selectEstOne(Integer.parseInt(request.getParameter("estimateNo")));
 		request.setAttribute("map", map);
-		
+		if(authority==3) {
 		request.getRequestDispatcher("/WEB-INF/view/admin/deleteEstimateForm.jsp").forward(request, response);
+		}
+		if(authority==1) {
+			request.getRequestDispatcher("/WEB-INF/view/customer/deleteEstimateForm.jsp").forward(request, response);
+		}
 	}
 		
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		estDao = new EstimateDao();
+		
+		HttpSession session = request.getSession(); 
+		int authority =(Integer)session.getAttribute("sessionAuthority"); 
+
+		
 		int estimateNo =Integer.parseInt(request.getParameter("estimateNo"));
 		int tourDIYNo = Integer.parseInt(request.getParameter("tourDIYNo"));
+		System.out.println(authority+" "+estimateNo+"  "+tourDIYNo  +"  <--  DeleteEstimateController(deleteEstimate)");
 		int row=estDao.deleteEstimate(estimateNo,tourDIYNo);
-		System.out.println(estimateNo + "   "+row +"<--DeleteEstimatecontroller" );
+		System.out.println( row +"<--DeleteEstimatecontroller" );
 		if(row==1) {
-			response.sendRedirect(request.getContextPath()+"/SelectEstimateByAdminController");
+			if(authority==1) {			//직원 권한은 관리자견적서 확인으로 이동
+				response.sendRedirect(request.getContextPath()+"/SelectEstimateListController");
+			}
+			if(authority==3) {			//관리자 권한은 관리자견적서 확인으로 이동
+				response.sendRedirect(request.getContextPath()+"/SelectEstimateByAdminController");
+			}
 		}else {
 			response.sendRedirect(request.getContextPath()+"/DeleteEstimatecontroller?estimateNo= "+estimateNo);
 		}

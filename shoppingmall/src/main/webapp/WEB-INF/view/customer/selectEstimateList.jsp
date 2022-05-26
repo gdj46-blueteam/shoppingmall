@@ -30,7 +30,7 @@
 				<tbody>
 					<c:forEach var="map" items = "${list}">
 						<tr> 
-							<td><a href="${pageContext.request.contextPath}/DeleteEstimateByCustomerController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}">${map.estimateNo}</a></td>
+							<td><a href="${pageContext.request.contextPath}/DeleteEstimateController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}">${map.estimateNo}</a></td>
 							<td>${map.customerId}</td>
 							<td>${map.language}</td>
 							<td>${map.city}</td>

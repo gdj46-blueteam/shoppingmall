@@ -45,7 +45,7 @@ public class InsertEstimateController extends HttpServlet {
 		request.setAttribute("tourDIYMap", tourDIYMap);
 		request.setAttribute("empLanguageList", empLanguageList);
 		
-		request.getRequestDispatcher("/WEB-INF/view/public/insertEstimateForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/admin/insertEstimateForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

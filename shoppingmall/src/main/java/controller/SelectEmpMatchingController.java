@@ -18,11 +18,15 @@ import vo.EmployeeListOne;
 public class SelectEmpMatchingController extends HttpServlet {
 	private EmployeeDao employeeDao; //dao 변수생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 권한
 		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		int sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
+		int sessionId = 0; 
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		
+		if(authority == 2) {
+			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
+		} else {
+			sessionId = Integer.parseInt(request.getParameter("employeeNo"));
+		}
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);

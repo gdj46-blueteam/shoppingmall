@@ -39,17 +39,36 @@ public class InsertDIYController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	TourDIY tourDIY = new TourDIY();		
-	tourDIY.setTourAreaNo(Integer.parseInt(request.getParameter("tourArea")));
-	tourDIY.setLanguageNo(Integer.parseInt(request.getParameter("language")));
-	tourDIY.setTourDIYEtc(request.getParameter("tourDIYEtc"));
-	tourDIY.setTourDIYPeople(Integer.parseInt(request.getParameter("tourDIYPeople")));
-	tourDIY.setTourDIYStay(request.getParameter("tourDIYStay"));
-	tourDIY.setTourDIYTerm(request.getParameter("tourDIYTerm"));
-	tourDIY.setCustomerId(request.getParameter("sessionId"));
-	dIYDao = new DIYDao();
-	dIYDao.insertTourDIY(tourDIY);
-	response.sendRedirect(request.getContextPath()+"/SelectDIYByCustomerController");
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpSession session = req.getSession();
+		String sessionId = (String)session.getAttribute("sessionId");
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		System.out.println("ID : " + sessionId);	
+		
+		
+		
+		TourDIY tourDIY = new TourDIY();		
+		tourDIY.setTourAreaNo(Integer.parseInt(request.getParameter("tourArea")));
+		tourDIY.setLanguageNo(Integer.parseInt(request.getParameter("language")));
+		tourDIY.setTourDIYEtc(request.getParameter("tourDIYEtc"));
+		tourDIY.setTourDIYPeople(Integer.parseInt(request.getParameter("tourDIYPeople")));
+		tourDIY.setTourDIYStay(request.getParameter("tourDIYStay"));
+		tourDIY.setTourDIYTerm(request.getParameter("tourDIYTerm"));
+		tourDIY.setCustomerId(sessionId);
+		
+		if(sessionId == null) {
+			response.sendRedirect(request.getContextPath()+"/MainHomeController");
+		}
+		if(authority==1) {
+		dIYDao = new DIYDao();
+		dIYDao.insertTourDIY(tourDIY);
+		response.sendRedirect(request.getContextPath()+"/SelectDIYByCustomerController");
+		}
+		
+		
+		response.sendRedirect(request.getContextPath()+"/MainHomeController");
+	
 	}
 
 }

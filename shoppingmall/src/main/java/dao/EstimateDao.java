@@ -208,13 +208,14 @@ public class EstimateDao {
 		int row =0;
 		try {
 			conn = DBUtil.getConnection();
-			String deleteEstSql = "delete from estimate where estimate_No= ?";
+			String deleteEstSql = "delete from estimate where estimate_No= ? 	";
 			
 			stmt = conn.prepareStatement(deleteEstSql);											 //견적서 삭제 쿼리문 실행
 			stmt.setInt(1, estimateNo);
-			String deleteDIYSql = "delete from DIY where tourDIY_no=? ";						//DIY 삭제 쿼리문 실행
+			
+			String deleteDIYSql = "delete from tourDIY where tourDIY_no=? ";						//DIY 삭제 쿼리문 실행
 			stmt2 = conn.prepareStatement(deleteDIYSql);
-			stmt.setInt(1, tourDIYNo);
+			stmt2.setInt(1, tourDIYNo);
 			stmt.executeUpdate();
 			row = stmt2.executeUpdate();
 
@@ -268,7 +269,7 @@ public class EstimateDao {
 		}
 		return row;
 	}
-	public List<Map<String,Object>> selectEstimateByCustomerList(String id) {			//고객 견적서리스트 조회
+	public List<Map<String,Object>> selectEstimateByCustomerList(String id) {			//고객 견적서리스트 조회(여행완료 견적서는 제외)
 		List<Map<String,Object>> list = new ArrayList<>();
 		Map<String,Object> map;
 		Connection conn = null;
@@ -277,14 +278,14 @@ public class EstimateDao {
 		ResultSet rs = null;
 		try {
 			conn = DBUtil.getConnection();
-			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, est.tourDIY_no tourDIYNo, "
-					+ "est.estimate_price estimatePrice, emp.employee_name employeeName, "
-					+ "tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,  "
-					+ "est.update_date updateDate FROM tourdiy t  "
-					+ "INNER JOIN language l ON t.language_no = l.language_no  "
-					+ "INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no  "
-					+ "INNER JOIN estimate est ON est.tourdiy_no = t.tourdiy_no  "
-					+ "iNNER JOIN employee emp ON emp.employee_no = est.employee_no where customer_id = ?";
+			String sql = "SELECT est.estimate_no estimateNo, customer_id customerId, language, city, tourdiy_people tourDIYPeople, est.tourDIY_no tourDIYNo,  "
+					+ " est.estimate_price estimatePrice, emp.employee_name employeeName,  "
+					+ " tourdiy_term tourDIYTerm, tourdiy_stay tourDIYStay, tourDiy_etc tourDIYEtc, est.create_date createDate,   "
+					+ " est.update_date updateDate FROM tourdiy t   "												
+					+ " INNER JOIN language l ON t.language_no = l.language_no   "
+					+ " INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no   "
+					+ " INNER JOIN estimate est ON est.tourdiy_no = t.tourdiy_no  AND est.estimate_ing !='여행완료' "
+					+ " iNNER JOIN employee emp ON emp.employee_no = est.employee_no where customer_id = ?";
 			
 			stmt = conn.prepareStatement(sql);											 
 			stmt.setString(1, id);								

@@ -20,8 +20,14 @@ public class UpdateEmpController extends HttpServlet {
 		
 		// 권한
 		HttpSession session = request.getSession();
-		int authority = (int)session.getAttribute("authority");
-		String sessionId = (String)session.getAttribute("sessionId");			//로그인 세션정보
+		int sessionId = 0; 
+		int authority = (Integer)session.getAttribute("sessionAuthority");
+		
+		if(authority == 2) {
+			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
+		} else {
+			sessionId = Integer.parseInt(request.getParameter("employeeNo"));
+		}
 		
 		System.out.println("권한 : " + authority);
 		System.out.println("ID : " + sessionId);

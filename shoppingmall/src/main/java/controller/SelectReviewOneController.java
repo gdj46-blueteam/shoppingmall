@@ -19,6 +19,7 @@ public class SelectReviewOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//요청값 받아오기
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		System.out.println(reviewNo);
 		System.out.println("reviewNo(SelectOneReviewController) ->" + reviewNo);
 		
 		//dao 호출

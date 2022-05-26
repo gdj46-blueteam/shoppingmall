@@ -14,10 +14,10 @@ import java.util.*;
 //직원 목록 출력
 @WebServlet("/SelectEmpListController")
 public class SelectEmpListController extends HttpServlet {
-	private EmployeeDao employeeDao; //dao변수 생성
+	private EmployeeDao employeeDao; //dao 객체 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//dao 메소드 호출 객체생성 -> 호출
+		//dao 메소드 호출 후 List<Employee>에 저장
 		this.employeeDao = new EmployeeDao();
 		List<EmployeeList> list = employeeDao.selectEmpList();
 		

@@ -43,7 +43,7 @@ public class InsertDIYController extends HttpServlet {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
 		String sessionId = (String)session.getAttribute("sessionId");
-		int authority = (Integer)session.getAttribute("sessionAuthority");
+		int authority = (int)session.getAttribute("sessionAuthority");
 		System.out.println("ID : " + sessionId);	
 		
 		
@@ -67,7 +67,6 @@ public class InsertDIYController extends HttpServlet {
 		}
 		
 		
-		response.sendRedirect(request.getContextPath()+"/MainHomeController");
 	
 	}
 

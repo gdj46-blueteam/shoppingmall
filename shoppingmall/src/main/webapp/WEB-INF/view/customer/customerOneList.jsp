@@ -1,16 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-   request.setCharacterEncoding("UTF-8");
-   int authority = 0;
-   String sessionId = "";
-      if(session.getAttribute("sessionAuthority") != null) {
-         authority = (int)session.getAttribute("sessionAuthority");
-         sessionId = (String)session.getAttribute("sessionId");
-
-         }
-      System.out.println("authority(mainhome) ->" + authority);
-      System.out.println("sessionId(mainhome) ->" + sessionId);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +20,18 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<%
+   request.setCharacterEncoding("UTF-8");
+   int authority = 0;
+   String sessionId = "";
+      if(session.getAttribute("sessionAuthority") != null) {
+         authority = (int)session.getAttribute("sessionAuthority");
+         sessionId = (String)session.getAttribute("sessionId");
+
+         }
+      System.out.println("authority(mainhome) ->" + authority);
+      System.out.println("sessionId(mainhome) ->" + sessionId);
+%>
 <jsp:include page="/WEB-INF/view/mainNav.jsp" />
 
 <section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/busanTour.jpg');"data-stellar-background-ratio="0.5" id="section-home">
@@ -92,7 +92,7 @@
 										<%
 										}else if(authority == 1){
 										%>
-											<a href="${pageContext.request.contextPath}/myPage?customerId=${customer.customerId }">회원목록</a>
+											<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
 										<%
 										}
 										%>

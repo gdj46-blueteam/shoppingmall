@@ -27,8 +27,12 @@
 		<div class="container">
 			<div class="row align-items-center">	
 				<div class="col-md probootstrap-animate" >
-					<form method="get" class="probootstrap-form">
-						<div class="row mb-5">
+				<div class="col-md">
+					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">ESTIMATELIST</h2>
+					<p class="lead mb-5 probootstrap-animate">
+				</div>
+						<div class="row mb-5">	
+						<form method="get" class="probootstrap-form">	
 							<div class="col-md">
 								<div class="form-group">
 									<table class="probootstrap-date-wrap table table-striped">
@@ -72,10 +76,7 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">ESTIMATElIST</h2>
-					<p class="lead mb-5 probootstrap-animate">
-				</div>
+
 			</div>
 		</div>
 	</section>

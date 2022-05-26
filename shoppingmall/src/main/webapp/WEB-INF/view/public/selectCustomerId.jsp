@@ -46,7 +46,7 @@
 									<button type="button" id="signup" class="btn btn-primary btn-block">수정</button>
 								</div>
 								</div>
-							</div>						
+							</div>
 					</form>
 				</div>
 				<div class="col-md">

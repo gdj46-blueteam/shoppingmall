@@ -40,14 +40,18 @@
 											<td>customerPw</td>
 											<td><input type="password" name="customerPw"></td>
 										</tr>
-										<tr>
-											<a  class="btn btn-primary" href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }">뒤로</a>
-											<button  class="btn btn-primary" type="button">삭제</button>
-										</tr>
 									</table>
 								</div>
 							</div>
 						</div>
+						<div class="row mb-5">
+							<div class="col-md">
+								<div class="form-group">
+									<a  class="btn btn-primary" href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }">뒤로</a>
+									<button  class="btn btn-danger" type="button">삭제</button>
+								</div>
+								</div>
+							</div>	
 					</form>
 				</div>
 				<div class="col-md">

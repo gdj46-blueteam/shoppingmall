@@ -24,6 +24,8 @@ public class SelectEmpOneController extends HttpServlet {
 		int sessionId = 0; 
 		int authority = 0;
 		
+		authority = (Integer)session.getAttribute("sessionAuthority");
+		
 		if(authority == 2) {
 			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		}

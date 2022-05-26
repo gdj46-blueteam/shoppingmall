@@ -192,34 +192,37 @@ public class CustomerDao {
 	}
 	
 	//회원 비밀번호찾기
-	public String selectCustomerPw(String customerId) {
-	String customerPw = "";
-	Connection conn = null;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
-	String sql = "SELECT customer_pw customerPw "
-			+ "	 FROM customer "
-			+ "	 WHERE customer_id = ? ";
-	try {
-		conn = DBUtil.getConnection();
-		stmt = conn.prepareStatement(sql); //쿼리 실행
-		stmt.setString(1, customerId);
-		rs = stmt.executeQuery();
-		if(rs.next()) {
-			customerPw = rs.getString("customerPw");
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	return customerPw;
-	}
+	   public String selectCustomerPw(String customerId) {
+	   String customerPw = "";
+	   Connection conn = null;
+	   PreparedStatement stmt = null;
+	   ResultSet rs = null;
+	   String sql = "SELECT customer_pw customerPw "
+	         + "    FROM customer "
+	         + "    WHERE customer_id = ? ";
+	   System.out.println("Id값" + customerId);
+	   try {
+	      conn = DBUtil.getConnection();
+	      stmt = conn.prepareStatement(sql); //쿼리 실행
+	      stmt.setString(1, customerId);
+	      rs = stmt.executeQuery();
+	      if(rs.next()) {
+	         customerPw = rs.getString("customerPw");
+	         
+	      }
+	      System.out.println("dao 문제니" + customerPw);
+	   } catch (Exception e) {
+	      e.printStackTrace();
+	   } finally {
+	      try {
+	         conn.close();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	   }
+	   
+	   return customerPw;
+	   }
 	
 	//회원입력
 	public int insertCustomer(Customer customer) {

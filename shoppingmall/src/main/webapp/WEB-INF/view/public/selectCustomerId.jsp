@@ -33,25 +33,29 @@
 								<div class="form-group">
 									<table class="probootstrap-date-wrap table table-striped " style="color: black;">
 										<tr>
-										<td>customerEmail</td>
-										<td><input type="text" name="customerEmail"></td>
+											<td>customerEmail</td>
+											<td><input type="text" name="customerEmail"></td>
 										</tr>
+										
+										<td>userId</td>
+										<td>${customerId}</td>
 									</table>
 								</div>
 							</div>
 						</div>
-						
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="button" id="signup" class="btn btn-primary btn-block">수정</button>
+									<button type="submit" class="btn btn-primary btn-block">Id찾기</button>
+									<a href="${pageContext.request.contextPath}/SelectCustomerPwController" class="btn btn-primary btn-block">Pw 찾으러 가기</a>
+									<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary btn-block">로그인하러가기</a>
 								</div>
 								</div>
-							</div>
+							</div>						
 					</form>
 				</div>
 				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">FIND</h2>
+					<h2 class="heading mb-2 display-4 font-light probootstrap-animate" style="text-align: right;">FIND</h2>
 					<p class="lead mb-5 probootstrap-animate">
 				</div>	
 			</div>

@@ -2,7 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +27,18 @@ public class MainHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DIY form
 		EmployeeDao employeeDao = new EmployeeDao();
+		DIYDao diyDao = new DIYDao();
 		dIYDao = new DIYDao();
 		List<TourArea> tourAreaList = dIYDao.TourAreaList();
 		List<Language> languageList =  dIYDao.LanguageList();
 		List<EmployeeList> list = employeeDao.selectEmpList();
+		List<Map<String, Object>> transportationList = diyDao.transportationList();
+		List<Map<String, Object>> tourkindList = diyDao.tourkindList();
 		request.setAttribute("tourAreaList", tourAreaList);
 		request.setAttribute("languageList", languageList);
 		request.setAttribute("list", list);
+		request.setAttribute("transportationList", transportationList);
+		request.setAttribute("tourkindList", tourkindList);
 		
 		//review
 		List<Review> reviewList = new ArrayList<Review>();

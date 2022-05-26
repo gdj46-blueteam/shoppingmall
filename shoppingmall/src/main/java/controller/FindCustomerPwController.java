@@ -24,7 +24,7 @@ public class FindCustomerPwController extends HttpServlet {
    }
       request.setAttribute("customerPw", customerPw);
       
-      request.getRequestDispatcher("/WEB-INF/view/public/findCustomerPw.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/view/public/selectCustomerPw.jsp").forward(request, response);
    }
 
    

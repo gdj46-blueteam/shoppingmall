@@ -12,27 +12,35 @@ import vo.Customer;
 
 @WebServlet("/FindCustomerIdController")
 public class FindCustomerIdController extends HttpServlet {
+	private CustomerDao customerDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1) request 분석(C)
-		String customerEmail = request.getParameter("customerEmail");
+
+		String customerId = request.getParameter("customerId");
 				
-		// 디버깅
-		System.out.println("SelectCustomerIdController : " + customerEmail);
-				
-		// 2) 메서드 이용하여 모델값 구하기(M)
-		CustomerDao customerDao = new CustomerDao();
-		String customerId = customerDao.selectCustomerId(customerEmail);
-				
-		// 디버깅
-		System.out.println("SelectCustomerIdController : " + customerId);
-		
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		
-		// 3)
-		request.setAttribute("customer", customer);
-		
+		if(customerId ==null) {
+			System.out.println("1");
+			
+		}
+		if(customerId !=null) {
+			System.out.println("3");
+
+		}
+		request.setAttribute("customerId", customerId);
 		// 뷰 포워딩(v)
-		request.getRequestDispatcher("/WEB-INF/view/public/findCustomerId.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/public/selectCustomerId.jsp").forward(request, response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		customerDao = new CustomerDao();
+		System.out.println("2");
+		
+		String customerEmail=request.getParameter("customerEmail");
+		System.out.println(customerEmail + "---customerEmail");
+		
+		String customerId = customerDao.selectCustomerId(customerEmail);
+		System.out.println(customerId+"--customerId");
+		
+		request.setAttribute("customerId", customerId);
+		response.sendRedirect(request.getContextPath()+"/FindCustomerIdController?customerId="+customerId); 
+		
 	}
 }

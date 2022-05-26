@@ -185,7 +185,7 @@ public class DIYDao {
 		return languagelist;
 	}
 	public void insertTourDIY(TourDIY tourDIY) {					
-		System.out.println("123 : " + tourDIY);
+		System.out.println("tourDIY(tourDAO) : " + tourDIY);
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
@@ -194,8 +194,8 @@ public class DIYDao {
 				//	+ " tourDiy_etc, create_date createDate FROM tourdiy t "
 				//	+ "INNER JOIN language l ON t.language_no = l.language_no INNER JOIN tourarea ta ON t.tourArea_No = ta.tourarea_no;";
 			conn = DBUtil.getConnection();
-			String sql = "insert into tourDIY(customer_id, language_no, tourArea_no, tourDIY_People, tourDIY_Stay,"
-					+ " tourDIY_Etc,tourdiy_term, create_date) values(?,?,?,?,?,?,?,now())";
+			String sql = "insert into tourdiy(customer_id, language_no, tourarea_no, tourdiy_people, tourdiy_stay,"
+					+ " tourdiy_etc,tourdiy_term, create_date) values(?,?,?,?,?,?,?,now())";
 			
 			stmt = conn.prepareStatement(sql); //쿼리문 실행
 			stmt.setString(1, tourDIY.getCustomerId());

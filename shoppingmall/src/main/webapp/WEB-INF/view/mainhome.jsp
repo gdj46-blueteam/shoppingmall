@@ -39,7 +39,7 @@
 								<div class="col-md">
 									<div class="form-group">
 										<label for="id_label_single">City 
-										<select class="js-example-basic-single js-states form-control" id="id_label_single" style="width: 100%;" name="tourArea">
+										<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourArea">
 												<c:forEach var="c" items="${tourAreaList}">
 													<option value="${c.tourAreaNo }">${c.area} ${c.city}</option>
 												</c:forEach>
@@ -52,7 +52,7 @@
 										<label for="id_label_single2">Language</label>
 										<div class="probootstrap_select-wrap">
 											<label for="id_label_single2" style="width: 100%;"> 
-											<select class="js-example-basic-single js-states form-control" id="id_label_single2" style="width: 100%;" name="language">
+											<select class="form-control" id="id_label_single2" style="width: 100%;" name="language">
 													<c:forEach var="c" items="${languageList}">
 														<option value="${c.languageNo }">${c.language}</option>
 													</c:forEach>
@@ -66,8 +66,8 @@
 							<div class="row mb-3">
 								<div class="col-md">
 									<div class="form-group">
-										<label for="id_label_single">교통수단
-										<select class="js-example-basic-single js-states form-control" id="id_label_single" style="width: 100%;" name=transportationNo>
+										<label for="id_label_single2">교통수단
+										<select class="form-control" id="id_label_single2" style="width: 100%;" name=transportationNo>
 												<c:forEach var="t" items="${transportationList}">
 													<option value="${t.transportationNo}">${t.transportation}</option>
 												</c:forEach>
@@ -80,7 +80,7 @@
 										<label for="id_label_single2">테마</label>
 										<div class="probootstrap_select-wrap">
 											<label for="id_label_single2" style="width: 100%;"> 
-											<select class="js-example-basic-single js-states form-control" id="id_label_single2" style="width: 100%;" name="tourkindNo">
+											<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourkindNo">
 													<c:forEach var="k" items="${tourkindList}">
 														<option value="${k.tourkindNo }">${k.tourkind}</option>
 													</c:forEach>
@@ -94,7 +94,7 @@
 							<div class="row mb-5">
 								<div class="col-md">
 									<div class="form-group">
-										<label for="probootstrap-date-departure">Personnel</label>
+										<label for="probootstrap">Personnel</label>
 										<div class="probootstrap-date-wrap">
 											<input type="number" id="" class="form-control" placeholder="인원수를 선택해주세요" name="tourDIYPeople" min="1">
 										</div>
@@ -102,7 +102,7 @@
 								</div>
 								<div class="col-md">
 									<div class="form-group">
-										<label for="probootstrap-date-arrival">Date of travel</label>
+										<label for="probootstrap">Date of travel</label>
 										<div class="probootstrap-date-wrap">
 											<input type="date" class="form-control" placeholder="날짜를 선택해주세요" name="tourDIYTerm">
 										</div>
@@ -115,10 +115,8 @@
 									<div class="form-group">
 										<label for="id_label_single2">Accommodation</label>
 										<div class="probootstrap_select-wrap">
-											<label for="id_label_single2" style="width: 100%;"> <select
-												class="js-example-basic-single js-states form-control"
-												id="id_label_single2" style="width: 100%;"
-												name="tourDIYStay">
+											<label for="id_label_single2" style="width: 100%;"> 
+											<select class="form-control" id="id_label_single2" style="width: 100%;"name="tourDIYStay">
 													<option value="게스트하우스">게스트하우스</option>
 													<option value="펜션">펜션</option>
 													<option value="빌라">빌라</option>
@@ -127,11 +125,12 @@
 											</label>
 										</div>
 									</div>
+								</div>
 									<div class="form-group">
-										<label for="id_label_single2">Requirements</label>
+										<label for="probootstrap">Requirements</label>
 										<div class="probootstrap_select-wrap">
 											<label for="id_label_single2" style="width: 100%;"> 
-											<textArea name="tourDIYEtc" rows="10" Cols="40" class="form-control" placeholder="요구사항을 입력해주세요"></textArea>
+											<textArea name="tourDIYEtc" rows="10" Cols="30" class="form-control" placeholder="요구사항을 입력해주세요"></textArea>
 											</label>
 										</div>
 									</div>
@@ -140,7 +139,6 @@
                   					</div>
 								</div>
 							</div>
-						</div>
 					</form>
 				</div>
 			</div>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>DIY입력폼</h1>
-	<form method="post" action="${pageContext.request.contextPath}/InsertDIYController">
+	<form method="post" action="${pageContext.request.contextPath}/InsertDIYController" >
 		<input type = "text" name= "sessionId" value = "${sessionId}" hidden="hidden" >
 		<table>
 		<tr>
@@ -24,6 +24,22 @@
 			<td>언어</td>
 			<td><select name="language">
 			<c:forEach var="c" items="${languageList}">
+				<option value="${c.languageNo }" >${c.language}</option>
+				</c:forEach>
+			</select><td>
+		</tr>
+		<tr>
+			<td>교통수단</td>
+			<td><select name="language1">
+			<c:forEach var="c" items="${language1}">
+				<option value="${c.languageNo }" >${c.language}</option>
+				</c:forEach>
+			</select><td>
+		</tr>
+		<tr>
+			<td>테마</td>
+			<td><select name="language2">
+			<c:forEach var="c" items="${language2}">
 				<option value="${c.languageNo }" >${c.language}</option>
 				</c:forEach>
 			</select><td>
@@ -47,7 +63,7 @@
 		</tr>
 		<tr>
 			<td>요구사항</td>
-			<td><textArea name="tourDIYEtc" rows="10" Cols="50"></textArea></td>
+			<td><textArea name="tourDIYEtc" rows="10" Cols="10"></textArea></td>
 		</tr>
 		</table>
 		<button type="submit">견적서 만들기</button>

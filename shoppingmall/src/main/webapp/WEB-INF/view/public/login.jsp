@@ -55,7 +55,7 @@
                   					</div>
 							</div>
 							<a href="${pageContext.request.contextPath}/SelectCustomerIdController" class="btn btn-primary btn-block">ID찾기</a>
-                  						<a href="${pageContext.request.contextPath}/FindCustomerPwController" class="btn btn-primary btn-block">PW찾기</a>
+                  			<a href="${pageContext.request.contextPath}/FindCustomerPwController" class="btn btn-primary btn-block">PW찾기</a>
 						</div>
 					</form>
 				</div>

@@ -39,10 +39,10 @@ public class EmployeeDao {
                + " FROM employee_list"; 
          stmt = conn.prepareStatement(sql); //쿼리문 실행
          
-         System.out.println("직원 목록(EmployeeDao)stmt -> " + stmt); //디버깅
+    
          
          rs = stmt.executeQuery(); //쿼리 실행결과 저장
-         System.out.println("직원 목록(EmployeeDao)rs ->" + rs); //디버깅
+
          
          while(rs.next()) { //다음 행이 있으면 true반환해서 실행
             EmployeeList employeeList = new EmployeeList(); //Employee 객체 생성
@@ -132,7 +132,7 @@ public class EmployeeDao {
          stmt.setString(3, employee.getEmployeePhone());
          stmt.setString(4, employee.getEmployeeIntroduce());
          stmt.setInt(5, employee.getEmployeeNo());
-         System.out.println("직원 수정stmt(updateEmpDao) -> " + stmt); //디버깅
+         
          
          row = stmt.executeUpdate(); // 몇행입력했는지 리턴
          
@@ -272,11 +272,11 @@ public class EmployeeDao {
                + " ORDER BY sum(e.estimate_price) DESC ";
          
          stmt = conn.prepareStatement(sql); //쿼리실행
-         System.out.println("stmt(selectEmpResult) ->" + stmt);
+
          stmt.setInt(1, employeeNo);
       
          rs = stmt.executeQuery(); //쿼리결과저장
-         System.out.println("rs(selectEmpResult)->" + rs);
+ 
          if(rs.next()) {
             map = new HashMap<String, Object>(); 
             map.put("employeeNo", rs.getInt("employeeNo"));

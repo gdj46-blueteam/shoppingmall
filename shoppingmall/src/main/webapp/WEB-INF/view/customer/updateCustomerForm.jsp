@@ -62,7 +62,7 @@
 										<tr>
 											<td>customerPhone</td>
 											<td>
-												<input name="customerPhone" type="text" value="${customer.customerPhone }>">
+												<input name="customerPhone" type="text" value="${customer.customerPhone }">
 											</td>
 										</tr>
 										<tr>

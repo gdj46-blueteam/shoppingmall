@@ -18,7 +18,7 @@ import vo.EmployeeListOne;
 public class SelectEmpOneController extends HttpServlet {
 	private EmployeeDao employeeDao;  //dao변수 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println(request.getParameter("employeeNo"));
 		// 권한
 		HttpSession session = request.getSession();
 		int sessionId = 0; 
@@ -29,11 +29,10 @@ public class SelectEmpOneController extends HttpServlet {
 		if(authority == 2) {
 			sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
 		}
-		if(authority < 2){
+		if(authority > 2){
 			sessionId = Integer.parseInt(request.getParameter("employeeNo"));
-		}
-		
-		System.out.println("ID : " + sessionId);
+		}														
+		System.out.println("SelectEmpOneController(sessionId) : " + sessionId);
 		//dao 메소드 호출 객체생성 -> 호출
 		// 요청값
 		// int employeeNo = Integer.parseInt(request.getParameter("employeeNo"));
@@ -51,7 +50,6 @@ public class SelectEmpOneController extends HttpServlet {
 		System.out.println("empLanguageList.size(SelectEmpOneController) -> " + empLanguageList);
 		//직원 실적
 		Map<String, Object> list =  employeeDao.selectEmpResult(sessionId);
-		
 		request.setAttribute("list", list);
 		
 		System.out.println("list.size(SelectEmpOneController) -> " +list.size());

@@ -58,6 +58,29 @@
                   			<a href="${pageContext.request.contextPath}/FindCustomerPwController" class="btn btn-primary btn-block">PW찾기</a>
 						</div>
 					</form>
+					<form action="${pageContext.request.contextPath}/LoginController" method="post" class="probootstrap-form">
+                        <div class="row mb-5">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="probootstrap-date-departure">ID</label>
+                                    <div class="probootstrap-date-wrap">
+                                        <input type="text" id="id" class="form-control" value="admin" name="id">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="probootstrap-date-arrival">PASSWORD</label>
+                                    <div class="probootstrap-date-wrap">
+                                        <input type="password" class="form-control" value="1234" name="pw">
+                                    </div>
+                                </div>
+                                    <div class="col-md">
+                                        <button type="submit" class="btn btn-primary btn-block">관리자 로그인</button><br>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>

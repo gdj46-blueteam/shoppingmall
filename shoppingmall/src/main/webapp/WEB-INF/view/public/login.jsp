@@ -58,6 +58,21 @@
                   			<a href="${pageContext.request.contextPath}/FindCustomerPwController" class="btn btn-primary btn-block">PW찾기</a>
 						</div>
 					</form>
+					<form action="${pageContext.request.contextPath}/LoginController" method="post" >
+                  		<input type="text" value="admin" name="id" hidden="hideen">
+                  		<input type="text" value="1234" name="pw" hidden="hideen">
+                  		<button type="submit"  class="btn btn-primary btn-block">관리자 로그인</button>
+                  	</form>
+                  	<form action="${pageContext.request.contextPath}/LoginController" method="post" >
+                  		<input type="text" value="7" name="id" hidden="hideen">
+                  		<input type="text" value="1234" name="pw" hidden="hideen">
+                  		<button type="submit"  class="btn btn-primary btn-block">직원 로그인</button>
+                  	</form>
+                  	<form action="${pageContext.request.contextPath}/LoginController" method="post" >
+                  		<input type="text" value="guest" name="id" hidden="hideen">
+                  		<input type="text" value="1234" name="pw" hidden="hideen">
+                  		<button type="submit"  class="btn btn-primary btn-block">회원 로그인</button>
+                  	</form>
 				</div>
 			</div>
 		</div>

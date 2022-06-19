@@ -63,8 +63,8 @@
 											</td>
 										</tr>
 										<tr>
-											<a  class="btn btn-primary" href="${pageContext.request.contextPath}/MainHomeController">뒤로</a>
-											<button  class="btn btn-primary" type="button" id="signup">수정</button>
+											<a class="btn btn-primary" href="${pageContext.request.contextPath}/MainHomeController">뒤로</a>
+											<button class="btn btn-primary" type="button" id="signup">수정</button>
 										</tr>
 									</table>
 								</div>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
@@ -33,7 +34,7 @@
 					<p class="lead mb-5 probootstrap-animate">
 				</div>
 				<div class="col-md probootstrap-animate">
-					<form method="post" action="${pageContext.request.contextPath}/InsertDIYController" class="probootstrap-form">
+					<form method="post" action="${pageContext.request.contextPath}/InsertDIYController" class="probootstrap-form" id="requireForm">
 						<div class="form-group">
 							<div class="row mb-3">
 								<div class="col-md">
@@ -96,7 +97,7 @@
 									<div class="form-group">
 										<label for="probootstrap">Personnel</label>
 										<div class="probootstrap-date-wrap">
-											<input type="number" id="" class="form-control" placeholder="인원수를 선택해주세요" name="tourDIYPeople" min="1">
+											<input type="number" id="personelNumber" class="form-control" placeholder="인원수를 선택해주세요" name="tourDIYPeople" min="1">
 										</div>
 									</div>
 								</div>
@@ -104,7 +105,7 @@
 									<div class="form-group">
 										<label for="probootstrap">Date of travel</label>
 										<div class="probootstrap-date-wrap">
-											<input type="date" class="form-control" placeholder="날짜를 선택해주세요" name="tourDIYTerm">
+											<input type="date" id="travelDate" class="form-control" placeholder="날짜를 선택해주세요" name="tourDIYTerm">
 										</div>
 									</div>
 								</div>
@@ -130,12 +131,12 @@
 										<label for="probootstrap">Requirements</label>
 										<div class="probootstrap_select-wrap">
 											<label for="id_label_single2" style="width: 100%;"> 
-											<textArea name="tourDIYEtc" rows="10" Cols="30" class="form-control" placeholder="요구사항을 입력해주세요"></textArea>
+											<textArea name="tourDIYEtc" rows="10" Cols="30" class="form-control" id="Requirements" placeholder="요구사항을 입력해주세요"></textArea>
 											</label>
 										</div>
 									</div>
 									 <div class="col-md">
-                  						<button type="submit" class="btn btn-primary btn-block">주문서 만들기</button>
+                  						<button type="submit" id="btn" class="btn btn-primary btn-block">주문서 만들기</button>
                   					</div>
 								</div>
 							</div>
@@ -352,5 +353,23 @@
     <script src="assets/js/jquery.easing.1.3.js"></script>
     <script src="assets/js/select2.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+	$('document').ready(function(){
+    	$('#btn').click(function(){
+			if($('#travelDate').val()==''){
+				alert('날짜를 선택해주세요');
+				return false;
+			} else if($('#personelNumber').val()==''){
+				alert('인원을 선택해주세요');
+				return false;
+			} else if($('#Requirements').val()==''){
+				alert('요구사항 선택해주세요');
+				return false;
+			} else{
+				$('#requireForm').submit();
+			}
+		});
+    });
+    </script>
 </body>
 </html>

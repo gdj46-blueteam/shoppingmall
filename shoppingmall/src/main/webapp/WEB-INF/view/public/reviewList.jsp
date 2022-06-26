@@ -22,6 +22,7 @@
 				</tr>
 				</c:forEach>	
 			</table>
-			<a href="${pageContext.request.contextPath}/InsertReviewController"><button>리뷰작성</button></a>
+			<a href="${pageContext.request.contextPath}/InsertReviewController"><button type="button">리뷰작성</button></a>
+			
 </body>
 </html>

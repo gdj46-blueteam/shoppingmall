@@ -50,10 +50,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mb-5">
+						<c:if test="${sessionAuthority==3}">
+							<div class="row mb-5">
+								<div class="col-md">
+									<div class="form-group">	
+										<a href="${pageContext.request.contextPath}/InsertAnnoController" class="btn btn-primary btn-block">공지사항 작성</a>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						 <div class="row mb-5">
 							<div class="col-md">
-								<div class="form-group">	
-									<a href="${pageContext.request.contextPath}/InsertAnnoController" class="btn btn-primary btn-block">공지사항 작성</a>
+								<div class="form-group">
+									<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
 								</div>
 							</div>
 						</div>

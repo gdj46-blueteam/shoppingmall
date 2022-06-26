@@ -25,124 +25,127 @@
 <body>
 	<jsp:include page="/WEB-INF/view/mainNav.jsp" /> <!-- nav -->
 	<!-- 견적서 폼 -->
+	
 	<section class="probootstrap-cover overflow-hidden relative" style="background-image: url('assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5" id="section-home">
 		<div class="overlay"></div>
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate">Let Me Introduce Korea To The World</h2>
-					<p class="lead mb-5 probootstrap-animate">
-				</div>
-				<div class="col-md probootstrap-animate">
-					<form method="post" action="${pageContext.request.contextPath}/InsertDIYController" class="probootstrap-form" id="requireForm">
-						<div class="form-group">
-							<div class="row mb-3">
-								<div class="col-md">
-									<div class="form-group">
-										<label for="id_label_single">City 
-										<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourArea">
-												<c:forEach var="c" items="${tourAreaList}">
-													<option value="${c.tourAreaNo }">${c.area} ${c.city}</option>
-												</c:forEach>
-										</select>
-										</label>
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group">
-										<label for="id_label_single2">Language</label>
-										<div class="probootstrap_select-wrap">
-											<label for="id_label_single2" style="width: 100%;"> 
-											<select class="form-control" id="id_label_single2" style="width: 100%;" name="language">
-													<c:forEach var="c" items="${languageList}">
-														<option value="${c.languageNo }">${c.language}</option>
-													</c:forEach>
-											</select>
-											</label>
+			<div class="container">
+				<c:if test="${sessionAuthority ==1}">								<!-- 회원만 견적서 추가 -->
+					<div class="row align-items-center">
+						<div class="col-md">
+							<h2 class="heading mb-2 display-4 font-light probootstrap-animate">Let Me Introduce Korea To The World</h2>
+							<p class="lead mb-5 probootstrap-animate">
+						</div>
+						<div class="col-md probootstrap-animate">
+							<form method="post" action="${pageContext.request.contextPath}/InsertDIYController" class="probootstrap-form" id="requireForm">
+								<div class="form-group">
+									<div class="row mb-3">
+										<div class="col-md">
+											<div class="form-group">
+												<label for="id_label_single">City 
+												<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourArea">
+														<c:forEach var="c" items="${tourAreaList}">
+															<option value="${c.tourAreaNo }">${c.area} ${c.city}</option>
+														</c:forEach>
+												</select>
+												</label>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<label for="id_label_single2">Language</label>
+												<div class="probootstrap_select-wrap">
+													<label for="id_label_single2" style="width: 100%;"> 
+													<select class="form-control" id="id_label_single2" style="width: 100%;" name="language">
+															<c:forEach var="c" items="${languageList}">
+																<option value="${c.languageNo }">${c.language}</option>
+															</c:forEach>
+													</select>
+													</label>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<!-- END row -->
-							<div class="row mb-3">
-								<div class="col-md">
-									<div class="form-group">
-										<label for="id_label_single2">교통수단
-										<select class="form-control" id="id_label_single2" style="width: 100%;" name=transportationNo>
-												<c:forEach var="t" items="${transportationList}">
-													<option value="${t.transportationNo}">${t.transportation}</option>
-												</c:forEach>
-										</select>
-										</label>
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group">
-										<label for="id_label_single2">테마</label>
-										<div class="probootstrap_select-wrap">
-											<label for="id_label_single2" style="width: 100%;"> 
-											<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourkindNo">
-													<c:forEach var="k" items="${tourkindList}">
-														<option value="${k.tourkindNo }">${k.tourkind}</option>
-													</c:forEach>
-											</select>
-											</label>
+									<!-- END row -->
+									<div class="row mb-3">
+										<div class="col-md">
+											<div class="form-group">
+												<label for="id_label_single2">교통수단
+												<select class="form-control" id="id_label_single2" style="width: 100%;" name=transportationNo>
+														<c:forEach var="t" items="${transportationList}">
+															<option value="${t.transportationNo}">${t.transportation}</option>
+														</c:forEach>
+												</select>
+												</label>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<label for="id_label_single2">테마</label>
+												<div class="probootstrap_select-wrap">
+													<label for="id_label_single2" style="width: 100%;"> 
+													<select class="form-control" id="id_label_single2" style="width: 100%;" name="tourkindNo">
+															<c:forEach var="k" items="${tourkindList}">
+																<option value="${k.tourkindNo }">${k.tourkind}</option>
+															</c:forEach>
+													</select>
+													</label>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<!-- END row -->
-							<div class="row mb-5">
-								<div class="col-md">
-									<div class="form-group">
-										<label for="probootstrap">Personnel</label>
-										<div class="probootstrap-date-wrap">
-											<input type="number" id="personelNumber" class="form-control" placeholder="인원수를 선택해주세요" name="tourDIYPeople" min="1">
+									<!-- END row -->
+									<div class="row mb-5">
+										<div class="col-md">
+											<div class="form-group">
+												<label for="probootstrap">Personnel</label>
+												<div class="probootstrap-date-wrap">
+													<input type="number" id="personelNumber" class="form-control" placeholder="인원수를 선택해주세요" name="tourDIYPeople" min="1">
+												</div>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<label for="probootstrap">Date of travel</label>
+												<div class="probootstrap-date-wrap">
+													<input type="date" id="travelDate" class="form-control" placeholder="날짜를 선택해주세요" name="tourDIYTerm">
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group">
-										<label for="probootstrap">Date of travel</label>
-										<div class="probootstrap-date-wrap">
-											<input type="date" id="travelDate" class="form-control" placeholder="날짜를 선택해주세요" name="tourDIYTerm">
+									<!-- END row -->
+									<div class="row">
+										<div class="col-md">
+											<div class="form-group">
+												<label for="id_label_single2">Accommodation</label>
+												<div class="probootstrap_select-wrap">
+													<label for="id_label_single2" style="width: 100%;"> 
+													<select class="form-control" id="id_label_single2" style="width: 100%;"name="tourDIYStay">
+															<option value="게스트하우스">게스트하우스</option>
+															<option value="펜션">펜션</option>
+															<option value="빌라">빌라</option>
+															<option value="호텔">호텔</option>
+													</select>
+													</label>
+												</div>
+											</div>
+										</div>
+											<div class="form-group">
+												<label for="probootstrap">Requirements</label>
+												<div class="probootstrap_select-wrap">
+													<label for="id_label_single2" style="width: 100%;"> 
+													<textArea name="tourDIYEtc" rows="10" Cols="30" class="form-control" id="Requirements" placeholder="요구사항을 입력해주세요"></textArea>
+													</label>
+												</div>
+											</div>
+											 <div class="col-md">
+		                  						<button type="submit" id="btn" class="btn btn-primary btn-block">주문서 만들기</button>
+		                  					</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<!-- END row -->
-							<div class="row">
-								<div class="col-md">
-									<div class="form-group">
-										<label for="id_label_single2">Accommodation</label>
-										<div class="probootstrap_select-wrap">
-											<label for="id_label_single2" style="width: 100%;"> 
-											<select class="form-control" id="id_label_single2" style="width: 100%;"name="tourDIYStay">
-													<option value="게스트하우스">게스트하우스</option>
-													<option value="펜션">펜션</option>
-													<option value="빌라">빌라</option>
-													<option value="호텔">호텔</option>
-											</select>
-											</label>
-										</div>
-									</div>
-								</div>
-									<div class="form-group">
-										<label for="probootstrap">Requirements</label>
-										<div class="probootstrap_select-wrap">
-											<label for="id_label_single2" style="width: 100%;"> 
-											<textArea name="tourDIYEtc" rows="10" Cols="30" class="form-control" id="Requirements" placeholder="요구사항을 입력해주세요"></textArea>
-											</label>
-										</div>
-									</div>
-									 <div class="col-md">
-                  						<button type="submit" id="btn" class="btn btn-primary btn-block">주문서 만들기</button>
-                  					</div>
-								</div>
-							</div>
-					</form>
-				</div>
-			</div>
+							</form>
+						</div>
+					</div>
+				</c:if>
 		</div>
 	</section>
 	<!-- 견적서 form End -->
@@ -251,6 +254,16 @@
 				</c:forEach>
               </table>
          </div>
+         <c:if test="${sessionAuthority==1}">
+			<div class="row mb-1" style="">
+				<div class="col-md">
+					<div class="form-group">	
+						<a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary btn-block">리뷰리스트</a>
+						<a href="${pageContext.request.contextPath}/InsertReviewController" class="btn btn-primary btn-block">리뷰작성</a>
+					</div>
+				</div>
+			</div>
+		</c:if>	
         </div>  
       </div>
     </section>
@@ -285,6 +298,13 @@
 					</c:forEach>
 					</tbody>
 				</table>
+				<div class="row mb-5">
+					<div class="col-md">
+						<div class="form-group">	
+							<a href="${pageContext.request.contextPath}/SelectEmpListController" class="btn btn-primary btn-block">직원리스트</a>
+						</div>
+					</div>
+				</div>
 	         </div>
 	        </div>  
      	</div>
@@ -354,6 +374,8 @@
     <script src="assets/js/select2.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
+    let checkNum = /[0-9]/;
+    let checkEng = /[a-zA-Z]/;
 	$('document').ready(function(){
     	$('#btn').click(function(){
 			if($('#travelDate').val()==''){

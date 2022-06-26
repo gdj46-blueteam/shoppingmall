@@ -65,7 +65,15 @@
 								</div>
 							</div>
 						</div>
-						</form>
+						<div class="row mb-5">
+							<div class="col-md">
+								<div class="form-group">	
+									<a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary btn-block">리뷰리스트</a>
+									<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈</a>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="col-md">
 				<h2 class="heading mb-2 display-4 font-light probootstrap-animate">review One</h2>

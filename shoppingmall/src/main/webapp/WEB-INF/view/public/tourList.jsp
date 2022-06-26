@@ -62,6 +62,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md">
+						<div class="form-group">
+							<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
+						</div>
+					</div>
 				</form>
 			</div>
        	</div>

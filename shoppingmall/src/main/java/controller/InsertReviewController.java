@@ -30,15 +30,17 @@ public class InsertReviewController extends HttpServlet {
 		this.reviewDao = new ReviewDao();
 		List<TourArea> list = this.reviewDao.selectReviewConfirm(sessionId);
 		System.out.println(list.size());
-		if(this.reviewDao.selectReviewConfirm(sessionId) == null || authority > 0) {
-			request.getRequestDispatcher("/WEB-INF/view/customer/MyPage.jsp").forward(request, response);
-		} else {
+		/*
+		 * if(this.reviewDao.selectReviewConfirm(sessionId) == null || authority > 0) {
+		 * request.getRequestDispatcher("/WEB-INF/view/customer/MyPage.jsp").forward(
+		 * request, response); } else {
+		 */
 			List<TourArea> list2 = this.reviewDao.selectReviewConfirm(sessionId);
 			request.setAttribute("cityList", list2);
 			System.out.println("InsertReviewController확인 : " + list2.size());
 			// 뷰 포워딩(v)
 			request.getRequestDispatcher("/WEB-INF/view/customer/insertReview.jsp").forward(request, response);	
-		}
+		//}
 		
 				
 		

@@ -53,14 +53,16 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mb-5">
-							<div class="col-md">
-								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/UpdateAnnoController?announcementNo=${announcement.announcementNo}&announcementTitle=${announcement.announcementTitle}&announcementContent=${announcement.announcementContent}"  class="btn btn-primary btn-block">수정</a>
-									<a href="${pageContext.request.contextPath}/DeleteAnnoController?announcementNo=${announcement.announcementNo}"  class="btn btn-danger btn-block">삭제</a>
+						<c:if test="${sessionAuthority==3}">
+							<div class="row mb-5">
+								<div class="col-md">
+									<div class="form-group">
+										<a href="${pageContext.request.contextPath}/UpdateAnnoController?announcementNo=${announcement.announcementNo}&announcementTitle=${announcement.announcementTitle}&announcementContent=${announcement.announcementContent}"  class="btn btn-primary btn-block">수정</a>
+										<a href="${pageContext.request.contextPath}/DeleteAnnoController?announcementNo=${announcement.announcementNo}"  class="btn btn-danger btn-block">삭제</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						</c:if>
 					</form>
 				</div>
 				<div class="col-md">

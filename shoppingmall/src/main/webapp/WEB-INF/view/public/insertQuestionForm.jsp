@@ -75,7 +75,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="" id"" class="sr-only sr-only-focusable">ID</label>
-                    <input type="text" class="form-control" id="id" name="customerId" placeholder="ID">
+                    <input type="text" class="form-control" id="id" name="customerId" value="${sessionId}" placeholder="ID">
                   </div>
                 </div>
                 <div class="col-md-6">

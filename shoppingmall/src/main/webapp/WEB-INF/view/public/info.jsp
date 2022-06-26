@@ -23,13 +23,13 @@
 		<div class="probootstrap-text">
 			<div class="container">
 				<div class="col-md probootstrap-animate">
-					<form method="post" class="probootstrap-form">
+					
 						<div class="form-group">
 							<div class="row mb-3">
 								<!-- section : 사진크기 조정용..  -->
 							</div>
 						</div>
-					</form>
+					
 				</div>
 	        </div>
         </div>

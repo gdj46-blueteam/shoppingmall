@@ -55,8 +55,8 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/DeleteEstimateController" class="btn btn-primary btn-block">뒤로</a>
-									<button type="submit"  class="btn btn-primary btn-block">결제</button>
+									<a href="${pageContext.request.contextPath}/DeleteEstimateController" class="btn btn-primary">뒤로</a>
+									<button type="submit"  class="btn btn-primary">결제</button>
 								</div>
 								</div>
 							</div>						

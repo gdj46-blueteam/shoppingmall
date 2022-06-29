@@ -56,7 +56,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/StaticsListController" class="btn btn-primary btn-block">통계검색창</a>
+									<a href="${pageContext.request.contextPath}/StaticsListController" class="btn btn-primary">통계검색창</a>
 								</div>
 							</div>
 						</div>

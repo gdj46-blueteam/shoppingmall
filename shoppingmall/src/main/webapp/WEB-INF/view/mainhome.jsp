@@ -138,7 +138,7 @@
 												</div>
 											</div>
 											 <div class="col-md">
-		                  						<button type="submit" id="btn" class="btn btn-primary btn-block">주문서 만들기</button>
+		                  						<button type="submit" id="btn" class="btn btn-primary">주문서 만들기</button>
 		                  					</div>
 										</div>
 									</div>
@@ -236,15 +236,15 @@
             <h2 class="display-4 border-bottom probootstrap-section-heading">Our Review</h2>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row" >
+       
+          <div class="col-md-8">
               <table style="width:100%;height: 100% " class="table">
               	<tr>
               		<th>번호</th>		
 					<th>리뷰</th>
 					<th>고객아이디</th>	
               	</tr>
-              	
               	<c:forEach var="r" items="${reviewList}">  
               	<tr>
 				<td>${r.reviewNo}</td>
@@ -255,15 +255,17 @@
               </table>
          </div>
          <c:if test="${sessionAuthority==1}">
-			<div class="row mb-1" style="">
-				<div class="col-md">
-					<div class="form-group">	
-						<a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary btn-block">리뷰리스트</a>
-						<a href="${pageContext.request.contextPath}/InsertReviewController" class="btn btn-primary btn-block">리뷰작성</a>
-					</div>
-				</div>
-			</div>
-		</c:if>	
+            <div class="col-md">
+                <div class="form-group" >   
+                     <a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary">리뷰리스트 </a>
+                </div>
+               
+                <div class="form-group">
+                     <a href="${pageContext.request.contextPath}/InsertReviewController" class="btn btn-primary ">리뷰작성</a>
+                </div>
+                
+            </div>
+         </c:if> 
         </div>  
       </div>
     </section>
@@ -301,7 +303,7 @@
 				<div class="row mb-5">
 					<div class="col-md">
 						<div class="form-group">	
-							<a href="${pageContext.request.contextPath}/SelectEmpListController" class="btn btn-primary btn-block">직원리스트</a>
+							<a href="${pageContext.request.contextPath}/SelectEmpListController" class="btn btn-primary" style="float: right;">직원리스트</a>
 						</div>
 					</div>
 				</div>

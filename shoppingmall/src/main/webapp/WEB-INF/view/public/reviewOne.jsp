@@ -68,8 +68,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">	
-									<a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary btn-block">리뷰리스트</a>
-									<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈</a>
+									<a href="${pageContext.request.contextPath}/SelectReviewListController" class="btn btn-primary" style="float: right;">리뷰리스트</a>
 								</div>
 							</div>
 						</div>

@@ -48,7 +48,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-block">등록</button>
+									<button type="submit" class="btn btn-primary">등록</button>
 								</div>
 							</div>
 						</div>

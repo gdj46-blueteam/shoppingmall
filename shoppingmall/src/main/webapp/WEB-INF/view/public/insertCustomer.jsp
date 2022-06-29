@@ -132,10 +132,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mb-5">
-						 	<div class="col-md">
-                				<button type="button" class="btn btn-primary btn-block" id="signup">SIGN UP</button>
-                				<button type="reset"  class="btn btn-primary btn-block">RESET</button>
+						<div class="row mb-5" >
+						 	<div class="col-md" >
+                				<button type="button" class="btn btn-primary" id="signup">SIGN UP</button>
+                				<button type="reset"  class="btn btn-primary">RESET</button>
                 			</div>
                 		</div>
                  	</form>

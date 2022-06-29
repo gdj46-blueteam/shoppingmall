@@ -88,7 +88,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" id="signup" class="btn btn-primary btn-block">배정</button>
+									<button type="submit" id="signup" class="btn btn-primary">배정</button>
 								</div>
 								</div>
 							</div>						

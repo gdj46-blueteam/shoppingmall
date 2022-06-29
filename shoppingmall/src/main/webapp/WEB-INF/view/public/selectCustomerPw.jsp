@@ -52,12 +52,12 @@
 						 </div>
 						 <div class="row mb-5">
 							 <div class="col-md">
-							 	 <div class="form-group">	
-										<button type="submit" class="btn btn-primary btn-block">Pw찾기</button>
-										<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary btn-block">로그인하러가기</a>
-									</div>
+							 	 <div class="form-group" style="float: right;">	
+										<button type="submit" class="btn btn-primary">Pw찾기</button>
+										<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">로그인하러가기</a>
 								</div>
-							</div>						
+							</div>
+						</div>						
 					</form>
 				</div>
 				<div class="col-md">

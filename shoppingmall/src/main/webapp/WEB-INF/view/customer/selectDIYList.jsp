@@ -27,7 +27,7 @@
 		<div class="container">
 			<div class="row align-items-center">	
 				<div class="col-md probootstrap-animate" >
-					<div class="row mb-5">
+					<div class="row mb-6">
 					<form method="get" class="probootstrap-form">
 						<div class="col-md">
 							<div class="form-group">
@@ -63,13 +63,6 @@
 								</table>
 							</div>
 						</div>
-							<div class="row mb-5">
-								<div class="col-md">
-									<div class="form-group">
-										<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
-									</div>
-								</div>
-							</div>
 						</form>
 					</div>
 				</div>

@@ -32,7 +32,7 @@
 								<div class="form-group">
 									<table class="probootstrap-date-wrap table table-striped " style="color: black;">
 											<h3>접근권한이 없습니다.</h3>
-											<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">홈으로 돌아가기</a>
+											<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary">홈으로 돌아가기</a>
 									</table>
 								</div>
 							</div>

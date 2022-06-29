@@ -55,19 +55,12 @@
 									</table>
 									<c:if test="${sessionAuthority==3}">
 										<div>
-											<a href="${pageContext.request.contextPath}/InsertEmpContoller" class="btn btn-primary btn-block">직원 등록</a>
+											<a href="${pageContext.request.contextPath}/InsertEmpContoller" class="btn btn-primary"style="float: right;" >직원 등록</a>
 										</div>
 									</c:if>
 								</div>
 							</div>
 						</div>
-						<div class="row mb-1">
-						<div class="col-md">
-							<div class="form-group">
-								<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
-							</div>
-						</div>
-					</div>
 					</form>
 				</div>
 			</div>

@@ -87,8 +87,8 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-block">삭제</button>
-									<a href="${pageContext.request.contextPath}/UpdateEstimateController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}"  class="btn btn-danger btn-block">수정</a>
+									<button type="submit" class="btn btn-primary">삭제</button>
+									<a href="${pageContext.request.contextPath}/UpdateEstimateController?estimateNo=${map.estimateNo}&tourDIYNo=${map.tourDIYNo}"  class="btn btn-danger">수정</a>
 								</div>
 							</div>
 						</div>

@@ -65,7 +65,7 @@
 								<%
 									if(authority == 3){
 								%>
-									<button type="submit"class="btn btn-danger btn-block">삭제</button>
+									<button type="submit"class="btn btn-danger">삭제</button>
 								<%
 									}
 								%>
@@ -73,7 +73,7 @@
 							</div>
 						</div>
 						<div class="col-md">
-       						<a href="${pageContext.request.contextPath}/SelectQuestionController" class="btn btn-primary btn-block">문의사항 목록</a>
+       						<a href="${pageContext.request.contextPath}/SelectQuestionController" class="btn btn-primary">문의사항 목록</a>
        					</div>
 					</form>
 				</div>

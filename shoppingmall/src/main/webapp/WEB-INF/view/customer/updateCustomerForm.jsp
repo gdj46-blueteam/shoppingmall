@@ -84,8 +84,8 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }" class="btn btn-primary btn-block">나의 정보</a>
-									<button type="button" id="signup" class="btn btn-primary btn-block">수정</button>
+									<a href="${pageContext.request.contextPath}/SelectCustomerOneController?customerId=${customer.customerId }" class="btn btn-primary">나의 정보</a>
+									<button type="button" id="signup" class="btn btn-primary">수정</button>
 								</div>
 								</div>
 							</div>						

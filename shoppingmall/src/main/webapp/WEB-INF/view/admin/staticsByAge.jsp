@@ -68,7 +68,7 @@
 								<%
 									if(authority == 3){
 								%>
-									<a href="${pageContext.request.contextPath}/StaticsListController" class="btn btn-primary btn-block">통계검색창</a>
+									<a href="${pageContext.request.contextPath}/StaticsListController" class="btn btn-primary">통계검색창</a>
 								<%
 									}
 								%>

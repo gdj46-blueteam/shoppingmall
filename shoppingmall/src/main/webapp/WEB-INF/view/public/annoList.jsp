@@ -54,18 +54,11 @@
 							<div class="row mb-5">
 								<div class="col-md">
 									<div class="form-group">	
-										<a href="${pageContext.request.contextPath}/InsertAnnoController" class="btn btn-primary btn-block">공지사항 작성</a>
+										<a href="${pageContext.request.contextPath}/InsertAnnoController" class="btn btn-primary" style="float: right;">공지사항 작성</a>
 									</div>
 								</div>
 							</div>
 						</c:if>
-						 <div class="row mb-5">
-							<div class="col-md">
-								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
-								</div>
-							</div>
-						</div>
 					</form>
 				</div>
 				<div class="col-md">

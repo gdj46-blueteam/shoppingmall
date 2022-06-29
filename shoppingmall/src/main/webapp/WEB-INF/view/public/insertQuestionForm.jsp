@@ -107,25 +107,24 @@
     </section>
     <!-- END section -->
   
+    <!-- footer -->
     <footer class="probootstrap_section probootstrap-border-top">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-3">
             <h3 class="probootstrap_font-18 mb-3">K-Travel 소개</h3>
             <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
+              <li><a href="${pageContext.request.contextPath}/MainHomeController" target="_blank">Home</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectInfoController" target="_blank">이용안내</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectEmpListController" target="_blank">직원목록</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectTourController" target="_blank">관광안내</a></li>
             </ul>
           </div>
           <div class="col-md-3">
             <h3 class="probootstrap_font-18 mb-3">고객센터</h3>
             <ul class="list-unstyled">
-              <li><a href="https://free-template.co" target="_blank">Home</a></li>
-              <li><a href="https://free-template.co" target="_blank">About</a></li>
-              <li><a href="https://free-template.co" target="_blank">Services</a></li>
-              <li><a href="https://free-template.co" target="_blank">Contact</a></li>
+              <li><a href="${pageContext.request.contextPath}/InsertQuestionController" target="_blank">문의사항</a></li>
+              <li><a href="${pageContext.request.contextPath}/SelectAnnoListController" target="_blank">공지사항</a></li>
             </ul>
           </div>
          </div>

@@ -83,19 +83,15 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<a href="${pageContext.request.contextPath}/UpdateCustomerController?customerId=${customer.customerId }&customerName=${customer.customerName }&customerGender=${customer.customerGender }&customerAge=${customer.customerAge }&customerPhone=${customer.customerPhone }&customerEmail=${customer.customerEmail }&customerCountry=${customer.customerCountry }" class="btn btn-primary btn-block">수정</a>
-									<a href="${pageContext.request.contextPath}/DeleteCustomerController?customerId=${customer.customerId }" class="btn btn-danger btn-block">삭제</a>
+									<a href="${pageContext.request.contextPath}/UpdateCustomerController?customerId=${customer.customerId }&customerName=${customer.customerName }&customerGender=${customer.customerGender }&customerAge=${customer.customerAge }&customerPhone=${customer.customerPhone }&customerEmail=${customer.customerEmail }&customerCountry=${customer.customerCountry }" class="btn btn-primary" style="float: right;">수정</a>
+									<a href="${pageContext.request.contextPath}/DeleteCustomerController?customerId=${customer.customerId }" class="btn btn-danger" style="float: right;">삭제</a>
 									<%
 										if(authority == 3 ){
-										%>
-											<a href="${pageContext.request.contextPath}/SelectCustomerListController" class="btn btn-primary btn-block">회원목록</a>
-										<%
-										}else if(authority == 1){
-										%>
-											<a href="${pageContext.request.contextPath}/MainHomeController" class="btn btn-primary btn-block">메인홈으로</a>
-										<%
-										}
-										%>
+									%>
+										<a href="${pageContext.request.contextPath}/SelectCustomerListController" class="btn btn-primary" style="float: right;">회원목록</a>
+									<%
+									}
+									%>
 								</div>
 							</div>
 						</div>

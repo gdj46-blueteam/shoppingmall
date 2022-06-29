@@ -35,7 +35,7 @@
 						<form method="get" class="probootstrap-form">
 							<div class="col-md">
 								<div class="form-group">
-									<table class="probootstrap-date-wrap table table-striped">
+									<table class="probootstrap-date-wrap table table-striped table-sm" >
 										<thead>
 											<tr>
 												<th>estimateNo</th>

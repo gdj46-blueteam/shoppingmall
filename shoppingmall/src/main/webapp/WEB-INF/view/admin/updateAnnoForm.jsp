@@ -52,7 +52,7 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-block">공지사항 수정</button>
+									<button type="submit" class="btn btn-primary">공지사항 수정</button>
 								</div>
 							</div>
 						</div>

@@ -46,9 +46,9 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary btn-block">Id찾기</button>
-									<a href="${pageContext.request.contextPath}/SelectCustomerPwController" class="btn btn-primary btn-block">Pw 찾으러 가기</a>
-									<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary btn-block">로그인하러가기</a>
+									<button type="submit" class="btn btn-primary">Id찾기</button>
+									<a href="${pageContext.request.contextPath}/SelectCustomerPwController" class="btn btn-primary">Pw 찾으러 가기</a>
+									<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">로그인하러가기</a>
 								</div>
 								</div>
 							</div>						

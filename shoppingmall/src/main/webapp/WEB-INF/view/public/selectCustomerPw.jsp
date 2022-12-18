@@ -39,29 +39,33 @@
 								<div class="form-group">
 									<table>
 										<tr>
-											<td>customerId </td>
+											<td>USER ID </td>
 											<td><input type="text" name="customerId"></td>
 										</tr>
 										<tr>
-											<td>userPw</td>
-											<td>${customerPw}</td>
+											<td>USER EMAIL</td>
+											<td><input type="text" name="customerEmail"></td>
 										</tr>
+<!-- 										<tr> -->
+<!-- 											<td>userPw</td> -->
+<%-- 											<td>${customerPw}</td> --%>
+<!-- 										</tr> -->
 									</table>
 								 </div>
 							 </div>
 						 </div>
 						 <div class="row mb-5">
-							 <div class="col-md">
+							 <div class="col-md-10">
 							 	 <div class="form-group" style="float: right;">	
-										<button type="submit" class="btn btn-primary">Pw찾기</button>
-										<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">로그인하러가기</a>
+										<button type="submit" class="btn btn-primary">FIND PW</button>
+										<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">GO LOGIN</a>
 								</div>
 							</div>
 						</div>						
 					</form>
 				</div>
 				<div class="col-md">
-					<h2 class="heading mb-2 display-4 font-light probootstrap-animate" style="text-align: right;">FIND</h2>
+					<h2 class="heading mb-2 display-4 font-light probootstrap-animate" style="text-align: right;">FIND PW</h2>
 					<p class="lead mb-5 probootstrap-animate">
 				</div>	
 			</div>

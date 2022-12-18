@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Free Bootstrap 4 Theme by ProBootstrap.com">
 <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-<title>Insert title here</title>
+<title>ID 찾기</title>
 <!-- css 링크 -->
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.css">
@@ -33,12 +33,13 @@
 								<div class="form-group">
 									<table class="probootstrap-date-wrap table table-striped " style="color: black;">
 										<tr>
-											<td>customerEmail</td>
+											<td>E-MAIL</td>
 											<td><input type="text" name="customerEmail"></td>
 										</tr>
 										
-										<td>userId</td>
-										<td>${customerId}</td>
+<!-- 										<td>USER ID</td> -->
+<!-- 										<td><input type="text" name="userId"></td> -->
+<%-- 										<td>${customerId}</td> --%>
 									</table>
 								</div>
 							</div>
@@ -46,9 +47,9 @@
 						<div class="row mb-5">
 							<div class="col-md">
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary">Id찾기</button>
-									<a href="${pageContext.request.contextPath}/SelectCustomerPwController" class="btn btn-primary">Pw 찾으러 가기</a>
-									<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">로그인하러가기</a>
+									<button type="submit" class="btn btn-primary">FIND ID</button>
+									<a href="${pageContext.request.contextPath}/SelectCustomerPwController" class="btn btn-primary">FIND PW</a>
+									<a href="${pageContext.request.contextPath}/LoginController" class="btn btn-primary">GO LOGIN</a>
 								</div>
 								</div>
 							</div>						

@@ -37,7 +37,7 @@ public class FindCustomerIdController extends HttpServlet {
 		System.out.println(customerEmail + "---customerEmail");
 		
 		String customerId = customerDao.selectCustomerId(customerEmail);
-		System.out.println(customerId+"--customerId");
+		System.out.println(customerId+"<<<< -- doPost customerId");
 		
 		request.setAttribute("customerId", customerId);
 		response.sendRedirect(request.getContextPath()+"/FindCustomerIdController?customerId="+customerId); 

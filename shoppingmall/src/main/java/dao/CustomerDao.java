@@ -192,26 +192,29 @@ public class CustomerDao {
 	}
 	
 	//회원 비밀번호찾기
-	   public String selectCustomerPw(String customerId) {
+	   public String selectCustomerPw(String customerId, String customerEmail) {
 	   String customerPw = "";
 	   Connection conn = null;
 	   PreparedStatement stmt = null;
 	   ResultSet rs = null;
 	   String sql = "SELECT customer_pw customerPw "
 	         + "    FROM customer "
-	         + "    WHERE customer_id = ? ";
-	   System.out.println("Id값" + customerId);
+	         + "    WHERE customer_id = ? AND customer_email = ?";
+	   System.out.println("Id ::::" + customerId);
+	   System.out.println("email ::::" + customerEmail);
 	   try {
 	      conn = DBUtil.getConnection();
 	      stmt = conn.prepareStatement(sql); //쿼리 실행
 	      stmt.setString(1, customerId);
+	      stmt.setString(2, customerEmail);
 	      rs = stmt.executeQuery();
 	      if(rs.next()) {
 	         customerPw = rs.getString("customerPw");
+	        
 	         
 	      }
-	      System.out.println("dao 문제니" + customerPw);
-	   } catch (Exception e) {
+	      System.out.println(":: customerPw :: "+customerPw);
+	      } catch (Exception e) {
 	      e.printStackTrace();
 	   } finally {
 	      try {
@@ -230,7 +233,7 @@ public class CustomerDao {
 		PreparedStatement stmt = null;
 		int row = 0;
 		String sql ="INSERT INTO customer(customer_id , customer_pw, customer_gender, customer_age, customer_phone, customer_email, customer_country, create_date , update_date, customer_name) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?) ";
+				+ "VALUES(?, PASSWORD(?), ?, ?, ?, ?, ?, NOW(), NOW(), ?) ";
 		try {
 			conn = DBUtil.getConnection();
 			stmt = conn.prepareStatement(sql); //쿼리 실행

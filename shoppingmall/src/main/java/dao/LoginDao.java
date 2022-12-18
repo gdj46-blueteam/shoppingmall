@@ -37,7 +37,7 @@ public class LoginDao {
 				System.out.println(login+"직원아이디null값"); //디버깅
 				//관리자 id, pw를 조회하는 쿼리문
 				sql = "SELECT admin_id adminId, admin_pw adminPw, authority FROM admin"
-					+ " WHERE admin_id = ? AND admin_pw = PASSWORD(?)";
+					+ " WHERE admin_id = ? AND admin_pw = ?";
 				stmt = conn.prepareStatement(sql); //쿼리실행
 				stmt.setString(1, id);//물음표 값에 값을 넣음
 				stmt.setString(2, pw);//물음표 값에 값을 넣음

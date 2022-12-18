@@ -28,7 +28,7 @@ public class QuestionDao {
 			stmt.setString(3, question.getQuestionContent());
 			row = stmt.executeUpdate();
 			if(row == 1) {
-	            System.out.println("문의사항 1행 입력 성공(indertQuestion)");
+	            System.out.println("문의사항 1행 입력 성공(insertQuestion)");
 	         } else {
 	            System.out.println("문의사항 입력 실패(indertQuestion)");
 	         }

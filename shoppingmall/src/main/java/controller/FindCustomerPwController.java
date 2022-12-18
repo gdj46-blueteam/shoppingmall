@@ -33,10 +33,12 @@ public class FindCustomerPwController extends HttpServlet {
       System.out.println("2");
       //id값 받아 오기
       String customerId = request.getParameter("customerId");
+      String customerEmail = request.getParameter("customerEmail");
       System.out.println(customerId + "---customerId");
+      System.out.println(customerEmail + "---customerEmail");
       
       //pw값 받아 오기
-      String customerPw = customerDao.selectCustomerPw(customerId);
+      String customerPw = customerDao.selectCustomerPw(customerId, customerEmail);
       System.out.println(customerPw + "---customerPw");
       request.setAttribute("customerPw", customerPw);
       

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,14 +46,19 @@ public class MainHomeController extends HttpServlet {
 		ReviewDao reviewDao = new ReviewDao();
 		reviewList = reviewDao.selecteReview();
 		
-		System.out.println("reviewList : "+ reviewList.size());
+		System.out.println("reviewList.size : "+ reviewList.size());
+		System.out.println(":::::reviewList:::"+ reviewList);
 		
 		//뷰
 		request.setAttribute("reviewList", reviewList);
 		
 		
 		System.out.println("메인홈 불러오기");
-		request.getRequestDispatcher("/WEB-INF/view//mainhome.jsp").forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/mainhome.jsp");
+		dispatcher.forward(request, response);
+//		request.getRequestDispatcher("/WEB-INF/view/mainhome.jsp").forward(request, response);
+		System.out.println("메인홈 불러오기22222222");
+
 	}
 
 }; 
